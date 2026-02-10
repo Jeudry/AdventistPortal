@@ -1,5 +1,5 @@
 package com.rosafiesta.core.domain.types
 
-import kotlin.uuid.Uuid
+import java.util.UUID
 
-typealias ArticleId = Uuid
+typealias ArticleId = UUID

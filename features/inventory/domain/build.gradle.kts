@@ -9,5 +9,5 @@ base {
     archivesName.set("inventory-domain")
 }
 dependencies {
-    implementation(projects.shared)
+    implementation(projects.shared.domain)
 }

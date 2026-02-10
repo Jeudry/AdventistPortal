@@ -14,6 +14,7 @@ version = "unspecified"
 subprojects {
     group = rootProject.group
     version = rootProject.version
+    
     tasks.withType<KotlinCompile>().configureEach {
         compilerOptions.freeCompilerArgs.add("-opt-in=kotlin.uuid.ExperimentalUuidApi")
     }

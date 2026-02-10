@@ -26,4 +26,10 @@ interface ArticleRepository {
      * @param id The article ID.
      */
     fun deleteById(id: ArticleId)
+    
+    /**
+     * Retrieves all articles.Retrieves 
+     * @return A list of all articles.
+     */
+    fun retrieveAll(): List<Article>
 }

@@ -1,0 +1,15 @@
+type Query {
+    articles(id: ID, title: String, authorId: String): [ArticleSummary]
+}
+
+type Mutation {
+    createArticle(name: String!, code: String!): ID
+}
+
+type ArticleSummary {
+    id: ID!
+    title: String!
+    description: String
+    publishedAt: String
+    content: String
+}

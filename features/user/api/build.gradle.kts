@@ -19,4 +19,6 @@ dependencies {
     implementation(libs.spring.boot.starter.validation)
     implementation(libs.spring.boot.starter.data.redis)
     implementation(libs.jwt.api)
+    implementation(libs.jackson.module.kotlin)
+    implementation(libs.kotlin.reflect)
 }

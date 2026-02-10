@@ -17,6 +17,7 @@ import com.rosafiesta.chat.domain.events.ChatParticipantsJoinedEvent
 import com.rosafiesta.chat.domain.events.MessageDeletedEvent
 import com.rosafiesta.chat.domain.events.ProfilePictureUpdatedEv
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.http.HttpHeaders
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
@@ -32,7 +33,7 @@ import kotlin.concurrent.write
 @Component
 class ChatWebSocketHandler(
   private val chatMessageService: ChatMessageService,
-  private val objectMapper: ObjectMapper,
+  @Qualifier("jackson2ObjectMapper") private val objectMapper: ObjectMapper,
   private val chatService: ChatService,
   private val jwtService: JwtService,
 ) : TextWebSocketHandler() {

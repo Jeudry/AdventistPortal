@@ -1,10 +1,7 @@
-@file:OptIn(ExperimentalUuidApi::class)
-
 package com.rosafiesta.shared.domain.inventory.model
 
 import com.rosafiesta.core.domain.types.ArticleId
 import com.rosafiesta.shared.domain.inventory.validation.ArticleValidationUtils
-import kotlin.uuid.ExperimentalUuidApi
 
 /// <summary>Represents an article in the inventory domain.</summary>
 data class Article(

@@ -55,7 +55,7 @@ class AuthController(
         unit = TimeUnit.HOURS
     )
     fun login(
-        @Valid @RequestBody loginRequest: LoginRequest
+        @RequestBody loginRequest: LoginRequest
     ): AuthenticatedUserDto {
         return authService.login(
             email = loginRequest.email,

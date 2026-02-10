@@ -24,6 +24,11 @@ class SecurityConfig {
                     .permitAll()
                     .requestMatchers( "/api/auth/change-password")
                     .authenticated()
+                    .requestMatchers(
+                        "/v3/api-docs/**",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html"
+                    ).permitAll()
                     .dispatcherTypeMatchers(
                         DispatcherType.ERROR,
                         DispatcherType.FORWARD

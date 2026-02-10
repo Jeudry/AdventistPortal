@@ -18,8 +18,7 @@ import java.time.Instant
 @Table(
     name="password_reset_tokens", schema = "user_service",
     indexes = [
-        Index( name = "idx_password_reset_token_token", columnList = "token"),
-
+        Index(name = "idx_password_reset_token_token", columnList = "token", unique = true),
     ]
 )
 class PasswordResetTokenEntity(

@@ -8,9 +8,6 @@ import kotlinx.serialization.Serializable
 /** DTO for article data transfer, shared in KMP. */
 @Serializable
 data class ArticleDto(
-  /** Unique identifier of the article. */
-  @SerialName("id")
-  val id: String,
   /** Name of the article. */
   @SerialName("name")
   val name: String,

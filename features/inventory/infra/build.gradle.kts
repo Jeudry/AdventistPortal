@@ -14,7 +14,7 @@ base {
 
 dependencies {
     api(projects.features.inventory.domain)
-    implementation(projects.shared)
+    implementation(projects.shared.infra)
 
     implementation(libs.spring.boot.starter.web)
     api(libs.spring.boot.starter.data.jpa)

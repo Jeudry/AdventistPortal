@@ -7,7 +7,7 @@ import com.rosafiesta.core.domain.events.chat.ChatEventConstants
 import com.rosafiesta.core.domain.events.user.UserEventConstants
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator
-import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.springframework.amqp.core.Binding
 import org.springframework.amqp.core.BindingBuilder
 import org.springframework.amqp.core.Queue
@@ -28,14 +28,13 @@ class RabbitMqConfig {
     @Bean
     fun messageConverter(): Jackson2JsonMessageConverter {
         val objectMapper = ObjectMapper().apply {
-            registerModule(KotlinModule.Builder().build())
+            registerKotlinModule()
             findAndRegisterModules()
 
-            // We need this because we cant serialize sealed classes data classes without it
             val polymorphicTypeValidator = BasicPolymorphicTypeValidator.builder()
                 .allowIfBaseType(RosaFiestaEvent::class.java)
-                .allowIfSubType("java.util.") // Allow java list
-                .allowIfSubType("kotlin.collections.") // Allow kotlin list
+                .allowIfSubType("java.util.")
+                .allowIfSubType("kotlin.collections.")
                 .build()
 
             activateDefaultTyping(
@@ -128,7 +127,6 @@ class RabbitMqConfig {
             .with("user.*")
     }
   
-  // THE NAME OF THE PARAMETERS MATTERS A LOT FOR AUTOWIRING
   @Bean
   fun notificationChatBinding(
     notificationChatEventsQueue: Queue,
