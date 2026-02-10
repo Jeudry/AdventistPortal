@@ -28,4 +28,13 @@ class CommonExceptionHandling(
         "code" to "UNAUTHORIZED",
         "message" to e.message
     )
+
+    @ExceptionHandler(IllegalArgumentException::class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    fun onIllegalArgument(
+        e: IllegalArgumentException
+    ) = mapOf(
+        "code" to "BAD_REQUEST",
+        "message" to e.message
+    )
 }

@@ -9,4 +9,11 @@ dependencyResolutionManagement {
         gradlePluginPortal()
         mavenCentral()
     }
+    versionCatalogs {
+        create("libs") {
+            // Use a robust path to the root project's gradle/libs.versions.toml so this included build
+            // can always locate the catalog regardless of current working directory.
+            from(files(rootDir.parentFile.resolve("gradle/libs.versions.toml")))
+        }
+    }
 }

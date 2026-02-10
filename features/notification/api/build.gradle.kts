@@ -12,6 +12,7 @@ base {
 dependencies {
     api(projects.features.notification.domain)
     api(projects.features.notification.service)
+    api(projects.core.api)
     implementation(libs.spring.boot.starter.web)
     implementation(libs.spring.boot.starter.validation)
 }

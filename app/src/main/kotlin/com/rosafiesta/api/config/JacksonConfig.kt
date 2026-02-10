@@ -1,20 +1,5 @@
 package com.rosafiesta.api.config
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Primary
-
-@Configuration
-class JacksonConfig {
-
-    @Bean
-    @Primary
-    fun objectMapper(): ObjectMapper {
-        return ObjectMapper()
-            .registerModule(JavaTimeModule())
-            .registerKotlinModule()
-    }
-}
+// Este archivo ha sido eliminado (vaciado) para permitir que Spring Boot 4
+// auto-configure Jackson 3 (jacksonJsonMapper) automáticamente.
+// El módulo de Kotlin se registrará solo gracias a la dependencia en build.gradle.kts.

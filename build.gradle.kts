@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.spring) apply false
@@ -12,4 +14,8 @@ version = "unspecified"
 subprojects {
     group = rootProject.group
     version = rootProject.version
+    
+    tasks.withType<KotlinCompile>().configureEach {
+        compilerOptions.freeCompilerArgs.add("-opt-in=kotlin.uuid.ExperimentalUuidApi")
+    }
 }

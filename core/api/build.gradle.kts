@@ -18,6 +18,7 @@ repositories {
 
 dependencies {
     implementation(projects.core.domain)
+    implementation(projects.shared.api)
     
     implementation(libs.spring.boot.starter.web)
     implementation(libs.spring.boot.starter.security)

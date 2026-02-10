@@ -10,8 +10,8 @@ import java.time.Instant
     name = "chat_participants",
     schema = "chat_service",
     indexes = [
-        Index(name = "idx_chat_participant_username", columnList = "username"),
-        Index(name = "idx_chat_participant_email", columnList = "email"),
+        Index(name = "idx_chat_participant_username", columnList = "username", unique = true),
+        Index(name = "idx_chat_participant_email", columnList = "email", unique = true),
     ]
 )
 class ChatParticipantEntity(

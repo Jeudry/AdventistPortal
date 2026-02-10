@@ -1,5 +1,5 @@
-import gradle.kotlin.dsl.accessors._1a4939bdc5f6e939f50d04029c2e9574.allOpen
-import gradle.kotlin.dsl.accessors._1a4939bdc5f6e939f50d04029c2e9574.java
+import org.jetbrains.kotlin.gradle.internal.builtins.StandardNames.FqNames.annotation
+
 
 plugins {
     id("rosafiesta.spring-boot-service")
