@@ -35,6 +35,9 @@ data class ArticleVariantDto(
     val stock: Int,
     val rentalPrice: BigDecimal,
     val salePrice: BigDecimal,
+    val discountedRentalPrice: BigDecimal? = null,
+    val discountedSalePrice: BigDecimal? = null,
+    val appliedDiscount: DiscountDto? = null,
     val replacementCost: BigDecimal,
     val attributes: Map<String, String>,
     val dimensions: List<ArticleDimensionDto>

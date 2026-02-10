@@ -6,6 +6,7 @@ import com.rosafiesta.inventory.api.mappers.ArticleMapper
 import com.rosafiesta.inventory.domain.model.ArticleFilterParams
 import com.rosafiesta.inventory.domain.repository.ArticleQueryRepository
 import com.rosafiesta.inventory.service.ArticleService
+import com.rosafiesta.inventory.service.DiscountService
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller
 @PreAuthorize("isAuthenticated()")
 class ArticleGraphQLController(
     private val articleService: ArticleService,
+    private val discountService: DiscountService,
     private val articleQueryRepository: ArticleQueryRepository,
     private val articleMapper: ArticleMapper
 ) {
@@ -36,7 +38,9 @@ class ArticleGraphQLController(
 
     @QueryMapping
     fun article(@Argument id: ArticleId): ArticleDto? {
-        return articleService.getArticle(id)?.let { articleMapper.toDto(it) }
+        val article = articleService.getArticle(id) ?: return null
+        val activeDiscounts = discountService.getActiveDiscounts()
+        return articleMapper.toDto(article, activeDiscounts)
     }
 
     @MutationMapping

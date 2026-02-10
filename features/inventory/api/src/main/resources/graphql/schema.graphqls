@@ -1,15 +1,146 @@
+scalar BigDecimal
+scalar Instant
+scalar UUID
+
 type Query {
     articles(id: ID, title: String, authorId: String): [ArticleSummary]
+    article(id: ID!): Article
+    discounts: [Discount]
+    discount(id: ID!): Discount
 }
 
 type Mutation {
-    createArticle(name: String!, code: String!): ID
+    createArticle(input: CreateArticleInput!): ID
+    updateArticle(input: UpdateArticleInput!): ID
+    deleteArticle(id: ID!): Boolean
+    createDiscount(input: CreateDiscountInput!): ID
+    deleteDiscount(id: ID!): Boolean
+}
+
+enum ArticleType {
+    Rental
+    Sale
+}
+
+enum DiscountType {
+    PERCENTAGE
+    FIXED_AMOUNT
+}
+
+type ArticleDimension {
+    label: String!
+    widthCm: Float
+    heightCm: Float
+    depthCm: Float
+    weightKg: Float
+}
+
+type ArticleVariant {
+    id: UUID!
+    sku: String!
+    name: String!
+    description: String
+    imageUrl: String
+    isActive: Boolean!
+    stock: Int!
+    rentalPrice: BigDecimal!
+    salePrice: BigDecimal!
+    discountedRentalPrice: BigDecimal
+    discountedSalePrice: BigDecimal
+    appliedDiscount: Discount
+    replacementCost: BigDecimal!
+    attributes: [Attribute]
+    dimensions: [ArticleDimension]
+}
+
+type Attribute {
+    key: String!
+    value: String!
+}
+
+type Article {
+    id: ID!
+    nameTemplate: String!
+    descriptionTemplate: String
+    isActive: Boolean!
+    type: ArticleType!
+    categoryId: ID
+    variants: [ArticleVariant]
 }
 
 type ArticleSummary {
     id: ID!
-    title: String!
+    nameTemplate: String!
+    descriptionTemplate: String
+    createdAt: Instant
+}
+
+type Discount {
+    id: ID!
+    name: String!
     description: String
-    publishedAt: String
-    content: String
+    type: DiscountType!
+    value: BigDecimal!
+    startDate: Instant
+    endDate: Instant
+    isActive: Boolean!
+    targetCategoryId: ID
+    targetArticleId: ID
+    targetVariantId: UUID
+    priority: Int!
+}
+
+input CreateArticleInput {
+    nameTemplate: String!
+    descriptionTemplate: String
+    type: ArticleType!
+    categoryId: ID
+    variants: [CreateArticleVariantInput!]!
+}
+
+input CreateArticleVariantInput {
+    sku: String!
+    name: String!
+    description: String
+    imageUrl: String
+    stock: Int!
+    rentalPrice: BigDecimal!
+    salePrice: BigDecimal!
+    replacementCost: BigDecimal!
+    attributes: [AttributeInput!]
+    dimensions: [ArticleDimensionInput!]
+}
+
+input AttributeInput {
+    key: String!
+    value: String!
+}
+
+input ArticleDimensionInput {
+    label: String!
+    widthCm: Float
+    heightCm: Float
+    depthCm: Float
+    weightKg: Float
+}
+
+input UpdateArticleInput {
+    id: ID!
+    nameTemplate: String
+    descriptionTemplate: String
+    isActive: Boolean
+    categoryId: ID
+}
+
+input CreateDiscountInput {
+    name: String!
+    description: String
+    type: DiscountType!
+    value: BigDecimal!
+    startDate: Instant
+    endDate: Instant
+    targetCategoryId: ID
+    targetArticleId: ID
+    targetVariantId: UUID
+    priority: Int
 }
