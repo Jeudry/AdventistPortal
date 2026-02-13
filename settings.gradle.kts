@@ -37,6 +37,11 @@ include("features:inventory:infra")
 include("features:inventory:service")
 include("features:inventory:api")
 
+include("features:quotes:domain")
+include("features:quotes:infra")
+include("features:quotes:service")
+include("features:quotes:api")
+
 include("core:domain")
 include("core:infra")
 include("core:service")

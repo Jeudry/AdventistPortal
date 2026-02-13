@@ -49,11 +49,20 @@ dependencies {
   implementation(projects.features.inventory.infra)
   implementation(projects.features.inventory.service)
   implementation(projects.features.inventory.api)
+  // Quotes
+  implementation(projects.features.quotes.domain)
+  implementation(projects.features.quotes.infra)
+  implementation(projects.features.quotes.service)
+  implementation(projects.features.quotes.api)
   
   implementation(libs.spring.boot.starter.data.redis)
   implementation(libs.spring.boot.starter.amqp)
   implementation(libs.spring.boot.starter.data.jpa)
   implementation(libs.spring.boot.starter.security)
+  implementation(libs.spring.boot.starter.graphql)
+  
+  // GraphQL Extended Scalars
+  implementation("com.graphql-java:graphql-java-extended-scalars:22.0")
   
   // Jackson 2 (Para RabbitMQ y compatibilidad)
   implementation(libs.jackson.datatype.jsr310)

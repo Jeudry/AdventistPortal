@@ -1,15 +1,9 @@
-CREATE SCHEMA IF NOT EXISTS chat_service;
-CREATE SCHEMA IF NOT EXISTS user_service;
-CREATE SCHEMA IF NOT EXISTS notification_service;
-CREATE SCHEMA IF NOT EXISTS inventory_service;
 
-CREATE TABLE inventory_service.articles
-(
-    id   UUID         NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    code VARCHAR(10)  NOT NULL,
-    CONSTRAINT pk_articles PRIMARY KEY (id)
-);
+CREATE SCHEMA IF NOT EXISTS user_service;
+CREATE SCHEMA IF NOT EXISTS inventory_service;
+CREATE SCHEMA IF NOT EXISTS chat_service;
+CREATE SCHEMA IF NOT EXISTS notification_service;
+CREATE SCHEMA IF NOT EXISTS quote_service;
 
 CREATE TABLE user_service.email_verification_tokens
 (
@@ -86,6 +80,98 @@ ALTER TABLE user_service.email_verification_tokens
 ALTER TABLE user_service.password_reset_tokens
     ADD CONSTRAINT FK_PASSWORD_RESET_TOKENS_ON_USER FOREIGN KEY (user_id) REFERENCES user_service.users (id);
 
+CREATE TABLE inventory_service.article_variant_attributes
+(
+    variant_id      UUID         NOT NULL,
+    attribute_value VARCHAR(255),
+    attribute_key   VARCHAR(255) NOT NULL,
+    CONSTRAINT pk_article_variant_attributes PRIMARY KEY (variant_id, attribute_key)
+);
+
+CREATE TABLE inventory_service.article_variant_dimensions
+(
+    variant_id UUID NOT NULL,
+    label      VARCHAR(255),
+    width_cm   DOUBLE PRECISION,
+    height_cm  DOUBLE PRECISION,
+    depth_cm   DOUBLE PRECISION,
+    weight_kg  DOUBLE PRECISION
+);
+
+CREATE TABLE inventory_service.article_variants
+(
+    id               UUID         NOT NULL,
+    sku              VARCHAR(255) NOT NULL,
+    name             VARCHAR(255) NOT NULL,
+    description      TEXT,
+    image_url        VARCHAR(255),
+    is_active        BOOLEAN      NOT NULL,
+    stock            INTEGER      NOT NULL,
+    rental_price     DECIMAL(19, 4),
+    sale_price       DECIMAL(19, 4),
+    replacement_cost DECIMAL(19, 4),
+    article_id       UUID,
+    CONSTRAINT pk_article_variants PRIMARY KEY (id)
+);
+
+CREATE TABLE inventory_service.articles
+(
+    id                   UUID         NOT NULL,
+    name_template        VARCHAR(255) NOT NULL,
+    description_template TEXT,
+    is_active            BOOLEAN      NOT NULL,
+    type                 VARCHAR(255) NOT NULL,
+    category_id          UUID,
+    created_at           TIMESTAMP WITHOUT TIME ZONE,
+    updated_at           TIMESTAMP WITHOUT TIME ZONE,
+    CONSTRAINT pk_articles PRIMARY KEY (id)
+);
+
+CREATE TABLE inventory_service.categories
+(
+    id          UUID         NOT NULL,
+    name        VARCHAR(255) NOT NULL,
+    description TEXT,
+    icon_name   VARCHAR(255),
+    is_active   BOOLEAN,
+    parent_id   UUID,
+    CONSTRAINT pk_categories PRIMARY KEY (id)
+);
+
+CREATE TABLE inventory_service.discounts
+(
+    id                 UUID           NOT NULL,
+    name               VARCHAR(255)   NOT NULL,
+    description        TEXT,
+    type               VARCHAR(255)   NOT NULL,
+    value              DECIMAL(19, 4) NOT NULL,
+    start_date         TIMESTAMP WITHOUT TIME ZONE,
+    end_date           TIMESTAMP WITHOUT TIME ZONE,
+    is_active          BOOLEAN        NOT NULL,
+    target_category_id UUID,
+    target_article_id  UUID,
+    target_variant_id  UUID,
+    priority           INTEGER        NOT NULL,
+    created_at         TIMESTAMP WITHOUT TIME ZONE,
+    updated_at         TIMESTAMP WITHOUT TIME ZONE,
+    CONSTRAINT pk_discounts PRIMARY KEY (id)
+);
+
+ALTER TABLE inventory_service.articles
+    ADD CONSTRAINT FK_ARTICLES_ON_CATEGORY FOREIGN KEY (category_id) REFERENCES inventory_service.categories (id);
+
+ALTER TABLE inventory_service.article_variants
+    ADD CONSTRAINT FK_ARTICLE_VARIANTS_ON_ARTICLE FOREIGN KEY (article_id) REFERENCES inventory_service.articles (id);
+
+ALTER TABLE inventory_service.categories
+    ADD CONSTRAINT FK_CATEGORIES_ON_PARENT FOREIGN KEY (parent_id) REFERENCES inventory_service.categories (id);
+
+ALTER TABLE inventory_service.article_variant_attributes
+    ADD CONSTRAINT fk_article_variant_attributes_on_article_variant_entity FOREIGN KEY (variant_id) REFERENCES inventory_service.article_variants (id);
+
+ALTER TABLE inventory_service.article_variant_dimensions
+    ADD CONSTRAINT fk_article_variant_dimensions_on_article_variant_entity FOREIGN KEY (variant_id) REFERENCES inventory_service.article_variants (id);
+
 CREATE TABLE chat_service.chat_messages
 (
     id         UUID NOT NULL,
@@ -161,3 +247,32 @@ CREATE TABLE notification_service.device_tokens
 CREATE UNIQUE INDEX idx_device_tokens_token ON notification_service.device_tokens (token);
 
 CREATE INDEX idx_device_tokens_user_id ON notification_service.device_tokens (user_id);
+
+CREATE TABLE quote_service.quote_items
+(
+    id         UUID           NOT NULL,
+    quote_id   UUID,
+    variant_id UUID,
+    quantity   INTEGER        NOT NULL,
+    unit_price DECIMAL(19, 4) NOT NULL,
+    added_at   TIMESTAMP WITHOUT TIME ZONE,
+    CONSTRAINT pk_quote_items PRIMARY KEY (id)
+);
+
+CREATE TABLE quote_service.quotes
+(
+    id               UUID                        NOT NULL,
+    client_id        UUID                        NOT NULL,
+    status           VARCHAR(255)                NOT NULL,
+    event_start_date TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    event_end_date   TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    venue_address    VARCHAR(255),
+    created_at       TIMESTAMP WITHOUT TIME ZONE,
+    CONSTRAINT pk_quotes PRIMARY KEY (id)
+);
+
+ALTER TABLE quote_service.quote_items
+    ADD CONSTRAINT FK_QUOTE_ITEMS_ON_QUOTE FOREIGN KEY (quote_id) REFERENCES quote_service.quotes (id);
+
+ALTER TABLE quote_service.quote_items
+    ADD CONSTRAINT FK_QUOTE_ITEMS_ON_VARIANT FOREIGN KEY (variant_id) REFERENCES inventory_service.article_variants (id);

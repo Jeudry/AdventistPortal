@@ -1,31 +1,37 @@
 package com.rosafiesta.inventory.infra.repository
 
 import com.rosafiesta.core.domain.types.ArticleId
-import com.rosafiesta.inventory.domain.model.Article
-import com.rosafiesta.inventory.domain.model.ArticleFilterParams
-import com.rosafiesta.inventory.domain.model.ArticleSummary
+import com.rosafiesta.inventory.domain.model.*
 import com.rosafiesta.inventory.domain.repository.ArticleQueryRepository
 import com.rosafiesta.inventory.domain.repository.ArticleRepository
 import com.rosafiesta.inventory.infra.db.entities.ArticleEntity
+import com.rosafiesta.inventory.infra.db.entities.ArticleVariantEntity
 import com.rosafiesta.inventory.infra.db.mappers.fromDomain
 import com.rosafiesta.inventory.infra.db.mappers.toDomain
 import com.rosafiesta.inventory.infra.db.projections.ArticleSummaryProjection
 import org.springframework.data.jpa.domain.Specification
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor
+import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.FluentQuery
 import org.springframework.stereotype.Repository
+import java.util.*
 
 /**
  * JPA implementation of ArticleRepository.
  */
 @Repository
 class ArticleRepositoryImpl(
-    private val jpaRepository: ArticleJpaRepository
+    private val jpaRepository: ArticleJpaRepository,
+    private val variantJpaRepository: ArticleVariantJpaRepository
 ) : ArticleRepository, ArticleQueryRepository {
 
     override fun findById(id: ArticleId): Article? {
         return jpaRepository.findById(id).orElse(null)?.toDomain()
+    }
+
+    override fun findVariantById(id: UUID): ArticleVariant? {
+        return variantJpaRepository.findById(id).orElse(null)?.toDomain()
     }
 
     override fun save(article: Article): Article {
@@ -64,3 +70,8 @@ class ArticleRepositoryImpl(
  * JPA repository interface for ArticleEntity.
  */
 interface ArticleJpaRepository : JpaRepository<ArticleEntity, ArticleId>, JpaSpecificationExecutor<ArticleEntity>
+
+/**
+ * JPA repository interface for ArticleVariantEntity.
+ */
+interface ArticleVariantJpaRepository : JpaRepository<ArticleVariantEntity, UUID>

@@ -1,7 +1,9 @@
 package com.rosafiesta
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.persistence.autoconfigure.EntityScan
 import org.springframework.boot.runApplication
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.scheduling.annotation.EnableScheduling
 
 /// <summary>
@@ -12,6 +14,8 @@ import org.springframework.scheduling.annotation.EnableScheduling
 /// </summary>
 @SpringBootApplication
 @EnableScheduling
+@EnableJpaRepositories(basePackages = ["com.rosafiesta"])
+@EntityScan(basePackages = ["com.rosafiesta"])
 class RosaFiestaApiApplication
 
 /// <summary>

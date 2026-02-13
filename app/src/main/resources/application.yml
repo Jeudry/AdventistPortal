@@ -50,7 +50,8 @@ spring:
         show_sql: true
 
   flyway:
-    schemas: user_service,chat_service,notification_service
+    schemas: user_service,chat_service,notification_service,inventory_service,quote_service
+    baseline-on-migrate: true
 
   mail:
     host: smtp.gmail.com
