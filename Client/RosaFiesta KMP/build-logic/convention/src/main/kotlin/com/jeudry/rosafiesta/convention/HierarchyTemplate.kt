@@ -5,7 +5,15 @@ package com.jeudry.rosafiesta.convention
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinHierarchyTemplate
+import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
+
+// AGP 9's com.android.kotlin.multiplatform.library registers an Android target
+// that withAndroidTarget() (which matches the legacy androidTarget()) does not
+// recognize. Match by platform type so intermediate source sets (jvmCommon,
+// mobile) still include the Android target.
+private val KotlinPlatformType?.isAndroid
+    get() = this == KotlinPlatformType.androidJvm
 
 private val hierarchyTemplate = KotlinHierarchyTemplate {
     withSourceSetTree(
@@ -17,14 +25,14 @@ private val hierarchyTemplate = KotlinHierarchyTemplate {
         withCompilations { true }
 
         group("mobile") {
-            withAndroidTarget()
+            withCompilations { it.target.platformType.isAndroid }
             group("ios") {
                 withIos()
             }
         }
 
         group("jvmCommon") {
-            withAndroidTarget()
+            withCompilations { it.target.platformType.isAndroid }
             withJvm()
         }
 

@@ -2,6 +2,8 @@ import com.jeudry.rosafiesta.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getByType
+import org.jetbrains.compose.ComposeExtension
 
 class CmpLibraryConventionPlugin: Plugin<Project> {
 
@@ -13,13 +15,18 @@ class CmpLibraryConventionPlugin: Plugin<Project> {
                 apply("org.jetbrains.compose")
             }
 
-            dependencies {
-                "commonMainImplementation"(libs.findLibrary("jetbrains-compose-ui").get())
-                "commonMainImplementation"(libs.findLibrary("jetbrains-compose-foundation").get())
-                "commonMainImplementation"(libs.findLibrary("jetbrains-compose-material3").get())
-                "commonMainImplementation"(libs.findLibrary("jetbrains-compose-material-icons-core").get())
+            // Use the Compose Multiplatform DSL dependencies so the plugin
+            // resolves the correct per-platform artifacts (raw
+            // org.jetbrains.compose.* coordinates don't resolve for all targets).
+            val compose = extensions.getByType<ComposeExtension>().dependencies
 
-                "debugImplementation"(libs.findLibrary("androidx-compose-ui-tooling").get())
+            dependencies {
+                "commonMainImplementation"(compose.ui)
+                "commonMainImplementation"(compose.foundation)
+                "commonMainImplementation"(compose.material3)
+                "commonMainImplementation"(compose.materialIconsExtended)
+
+                "androidRuntimeClasspath"(libs.findLibrary("androidx-compose-ui-tooling").get())
             }
         }
     }

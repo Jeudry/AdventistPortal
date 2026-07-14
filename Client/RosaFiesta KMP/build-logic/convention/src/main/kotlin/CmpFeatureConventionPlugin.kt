@@ -2,6 +2,8 @@ import com.jeudry.rosafiesta.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getByType
+import org.jetbrains.compose.ComposeExtension
 
 class CmpFeatureConventionPlugin: Plugin<Project> {
 
@@ -10,6 +12,8 @@ class CmpFeatureConventionPlugin: Plugin<Project> {
             with(pluginManager) {
                 apply("com.jeudry.convention.cmp.library")
             }
+
+            val compose = extensions.getByType<ComposeExtension>().dependencies
 
             dependencies {
                 "commonMainImplementation"(project(":core:presentation"))
@@ -21,7 +25,7 @@ class CmpFeatureConventionPlugin: Plugin<Project> {
                 "commonMainImplementation"(libs.findLibrary("koin-compose").get())
                 "commonMainImplementation"(libs.findLibrary("koin-compose-viewmodel").get())
 
-                "commonMainImplementation"(libs.findLibrary("jetbrains-compose-runtime").get())
+                "commonMainImplementation"(compose.runtime)
                 "commonMainImplementation"(libs.findLibrary("jetbrains-compose-viewmodel").get())
                 "commonMainImplementation"(libs.findLibrary("jetbrains-lifecycle-viewmodel").get())
                 "commonMainImplementation"(libs.findLibrary("jetbrains-lifecycle-compose").get())

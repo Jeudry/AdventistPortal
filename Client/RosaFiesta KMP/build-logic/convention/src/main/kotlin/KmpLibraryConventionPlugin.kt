@@ -1,11 +1,7 @@
-import com.android.build.api.dsl.LibraryExtension
-import com.jeudry.rosafiesta.convention.configureKotlinAndroid
 import com.jeudry.rosafiesta.convention.configureKotlinMultiplatform
 import com.jeudry.rosafiesta.convention.libs
-import com.jeudry.rosafiesta.convention.pathToResourcePrefix
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 
 class KmpLibraryConventionPlugin: Plugin<Project> {
@@ -13,21 +9,14 @@ class KmpLibraryConventionPlugin: Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                apply("com.android.library")
+                // AGP 9: KMP Android libraries use the dedicated multiplatform
+                // library plugin instead of com.android.library + androidTarget().
+                apply("com.android.kotlin.multiplatform.library")
                 apply("org.jetbrains.kotlin.multiplatform")
                 apply("org.jetbrains.kotlin.plugin.serialization")
             }
 
             configureKotlinMultiplatform()
-
-            extensions.configure<LibraryExtension> {
-                configureKotlinAndroid(this)
-
-                resourcePrefix = this@with.pathToResourcePrefix()
-
-                // Required to make debug build of app run in iOS simulator
-                experimentalProperties["android.experimental.kmp.enableAndroidResources"] = "true"
-            }
 
             dependencies {
                 "commonMainImplementation"(libs.findLibrary("kotlinx-serialization-json").get())
