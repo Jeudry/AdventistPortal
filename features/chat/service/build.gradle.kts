@@ -17,5 +17,4 @@ dependencies {
     
     implementation(libs.spring.boot.starter.data.jpa)
     implementation(libs.spring.boot.starter.amqp)
-    implementation(libs.jackson.datatype.jsr310)
 }

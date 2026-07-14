@@ -8,9 +8,8 @@ import com.rosafiesta.core.domain.types.UserId
 import com.rosafiesta.chat.service.ChatMessageService
 import com.rosafiesta.chat.service.ChatService
 import com.rosafiesta.core.services.JwtService
-import com.fasterxml.jackson.databind.JsonMappingException
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import tools.jackson.databind.DatabindException
+import tools.jackson.databind.ObjectMapper
 import com.rosafiesta.chat.domain.events.ChatCreatedEvent
 import com.rosafiesta.chat.domain.events.ChatParticipantLeftEvent
 import com.rosafiesta.chat.domain.events.ChatParticipantsJoinedEvent
@@ -50,7 +49,9 @@ class ChatWebSocketHandler(
   private val userToSessions = ConcurrentHashMap<UserId, MutableSet<String>>()
   private val userChatIds = ConcurrentHashMap<UserId, MutableSet<ChatId>>()
   private val chatToSessions = ConcurrentHashMap<ChatId, MutableSet<String>>()
-  private val mapper = objectMapper.registerModule(JavaTimeModule())
+  // Jackson 3 mappers are immutable; java.time is already registered on the
+  // injected mapper via findAndAddModules().
+  private val mapper = objectMapper
   
   private fun broadcastToChat(
     chatId: ChatId,
@@ -170,7 +171,7 @@ class ChatWebSocketHandler(
           handleSendMessage(dto, userSession.userId)
         }
       }
-    } catch (ex: JsonMappingException) {
+    } catch (ex: DatabindException) {
       logger.warn("Could not parse message ${message.payload}", ex)
       sendError(
         session,

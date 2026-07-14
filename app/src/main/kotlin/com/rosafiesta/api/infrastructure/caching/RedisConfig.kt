@@ -2,22 +2,17 @@
 
 package com.rosafiesta.api.infrastructure.caching
 
-import com.rosafiesta.core.domain.events.RosaFiestaEvent
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.KotlinModule
-import org.springframework.amqp.rabbit.connection.ConnectionFactory
-import org.springframework.amqp.support.converter.Jackson2JavaTypeMapper
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter
 import org.springframework.cache.annotation.EnableCaching
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.redis.cache.RedisCacheConfiguration
 import org.springframework.data.redis.cache.RedisCacheManager
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer
+import org.springframework.data.redis.serializer.GenericJacksonJsonRedisSerializer
 import org.springframework.data.redis.serializer.RedisSerializationContext
+import tools.jackson.databind.DefaultTyping
+import tools.jackson.databind.json.JsonMapper
+import tools.jackson.databind.jsontype.BasicPolymorphicTypeValidator
 import java.time.Duration
 
 @Configuration
@@ -27,31 +22,26 @@ class RedisConfig(){
     fun cacheManager(
         connectionFactory: LettuceConnectionFactory
     ): RedisCacheManager {
-        val objectMapper = ObjectMapper().apply {
-            // allows to parse java time instances to json
-            registerModule(JavaTimeModule())
+        // We need the polymorphic validator because we can't serialize sealed
+        // classes / data classes without default typing.
+        val polymorphicTypeValidator = BasicPolymorphicTypeValidator.builder()
+            .allowIfSubType("java.util.") // Allow java list
+            .allowIfSubType("kotlin.collections.") // Allow kotlin list
+            .allowIfSubType("com.rosafiesta.api.")
+            .build()
 
-            registerModule(KotlinModule.Builder().build())
-            findAndRegisterModules()
-
-            // We need this because we cant serialize sealed classes data classes without it
-            val polymorphicTypeValidator = BasicPolymorphicTypeValidator.builder()
-                .allowIfSubType("java.util.") // Allow java list
-                .allowIfSubType("kotlin.collections.") // Allow kotlin list
-                .allowIfSubType("com.rosafiesta.api.")
-                .build()
-
-            activateDefaultTyping(
-                polymorphicTypeValidator,
-                ObjectMapper.DefaultTyping.NON_FINAL,
-            )
-        }
+        // Jackson 3: immutable JsonMapper built via the builder. Kotlin +
+        // java.time modules are auto-registered from the classpath.
+        val objectMapper = JsonMapper.builder()
+            .findAndAddModules()
+            .activateDefaultTyping(polymorphicTypeValidator, DefaultTyping.NON_FINAL)
+            .build()
 
         val cacheConfig = RedisCacheConfiguration.defaultCacheConfig()
             .entryTtl(Duration.ofHours(1L))
             .serializeValuesWith(
                 RedisSerializationContext.SerializationPair.fromSerializer(
-                    GenericJackson2JsonRedisSerializer(objectMapper)
+                    GenericJacksonJsonRedisSerializer(objectMapper)
                 )
             )
             .disableCachingNullValues()

@@ -64,12 +64,9 @@ dependencies {
   // GraphQL Extended Scalars
   implementation("com.graphql-java:graphql-java-extended-scalars:22.0")
   
-  // Jackson 2 (Para RabbitMQ y compatibilidad)
-  implementation(libs.jackson.datatype.jsr310)
+  // Jackson 3 (managed by the Spring Boot BOM); java.time is built into
+  // jackson-databind in Jackson 3, so no jsr310 module is needed.
   implementation(libs.jackson.module.kotlin)
-
-  // INTENTO DE RESCATE: Jackson 3 Module Kotlin (Sin versión, confiando en el BOM)
-  implementation("tools.jackson.module:jackson-module-kotlin")
 
   implementation(libs.kotlin.reflect)
   implementation(libs.flyway.postgresql)
