@@ -56,15 +56,8 @@ actual class ConnectionErrorHandler {
     }
 
     private fun extractNsError(cause: Throwable): NSError? {
-        val throwableCause = cause.cause
-        if (throwableCause is NSError) {
-            return throwableCause
-        }
-
-        if (cause is NSError) {
-            return cause
-        }
-
+        // Note: a Kotlin Throwable is never an NSError in Kotlin/Native (they
+        // are unrelated types), so the exception is inspected via its message.
         val exceptionNsError = cause.toNSError()
         val causeNsError = cause.cause?.toNSError()
 
