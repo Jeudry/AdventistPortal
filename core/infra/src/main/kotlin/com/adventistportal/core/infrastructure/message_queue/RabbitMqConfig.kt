@@ -39,7 +39,11 @@ class RabbitMqConfig {
             .activateDefaultTyping(polymorphicTypeValidator, DefaultTyping.NON_FINAL)
             .build()
 
-        return JacksonJsonMessageConverter(objectMapper).apply {
+        // Spring AMQP's type mapper has its own trusted-packages check (separate
+        // from Jackson's PolymorphicTypeValidator) for the __TypeId__ header used
+        // by TYPE_ID precedence. Trust all packages for this internal event bus;
+        // the Jackson validator above still bounds body (@class) deserialization.
+        return JacksonJsonMessageConverter(objectMapper, "*").apply {
             typePrecedence = JacksonJavaTypeMapper.TypePrecedence.TYPE_ID
         }
     }
