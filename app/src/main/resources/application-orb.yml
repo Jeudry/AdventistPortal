@@ -34,11 +34,6 @@ spring:
       connection-timeout: 5000
       timeout: 2000ms
 
-  liquibase:
-    enabled: false
-    change-log: classpath:db/changelog/db.changelog-master.xml
-    default-schema: public
-
   jpa:
     hibernate:
       ddl-auto: validate

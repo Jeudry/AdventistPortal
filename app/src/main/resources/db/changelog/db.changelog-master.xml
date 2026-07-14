@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-5.0.xsd">
+
+    <!-- Complete initial schema: the *_service schemas + all tables. -->
+    <include file="2026/02/10-00-init.sql" relativeToChangelogFile="true"/>
+
+    <!--
+      New migrations generated from the JPA model (e.g. with JPA Buddy) are added
+      below as <include file="..."/> lines, in order.
+    -->
+
+</databaseChangeLog>

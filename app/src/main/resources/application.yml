@@ -37,6 +37,11 @@ spring:
       repositories:
         enabled: false
 
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    default-schema: public
+
   jpa:
     hibernate:
       ddl-auto: validate
