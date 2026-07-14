@@ -1,4 +1,4 @@
-package com.rosafiesta.notification.api.dto
+package com.adventistportal.notification.api.dto
 
 import jakarta.validation.constraints.NotBlank
 

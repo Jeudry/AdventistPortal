@@ -1,6 +1,6 @@
-package com.rosafiesta.notification.domain.model
+package com.adventistportal.notification.domain.model
 
-import com.rosafiesta.core.domain.types.UserId
+import com.adventistportal.core.domain.types.UserId
 import java.time.Instant
 
 data class DeviceToken(

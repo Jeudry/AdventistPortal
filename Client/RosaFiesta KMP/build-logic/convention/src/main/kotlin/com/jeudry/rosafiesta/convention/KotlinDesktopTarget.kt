@@ -1,4 +1,4 @@
-package com.jeudry.rosafiesta.convention
+package com.adventistportal.convention
 
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

@@ -1,4 +1,4 @@
-package com.rosafiesta.chat.api.dto
+package com.adventistportal.chat.api.dto
 
 import jakarta.validation.constraints.NotBlank
 

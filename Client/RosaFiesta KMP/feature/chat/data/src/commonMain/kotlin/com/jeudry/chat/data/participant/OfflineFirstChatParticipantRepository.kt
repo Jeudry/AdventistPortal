@@ -1,14 +1,14 @@
-package com.jeudry.chat.data.participant
+package com.adventistportal.chat.data.participant
 
-import com.jeudry.chat.domain.models.ChatParticipant
-import com.jeudry.chat.domain.participant.ChatParticipantRepository
-import com.jeudry.chat.domain.participant.ChatParticipantService
-import com.jeudry.core.domain.auth.AuthInfo
-import com.jeudry.core.domain.auth.SessionStorage
-import com.jeudry.core.domain.util.DataError
-import com.jeudry.core.domain.util.EmptyResult
-import com.jeudry.core.domain.util.Result
-import com.jeudry.core.domain.util.onSuccess
+import com.adventistportal.chat.domain.models.ChatParticipant
+import com.adventistportal.chat.domain.participant.ChatParticipantRepository
+import com.adventistportal.chat.domain.participant.ChatParticipantService
+import com.adventistportal.core.domain.auth.AuthInfo
+import com.adventistportal.core.domain.auth.SessionStorage
+import com.adventistportal.core.domain.util.DataError
+import com.adventistportal.core.domain.util.EmptyResult
+import com.adventistportal.core.domain.util.Result
+import com.adventistportal.core.domain.util.onSuccess
 import kotlinx.coroutines.flow.first
 
 class OfflineFirstChatParticipantRepository(

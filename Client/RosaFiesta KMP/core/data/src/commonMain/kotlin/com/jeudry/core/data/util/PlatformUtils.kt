@@ -1,4 +1,4 @@
-package com.jeudry.core.data.util
+package com.adventistportal.core.data.util
 
 expect object PlatformUtils {
     fun getOSName(): String

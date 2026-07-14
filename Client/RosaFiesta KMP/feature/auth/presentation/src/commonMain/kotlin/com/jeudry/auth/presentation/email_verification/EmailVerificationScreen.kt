@@ -1,4 +1,4 @@
-package com.jeudry.auth.presentation.email_verification
+package com.adventistportal.auth.presentation.email_verification
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,23 +18,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import rosafiesta.feature.auth.presentation.generated.resources.Res
-import rosafiesta.feature.auth.presentation.generated.resources.close
-import rosafiesta.feature.auth.presentation.generated.resources.email_verified_failed
-import rosafiesta.feature.auth.presentation.generated.resources.email_verified_failed_desc
-import rosafiesta.feature.auth.presentation.generated.resources.email_verified_successfully
-import rosafiesta.feature.auth.presentation.generated.resources.email_verified_successfully_desc
-import rosafiesta.feature.auth.presentation.generated.resources.login
-import rosafiesta.feature.auth.presentation.generated.resources.verifying_account
-import com.jeudry.core.designsystem.components.brand.RosaFiestaFailureIcon
-import com.jeudry.core.designsystem.components.brand.RosaFiestaSuccessIcon
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButton
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButtonStyle
-import com.jeudry.core.designsystem.components.layouts.RosaFiestaAdaptiveResultLayout
-import com.jeudry.core.designsystem.components.layouts.RosaFiestaSimpleResultLayout
-import com.jeudry.core.designsystem.components.layouts.RosaFiestaSnackbarScaffold
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import adventistportal.feature.auth.presentation.generated.resources.Res
+import adventistportal.feature.auth.presentation.generated.resources.close
+import adventistportal.feature.auth.presentation.generated.resources.email_verified_failed
+import adventistportal.feature.auth.presentation.generated.resources.email_verified_failed_desc
+import adventistportal.feature.auth.presentation.generated.resources.email_verified_successfully
+import adventistportal.feature.auth.presentation.generated.resources.email_verified_successfully_desc
+import adventistportal.feature.auth.presentation.generated.resources.login
+import adventistportal.feature.auth.presentation.generated.resources.verifying_account
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalFailureIcon
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalSuccessIcon
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButton
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButtonStyle
+import com.adventistportal.core.designsystem.components.layouts.AdventistPortalAdaptiveResultLayout
+import com.adventistportal.core.designsystem.components.layouts.AdventistPortalSimpleResultLayout
+import com.adventistportal.core.designsystem.components.layouts.AdventistPortalSnackbarScaffold
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
@@ -64,8 +64,8 @@ fun EmailVerificationScreen(
     state: EmailVerificationState,
     onAction: (EmailVerificationAction) -> Unit,
 ) {
-    RosaFiestaSnackbarScaffold {
-        RosaFiestaAdaptiveResultLayout {
+    AdventistPortalSnackbarScaffold {
+        AdventistPortalAdaptiveResultLayout {
             when {
                 state.isVerifying -> {
                     VerifyingContent(
@@ -74,14 +74,14 @@ fun EmailVerificationScreen(
                     )
                 }
                 state.isVerified -> {
-                    RosaFiestaSimpleResultLayout(
+                    AdventistPortalSimpleResultLayout(
                         title = stringResource(Res.string.email_verified_successfully),
                         description = stringResource(Res.string.email_verified_successfully_desc),
                         icon = {
-                            RosaFiestaSuccessIcon()
+                            AdventistPortalSuccessIcon()
                         },
                         primaryButton = {
-                            RosaFiestaButton(
+                            AdventistPortalButton(
                                 text = stringResource(Res.string.login),
                                 onClick = {
                                     onAction(EmailVerificationAction.OnLoginClick)
@@ -92,25 +92,25 @@ fun EmailVerificationScreen(
                     )
                 }
                 else -> {
-                    RosaFiestaSimpleResultLayout(
+                    AdventistPortalSimpleResultLayout(
                         title = stringResource(Res.string.email_verified_failed),
                         description = stringResource(Res.string.email_verified_failed_desc),
                         icon = {
                             Spacer(modifier = Modifier.height(32.dp))
-                            RosaFiestaFailureIcon(
+                            AdventistPortalFailureIcon(
                                 modifier = Modifier
                                     .size(80.dp)
                             )
                             Spacer(modifier = Modifier.height(32.dp))
                         },
                         primaryButton = {
-                            RosaFiestaButton(
+                            AdventistPortalButton(
                                 text = stringResource(Res.string.close),
                                 onClick = {
                                     onAction(EmailVerificationAction.OnCloseClick)
                                 },
                                 modifier = Modifier.fillMaxWidth(),
-                                style = RosaFiestaButtonStyle.SECONDARY
+                                style = AdventistPortalButtonStyle.SECONDARY
                             )
                         }
                     )
@@ -148,7 +148,7 @@ private fun VerifyingContent(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun EmailVerificationErrorPreview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         EmailVerificationScreen(
             state = EmailVerificationState(),
             onAction = {}
@@ -159,7 +159,7 @@ private fun EmailVerificationErrorPreview() {
 @Preview
 @Composable
 private fun EmailVerificationVerifyingPreview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         EmailVerificationScreen(
             state = EmailVerificationState(
                 isVerifying = true
@@ -172,7 +172,7 @@ private fun EmailVerificationVerifyingPreview() {
 @Preview
 @Composable
 private fun EmailVerificationSuccessPreview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         EmailVerificationScreen(
             state = EmailVerificationState(
                 isVerified = true

@@ -1,4 +1,4 @@
-package com.rosafiesta.user.domain.model
+package com.adventistportal.user.domain.model
 
 data class AuthenticatedUser(
     val user: User,

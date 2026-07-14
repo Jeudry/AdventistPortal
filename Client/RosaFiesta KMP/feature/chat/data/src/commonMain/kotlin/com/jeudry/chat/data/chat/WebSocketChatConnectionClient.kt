@@ -1,23 +1,23 @@
-package com.jeudry.chat.data.chat
+package com.adventistportal.chat.data.chat
 
-import com.jeudry.chat.data.dto.websocket.IncomingWebSocketDto
-import com.jeudry.chat.data.dto.websocket.IncomingWebSocketType
-import com.jeudry.chat.data.dto.websocket.WebSocketMessageDto
-import com.jeudry.chat.data.mappers.toDomain
-import com.jeudry.chat.data.mappers.toEntity
-import com.jeudry.chat.data.mappers.toNewMessage
-import com.jeudry.chat.data.network.KtorWebSocketConnector
-import com.jeudry.chat.database.RosaFiestaChatDatabase
-import com.jeudry.chat.domain.chat.ChatConnectionClient
-import com.jeudry.chat.domain.chat.ChatRepository
-import com.jeudry.chat.domain.message.MessageRepository
-import com.jeudry.chat.domain.models.ChatMessage
-import com.jeudry.chat.domain.models.ChatMessageDeliveryStatus
-import com.jeudry.chat.domain.models.ConnectionState
-import com.jeudry.core.domain.auth.SessionStorage
-import com.jeudry.core.domain.util.DataError
-import com.jeudry.core.domain.util.EmptyResult
-import com.jeudry.core.domain.util.onFailure
+import com.adventistportal.chat.data.dto.websocket.IncomingWebSocketDto
+import com.adventistportal.chat.data.dto.websocket.IncomingWebSocketType
+import com.adventistportal.chat.data.dto.websocket.WebSocketMessageDto
+import com.adventistportal.chat.data.mappers.toDomain
+import com.adventistportal.chat.data.mappers.toEntity
+import com.adventistportal.chat.data.mappers.toNewMessage
+import com.adventistportal.chat.data.network.KtorWebSocketConnector
+import com.adventistportal.chat.database.AdventistPortalChatDatabase
+import com.adventistportal.chat.domain.chat.ChatConnectionClient
+import com.adventistportal.chat.domain.chat.ChatRepository
+import com.adventistportal.chat.domain.message.MessageRepository
+import com.adventistportal.chat.domain.models.ChatMessage
+import com.adventistportal.chat.domain.models.ChatMessageDeliveryStatus
+import com.adventistportal.chat.domain.models.ConnectionState
+import com.adventistportal.core.domain.auth.SessionStorage
+import com.adventistportal.core.domain.util.DataError
+import com.adventistportal.core.domain.util.EmptyResult
+import com.adventistportal.core.domain.util.onFailure
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
@@ -33,7 +33,7 @@ import kotlinx.serialization.json.Json
 class WebSocketChatConnectionClient(
     private val webSocketConnector: KtorWebSocketConnector,
     private val chatRepository: ChatRepository,
-    private val database: RosaFiestaChatDatabase,
+    private val database: AdventistPortalChatDatabase,
     private val sessionStorage: SessionStorage,
     private val json: Json,
     private val applicationScope: CoroutineScope

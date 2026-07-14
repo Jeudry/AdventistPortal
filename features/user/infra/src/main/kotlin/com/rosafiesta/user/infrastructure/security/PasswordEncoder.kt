@@ -1,4 +1,4 @@
-package com.rosafiesta.user.infrastructure.security
+package com.adventistportal.user.infrastructure.security
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Component

@@ -1,6 +1,6 @@
-package com.rosafiesta.api.api.security
+package com.adventistportal.api.api.security
 
-import com.rosafiesta.user.api.config.JwtAuthFilter
+import com.adventistportal.user.api.config.JwtAuthFilter
 import jakarta.servlet.DispatcherType
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

@@ -1,16 +1,16 @@
-package com.jeudry.chat.presentation.chat_list
+package com.adventistportal.chat.presentation.chat_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jeudry.chat.domain.chat.ChatRepository
-import com.jeudry.chat.domain.notification.DeviceTokenService
-import com.jeudry.chat.domain.participant.ChatParticipantRepository
-import com.jeudry.chat.presentation.mappers.toUi
-import com.jeudry.core.domain.auth.AuthService
-import com.jeudry.core.domain.auth.SessionStorage
-import com.jeudry.core.domain.util.onFailure
-import com.jeudry.core.domain.util.onSuccess
-import com.jeudry.core.presentation.util.toUiText
+import com.adventistportal.chat.domain.chat.ChatRepository
+import com.adventistportal.chat.domain.notification.DeviceTokenService
+import com.adventistportal.chat.domain.participant.ChatParticipantRepository
+import com.adventistportal.chat.presentation.mappers.toUi
+import com.adventistportal.core.domain.auth.AuthService
+import com.adventistportal.core.domain.auth.SessionStorage
+import com.adventistportal.core.domain.util.onFailure
+import com.adventistportal.core.domain.util.onSuccess
+import com.adventistportal.core.presentation.util.toUiText
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow

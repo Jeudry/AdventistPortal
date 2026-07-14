@@ -1,17 +1,17 @@
-package com.jeudry.chat.database
+package com.adventistportal.chat.database
 
 import androidx.room.ConstructedBy
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.jeudry.chat.database.dao.ChatDao
-import com.jeudry.chat.database.dao.ChatMessageDao
-import com.jeudry.chat.database.dao.ChatParticipantDao
-import com.jeudry.chat.database.dao.ChatParticipantsCrossRefDao
-import com.jeudry.chat.database.entities.ChatEntity
-import com.jeudry.chat.database.entities.ChatMessageEntity
-import com.jeudry.chat.database.entities.ChatParticipantCrossRef
-import com.jeudry.chat.database.entities.ChatParticipantEntity
-import com.jeudry.chat.database.view.LastMessageView
+import com.adventistportal.chat.database.dao.ChatDao
+import com.adventistportal.chat.database.dao.ChatMessageDao
+import com.adventistportal.chat.database.dao.ChatParticipantDao
+import com.adventistportal.chat.database.dao.ChatParticipantsCrossRefDao
+import com.adventistportal.chat.database.entities.ChatEntity
+import com.adventistportal.chat.database.entities.ChatMessageEntity
+import com.adventistportal.chat.database.entities.ChatParticipantCrossRef
+import com.adventistportal.chat.database.entities.ChatParticipantEntity
+import com.adventistportal.chat.database.view.LastMessageView
 
 @Database(
     entities = [
@@ -25,14 +25,14 @@ import com.jeudry.chat.database.view.LastMessageView
     ],
     version = 1,
 )
-@ConstructedBy(RosaFiestaChatDatabaseConstructor::class)
-abstract class RosaFiestaChatDatabase: RoomDatabase() {
+@ConstructedBy(AdventistPortalChatDatabaseConstructor::class)
+abstract class AdventistPortalChatDatabase: RoomDatabase() {
     abstract val chatDao: ChatDao
     abstract val chatParticipantDao: ChatParticipantDao
     abstract val chatMessageDao: ChatMessageDao
     abstract val chatParticipantsCrossRefDao: ChatParticipantsCrossRefDao
 
     companion object {
-        const val DB_NAME = "rosafiesta.db"
+        const val DB_NAME = "adventistportal.db"
     }
 }

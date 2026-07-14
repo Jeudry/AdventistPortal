@@ -1,8 +1,8 @@
-package com.rosafiesta.inventory.service
+package com.adventistportal.inventory.service
 
-import com.rosafiesta.core.domain.types.ArticleId
-import com.rosafiesta.inventory.domain.model.Article
-import com.rosafiesta.inventory.domain.model.ArticleParams
+import com.adventistportal.core.domain.types.ArticleId
+import com.adventistportal.inventory.domain.model.Article
+import com.adventistportal.inventory.domain.model.ArticleParams
 
 /**
  * Service interface for managing articles.

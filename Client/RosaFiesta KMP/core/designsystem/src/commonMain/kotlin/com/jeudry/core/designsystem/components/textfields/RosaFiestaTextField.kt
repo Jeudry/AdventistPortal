@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.textfields
+package com.adventistportal.core.designsystem.components.textfields
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -29,12 +29,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun RosaFiestaTextField(
+fun AdventistPortalTextField(
     state: TextFieldState,
     modifier: Modifier = Modifier,
     placeholder: String? = null,
@@ -46,7 +46,7 @@ fun RosaFiestaTextField(
     keyboardType: KeyboardType = KeyboardType.Text,
     onFocusChanged: (Boolean) -> Unit = {},
 ) {
-    RosaFiestaTextFieldLayout(
+    AdventistPortalTextFieldLayout(
         title = title,
         isError = isError,
         supportingText = supportingText,
@@ -97,9 +97,9 @@ fun RosaFiestaTextField(
 @Preview(
     showBackground = true
 )
-fun RosaFiestaTextFieldTextFieldEmptyPreview() {
-    RosaFiestaTheme {
-        RosaFiestaTextField(
+fun AdventistPortalTextFieldTextFieldEmptyPreview() {
+    AdventistPortalTheme {
+        AdventistPortalTextField(
             state = rememberTextFieldState(),
             modifier = Modifier
                 .width(300.dp),
@@ -114,9 +114,9 @@ fun RosaFiestaTextFieldTextFieldEmptyPreview() {
 @Preview(
     showBackground = true
 )
-fun RosaFiestaTextFieldTextFieldFilledPreview() {
-    RosaFiestaTheme {
-        RosaFiestaTextField(
+fun AdventistPortalTextFieldTextFieldFilledPreview() {
+    AdventistPortalTheme {
+        AdventistPortalTextField(
             state = rememberTextFieldState(
                 initialText = "test@test.com"
             ),
@@ -133,9 +133,9 @@ fun RosaFiestaTextFieldTextFieldFilledPreview() {
 @Preview(
     showBackground = true
 )
-fun RosaFiestaTextFieldTextFieldDisabledPreview() {
-    RosaFiestaTheme {
-        RosaFiestaTextField(
+fun AdventistPortalTextFieldTextFieldDisabledPreview() {
+    AdventistPortalTheme {
+        AdventistPortalTextField(
             state = rememberTextFieldState(),
             modifier = Modifier
                 .width(300.dp),
@@ -151,9 +151,9 @@ fun RosaFiestaTextFieldTextFieldDisabledPreview() {
 @Preview(
     showBackground = true
 )
-fun RosaFiestaTextFieldErrorPreview() {
-    RosaFiestaTheme {
-        RosaFiestaTextField(
+fun AdventistPortalTextFieldErrorPreview() {
+    AdventistPortalTheme {
+        AdventistPortalTextField(
             state = rememberTextFieldState(),
             modifier = Modifier
                 .width(300.dp),

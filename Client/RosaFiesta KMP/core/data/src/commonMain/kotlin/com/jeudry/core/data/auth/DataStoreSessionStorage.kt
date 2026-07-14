@@ -1,14 +1,14 @@
-package com.jeudry.core.data.auth
+package com.adventistportal.core.data.auth
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.jeudry.core.data.dto.AuthInfoSerializable
-import com.jeudry.core.data.mappers.toDomain
-import com.jeudry.core.data.mappers.toSerializable
-import com.jeudry.core.domain.auth.AuthInfo
-import com.jeudry.core.domain.auth.SessionStorage
+import com.adventistportal.core.data.dto.AuthInfoSerializable
+import com.adventistportal.core.data.mappers.toDomain
+import com.adventistportal.core.data.mappers.toSerializable
+import com.adventistportal.core.domain.auth.AuthInfo
+import com.adventistportal.core.domain.auth.SessionStorage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.serialization.json.Json

@@ -1,8 +1,8 @@
-package com.jeudry.chat.presentation.chat_list_detail
+package com.adventistportal.chat.presentation.chat_list_detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jeudry.chat.domain.chat.ChatConnectionClient
+import com.adventistportal.chat.domain.chat.ChatConnectionClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.launchIn

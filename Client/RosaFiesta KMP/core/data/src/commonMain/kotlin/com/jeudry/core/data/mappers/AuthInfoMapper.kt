@@ -1,9 +1,9 @@
-package com.jeudry.core.data.mappers
+package com.adventistportal.core.data.mappers
 
-import com.jeudry.core.data.dto.AuthInfoSerializable
-import com.jeudry.core.data.dto.UserSerializable
-import com.jeudry.core.domain.auth.AuthInfo
-import com.jeudry.core.domain.auth.User
+import com.adventistportal.core.data.dto.AuthInfoSerializable
+import com.adventistportal.core.data.dto.UserSerializable
+import com.adventistportal.core.domain.auth.AuthInfo
+import com.adventistportal.core.domain.auth.User
 
 fun AuthInfoSerializable.toDomain(): AuthInfo {
     return AuthInfo(

@@ -1,10 +1,10 @@
-package com.jeudry.rosafiesta
+package com.adventistportal
 
 import androidx.compose.ui.window.Notification
-import com.jeudry.chat.data.notification.DesktopNotifier
-import com.jeudry.rosafiesta.windows.WindowState
-import com.jeudry.core.domain.preferences.ThemePreference
-import com.jeudry.core.domain.preferences.ThemePreferences
+import com.adventistportal.chat.data.notification.DesktopNotifier
+import com.adventistportal.windows.WindowState
+import com.adventistportal.core.domain.preferences.ThemePreference
+import com.adventistportal.core.domain.preferences.ThemePreferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

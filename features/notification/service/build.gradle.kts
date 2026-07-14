@@ -1,8 +1,8 @@
 plugins {
-    id("rosafiesta.service")
+    id("adventistportal.service")
 }
 
-group = "com.rosafiesta.notification"
+group = "com.adventistportal.notification"
 version = "0.0.1-SNAPSHOT"
 
 base {

@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.profile.components
+package com.adventistportal.chat.presentation.profile.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,11 +12,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.cancel
-import rosafiesta.feature.chat.presentation.generated.resources.profile_settings
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaIconButton
-import com.jeudry.core.designsystem.theme.extended
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.cancel
+import adventistportal.feature.chat.presentation.generated.resources.profile_settings
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalIconButton
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -44,7 +44,7 @@ fun ProfileHeaderSection(
                 color = MaterialTheme.colorScheme.extended.textSecondary
             )
         }
-        RosaFiestaIconButton(
+        AdventistPortalIconButton(
             onClick = onCloseClick
         ) {
             Icon(

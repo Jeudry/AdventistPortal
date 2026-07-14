@@ -1,4 +1,4 @@
-package com.rosafiesta.api.config
+package com.adventistportal.api.config
 
 import io.swagger.v3.oas.models.Components
 import io.swagger.v3.oas.models.OpenAPI
@@ -17,9 +17,9 @@ class OpenApiConfig {
         return OpenAPI()
             .info(
                 Info()
-                    .title("RosaFiesta API")
+                    .title("AdventistPortal API")
                     .version("0.0.1")
-                    .description("Documentación de la API de RosaFiesta")
+                    .description("Documentación de la API de AdventistPortal")
             )
             .addSecurityItem(SecurityRequirement().addList(securitySchemeName))
             .components(

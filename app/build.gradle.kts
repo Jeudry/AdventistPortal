@@ -1,11 +1,11 @@
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-  id("rosafiesta.spring-boot-app")
+  id("adventistportal.spring-boot-app")
 }
-group = "com.rosafiesta"
+group = "com.adventistportal"
 version = "0.0.1-SNAPSHOT"
-description = "RosaFiesta API backend"
+description = "AdventistPortal API backend"
 
 repositories {
     mavenCentral()
@@ -14,7 +14,7 @@ repositories {
 }
 
 springBoot {
-  mainClass.set("com.rosafiesta.RosaFiestaApiApplicationKt")
+  mainClass.set("com.adventistportal.AdventistPortalApiApplicationKt")
 }
 tasks {
   named<BootJar>("bootJar") {

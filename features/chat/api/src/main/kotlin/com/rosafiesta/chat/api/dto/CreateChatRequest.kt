@@ -1,6 +1,6 @@
-package com.rosafiesta.chat.api.dto
+package com.adventistportal.chat.api.dto
 
-import com.rosafiesta.core.domain.types.UserId
+import com.adventistportal.core.domain.types.UserId
 import jakarta.validation.constraints.Size
 
 data class CreateChatRequest(

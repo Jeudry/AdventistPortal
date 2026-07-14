@@ -1,12 +1,12 @@
-package com.rosafiesta.chat.service
+package com.adventistportal.chat.service
 
-import com.rosafiesta.chat.domain.events.ProfilePictureUpdatedEv
-import com.rosafiesta.chat.domain.exceptions.ChatParticipantNotFoundEx
-import com.rosafiesta.chat.domain.exceptions.InvalidProfilePictureEx
-import com.rosafiesta.chat.domain.models.ProfilePictureUploadCredentials
-import com.rosafiesta.core.domain.types.UserId
-import com.rosafiesta.chat.infra.database.repositories.ChatParticipantRepository
-import com.rosafiesta.chat.infra.storage.SupabaseStorageService
+import com.adventistportal.chat.domain.events.ProfilePictureUpdatedEv
+import com.adventistportal.chat.domain.exceptions.ChatParticipantNotFoundEx
+import com.adventistportal.chat.domain.exceptions.InvalidProfilePictureEx
+import com.adventistportal.chat.domain.models.ProfilePictureUploadCredentials
+import com.adventistportal.core.domain.types.UserId
+import com.adventistportal.chat.infra.database.repositories.ChatParticipantRepository
+import com.adventistportal.chat.infra.storage.SupabaseStorageService
 import jakarta.transaction.Transactional
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value

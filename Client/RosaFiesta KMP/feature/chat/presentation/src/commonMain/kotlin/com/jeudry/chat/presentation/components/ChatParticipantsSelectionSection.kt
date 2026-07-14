@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.components
+package com.adventistportal.chat.presentation.components
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
@@ -18,13 +18,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.components.avatar.ChatParticipantUi
-import com.jeudry.core.designsystem.components.avatar.RosaFiestaAvatarPhoto
-import com.jeudry.core.designsystem.components.brand.RosaFiestaHorizontalDivider
-import com.jeudry.core.designsystem.theme.extended
-import com.jeudry.core.designsystem.theme.titleXSmall
-import com.jeudry.core.presentation.util.DeviceConfiguration
-import com.jeudry.core.presentation.util.currentDeviceConfiguration
+import com.adventistportal.core.designsystem.components.avatar.ChatParticipantUi
+import com.adventistportal.core.designsystem.components.avatar.AdventistPortalAvatarPhoto
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalHorizontalDivider
+import com.adventistportal.core.designsystem.theme.extended
+import com.adventistportal.core.designsystem.theme.titleXSmall
+import com.adventistportal.core.presentation.util.DeviceConfiguration
+import com.adventistportal.core.presentation.util.currentDeviceConfiguration
 
 @Composable
 fun ColumnScope.ChatParticipantsSelectionSection(
@@ -67,7 +67,7 @@ fun ColumnScope.ChatParticipantsSelectionSection(
 
             if(existingParticipants.isNotEmpty()) {
                 item {
-                    RosaFiestaHorizontalDivider()
+                    AdventistPortalHorizontalDivider()
                 }
             }
 
@@ -110,7 +110,7 @@ fun ChatParticipantListItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        RosaFiestaAvatarPhoto(
+        AdventistPortalAvatarPhoto(
             displayText = participantUi.initials,
             imageUrl = participantUi.imageUrl
         )

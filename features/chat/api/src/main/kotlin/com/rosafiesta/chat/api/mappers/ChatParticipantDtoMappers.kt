@@ -1,7 +1,7 @@
-package com.rosafiesta.chat.api.mappers
+package com.adventistportal.chat.api.mappers
 
-import com.rosafiesta.chat.api.dto.ChatParticipantDto
-import com.rosafiesta.chat.domain.models.ChatParticipant
+import com.adventistportal.chat.api.dto.ChatParticipantDto
+import com.adventistportal.chat.domain.models.ChatParticipant
 
 fun ChatParticipant.toDto(): ChatParticipantDto {
     return ChatParticipantDto(

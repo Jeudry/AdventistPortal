@@ -1,4 +1,4 @@
-package com.jeudry.chat.domain.models
+package com.adventistportal.chat.domain.models
 
 import kotlin.time.Instant
 

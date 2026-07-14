@@ -1,4 +1,4 @@
-package com.jeudry.auth.presentation.email_verification
+package com.adventistportal.auth.presentation.email_verification
 
 data class EmailVerificationState(
     val isVerifying: Boolean = false,

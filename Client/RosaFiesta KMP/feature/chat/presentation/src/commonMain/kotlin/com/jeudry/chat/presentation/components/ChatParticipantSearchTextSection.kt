@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.components
+package com.adventistportal.chat.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -9,13 +9,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.add
-import rosafiesta.feature.chat.presentation.generated.resources.email_or_username
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButton
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButtonStyle
-import com.jeudry.core.designsystem.components.textfields.RosaFiestaTextField
-import com.jeudry.core.presentation.util.UiText
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.add
+import adventistportal.feature.chat.presentation.generated.resources.email_or_username
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButton
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButtonStyle
+import com.adventistportal.core.designsystem.components.textfields.AdventistPortalTextField
+import com.adventistportal.core.presentation.util.UiText
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -37,7 +37,7 @@ fun ChatParticipantSearchTextSection(
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        RosaFiestaTextField(
+        AdventistPortalTextField(
             state = queryState,
             modifier = Modifier
                 .weight(1f),
@@ -49,10 +49,10 @@ fun ChatParticipantSearchTextSection(
             keyboardType = KeyboardType.Email,
             onFocusChanged = onFocusChanged
         )
-        RosaFiestaButton(
+        AdventistPortalButton(
             text = stringResource(Res.string.add),
             onClick = onAddClick,
-            style = RosaFiestaButtonStyle.SECONDARY,
+            style = AdventistPortalButtonStyle.SECONDARY,
             enabled = isSearchEnabled,
             isLoading = isLoading,
         )

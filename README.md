@@ -1,6 +1,6 @@
-# RosaFiesta Backend
+# AdventistPortal Backend
 
-Backend API for the RosaFiesta application built with Spring Boot and Kotlin.
+Backend API for the AdventistPortal application built with Spring Boot and Kotlin.
 
 ## 🏗️ Architecture
 
@@ -25,10 +25,10 @@ The project is organized in a modular structure:
 2. **Open project in IntelliJ IDEA**
 
 3. **Select run configuration:**
-   - **RosaFiestaApi [LOCAL]** 🏠 - Docker Compose tradicional
-   - **RosaFiestaApi [ORB]** 🌟 - Orb Stack (mejor rendimiento en macOS)
-   - **RosaFiestaApi [DEV]** 🔧 - Servicios remotos de desarrollo
-   - **RosaFiestaApi [PROD]** 🚀 - Servicios de producción
+   - **AdventistPortalApi [LOCAL]** 🏠 - Docker Compose tradicional
+   - **AdventistPortalApi [ORB]** 🌟 - Orb Stack (mejor rendimiento en macOS)
+   - **AdventistPortalApi [DEV]** 🔧 - Servicios remotos de desarrollo
+   - **AdventistPortalApi [PROD]** 🚀 - Servicios de producción
 
 4. **Click Debug 🐛 (Shift + F9)** o **Run ▶️ (Shift + F10)**
 
@@ -145,17 +145,17 @@ The API will be available at:
 
 ### Access RabbitMQ Management UI:
 http://localhost:15672
-- Username: `rosafiesta_user`
-- Password: `rosafiesta_password`
+- Username: `adventistportal_user`
+- Password: `adventistportal_password`
 
 ### Connect to PostgreSQL:
 ```bash
-docker exec -it rosafiesta-postgres psql -U rosafiesta_user -d rosafiesta
+docker exec -it adventistportal-postgres psql -U adventistportal_user -d adventistportal
 ```
 
 ### Connect to Redis:
 ```bash
-docker exec -it rosafiesta-redis redis-cli -a rosafiesta_redis_password
+docker exec -it adventistportal-redis redis-cli -a adventistportal_redis_password
 ```
 
 ## 📖 Additional Documentation

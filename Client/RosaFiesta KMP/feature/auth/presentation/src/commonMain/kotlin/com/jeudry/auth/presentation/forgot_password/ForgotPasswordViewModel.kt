@@ -1,13 +1,13 @@
-package com.jeudry.auth.presentation.forgot_password
+package com.adventistportal.auth.presentation.forgot_password
 
 import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jeudry.core.domain.auth.AuthService
-import com.jeudry.core.domain.util.onFailure
-import com.jeudry.core.domain.util.onSuccess
-import com.jeudry.core.presentation.util.toUiText
-import com.jeudry.domain.EmailValidator
+import com.adventistportal.core.domain.auth.AuthService
+import com.adventistportal.core.domain.util.onFailure
+import com.adventistportal.core.domain.util.onSuccess
+import com.adventistportal.core.presentation.util.toUiText
+import com.adventistportal.domain.EmailValidator
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.distinctUntilChanged

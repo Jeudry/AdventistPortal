@@ -1,8 +1,8 @@
-package com.jeudry.core.data.di
+package com.adventistportal.core.data.di
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.jeudry.core.data.auth.createDataStore
+import com.adventistportal.core.data.auth.createDataStore
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.darwin.Darwin
 import org.koin.core.module.Module

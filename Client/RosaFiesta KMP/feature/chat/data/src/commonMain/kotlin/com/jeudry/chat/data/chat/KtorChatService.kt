@@ -1,19 +1,19 @@
-package com.jeudry.chat.data.chat
+package com.adventistportal.chat.data.chat
 
-import com.jeudry.chat.data.dto.ChatDto
-import com.jeudry.chat.data.dto.request.CreateChatRequest
-import com.jeudry.chat.data.dto.request.ParticipantsRequest
-import com.jeudry.chat.data.mappers.toDomain
-import com.jeudry.chat.domain.chat.ChatService
-import com.jeudry.chat.domain.models.Chat
-import com.jeudry.core.data.networking.delete
-import com.jeudry.core.data.networking.get
-import com.jeudry.core.data.networking.post
-import com.jeudry.core.domain.util.DataError
-import com.jeudry.core.domain.util.EmptyResult
-import com.jeudry.core.domain.util.Result
-import com.jeudry.core.domain.util.asEmptyResult
-import com.jeudry.core.domain.util.map
+import com.adventistportal.chat.data.dto.ChatDto
+import com.adventistportal.chat.data.dto.request.CreateChatRequest
+import com.adventistportal.chat.data.dto.request.ParticipantsRequest
+import com.adventistportal.chat.data.mappers.toDomain
+import com.adventistportal.chat.domain.chat.ChatService
+import com.adventistportal.chat.domain.models.Chat
+import com.adventistportal.core.data.networking.delete
+import com.adventistportal.core.data.networking.get
+import com.adventistportal.core.data.networking.post
+import com.adventistportal.core.domain.util.DataError
+import com.adventistportal.core.domain.util.EmptyResult
+import com.adventistportal.core.domain.util.Result
+import com.adventistportal.core.domain.util.asEmptyResult
+import com.adventistportal.core.domain.util.map
 import io.ktor.client.HttpClient
 
 class KtorChatService(

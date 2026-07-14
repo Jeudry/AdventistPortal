@@ -1,8 +1,8 @@
-package com.rosafiesta.notification.infrastructure.message_queue
+package com.adventistportal.notification.infrastructure.message_queue
 
-import com.rosafiesta.core.domain.events.user.UserEvent
-import com.rosafiesta.core.infrastructure.message_queue.MessageQueues
-import com.rosafiesta.notification.infrastructure.service.EmailService
+import com.adventistportal.core.domain.events.user.UserEvent
+import com.adventistportal.core.infrastructure.message_queue.MessageQueues
+import com.adventistportal.notification.infrastructure.service.EmailService
 import org.springframework.amqp.rabbit.annotation.RabbitListener
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional

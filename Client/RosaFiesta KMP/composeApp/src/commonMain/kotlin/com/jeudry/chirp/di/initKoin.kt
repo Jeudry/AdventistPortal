@@ -1,10 +1,10 @@
-package com.jeudry.rosafiesta.di
+package com.adventistportal.di
 
-import com.jeudry.auth.presentation.di.authPresentationModule
-import com.jeudry.chat.data.di.chatDataModule
-import com.jeudry.chat.presentation.di.chatPresentationModule
-import com.jeudry.core.data.di.coreDataModule
-import com.jeudry.core.presentation.di.corePresentationModule
+import com.adventistportal.auth.presentation.di.authPresentationModule
+import com.adventistportal.chat.data.di.chatDataModule
+import com.adventistportal.chat.presentation.di.chatPresentationModule
+import com.adventistportal.core.data.di.coreDataModule
+import com.adventistportal.core.presentation.di.corePresentationModule
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 

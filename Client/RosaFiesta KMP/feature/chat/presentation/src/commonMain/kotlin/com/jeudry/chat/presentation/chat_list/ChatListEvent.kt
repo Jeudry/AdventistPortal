@@ -1,6 +1,6 @@
-package com.jeudry.chat.presentation.chat_list
+package com.adventistportal.chat.presentation.chat_list
 
-import com.jeudry.core.presentation.util.UiText
+import com.adventistportal.core.presentation.util.UiText
 
 sealed interface ChatListEvent {
     data object OnLogoutSuccess: ChatListEvent

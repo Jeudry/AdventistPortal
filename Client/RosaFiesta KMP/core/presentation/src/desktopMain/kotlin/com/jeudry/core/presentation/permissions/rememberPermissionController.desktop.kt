@@ -1,4 +1,4 @@
-package com.jeudry.core.presentation.permissions
+package com.adventistportal.core.presentation.permissions
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember

@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.layouts
+package com.adventistportal.core.designsystem.components.layouts
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -14,18 +14,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.components.brand.RosaFiestaSuccessIcon
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButton
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButtonStyle
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalSuccessIcon
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButton
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButtonStyle
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /// <summary>
 /// Simple result layout with icon, title, description and action buttons
 /// </summary>
 @Composable
-fun RosaFiestaSimpleResultLayout(
+fun AdventistPortalSimpleResultLayout(
     title: String,
     description: String,
     icon: @Composable ColumnScope.() -> Unit,
@@ -86,16 +86,16 @@ fun RosaFiestaSimpleResultLayout(
 
 @Composable
 @Preview
-fun RosaFiestaSimpleResultLayoutSimpleSuccessLayoutPreview() {
-    RosaFiestaTheme(darkTheme = true) {
-        RosaFiestaSimpleResultLayout(
+fun AdventistPortalSimpleResultLayoutSimpleSuccessLayoutPreview() {
+    AdventistPortalTheme(darkTheme = true) {
+        AdventistPortalSimpleResultLayout(
             title = "Hello world!",
             description = "Test description",
             icon = {
-                RosaFiestaSuccessIcon()
+                AdventistPortalSuccessIcon()
             },
             primaryButton = {
-                RosaFiestaButton(
+                AdventistPortalButton(
                     text = "Log In",
                     onClick = {},
                     modifier = Modifier
@@ -103,10 +103,10 @@ fun RosaFiestaSimpleResultLayoutSimpleSuccessLayoutPreview() {
                 )
             },
             secondaryButton = {
-                RosaFiestaButton(
+                AdventistPortalButton(
                     text = "Resend verification email",
                     onClick = {},
-                    style = RosaFiestaButtonStyle.SECONDARY,
+                    style = AdventistPortalButtonStyle.SECONDARY,
                     modifier = Modifier
                         .fillMaxWidth()
                 )

@@ -1,6 +1,6 @@
-package com.jeudry.core.data.networking
+package com.adventistportal.core.data.networking
 
 object UrlConstants {
-    const val BASE_URL_HTTP = "https://rosafiesta.pl-coding.com/api"
-    const val BASE_URL_WS = "wss://rosafiesta.pl-coding.com/ws"
+    const val BASE_URL_HTTP = "https://adventistportal.pl-coding.com/api"
+    const val BASE_URL_WS = "wss://adventistportal.pl-coding.com/ws"
 }

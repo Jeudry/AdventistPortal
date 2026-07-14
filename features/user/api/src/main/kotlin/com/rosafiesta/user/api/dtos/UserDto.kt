@@ -1,6 +1,6 @@
-package com.rosafiesta.user.api.dtos
+package com.adventistportal.user.api.dtos
 
-import com.rosafiesta.core.domain.types.UserId
+import com.adventistportal.core.domain.types.UserId
 
 data class UserDto(
     val id: UserId,

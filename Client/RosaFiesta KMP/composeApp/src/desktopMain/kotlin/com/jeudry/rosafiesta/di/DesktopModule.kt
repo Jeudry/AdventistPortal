@@ -1,6 +1,6 @@
-package com.jeudry.rosafiesta.di
+package com.adventistportal.di
 
-import com.jeudry.rosafiesta.ApplicationStateHolder
+import com.adventistportal.ApplicationStateHolder
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 

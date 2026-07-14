@@ -1,6 +1,6 @@
-package com.rosafiesta.notification.infrastructure.service
+package com.adventistportal.notification.infrastructure.service
 
-import com.rosafiesta.core.domain.types.UserId
+import com.adventistportal.core.domain.types.UserId
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.mail.javamail.JavaMailSender
@@ -13,9 +13,9 @@ import java.time.Duration
 class EmailService(
     private val javaMailSender: JavaMailSender,
     private val templateService: EmailTemplateService,
-    @param:Value("\${rosafiesta.email.from}")
+    @param:Value("\${adventistportal.email.from}")
     private val emailFrom: String,
-    @param:Value("\${rosafiesta.email.url}")
+    @param:Value("\${adventistportal.email.url}")
     private val baseUrl: String,
 ) {
 
@@ -43,7 +43,7 @@ class EmailService(
             )
         )
 
-        sendHtmlEmail(email, "Verify your RosaFiesta account", htmlContent)
+        sendHtmlEmail(email, "Verify your AdventistPortal account", htmlContent)
     }
 
     fun sendPasswordResetEmail(

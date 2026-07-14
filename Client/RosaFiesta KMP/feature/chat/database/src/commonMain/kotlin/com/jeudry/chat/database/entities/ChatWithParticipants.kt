@@ -1,9 +1,9 @@
-package com.jeudry.chat.database.entities
+package com.adventistportal.chat.database.entities
 
 import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
-import com.jeudry.chat.database.view.LastMessageView
+import com.adventistportal.chat.database.view.LastMessageView
 
 data class ChatWithParticipants(
     @Embedded

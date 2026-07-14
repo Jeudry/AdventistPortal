@@ -1,4 +1,4 @@
-package com.rosafiesta.chat.domain.exceptions
+package com.adventistportal.chat.domain.exceptions
 
 class StorageEx(
   override val message: String? = null

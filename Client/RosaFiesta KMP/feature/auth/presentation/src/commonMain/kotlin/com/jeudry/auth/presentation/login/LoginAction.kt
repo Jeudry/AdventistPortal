@@ -1,4 +1,4 @@
-package com.jeudry.auth.presentation.login
+package com.adventistportal.auth.presentation.login
 
 sealed interface LoginAction {
     data object OnTogglePasswordVisibility: LoginAction

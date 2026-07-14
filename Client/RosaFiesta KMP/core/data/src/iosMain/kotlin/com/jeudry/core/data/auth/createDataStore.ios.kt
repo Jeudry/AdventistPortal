@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalForeignApi::class)
 
-package com.jeudry.core.data.auth
+package com.adventistportal.core.data.auth
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

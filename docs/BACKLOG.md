@@ -1,6 +1,6 @@
-# 📋 Scrum Product Backlog: RosaFiesta App
+# 📋 Scrum Product Backlog: AdventistPortal App
 
-Este documento detalla las Historias de Usuario (User Stories) necesarias para desarrollar la aplicación completa de **RosaFiesta**.
+Este documento detalla las Historias de Usuario (User Stories) necesarias para desarrollar la aplicación completa de **AdventistPortal**.
 **Stack Tecnológico:** Spring Boot 4 (Kotlin), Compose Multiplatform (Android/iOS/Desktop), PostgreSQL, Google AI (Gemini).
 
 ---
@@ -29,7 +29,7 @@ Este documento detalla las Historias de Usuario (User Stories) necesarias para d
 ### 1.3. Configuración de Seguridad Base
 > **Como** administrador del sistema,  
 > **Quiero** un sistema de autenticación básico (JWT),  
-> **Para** que solo el personal autorizado de RosaFiesta pueda acceder al panel de administración.
+> **Para** que solo el personal autorizado de AdventistPortal pueda acceder al panel de administración.
 > * **Criterios de Aceptación:**
     >   * Endpoint `/login` devuelve un token JWT válido.
 >   * Endpoints protegidos rechazan peticiones sin token.
@@ -37,9 +37,9 @@ Este documento detalla las Historias de Usuario (User Stories) necesarias para d
 ---
 
 ## 🎨 Épica 2: Diseño y Experiencia de Usuario (UI System)
-*Implementación de la identidad visual de RosaFiesta.*
+*Implementación de la identidad visual de AdventistPortal.*
 
-### 2.1. Sistema de Diseño "Armonía RosaFiesta"
+### 2.1. Sistema de Diseño "Armonía AdventistPortal"
 > **Como** diseñador,  
 > **Quiero** implementar un tema en Compose que use la paleta de colores definida,  
 > **Para** mantener la consistencia de marca en todas las pantallas.
@@ -107,7 +107,7 @@ Este documento detalla las Historias de Usuario (User Stories) necesarias para d
 
 ### 5.1. Generador de Conceptos Visuales (Gemini Vision)
 > **Como** cliente indeciso,  
-> **Quiero** subir una foto de referencia (ej. Pinterest) y que la App me sugiera productos de RosaFiesta similares,  
+> **Quiero** subir una foto de referencia (ej. Pinterest) y que la App me sugiera productos de AdventistPortal similares,  
 > **Para** lograr el estilo que deseo con lo que hay disponible.
 > * **Criterios de Aceptación:**
     >   * El sistema analiza la imagen y extrae etiquetas (ej. "Rústico", "Madera", "Flores blancas").
@@ -127,7 +127,7 @@ Este documento detalla las Historias de Usuario (User Stories) necesarias para d
 > **Para** no olvidar detalles importantes.
 > * **Criterios de Aceptación:**
     >   * Chat integrado en la app.
->   * Respuestas contextuales basadas en el inventario de RosaFiesta.
+>   * Respuestas contextuales basadas en el inventario de AdventistPortal.
 
 ---
 
@@ -140,7 +140,7 @@ Este documento detalla las Historias de Usuario (User Stories) necesarias para d
 > **Para** enviarlo al cliente para su aprobación.
 > * **Criterios de Aceptación:**
     >   * PDF con desglose de items, mano de obra y transporte.
->   * Diseño con logo y colores de RosaFiesta.
+>   * Diseño con logo y colores de AdventistPortal.
 
 ### 6.2. Gestión de Pagos
 > **Como** tesorero,  

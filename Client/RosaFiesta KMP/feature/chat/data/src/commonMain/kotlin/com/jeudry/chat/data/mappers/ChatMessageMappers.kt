@@ -1,13 +1,13 @@
-package com.jeudry.chat.data.mappers
+package com.adventistportal.chat.data.mappers
 
-import com.jeudry.chat.data.dto.ChatMessageDto
-import com.jeudry.chat.data.dto.websocket.IncomingWebSocketDto
-import com.jeudry.chat.data.dto.websocket.OutgoingWebSocketDto
-import com.jeudry.chat.database.entities.ChatMessageEntity
-import com.jeudry.chat.database.view.LastMessageView
-import com.jeudry.chat.domain.models.ChatMessage
-import com.jeudry.chat.domain.models.ChatMessageDeliveryStatus
-import com.jeudry.chat.domain.models.OutgoingNewMessage
+import com.adventistportal.chat.data.dto.ChatMessageDto
+import com.adventistportal.chat.data.dto.websocket.IncomingWebSocketDto
+import com.adventistportal.chat.data.dto.websocket.OutgoingWebSocketDto
+import com.adventistportal.chat.database.entities.ChatMessageEntity
+import com.adventistportal.chat.database.view.LastMessageView
+import com.adventistportal.chat.domain.models.ChatMessage
+import com.adventistportal.chat.domain.models.ChatMessageDeliveryStatus
+import com.adventistportal.chat.domain.models.OutgoingNewMessage
 import kotlin.time.Clock
 import kotlin.time.Instant
 

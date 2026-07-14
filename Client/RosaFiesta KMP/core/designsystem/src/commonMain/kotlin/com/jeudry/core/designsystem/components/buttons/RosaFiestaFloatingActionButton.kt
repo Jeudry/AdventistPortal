@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.buttons
+package com.adventistportal.core.designsystem.components.buttons
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -9,14 +9,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /// <summary>
-/// Floating action button with RosaFiesta branding
+/// Floating action button with AdventistPortal branding
 /// </summary>
 @Composable
-fun RosaFiestaFloatingActionButton(
+fun AdventistPortalFloatingActionButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
@@ -33,9 +33,9 @@ fun RosaFiestaFloatingActionButton(
 
 @Composable
 @Preview
-fun RosaFiestaFloatingActionButtonFloatingActionButtonPreview() {
-    RosaFiestaTheme {
-        RosaFiestaFloatingActionButton(
+fun AdventistPortalFloatingActionButtonFloatingActionButtonPreview() {
+    AdventistPortalTheme {
+        AdventistPortalFloatingActionButton(
             onClick = {}
         ) {
             Icon(

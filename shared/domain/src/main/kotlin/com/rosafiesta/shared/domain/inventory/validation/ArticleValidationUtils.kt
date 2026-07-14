@@ -1,4 +1,4 @@
-package com.rosafiesta.shared.domain.inventory.validation
+package com.adventistportal.shared.domain.inventory.validation
 
 /** Utility class for shared validation logic related to inventory. */
 object ArticleValidationUtils {

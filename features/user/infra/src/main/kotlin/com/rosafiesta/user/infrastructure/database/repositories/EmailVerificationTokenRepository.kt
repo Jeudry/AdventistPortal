@@ -1,7 +1,7 @@
-package com.rosafiesta.user.infrastructure.database.repositories
+package com.adventistportal.user.infrastructure.database.repositories
 
-import com.rosafiesta.user.infrastructure.database.entities.EmailVerificationTokenEntity
-import com.rosafiesta.user.infrastructure.database.entities.UserEntity
+import com.adventistportal.user.infrastructure.database.entities.EmailVerificationTokenEntity
+import com.adventistportal.user.infrastructure.database.entities.UserEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query

@@ -1,7 +1,7 @@
-package com.rosafiesta.notification.infrastructure.mappers
+package com.adventistportal.notification.infrastructure.mappers
 
-import com.rosafiesta.notification.domain.model.DeviceToken
-import com.rosafiesta.notification.infrastructure.database.PlatformEntity
+import com.adventistportal.notification.domain.model.DeviceToken
+import com.adventistportal.notification.infrastructure.database.PlatformEntity
 
 fun DeviceToken.Platform.toEntity(): PlatformEntity {
   return when(this) {

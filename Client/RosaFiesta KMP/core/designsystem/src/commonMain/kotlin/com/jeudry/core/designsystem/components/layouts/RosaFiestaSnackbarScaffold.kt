@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.layouts
+package com.adventistportal.core.designsystem.components.layouts
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
@@ -15,10 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 /// <summary>
-/// Scaffold with snackbar support for RosaFiesta app
+/// Scaffold with snackbar support for AdventistPortal app
 /// </summary>
 @Composable
-fun RosaFiestaSnackbarScaffold(
+fun AdventistPortalSnackbarScaffold(
     snackbarHostState: SnackbarHostState? = null,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit

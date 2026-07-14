@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.chat_detail.components
+package com.adventistportal.chat.presentation.chat_detail.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,31 +16,31 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import rosafiesta.core.designsystem.generated.resources.arrow_left_icon
-import rosafiesta.core.designsystem.generated.resources.dots_icon
-import rosafiesta.core.designsystem.generated.resources.log_out_icon
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.chat_members
-import rosafiesta.feature.chat.presentation.generated.resources.go_back
-import rosafiesta.feature.chat.presentation.generated.resources.leave_chat
-import rosafiesta.feature.chat.presentation.generated.resources.open_chat_options_menu
-import rosafiesta.feature.chat.presentation.generated.resources.users_icon
-import com.jeudry.chat.domain.models.ChatMessage
-import com.jeudry.chat.domain.models.ChatMessageDeliveryStatus
-import com.jeudry.chat.presentation.components.ChatHeader
-import com.jeudry.chat.presentation.components.ChatItemHeaderRow
-import com.jeudry.chat.presentation.model.ChatUi
-import com.jeudry.core.designsystem.components.avatar.ChatParticipantUi
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaIconButton
-import com.jeudry.core.designsystem.components.dropdown.RosaFiestaDropDownMenu
-import com.jeudry.core.designsystem.components.dropdown.DropDownItem
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import adventistportal.core.designsystem.generated.resources.arrow_left_icon
+import adventistportal.core.designsystem.generated.resources.dots_icon
+import adventistportal.core.designsystem.generated.resources.log_out_icon
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.chat_members
+import adventistportal.feature.chat.presentation.generated.resources.go_back
+import adventistportal.feature.chat.presentation.generated.resources.leave_chat
+import adventistportal.feature.chat.presentation.generated.resources.open_chat_options_menu
+import adventistportal.feature.chat.presentation.generated.resources.users_icon
+import com.adventistportal.chat.domain.models.ChatMessage
+import com.adventistportal.chat.domain.models.ChatMessageDeliveryStatus
+import com.adventistportal.chat.presentation.components.ChatHeader
+import com.adventistportal.chat.presentation.components.ChatItemHeaderRow
+import com.adventistportal.chat.presentation.model.ChatUi
+import com.adventistportal.core.designsystem.components.avatar.ChatParticipantUi
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalIconButton
+import com.adventistportal.core.designsystem.components.dropdown.AdventistPortalDropDownMenu
+import com.adventistportal.core.designsystem.components.dropdown.DropDownItem
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.time.Clock
-import rosafiesta.core.designsystem.generated.resources.Res as DesignSystemRes
+import adventistportal.core.designsystem.generated.resources.Res as DesignSystemRes
 
 @Composable
 fun ChatDetailHeader(
@@ -64,7 +64,7 @@ fun ChatDetailHeader(
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         if(!isDetailPresent) {
-            RosaFiestaIconButton(
+            AdventistPortalIconButton(
                 onClick = onBackClick
             ) {
                 Icon(
@@ -92,7 +92,7 @@ fun ChatDetailHeader(
         }
 
         Box {
-            RosaFiestaIconButton(
+            AdventistPortalIconButton(
                 onClick = onChatOptionsClick
             ) {
                 Icon(
@@ -103,7 +103,7 @@ fun ChatDetailHeader(
                 )
             }
 
-            RosaFiestaDropDownMenu(
+            AdventistPortalDropDownMenu(
                 isOpen = isChatOptionsDropDownOpen,
                 onDismiss = onDismissChatOptions,
                 items = listOf(
@@ -128,7 +128,7 @@ fun ChatDetailHeader(
 @Composable
 @Preview
 fun ChatDetailHeaderPreview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         Column(
             modifier = Modifier
                 .fillMaxSize()

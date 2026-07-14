@@ -1,4 +1,4 @@
-package com.jeudry.auth.presentation.register_success
+package com.adventistportal.auth.presentation.register_success
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.SnackbarHostState
@@ -7,20 +7,20 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import rosafiesta.feature.auth.presentation.generated.resources.Res
-import rosafiesta.feature.auth.presentation.generated.resources.account_successfully_created
-import rosafiesta.feature.auth.presentation.generated.resources.login
-import rosafiesta.feature.auth.presentation.generated.resources.resend_verification_email
-import rosafiesta.feature.auth.presentation.generated.resources.resent_verification_email
-import rosafiesta.feature.auth.presentation.generated.resources.verification_email_sent_to_x
-import com.jeudry.core.designsystem.components.brand.RosaFiestaSuccessIcon
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButton
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButtonStyle
-import com.jeudry.core.designsystem.components.layouts.RosaFiestaAdaptiveResultLayout
-import com.jeudry.core.designsystem.components.layouts.RosaFiestaSimpleResultLayout
-import com.jeudry.core.designsystem.components.layouts.RosaFiestaSnackbarScaffold
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.presentation.util.ObserveAsEvents
+import adventistportal.feature.auth.presentation.generated.resources.Res
+import adventistportal.feature.auth.presentation.generated.resources.account_successfully_created
+import adventistportal.feature.auth.presentation.generated.resources.login
+import adventistportal.feature.auth.presentation.generated.resources.resend_verification_email
+import adventistportal.feature.auth.presentation.generated.resources.resent_verification_email
+import adventistportal.feature.auth.presentation.generated.resources.verification_email_sent_to_x
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalSuccessIcon
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButton
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButtonStyle
+import com.adventistportal.core.designsystem.components.layouts.AdventistPortalAdaptiveResultLayout
+import com.adventistportal.core.designsystem.components.layouts.AdventistPortalSimpleResultLayout
+import com.adventistportal.core.designsystem.components.layouts.AdventistPortalSnackbarScaffold
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.presentation.util.ObserveAsEvents
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -66,21 +66,21 @@ fun RegisterSuccessScreen(
     onAction: (RegisterSuccessAction) -> Unit,
     snackbarHostState: SnackbarHostState
 ) {
-    RosaFiestaSnackbarScaffold(
+    AdventistPortalSnackbarScaffold(
         snackbarHostState = snackbarHostState
     ) {
-        RosaFiestaAdaptiveResultLayout {
-            RosaFiestaSimpleResultLayout(
+        AdventistPortalAdaptiveResultLayout {
+            AdventistPortalSimpleResultLayout(
                 title = stringResource(Res.string.account_successfully_created),
                 description = stringResource(
                     Res.string.verification_email_sent_to_x,
                     state.registeredEmail
                 ),
                 icon = {
-                    RosaFiestaSuccessIcon()
+                    AdventistPortalSuccessIcon()
                 },
                 primaryButton = {
-                    RosaFiestaButton(
+                    AdventistPortalButton(
                         text = stringResource(Res.string.login),
                         onClick = {
                             onAction(RegisterSuccessAction.OnLoginClick)
@@ -90,7 +90,7 @@ fun RegisterSuccessScreen(
                     )
                 },
                 secondaryButton = {
-                    RosaFiestaButton(
+                    AdventistPortalButton(
                         text = stringResource(Res.string.resend_verification_email),
                         onClick = {
                             onAction(RegisterSuccessAction.OnResendVerificationEmailClick)
@@ -99,7 +99,7 @@ fun RegisterSuccessScreen(
                             .fillMaxWidth(),
                         enabled = !state.isResendingVerificationEmail,
                         isLoading = state.isResendingVerificationEmail,
-                        style = RosaFiestaButtonStyle.SECONDARY
+                        style = AdventistPortalButtonStyle.SECONDARY
                     )
                 },
                 secondaryError = state.resendVerificationError?.asString()
@@ -111,7 +111,7 @@ fun RegisterSuccessScreen(
 @Preview
 @Composable
 private fun Preview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         RegisterSuccessScreen(
             state = RegisterSuccessState(
                 registeredEmail = "test@preview.com"

@@ -1,5 +1,5 @@
 plugins {
-    id("rosafiesta.kotlin-common")
+    id("adventistportal.kotlin-common")
     id("io.spring.dependency-management")
 }
 

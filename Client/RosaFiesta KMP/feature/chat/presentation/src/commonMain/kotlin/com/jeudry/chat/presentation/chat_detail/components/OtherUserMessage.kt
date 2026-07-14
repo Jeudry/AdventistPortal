@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.chat_detail.components
+package com.adventistportal.chat.presentation.chat_detail.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -8,10 +8,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.jeudry.chat.presentation.model.MessageUi
-import com.jeudry.core.designsystem.components.avatar.RosaFiestaAvatarPhoto
-import com.jeudry.core.designsystem.components.chat.RosaFiestaChatBubble
-import com.jeudry.core.designsystem.components.chat.TrianglePosition
+import com.adventistportal.chat.presentation.model.MessageUi
+import com.adventistportal.core.designsystem.components.avatar.AdventistPortalAvatarPhoto
+import com.adventistportal.core.designsystem.components.chat.AdventistPortalChatBubble
+import com.adventistportal.core.designsystem.components.chat.TrianglePosition
 
 @Composable
 fun OtherUserMessage(
@@ -25,11 +25,11 @@ fun OtherUserMessage(
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        RosaFiestaAvatarPhoto(
+        AdventistPortalAvatarPhoto(
             displayText = message.sender.initials,
             imageUrl = message.sender.imageUrl
         )
-        RosaFiestaChatBubble(
+        AdventistPortalChatBubble(
             messageContent = message.content,
             sender = message.sender.username,
             trianglePosition = TrianglePosition.LEFT,

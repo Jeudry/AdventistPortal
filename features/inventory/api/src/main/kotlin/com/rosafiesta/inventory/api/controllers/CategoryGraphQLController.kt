@@ -1,11 +1,11 @@
-package com.rosafiesta.inventory.api.controllers
+package com.adventistportal.inventory.api.controllers
 
-import com.rosafiesta.core.domain.types.CategoryId
-import com.rosafiesta.inventory.api.dtos.CategoryDto
-import com.rosafiesta.inventory.api.dtos.CreateCategoryInput
-import com.rosafiesta.inventory.api.dtos.UpdateCategoryInput
-import com.rosafiesta.inventory.api.mappers.CategoryMapper
-import com.rosafiesta.inventory.service.CategoryService
+import com.adventistportal.core.domain.types.CategoryId
+import com.adventistportal.inventory.api.dtos.CategoryDto
+import com.adventistportal.inventory.api.dtos.CreateCategoryInput
+import com.adventistportal.inventory.api.dtos.UpdateCategoryInput
+import com.adventistportal.inventory.api.mappers.CategoryMapper
+import com.adventistportal.inventory.service.CategoryService
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping

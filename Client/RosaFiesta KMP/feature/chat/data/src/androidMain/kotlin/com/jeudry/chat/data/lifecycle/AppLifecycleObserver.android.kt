@@ -1,4 +1,4 @@
-package com.jeudry.chat.data.lifecycle
+package com.adventistportal.chat.data.lifecycle
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver

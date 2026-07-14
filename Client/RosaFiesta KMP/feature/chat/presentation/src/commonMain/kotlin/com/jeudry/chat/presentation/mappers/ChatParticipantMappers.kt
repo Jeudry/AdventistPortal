@@ -1,8 +1,8 @@
-package com.jeudry.chat.presentation.mappers
+package com.adventistportal.chat.presentation.mappers
 
-import com.jeudry.chat.domain.models.ChatParticipant
-import com.jeudry.core.designsystem.components.avatar.ChatParticipantUi
-import com.jeudry.core.domain.auth.User
+import com.adventistportal.chat.domain.models.ChatParticipant
+import com.adventistportal.core.designsystem.components.avatar.ChatParticipantUi
+import com.adventistportal.core.domain.auth.User
 
 fun ChatParticipant.toUi(): ChatParticipantUi {
     return ChatParticipantUi(

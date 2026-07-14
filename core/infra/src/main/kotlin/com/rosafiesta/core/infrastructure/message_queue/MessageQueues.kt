@@ -1,4 +1,4 @@
-package com.rosafiesta.core.infrastructure.message_queue
+package com.adventistportal.core.infrastructure.message_queue
 
 object MessageQueues {
   const val NOTIFICATION_CHAT_EVENTS = "notification.chat.events"

@@ -1,6 +1,6 @@
-package com.jeudry.chat.data.network
+package com.adventistportal.chat.data.network
 
-import com.jeudry.chat.domain.models.ConnectionState
+import com.adventistportal.chat.domain.models.ConnectionState
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.websocket.WebSocketException
 import io.ktor.network.sockets.SocketTimeoutException

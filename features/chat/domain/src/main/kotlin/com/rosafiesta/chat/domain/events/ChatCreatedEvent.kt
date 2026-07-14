@@ -1,7 +1,7 @@
-package com.rosafiesta.chat.domain.events
+package com.adventistportal.chat.domain.events
 
-import com.rosafiesta.core.domain.types.ChatId
-import com.rosafiesta.core.domain.types.UserId
+import com.adventistportal.core.domain.types.ChatId
+import com.adventistportal.core.domain.types.UserId
 
 data class ChatCreatedEvent(
   val chatId: ChatId,

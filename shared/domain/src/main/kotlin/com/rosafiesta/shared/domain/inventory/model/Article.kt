@@ -1,7 +1,7 @@
-package com.rosafiesta.shared.domain.inventory.model
+package com.adventistportal.shared.domain.inventory.model
 
-import com.rosafiesta.core.domain.types.ArticleId
-import com.rosafiesta.shared.domain.inventory.validation.ArticleValidationUtils
+import com.adventistportal.core.domain.types.ArticleId
+import com.adventistportal.shared.domain.inventory.validation.ArticleValidationUtils
 
 /// <summary>Represents an article in the inventory domain.</summary>
 data class Article(

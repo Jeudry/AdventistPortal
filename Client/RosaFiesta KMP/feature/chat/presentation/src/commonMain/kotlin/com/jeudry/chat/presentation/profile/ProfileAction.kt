@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.profile
+package com.adventistportal.chat.presentation.profile
 
 sealed interface ProfileAction {
     data object OnDismiss: ProfileAction

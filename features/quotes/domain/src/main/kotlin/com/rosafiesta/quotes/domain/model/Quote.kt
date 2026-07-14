@@ -1,8 +1,8 @@
-package com.rosafiesta.quotes.domain.model
+package com.adventistportal.quotes.domain.model
 
-import com.rosafiesta.core.domain.types.QuoteId
-import com.rosafiesta.core.domain.types.UserId
-import com.rosafiesta.shared.domain.quotes.enums.QuoteStatus
+import com.adventistportal.core.domain.types.QuoteId
+import com.adventistportal.core.domain.types.UserId
+import com.adventistportal.shared.domain.quotes.enums.QuoteStatus
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.*

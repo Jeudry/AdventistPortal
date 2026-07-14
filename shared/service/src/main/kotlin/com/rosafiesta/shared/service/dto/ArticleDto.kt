@@ -1,7 +1,7 @@
-package com.rosafiesta.shared.service.dto
+package com.adventistportal.shared.service.dto
 
-import com.rosafiesta.shared.domain.inventory.validation.ArticleValidationUtils
-import com.rosafiesta.shared.domain.validation.ValidatableDto
+import com.adventistportal.shared.domain.inventory.validation.ArticleValidationUtils
+import com.adventistportal.shared.domain.validation.ValidatableDto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

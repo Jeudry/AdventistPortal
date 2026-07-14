@@ -1,7 +1,7 @@
-package com.rosafiesta.user.infrastructure.database.repositories
+package com.adventistportal.user.infrastructure.database.repositories
 
-import com.rosafiesta.core.domain.types.UserId
-import com.rosafiesta.user.infrastructure.database.entities.UserEntity
+import com.adventistportal.core.domain.types.UserId
+import com.adventistportal.user.infrastructure.database.entities.UserEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

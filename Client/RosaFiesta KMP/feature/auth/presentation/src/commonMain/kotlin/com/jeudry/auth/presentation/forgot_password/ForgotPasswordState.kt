@@ -1,7 +1,7 @@
-package com.jeudry.auth.presentation.forgot_password
+package com.adventistportal.auth.presentation.forgot_password
 
 import androidx.compose.foundation.text.input.TextFieldState
-import com.jeudry.core.presentation.util.UiText
+import com.adventistportal.core.presentation.util.UiText
 
 data class ForgotPasswordState(
     val emailTextFieldState: TextFieldState = TextFieldState(),

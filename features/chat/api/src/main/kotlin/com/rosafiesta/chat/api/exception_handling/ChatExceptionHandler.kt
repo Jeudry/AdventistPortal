@@ -1,12 +1,12 @@
-package com.rosafiesta.chat.api.exception_handling
+package com.adventistportal.chat.api.exception_handling
 
-import com.rosafiesta.chat.domain.exceptions.ChatMessageNotFoundEx
-import com.rosafiesta.chat.domain.exceptions.ChatNotFoundEx
-import com.rosafiesta.chat.domain.exceptions.ChatParticipantNotFoundEx
-import com.rosafiesta.chat.domain.exceptions.InvalidChatSizeEx
-import com.rosafiesta.chat.domain.exceptions.InvalidProfilePictureEx
-import com.rosafiesta.chat.domain.exceptions.StorageEx
-import com.rosafiesta.core.domain.exceptions.*
+import com.adventistportal.chat.domain.exceptions.ChatMessageNotFoundEx
+import com.adventistportal.chat.domain.exceptions.ChatNotFoundEx
+import com.adventistportal.chat.domain.exceptions.ChatParticipantNotFoundEx
+import com.adventistportal.chat.domain.exceptions.InvalidChatSizeEx
+import com.adventistportal.chat.domain.exceptions.InvalidProfilePictureEx
+import com.adventistportal.chat.domain.exceptions.StorageEx
+import com.adventistportal.core.domain.exceptions.*
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus

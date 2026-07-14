@@ -1,8 +1,8 @@
-package com.rosafiesta.inventory.service
+package com.adventistportal.inventory.service
 
-import com.rosafiesta.core.domain.types.CategoryId
-import com.rosafiesta.inventory.domain.model.Category
-import com.rosafiesta.inventory.domain.model.CategoryParams
+import com.adventistportal.core.domain.types.CategoryId
+import com.adventistportal.inventory.domain.model.Category
+import com.adventistportal.inventory.domain.model.CategoryParams
 
 interface CategoryService {
     fun createCategory(params: CategoryParams): CategoryId

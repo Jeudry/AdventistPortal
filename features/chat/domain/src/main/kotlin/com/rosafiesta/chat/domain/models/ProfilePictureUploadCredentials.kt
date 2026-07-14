@@ -1,4 +1,4 @@
-package com.rosafiesta.chat.domain.models
+package com.adventistportal.chat.domain.models
 
 import java.time.Instant
 

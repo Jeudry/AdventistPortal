@@ -1,8 +1,8 @@
-package com.rosafiesta.inventory.infra.db.entities
+package com.adventistportal.inventory.infra.db.entities
 
-import com.rosafiesta.core.domain.types.ArticleId
-import com.rosafiesta.inventory.infra.db.embeded.ArticleDimensions
-import com.rosafiesta.shared.domain.inventory.enums.ArticleType
+import com.adventistportal.core.domain.types.ArticleId
+import com.adventistportal.inventory.infra.db.embeded.ArticleDimensions
+import com.adventistportal.shared.domain.inventory.enums.ArticleType
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp

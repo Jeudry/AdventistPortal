@@ -1,10 +1,10 @@
-package com.rosafiesta.inventory.api.controllers
+package com.adventistportal.inventory.api.controllers
 
-import com.rosafiesta.core.domain.types.DiscountId
-import com.rosafiesta.inventory.api.dtos.CreateDiscountInput
-import com.rosafiesta.inventory.api.dtos.DiscountDto
-import com.rosafiesta.inventory.domain.model.Discount
-import com.rosafiesta.inventory.service.DiscountService
+import com.adventistportal.core.domain.types.DiscountId
+import com.adventistportal.inventory.api.dtos.CreateDiscountInput
+import com.adventistportal.inventory.api.dtos.DiscountDto
+import com.adventistportal.inventory.domain.model.Discount
+import com.adventistportal.inventory.service.DiscountService
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping

@@ -1,14 +1,14 @@
-package com.rosafiesta.inventory.infra.repository
+package com.adventistportal.inventory.infra.repository
 
-import com.rosafiesta.core.domain.types.ArticleId
-import com.rosafiesta.inventory.domain.model.*
-import com.rosafiesta.inventory.domain.repository.ArticleQueryRepository
-import com.rosafiesta.inventory.domain.repository.ArticleRepository
-import com.rosafiesta.inventory.infra.db.entities.ArticleEntity
-import com.rosafiesta.inventory.infra.db.entities.ArticleVariantEntity
-import com.rosafiesta.inventory.infra.db.mappers.fromDomain
-import com.rosafiesta.inventory.infra.db.mappers.toDomain
-import com.rosafiesta.inventory.infra.db.projections.ArticleSummaryProjection
+import com.adventistportal.core.domain.types.ArticleId
+import com.adventistportal.inventory.domain.model.*
+import com.adventistportal.inventory.domain.repository.ArticleQueryRepository
+import com.adventistportal.inventory.domain.repository.ArticleRepository
+import com.adventistportal.inventory.infra.db.entities.ArticleEntity
+import com.adventistportal.inventory.infra.db.entities.ArticleVariantEntity
+import com.adventistportal.inventory.infra.db.mappers.fromDomain
+import com.adventistportal.inventory.infra.db.mappers.toDomain
+import com.adventistportal.inventory.infra.db.projections.ArticleSummaryProjection
 import org.springframework.data.jpa.domain.Specification
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor

@@ -1,4 +1,4 @@
-package com.jeudry.rosafiesta
+package com.adventistportal
 
 import androidx.compose.ui.window.ComposeUIViewController
 

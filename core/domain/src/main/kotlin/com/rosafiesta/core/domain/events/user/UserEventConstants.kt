@@ -1,4 +1,4 @@
-package com.rosafiesta.core.domain.events.user
+package com.adventistportal.core.domain.events.user
 
 object UserEventConstants {
     const val USER_EXCHANGE = "user.events"

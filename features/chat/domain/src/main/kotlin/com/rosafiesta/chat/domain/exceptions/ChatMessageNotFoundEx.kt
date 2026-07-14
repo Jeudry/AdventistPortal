@@ -1,6 +1,6 @@
-package com.rosafiesta.chat.domain.exceptions
+package com.adventistportal.chat.domain.exceptions
 
-import com.rosafiesta.core.domain.types.ChatMessageId
+import com.adventistportal.core.domain.types.ChatMessageId
 
 class ChatMessageNotFoundEx(
     private val id: ChatMessageId

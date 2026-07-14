@@ -1,4 +1,4 @@
-package com.jeudry.core.data.util
+package com.adventistportal.core.data.util
 
 actual object PlatformUtils {
     actual fun getOSName() = "IOS"

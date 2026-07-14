@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.profile.components
+package com.adventistportal.chat.presentation.profile.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,9 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.theme.extended
-import com.jeudry.core.presentation.util.DeviceConfiguration
-import com.jeudry.core.presentation.util.currentDeviceConfiguration
+import com.adventistportal.core.designsystem.theme.extended
+import com.adventistportal.core.presentation.util.DeviceConfiguration
+import com.adventistportal.core.presentation.util.currentDeviceConfiguration
 
 @Composable
 fun ProfileSectionLayout(

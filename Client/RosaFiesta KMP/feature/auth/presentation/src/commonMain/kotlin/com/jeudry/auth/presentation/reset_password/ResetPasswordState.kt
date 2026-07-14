@@ -1,7 +1,7 @@
-package com.jeudry.auth.presentation.reset_password
+package com.adventistportal.auth.presentation.reset_password
 
 import androidx.compose.foundation.text.input.TextFieldState
-import com.jeudry.core.presentation.util.UiText
+import com.adventistportal.core.presentation.util.UiText
 
 data class ResetPasswordState(
     val passwordTextState: TextFieldState = TextFieldState(),

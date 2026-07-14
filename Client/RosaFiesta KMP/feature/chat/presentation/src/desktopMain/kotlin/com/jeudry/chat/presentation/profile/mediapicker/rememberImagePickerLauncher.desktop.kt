@@ -1,10 +1,10 @@
-package com.jeudry.chat.presentation.profile.mediapicker
+package com.adventistportal.chat.presentation.profile.mediapicker
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.select_a_profile_picture
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.select_a_profile_picture
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.jeudry.rosafiesta
+package com.adventistportal
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
@@ -6,15 +6,15 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.rememberNavController
-import com.jeudry.auth.presentation.navigation.AuthGraphRoutes
-import com.jeudry.chat.presentation.navigation.ChatGraphRoutes
-import com.jeudry.rosafiesta.MainEvent
-import com.jeudry.rosafiesta.MainViewModel
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.rosafiesta.navigation.DeepLinkListener
-import com.jeudry.rosafiesta.navigation.NavigationRoot
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.presentation.util.ObserveAsEvents
+import com.adventistportal.auth.presentation.navigation.AuthGraphRoutes
+import com.adventistportal.chat.presentation.navigation.ChatGraphRoutes
+import com.adventistportal.MainEvent
+import com.adventistportal.MainViewModel
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.navigation.DeepLinkListener
+import com.adventistportal.navigation.NavigationRoot
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.presentation.util.ObserveAsEvents
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -47,7 +47,7 @@ fun App(
         }
     }
 
-    RosaFiestaTheme(
+    AdventistPortalTheme(
         darkTheme = isDarkTheme
     ) {
         if(!state.isCheckingAuth) {

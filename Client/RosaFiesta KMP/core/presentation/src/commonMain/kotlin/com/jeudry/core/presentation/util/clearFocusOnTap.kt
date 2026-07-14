@@ -1,4 +1,4 @@
-package com.jeudry.core.presentation.util
+package com.adventistportal.core.presentation.util
 
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.runtime.Composable

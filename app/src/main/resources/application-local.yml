@@ -3,9 +3,9 @@ spring:
     name: chirp
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/rosafiesta?sslmode=disable
-    username: rosafiesta_user
-    password: rosafiesta_password
+    url: jdbc:postgresql://localhost:5432/adventistportal?sslmode=disable
+    username: adventistportal_user
+    password: adventistportal_password
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
@@ -28,7 +28,7 @@ spring:
     redis:
       host: localhost
       port: 6379
-      password: rosafiesta_redis_password
+      password: adventistportal_redis_password
       username: default
       connection-timeout: 5000
       timeout: 2000ms
@@ -66,9 +66,9 @@ spring:
   rabbitmq:
     host: ${RABBITMQ_HOST:localhost}
     port: ${RABBITMQ_PORT:5672}
-    username: ${RABBITMQ_USERNAME:rosafiesta_user}
-    password: ${RABBITMQ_PASSWORD:rosafiesta_password}
-    virtual-host: ${RABBITMQ_VHOST:rosafiesta}
+    username: ${RABBITMQ_USERNAME:adventistportal_user}
+    password: ${RABBITMQ_PASSWORD:adventistportal_password}
+    virtual-host: ${RABBITMQ_VHOST:adventistportal}
     ssl:
       enabled: false
     listener:
@@ -89,9 +89,9 @@ jwt:
   secret: ${JWT_SECRET_BASE64:bG9jYWxfZGV2ZWxvcG1lbnRfc2VjcmV0X2tleV9mb3JfZGV2ZWxvcG1lbnRfb25seV9kb19ub3RfdXNlX2luX3Byb2R1Y3Rpb24=}
   expiration-minutes: 60
 
-rosafiesta:
+adventistportal:
   email:
-    from: ${MAIL_FROM_EMAIL:noreply@rosafiesta.local}
+    from: ${MAIL_FROM_EMAIL:noreply@adventistportal.local}
     verification:
       expiry-hours: 24
     reset-password:
@@ -109,7 +109,7 @@ supabase:
   service-key: ${SUPABASE_SERVICE_KEY:local-development-key}
   
 firebase:
-  credentials-path: "classpath:firebase-credentials/rosafiesta-firebase-adminsdk.json"
+  credentials-path: "classpath:firebase-credentials/adventistportal-firebase-adminsdk.json"
   
 server:
   port: 8080

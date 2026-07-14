@@ -1,4 +1,4 @@
-package com.jeudry.rosafiesta.windows
+package com.adventistportal.windows
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -8,18 +8,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.MenuBar
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.rememberWindowState
-import rosafiesta.composeapp.generated.resources.Res
-import rosafiesta.composeapp.generated.resources.file
-import rosafiesta.composeapp.generated.resources.logo
-import rosafiesta.composeapp.generated.resources.new_window
-import rosafiesta.core.designsystem.generated.resources.logo_rosafiesta
-import com.jeudry.rosafiesta.App
-import com.jeudry.rosafiesta.theme.AppTheme
+import adventistportal.composeapp.generated.resources.Res
+import adventistportal.composeapp.generated.resources.file
+import adventistportal.composeapp.generated.resources.logo
+import adventistportal.composeapp.generated.resources.new_window
+import adventistportal.core.designsystem.generated.resources.logo_adventistportal
+import com.adventistportal.App
+import com.adventistportal.theme.AppTheme
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun RosaFiestaWindow(
+fun AdventistPortalWindow(
     appTheme: AppTheme,
     onCloseRequest: () -> Unit,
     onAddWindowClick: () -> Unit,
@@ -33,7 +33,7 @@ fun RosaFiestaWindow(
     Window(
         onCloseRequest = onCloseRequest,
         state = windowState,
-        title = "RosaFiesta",
+        title = "AdventistPortal",
         icon = painterResource(Res.drawable.logo)
     ) {
         FocusObserver(

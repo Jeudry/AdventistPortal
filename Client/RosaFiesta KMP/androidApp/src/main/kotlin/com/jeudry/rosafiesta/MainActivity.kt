@@ -1,4 +1,4 @@
-package com.jeudry.rosafiesta
+package com.adventistportal
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.jeudry.rosafiesta.App
-import com.jeudry.rosafiesta.navigation.ExternalUriHandler
+import com.adventistportal.App
+import com.adventistportal.navigation.ExternalUriHandler
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
             ?: intent.extras?.getString("chatId")
 
         if(chatId != null) {
-            val deepLinkUrl = "rosafiesta://chat_detail/$chatId"
+            val deepLinkUrl = "adventistportal://chat_detail/$chatId"
             ExternalUriHandler.onNewUri(deepLinkUrl)
         }
     }

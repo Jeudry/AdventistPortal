@@ -1,8 +1,8 @@
-package com.rosafiesta.core.domain.events
+package com.adventistportal.core.domain.events
 
 import java.time.Instant
 
-interface RosaFiestaEvent {
+interface AdventistPortalEvent {
     val eventId: String
     val eventKey: String
     val occurredAt: Instant

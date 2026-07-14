@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.chat
+package com.adventistportal.core.designsystem.components.chat
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
@@ -22,15 +22,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /// <summary>
 /// Chat message bubble with customizable styling
 /// </summary>
 @Composable
-fun RosaFiestaChatBubble(
+fun AdventistPortalChatBubble(
     messageContent: String,
     sender: String,
     formattedDateTime: String,
@@ -107,9 +107,9 @@ fun RosaFiestaChatBubble(
 
 @Composable
 @Preview
-fun RosaFiestaChatBubbleChatBubbleLeftPreview() {
-    RosaFiestaTheme(darkTheme = true) {
-        RosaFiestaChatBubble(
+fun AdventistPortalChatBubbleChatBubbleLeftPreview() {
+    AdventistPortalTheme(darkTheme = true) {
+        AdventistPortalChatBubble(
             messageContent = "Hello world, this is a longer message that hopefully spans" +
                     "over multiple lines so we can see how the preview would look like for that as well.",
             sender = "Philipp",
@@ -122,9 +122,9 @@ fun RosaFiestaChatBubbleChatBubbleLeftPreview() {
 
 @Composable
 @Preview
-fun RosaFiestaChatBubbleRightPreview() {
-    RosaFiestaTheme {
-        RosaFiestaChatBubble(
+fun AdventistPortalChatBubbleRightPreview() {
+    AdventistPortalTheme {
+        AdventistPortalChatBubble(
             messageContent = "Hello world, this is a longer message that hopefully spans" +
                     "over multiple lines so we can see how the preview would look like for that as well.",
             sender = "Philipp",

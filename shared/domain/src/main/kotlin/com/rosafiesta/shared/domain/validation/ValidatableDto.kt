@@ -1,4 +1,4 @@
-package com.rosafiesta.shared.domain.validation
+package com.adventistportal.shared.domain.validation
 
 /// <summary>Interface for objects that can be validated, returning a list of error messages.</summary>
 interface ValidatableDto {

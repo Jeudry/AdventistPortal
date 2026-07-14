@@ -1,7 +1,7 @@
-package com.rosafiesta.chat.infra.database.repositories
+package com.adventistportal.chat.infra.database.repositories
 
-import com.rosafiesta.core.domain.types.UserId
-import com.rosafiesta.chat.infra.database.entities.ChatParticipantEntity
+import com.adventistportal.core.domain.types.UserId
+import com.adventistportal.chat.infra.database.entities.ChatParticipantEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository

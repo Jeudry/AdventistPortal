@@ -1,6 +1,6 @@
-package com.rosafiesta.chat.api.dto
+package com.adventistportal.chat.api.dto
 
-import com.rosafiesta.core.domain.types.ChatId
+import com.adventistportal.core.domain.types.ChatId
 import java.time.Instant
 
 data class ChatDto(

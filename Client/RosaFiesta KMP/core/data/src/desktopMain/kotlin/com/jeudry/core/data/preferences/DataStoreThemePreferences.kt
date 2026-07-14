@@ -1,11 +1,11 @@
-package com.jeudry.core.data.preferences
+package com.adventistportal.core.data.preferences
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.jeudry.core.domain.preferences.ThemePreference
-import com.jeudry.core.domain.preferences.ThemePreferences
+import com.adventistportal.core.domain.preferences.ThemePreference
+import com.adventistportal.core.domain.preferences.ThemePreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

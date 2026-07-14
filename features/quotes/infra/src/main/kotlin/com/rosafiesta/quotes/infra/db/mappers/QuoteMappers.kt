@@ -1,10 +1,10 @@
-package com.rosafiesta.quotes.infra.db.mappers
+package com.adventistportal.quotes.infra.db.mappers
 
-import com.rosafiesta.quotes.domain.model.Quote
-import com.rosafiesta.quotes.domain.model.QuoteItem
-import com.rosafiesta.quotes.infra.db.entities.QuoteEntity
-import com.rosafiesta.quotes.infra.db.entities.QuoteItemEntity
-import com.rosafiesta.inventory.infra.db.entities.ArticleVariantEntity
+import com.adventistportal.quotes.domain.model.Quote
+import com.adventistportal.quotes.domain.model.QuoteItem
+import com.adventistportal.quotes.infra.db.entities.QuoteEntity
+import com.adventistportal.quotes.infra.db.entities.QuoteItemEntity
+import com.adventistportal.inventory.infra.db.entities.ArticleVariantEntity
 
 fun Quote.toEntity(): QuoteEntity {
     val entity = QuoteEntity(

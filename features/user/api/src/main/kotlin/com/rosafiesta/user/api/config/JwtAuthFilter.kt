@@ -1,6 +1,6 @@
-package com.rosafiesta.user.api.config
+package com.adventistportal.user.api.config
 
-import com.rosafiesta.core.services.JwtService
+import com.adventistportal.core.services.JwtService
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse

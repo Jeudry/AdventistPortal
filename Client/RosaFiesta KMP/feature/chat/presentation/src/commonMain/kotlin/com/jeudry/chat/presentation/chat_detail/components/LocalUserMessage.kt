@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.chat_detail.components
+package com.adventistportal.chat.presentation.chat_detail.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,18 +13,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.delete_for_everyone
-import rosafiesta.feature.chat.presentation.generated.resources.reload_icon
-import rosafiesta.feature.chat.presentation.generated.resources.retry
-import rosafiesta.feature.chat.presentation.generated.resources.you
-import com.jeudry.chat.domain.models.ChatMessageDeliveryStatus
-import com.jeudry.chat.presentation.model.MessageUi
-import com.jeudry.core.designsystem.components.chat.RosaFiestaChatBubble
-import com.jeudry.core.designsystem.components.chat.TrianglePosition
-import com.jeudry.core.designsystem.components.dropdown.RosaFiestaDropDownMenu
-import com.jeudry.core.designsystem.components.dropdown.DropDownItem
-import com.jeudry.core.designsystem.theme.extended
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.delete_for_everyone
+import adventistportal.feature.chat.presentation.generated.resources.reload_icon
+import adventistportal.feature.chat.presentation.generated.resources.retry
+import adventistportal.feature.chat.presentation.generated.resources.you
+import com.adventistportal.chat.domain.models.ChatMessageDeliveryStatus
+import com.adventistportal.chat.presentation.model.MessageUi
+import com.adventistportal.core.designsystem.components.chat.AdventistPortalChatBubble
+import com.adventistportal.core.designsystem.components.chat.TrianglePosition
+import com.adventistportal.core.designsystem.components.dropdown.AdventistPortalDropDownMenu
+import com.adventistportal.core.designsystem.components.dropdown.DropDownItem
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 
@@ -45,7 +45,7 @@ fun LocalUserMessage(
         horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End)
     ) {
         Box {
-            RosaFiestaChatBubble(
+            AdventistPortalChatBubble(
                 messageContent = message.content,
                 sender = stringResource(Res.string.you),
                 formattedDateTime = message.formattedSentTime.asString(),
@@ -60,7 +60,7 @@ fun LocalUserMessage(
                 }
             )
 
-            RosaFiestaDropDownMenu(
+            AdventistPortalDropDownMenu(
                 isOpen = message.id == messageWithOpenMenu?.id,
                 onDismiss = onDismissMessageMenu,
                 items = listOf(

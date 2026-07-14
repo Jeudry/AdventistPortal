@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.avatar
+package com.adventistportal.core.designsystem.components.avatar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -17,8 +17,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 enum class AvatarSize(val dp: Dp) {
@@ -26,7 +26,7 @@ enum class AvatarSize(val dp: Dp) {
 }
 
 @Composable
-fun RosaFiestaAvatarPhoto(
+fun AdventistPortalAvatarPhoto(
     displayText: String,
     modifier: Modifier = Modifier,
     size: AvatarSize = AvatarSize.SMALL,
@@ -68,9 +68,9 @@ fun RosaFiestaAvatarPhoto(
 
 @Composable
 @Preview
-fun RosaFiestaAvatarPhotoPreview() {
-    RosaFiestaTheme {
-        RosaFiestaAvatarPhoto(
+fun AdventistPortalAvatarPhotoPreview() {
+    AdventistPortalTheme {
+        AdventistPortalAvatarPhoto(
             displayText = "PL",
             size = AvatarSize.LARGE
         )

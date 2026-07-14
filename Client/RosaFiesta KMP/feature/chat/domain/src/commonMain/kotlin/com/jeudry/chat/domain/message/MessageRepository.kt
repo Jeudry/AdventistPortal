@@ -1,12 +1,12 @@
-package com.jeudry.chat.domain.message
+package com.adventistportal.chat.domain.message
 
-import com.jeudry.chat.domain.models.ChatMessage
-import com.jeudry.chat.domain.models.ChatMessageDeliveryStatus
-import com.jeudry.chat.domain.models.MessageWithSender
-import com.jeudry.chat.domain.models.OutgoingNewMessage
-import com.jeudry.core.domain.util.DataError
-import com.jeudry.core.domain.util.EmptyResult
-import com.jeudry.core.domain.util.Result
+import com.adventistportal.chat.domain.models.ChatMessage
+import com.adventistportal.chat.domain.models.ChatMessageDeliveryStatus
+import com.adventistportal.chat.domain.models.MessageWithSender
+import com.adventistportal.chat.domain.models.OutgoingNewMessage
+import com.adventistportal.core.domain.util.DataError
+import com.adventistportal.core.domain.util.EmptyResult
+import com.adventistportal.core.domain.util.Result
 import kotlinx.coroutines.flow.Flow
 
 interface MessageRepository {

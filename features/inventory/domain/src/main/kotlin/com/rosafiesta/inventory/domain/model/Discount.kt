@@ -1,8 +1,8 @@
-package com.rosafiesta.inventory.domain.model
+package com.adventistportal.inventory.domain.model
 
-import com.rosafiesta.core.domain.types.ArticleId
-import com.rosafiesta.core.domain.types.CategoryId
-import com.rosafiesta.core.domain.types.DiscountId
+import com.adventistportal.core.domain.types.ArticleId
+import com.adventistportal.core.domain.types.CategoryId
+import com.adventistportal.core.domain.types.DiscountId
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.*

@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.chat_detail.components
+package com.adventistportal.chat.presentation.chat_detail.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.theme.extended
+import com.adventistportal.core.designsystem.theme.extended
 
 @Composable
 fun DateChip(

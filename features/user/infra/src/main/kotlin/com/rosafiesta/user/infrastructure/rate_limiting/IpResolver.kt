@@ -1,6 +1,6 @@
-package com.rosafiesta.user.infrastructure.rate_limiting
+package com.adventistportal.user.infrastructure.rate_limiting
 
-import com.rosafiesta.user.infrastructure.configs.NginxConfig
+import com.adventistportal.user.infrastructure.configs.NginxConfig
 import jakarta.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
 import org.springframework.security.web.util.matcher.IpAddressMatcher

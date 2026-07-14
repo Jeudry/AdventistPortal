@@ -1,14 +1,14 @@
-package com.rosafiesta.chat.api.controllers
+package com.adventistportal.chat.api.controllers
 
-import com.rosafiesta.chat.api.dto.AddParticipantToChatDto
-import com.rosafiesta.chat.api.dto.ChatDto
-import com.rosafiesta.chat.api.dto.ChatMessageDto
-import com.rosafiesta.chat.api.dto.CreateChatRequest
-import com.rosafiesta.chat.api.mappers.toDto
-import com.rosafiesta.core.api.utils.requestUserId
-import com.rosafiesta.core.domain.types.ChatId
-import com.rosafiesta.chat.service.ChatMessageService
-import com.rosafiesta.chat.service.ChatService
+import com.adventistportal.chat.api.dto.AddParticipantToChatDto
+import com.adventistportal.chat.api.dto.ChatDto
+import com.adventistportal.chat.api.dto.ChatMessageDto
+import com.adventistportal.chat.api.dto.CreateChatRequest
+import com.adventistportal.chat.api.mappers.toDto
+import com.adventistportal.core.api.utils.requestUserId
+import com.adventistportal.core.domain.types.ChatId
+import com.adventistportal.chat.service.ChatMessageService
+import com.adventistportal.chat.service.ChatService
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 import java.time.Instant

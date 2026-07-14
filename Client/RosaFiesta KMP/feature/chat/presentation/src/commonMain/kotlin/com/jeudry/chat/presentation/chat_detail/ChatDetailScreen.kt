@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalUuidApi::class, ExperimentalComposeUiApi::class)
 
-package com.jeudry.chat.presentation.chat_detail
+package com.adventistportal.chat.presentation.chat_detail
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -42,28 +42,28 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.no_chat_selected
-import rosafiesta.feature.chat.presentation.generated.resources.select_a_chat
-import com.jeudry.chat.domain.models.ChatMessage
-import com.jeudry.chat.domain.models.ChatMessageDeliveryStatus
-import com.jeudry.chat.presentation.chat_detail.components.ChatDetailHeader
-import com.jeudry.chat.presentation.chat_detail.components.DateChip
-import com.jeudry.chat.presentation.chat_detail.components.MessageBannerListener
-import com.jeudry.chat.presentation.chat_detail.components.MessageBox
-import com.jeudry.chat.presentation.chat_detail.components.MessageList
-import com.jeudry.chat.presentation.chat_detail.components.PaginationScrollListener
-import com.jeudry.chat.presentation.components.ChatHeader
-import com.jeudry.chat.presentation.components.EmptySection
-import com.jeudry.chat.presentation.model.ChatUi
-import com.jeudry.chat.presentation.model.MessageUi
-import com.jeudry.core.designsystem.components.avatar.ChatParticipantUi
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
-import com.jeudry.core.presentation.util.ObserveAsEvents
-import com.jeudry.core.presentation.util.UiText
-import com.jeudry.core.presentation.util.clearFocusOnTap
-import com.jeudry.core.presentation.util.currentDeviceConfiguration
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.no_chat_selected
+import adventistportal.feature.chat.presentation.generated.resources.select_a_chat
+import com.adventistportal.chat.domain.models.ChatMessage
+import com.adventistportal.chat.domain.models.ChatMessageDeliveryStatus
+import com.adventistportal.chat.presentation.chat_detail.components.ChatDetailHeader
+import com.adventistportal.chat.presentation.chat_detail.components.DateChip
+import com.adventistportal.chat.presentation.chat_detail.components.MessageBannerListener
+import com.adventistportal.chat.presentation.chat_detail.components.MessageBox
+import com.adventistportal.chat.presentation.chat_detail.components.MessageList
+import com.adventistportal.chat.presentation.chat_detail.components.PaginationScrollListener
+import com.adventistportal.chat.presentation.components.ChatHeader
+import com.adventistportal.chat.presentation.components.EmptySection
+import com.adventistportal.chat.presentation.model.ChatUi
+import com.adventistportal.chat.presentation.model.MessageUi
+import com.adventistportal.core.designsystem.components.avatar.ChatParticipantUi
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
+import com.adventistportal.core.presentation.util.ObserveAsEvents
+import com.adventistportal.core.presentation.util.UiText
+import com.adventistportal.core.presentation.util.clearFocusOnTap
+import com.adventistportal.core.presentation.util.currentDeviceConfiguration
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
@@ -381,7 +381,7 @@ private fun DynamicRoundedCornerColumn(
 @Preview
 @Composable
 private fun ChatDetailEmptyPreview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         ChatDetailScreen(
             state = ChatDetailState(),
             isDetailPresent = false,
@@ -395,7 +395,7 @@ private fun ChatDetailEmptyPreview() {
 @Preview
 @Composable
 private fun ChatDetailMessagesPreview() {
-    RosaFiestaTheme(darkTheme = true) {
+    AdventistPortalTheme(darkTheme = true) {
         ChatDetailScreen(
             messageListState = rememberLazyListState(),
             state = ChatDetailState(

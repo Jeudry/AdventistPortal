@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.buttons
+package com.adventistportal.core.designsystem.components.buttons
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.size
@@ -12,15 +12,15 @@ import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /// <summary>
-/// Outlined icon button with RosaFiesta branding
+/// Outlined icon button with AdventistPortal branding
 /// </summary>
 @Composable
-fun RosaFiestaIconButton(
+fun AdventistPortalIconButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
@@ -45,9 +45,9 @@ fun RosaFiestaIconButton(
 
 @Composable
 @Preview
-fun RosaFiestaIconButtonButtonPreview() {
-    RosaFiestaTheme {
-        RosaFiestaIconButton(
+fun AdventistPortalIconButtonButtonPreview() {
+    AdventistPortalTheme {
+        AdventistPortalIconButton(
             onClick = {}
         ) {
             Icon(
@@ -60,9 +60,9 @@ fun RosaFiestaIconButtonButtonPreview() {
 
 @Composable
 @Preview
-fun RosaFiestaIconButtonDarkThemePreview() {
-    RosaFiestaTheme(darkTheme = true) {
-        RosaFiestaIconButton(
+fun AdventistPortalIconButtonDarkThemePreview() {
+    AdventistPortalTheme(darkTheme = true) {
+        AdventistPortalIconButton(
             onClick = {}
         ) {
             Icon(

@@ -1,8 +1,8 @@
-package com.rosafiesta.inventory.domain.repository
+package com.adventistportal.inventory.domain.repository
 
-import com.rosafiesta.core.domain.types.ArticleId
-import com.rosafiesta.inventory.domain.model.Article
-import com.rosafiesta.inventory.domain.model.ArticleVariant
+import com.adventistportal.core.domain.types.ArticleId
+import com.adventistportal.inventory.domain.model.Article
+import com.adventistportal.inventory.domain.model.ArticleVariant
 import java.util.*
 
 /**

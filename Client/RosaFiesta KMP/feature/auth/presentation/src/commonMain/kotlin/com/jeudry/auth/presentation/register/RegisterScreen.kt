@@ -1,4 +1,4 @@
-package com.jeudry.auth.presentation.register
+package com.adventistportal.auth.presentation.register
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,26 +12,26 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import rosafiesta.feature.auth.presentation.generated.resources.Res
-import rosafiesta.feature.auth.presentation.generated.resources.email
-import rosafiesta.feature.auth.presentation.generated.resources.email_placeholder
-import rosafiesta.feature.auth.presentation.generated.resources.login
-import rosafiesta.feature.auth.presentation.generated.resources.password
-import rosafiesta.feature.auth.presentation.generated.resources.password_hint
-import rosafiesta.feature.auth.presentation.generated.resources.register
-import rosafiesta.feature.auth.presentation.generated.resources.username
-import rosafiesta.feature.auth.presentation.generated.resources.username_hint
-import rosafiesta.feature.auth.presentation.generated.resources.username_placeholder
-import rosafiesta.feature.auth.presentation.generated.resources.welcome_to_rosafiesta
-import com.jeudry.core.designsystem.components.brand.RosaFiestaBrandLogo
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButton
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButtonStyle
-import com.jeudry.core.designsystem.components.layouts.RosaFiestaAdaptiveFormLayout
-import com.jeudry.core.designsystem.components.layouts.RosaFiestaSnackbarScaffold
-import com.jeudry.core.designsystem.components.textfields.RosaFiestaPasswordTextField
-import com.jeudry.core.designsystem.components.textfields.RosaFiestaTextField
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.presentation.util.ObserveAsEvents
+import adventistportal.feature.auth.presentation.generated.resources.Res
+import adventistportal.feature.auth.presentation.generated.resources.email
+import adventistportal.feature.auth.presentation.generated.resources.email_placeholder
+import adventistportal.feature.auth.presentation.generated.resources.login
+import adventistportal.feature.auth.presentation.generated.resources.password
+import adventistportal.feature.auth.presentation.generated.resources.password_hint
+import adventistportal.feature.auth.presentation.generated.resources.register
+import adventistportal.feature.auth.presentation.generated.resources.username
+import adventistportal.feature.auth.presentation.generated.resources.username_hint
+import adventistportal.feature.auth.presentation.generated.resources.username_placeholder
+import adventistportal.feature.auth.presentation.generated.resources.welcome_to_adventistportal
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalBrandLogo
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButton
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButtonStyle
+import com.adventistportal.core.designsystem.components.layouts.AdventistPortalAdaptiveFormLayout
+import com.adventistportal.core.designsystem.components.layouts.AdventistPortalSnackbarScaffold
+import com.adventistportal.core.designsystem.components.textfields.AdventistPortalPasswordTextField
+import com.adventistportal.core.designsystem.components.textfields.AdventistPortalTextField
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.presentation.util.ObserveAsEvents
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
@@ -72,15 +72,15 @@ fun RegisterScreen(
     onAction: (RegisterAction) -> Unit,
     snackbarHostState: SnackbarHostState
 ) {
-    RosaFiestaSnackbarScaffold(
+    AdventistPortalSnackbarScaffold(
         snackbarHostState = snackbarHostState
     ) {
-        RosaFiestaAdaptiveFormLayout(
-            headerText = stringResource(Res.string.welcome_to_rosafiesta),
+        AdventistPortalAdaptiveFormLayout(
+            headerText = stringResource(Res.string.welcome_to_adventistportal),
             errorText = state.registrationError?.asString(),
-            logo = { RosaFiestaBrandLogo() }
+            logo = { AdventistPortalBrandLogo() }
         ) {
-            RosaFiestaTextField(
+            AdventistPortalTextField(
                 state = state.usernameTextState,
                 placeholder = stringResource(Res.string.username_placeholder),
                 title = stringResource(Res.string.username),
@@ -92,7 +92,7 @@ fun RegisterScreen(
                 }
             )
             Spacer(modifier = Modifier.height(16.dp))
-            RosaFiestaTextField(
+            AdventistPortalTextField(
                 state = state.emailTextState,
                 placeholder = stringResource(Res.string.email_placeholder),
                 title = stringResource(Res.string.email),
@@ -104,7 +104,7 @@ fun RegisterScreen(
                 keyboardType = KeyboardType.Email
             )
             Spacer(modifier = Modifier.height(16.dp))
-            RosaFiestaPasswordTextField(
+            AdventistPortalPasswordTextField(
                 state = state.passwordTextState,
                 placeholder = stringResource(Res.string.password),
                 title = stringResource(Res.string.password),
@@ -121,7 +121,7 @@ fun RegisterScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            RosaFiestaButton(
+            AdventistPortalButton(
                 text = stringResource(Res.string.register),
                 onClick = {
                     onAction(RegisterAction.OnRegisterClick)
@@ -132,12 +132,12 @@ fun RegisterScreen(
                     .fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(8.dp))
-            RosaFiestaButton(
+            AdventistPortalButton(
                 text = stringResource(Res.string.login),
                 onClick = {
                     onAction(RegisterAction.OnLoginClick)
                 },
-                style = RosaFiestaButtonStyle.SECONDARY,
+                style = AdventistPortalButtonStyle.SECONDARY,
                 modifier = Modifier
                     .fillMaxWidth()
             )
@@ -148,7 +148,7 @@ fun RegisterScreen(
 @Preview
 @Composable
 private fun Preview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         RegisterScreen(
             state = RegisterState(),
             onAction = {},

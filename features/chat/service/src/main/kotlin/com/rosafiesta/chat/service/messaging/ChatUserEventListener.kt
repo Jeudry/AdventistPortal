@@ -1,9 +1,9 @@
-package com.rosafiesta.chat.service.messaging
+package com.adventistportal.chat.service.messaging
 
-import com.rosafiesta.core.domain.events.user.UserEvent
-import com.rosafiesta.chat.domain.models.ChatParticipant
-import com.rosafiesta.core.infrastructure.message_queue.MessageQueues
-import com.rosafiesta.chat.service.ChatParticipantService
+import com.adventistportal.core.domain.events.user.UserEvent
+import com.adventistportal.chat.domain.models.ChatParticipant
+import com.adventistportal.core.infrastructure.message_queue.MessageQueues
+import com.adventistportal.chat.service.ChatParticipantService
 import org.springframework.amqp.rabbit.annotation.RabbitListener
 import org.springframework.stereotype.Component
 

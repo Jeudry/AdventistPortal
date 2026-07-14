@@ -1,14 +1,14 @@
-package com.jeudry.rosafiesta.deeplink
+package com.adventistportal.deeplink
 
-import com.jeudry.rosafiesta.navigation.ExternalUriHandler
+import com.adventistportal.navigation.ExternalUriHandler
 import java.awt.Desktop
 import javax.swing.SwingUtilities
 
 object DesktopDeepLinkHandler {
 
     val supportedUriPatterns = listOf(
-        Regex("^rosafiesta://.*"),
-        Regex("^https?://rosafiesta\\.pl-coding\\.com/.*"),
+        Regex("^adventistportal://.*"),
+        Regex("^https?://adventistportal\\.pl-coding\\.com/.*"),
     )
 
     private var isInitialized = false

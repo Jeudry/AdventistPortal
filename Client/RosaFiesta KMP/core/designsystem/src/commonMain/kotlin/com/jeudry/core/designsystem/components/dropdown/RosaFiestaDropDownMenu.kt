@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.dropdown
+package com.adventistportal.core.designsystem.components.dropdown
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -14,14 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.components.brand.RosaFiestaHorizontalDivider
-import com.jeudry.core.designsystem.theme.extended
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalHorizontalDivider
+import com.adventistportal.core.designsystem.theme.extended
 
 /// <summary>
-/// Dropdown menu with RosaFiesta branding
+/// Dropdown menu with AdventistPortal branding
 /// </summary>
 @Composable
-fun RosaFiestaDropDownMenu(
+fun AdventistPortalDropDownMenu(
     isOpen: Boolean,
     items: List<DropDownItem>,
     onDismiss: () -> Unit,
@@ -60,7 +60,7 @@ fun RosaFiestaDropDownMenu(
                 onClick = item.onClick
             )
             if(index != items.lastIndex) {
-                RosaFiestaHorizontalDivider()
+                AdventistPortalHorizontalDivider()
             }
         }
 

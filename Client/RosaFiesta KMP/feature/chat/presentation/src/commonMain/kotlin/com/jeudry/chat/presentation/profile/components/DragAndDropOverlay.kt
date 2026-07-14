@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.profile.components
+package com.adventistportal.chat.presentation.profile.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,10 +13,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.drop_picture_info
-import rosafiesta.feature.chat.presentation.generated.resources.upload_icon
-import rosafiesta.feature.chat.presentation.generated.resources.upload_image
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.drop_picture_info
+import adventistportal.feature.chat.presentation.generated.resources.upload_icon
+import adventistportal.feature.chat.presentation.generated.resources.upload_image
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 

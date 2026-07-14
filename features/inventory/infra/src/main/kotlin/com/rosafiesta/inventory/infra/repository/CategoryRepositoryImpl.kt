@@ -1,11 +1,11 @@
-package com.rosafiesta.inventory.infra.repository
+package com.adventistportal.inventory.infra.repository
 
-import com.rosafiesta.core.domain.types.CategoryId
-import com.rosafiesta.inventory.domain.model.Category
-import com.rosafiesta.inventory.domain.repository.CategoryRepository
-import com.rosafiesta.inventory.infra.db.entities.CategoryEntity
-import com.rosafiesta.inventory.infra.db.mappers.toDomain
-import com.rosafiesta.inventory.infra.db.mappers.toEntity
+import com.adventistportal.core.domain.types.CategoryId
+import com.adventistportal.inventory.domain.model.Category
+import com.adventistportal.inventory.domain.repository.CategoryRepository
+import com.adventistportal.inventory.infra.db.entities.CategoryEntity
+import com.adventistportal.inventory.infra.db.mappers.toDomain
+import com.adventistportal.inventory.infra.db.mappers.toEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

@@ -1,6 +1,6 @@
-package com.jeudry.auth.presentation.register_success
+package com.adventistportal.auth.presentation.register_success
 
-import com.jeudry.core.presentation.util.UiText
+import com.adventistportal.core.presentation.util.UiText
 
 data class RegisterSuccessState(
     val registeredEmail: String = "",

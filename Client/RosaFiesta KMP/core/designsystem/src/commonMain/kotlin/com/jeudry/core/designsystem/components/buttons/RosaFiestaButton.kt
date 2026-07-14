@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.buttons
+package com.adventistportal.core.designsystem.components.buttons
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -20,11 +20,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-enum class RosaFiestaButtonStyle {
+enum class AdventistPortalButtonStyle {
     PRIMARY,
     DESTRUCTIVE_PRIMARY,
     SECONDARY,
@@ -33,41 +33,41 @@ enum class RosaFiestaButtonStyle {
 }
 
 @Composable
-fun RosaFiestaButton(
+fun AdventistPortalButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    style: RosaFiestaButtonStyle = RosaFiestaButtonStyle.PRIMARY,
+    style: AdventistPortalButtonStyle = AdventistPortalButtonStyle.PRIMARY,
     enabled: Boolean = true,
     isLoading: Boolean = false,
     leadingIcon: @Composable (() -> Unit)? = null
 ) {
     val colors = when(style) {
-        RosaFiestaButtonStyle.PRIMARY -> ButtonDefaults.buttonColors(
+        AdventistPortalButtonStyle.PRIMARY -> ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.primary,
             contentColor = MaterialTheme.colorScheme.onPrimary,
             disabledContainerColor = MaterialTheme.colorScheme.extended.disabledFill,
             disabledContentColor = MaterialTheme.colorScheme.extended.textDisabled
         )
-        RosaFiestaButtonStyle.DESTRUCTIVE_PRIMARY -> ButtonDefaults.buttonColors(
+        AdventistPortalButtonStyle.DESTRUCTIVE_PRIMARY -> ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.error,
             contentColor = MaterialTheme.colorScheme.onError,
             disabledContainerColor = MaterialTheme.colorScheme.extended.disabledFill,
             disabledContentColor = MaterialTheme.colorScheme.extended.textDisabled
         )
-        RosaFiestaButtonStyle.SECONDARY -> ButtonDefaults.buttonColors(
+        AdventistPortalButtonStyle.SECONDARY -> ButtonDefaults.buttonColors(
             containerColor = Color.Transparent,
             contentColor = MaterialTheme.colorScheme.extended.textSecondary,
             disabledContainerColor = Color.Transparent,
             disabledContentColor = MaterialTheme.colorScheme.extended.textDisabled
         )
-        RosaFiestaButtonStyle.DESTRUCTIVE_SECONDARY -> ButtonDefaults.buttonColors(
+        AdventistPortalButtonStyle.DESTRUCTIVE_SECONDARY -> ButtonDefaults.buttonColors(
             containerColor = Color.Transparent,
             contentColor = MaterialTheme.colorScheme.error,
             disabledContainerColor = Color.Transparent,
             disabledContentColor = MaterialTheme.colorScheme.extended.textDisabled
         )
-        RosaFiestaButtonStyle.TEXT -> ButtonDefaults.buttonColors(
+        AdventistPortalButtonStyle.TEXT -> ButtonDefaults.buttonColors(
             containerColor = Color.Transparent,
             contentColor = MaterialTheme.colorScheme.tertiary,
             disabledContainerColor = Color.Transparent,
@@ -80,10 +80,10 @@ fun RosaFiestaButton(
         color = MaterialTheme.colorScheme.extended.disabledOutline
     )
     val border = when {
-        style == RosaFiestaButtonStyle.PRIMARY && !enabled -> defaultBorderStroke
-        style == RosaFiestaButtonStyle.SECONDARY -> defaultBorderStroke
-        style == RosaFiestaButtonStyle.DESTRUCTIVE_PRIMARY && !enabled -> defaultBorderStroke
-        style == RosaFiestaButtonStyle.DESTRUCTIVE_SECONDARY -> {
+        style == AdventistPortalButtonStyle.PRIMARY && !enabled -> defaultBorderStroke
+        style == AdventistPortalButtonStyle.SECONDARY -> defaultBorderStroke
+        style == AdventistPortalButtonStyle.DESTRUCTIVE_PRIMARY && !enabled -> defaultBorderStroke
+        style == AdventistPortalButtonStyle.DESTRUCTIVE_SECONDARY -> {
             val borderColor = if(enabled) {
                 MaterialTheme.colorScheme.extended.destructiveSecondaryOutline
             } else {
@@ -141,70 +141,70 @@ fun RosaFiestaButton(
 
 @Composable
 @Preview
-fun RosaFiestaButtonPrimaryButtonPreview() {
-    RosaFiestaTheme(
+fun AdventistPortalButtonPrimaryButtonPreview() {
+    AdventistPortalTheme(
         darkTheme = true
     ) {
-        RosaFiestaButton(
+        AdventistPortalButton(
             text = "Hello world!",
             onClick = {},
-            style = RosaFiestaButtonStyle.PRIMARY
+            style = AdventistPortalButtonStyle.PRIMARY
         )
     }
 }
 
 @Composable
 @Preview
-fun RosaFiestaButtonSecondaryButtonPreview() {
-    RosaFiestaTheme(
+fun AdventistPortalButtonSecondaryButtonPreview() {
+    AdventistPortalTheme(
         darkTheme = true
     ) {
-        RosaFiestaButton(
+        AdventistPortalButton(
             text = "Hello world!",
             onClick = {},
-            style = RosaFiestaButtonStyle.SECONDARY
+            style = AdventistPortalButtonStyle.SECONDARY
         )
     }
 }
 
 @Composable
 @Preview
-fun RosaFiestaButtonDestructivePrimaryButtonPreview() {
-    RosaFiestaTheme(
+fun AdventistPortalButtonDestructivePrimaryButtonPreview() {
+    AdventistPortalTheme(
         darkTheme = true
     ) {
-        RosaFiestaButton(
+        AdventistPortalButton(
             text = "Hello world!",
             onClick = {},
-            style = RosaFiestaButtonStyle.DESTRUCTIVE_PRIMARY
+            style = AdventistPortalButtonStyle.DESTRUCTIVE_PRIMARY
         )
     }
 }
 
 @Composable
 @Preview
-fun RosaFiestaButtonDestructiveSecondaryButtonPreview() {
-    RosaFiestaTheme(
+fun AdventistPortalButtonDestructiveSecondaryButtonPreview() {
+    AdventistPortalTheme(
         darkTheme = true
     ) {
-        RosaFiestaButton(
+        AdventistPortalButton(
             text = "Hello world!",
             onClick = {},
-            style = RosaFiestaButtonStyle.DESTRUCTIVE_SECONDARY
+            style = AdventistPortalButtonStyle.DESTRUCTIVE_SECONDARY
         )
     }
 }
 
 @Composable
 @Preview
-fun RosaFiestaButtonTextButtonPreview() {
-    RosaFiestaTheme(
+fun AdventistPortalButtonTextButtonPreview() {
+    AdventistPortalTheme(
         darkTheme = true
     ) {
-        RosaFiestaButton(
+        AdventistPortalButton(
             text = "Hello world!",
             onClick = {},
-            style = RosaFiestaButtonStyle.TEXT
+            style = AdventistPortalButtonStyle.TEXT
         )
     }
 }

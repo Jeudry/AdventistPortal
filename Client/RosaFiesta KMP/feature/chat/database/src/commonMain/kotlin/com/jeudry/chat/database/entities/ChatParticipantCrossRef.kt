@@ -1,4 +1,4 @@
-package com.jeudry.chat.database.entities
+package com.adventistportal.chat.database.entities
 
 import androidx.room.Entity
 import androidx.room.ForeignKey

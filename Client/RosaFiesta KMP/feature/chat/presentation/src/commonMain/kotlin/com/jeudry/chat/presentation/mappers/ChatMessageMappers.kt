@@ -1,8 +1,8 @@
-package com.jeudry.chat.presentation.mappers
+package com.adventistportal.chat.presentation.mappers
 
-import com.jeudry.chat.domain.models.MessageWithSender
-import com.jeudry.chat.presentation.model.MessageUi
-import com.jeudry.chat.presentation.util.DateUtils
+import com.adventistportal.chat.domain.models.MessageWithSender
+import com.adventistportal.chat.presentation.model.MessageUi
+import com.adventistportal.chat.presentation.util.DateUtils
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 

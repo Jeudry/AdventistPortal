@@ -1,8 +1,8 @@
-package com.rosafiesta.user.api.config
+package com.adventistportal.user.api.config
 
-import com.rosafiesta.user.domain.exception.RateLimitEx
-import com.rosafiesta.user.infrastructure.rate_limiting.IpRateLimiter
-import com.rosafiesta.user.infrastructure.rate_limiting.IpResolver
+import com.adventistportal.user.domain.exception.RateLimitEx
+import com.adventistportal.user.infrastructure.rate_limiting.IpRateLimiter
+import com.adventistportal.user.infrastructure.rate_limiting.IpResolver
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.beans.factory.annotation.Value
@@ -15,7 +15,7 @@ import java.time.Duration
 class IpRateLimitInterceptor(
     private val ipRateLimiter: IpRateLimiter,
     private val ipResolver: IpResolver,
-    @param:Value("\${rosafiesta.ip.rate-limit.apply-limit}")
+    @param:Value("\${adventistportal.ip.rate-limit.apply-limit}")
     private val applyLimit: Boolean,
 ): HandlerInterceptor {
 

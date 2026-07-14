@@ -1,4 +1,4 @@
-package com.jeudry.chat.data.notification
+package com.adventistportal.chat.data.notification
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

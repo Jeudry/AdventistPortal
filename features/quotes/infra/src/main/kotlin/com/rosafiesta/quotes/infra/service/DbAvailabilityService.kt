@@ -1,7 +1,7 @@
-package com.rosafiesta.quotes.infra.service
+package com.adventistportal.quotes.infra.service
 
-import com.rosafiesta.quotes.domain.service.AvailabilityService
-import com.rosafiesta.shared.domain.quotes.enums.QuoteStatus
+import com.adventistportal.quotes.domain.service.AvailabilityService
+import com.adventistportal.shared.domain.quotes.enums.QuoteStatus
 import jakarta.persistence.EntityManager
 import org.springframework.stereotype.Service
 import java.time.Instant

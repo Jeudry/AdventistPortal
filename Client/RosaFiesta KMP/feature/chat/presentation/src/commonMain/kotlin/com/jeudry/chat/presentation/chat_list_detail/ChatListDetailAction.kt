@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.chat_list_detail
+package com.adventistportal.chat.presentation.chat_list_detail
 
 sealed interface ChatListDetailAction {
     data class OnSelectChat(val chatId: String?): ChatListDetailAction

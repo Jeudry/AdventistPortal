@@ -1,4 +1,4 @@
-package com.jeudry.core.domain.auth
+package com.adventistportal.core.domain.auth
 
 import kotlinx.coroutines.flow.Flow
 

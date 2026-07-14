@@ -1,7 +1,7 @@
-package com.jeudry.chat.data.mappers
+package com.adventistportal.chat.data.mappers
 
-import com.jeudry.chat.data.dto.response.ProfilePictureUploadUrlsResponse
-import com.jeudry.chat.domain.models.ProfilePictureUploadUrls
+import com.adventistportal.chat.data.dto.response.ProfilePictureUploadUrlsResponse
+import com.adventistportal.chat.domain.models.ProfilePictureUploadUrls
 
 fun ProfilePictureUploadUrlsResponse.toDomain(): ProfilePictureUploadUrls {
     return ProfilePictureUploadUrls(

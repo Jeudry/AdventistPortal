@@ -1,4 +1,4 @@
-package com.jeudry.rosafiesta
+package com.adventistportal
 
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -9,12 +9,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import com.jeudry.rosafiesta.deeplink.DesktopDeepLinkHandler
-import com.jeudry.rosafiesta.di.desktopModule
-import com.jeudry.rosafiesta.di.initKoin
-import com.jeudry.rosafiesta.navigation.ExternalUriHandler
-import com.jeudry.rosafiesta.theme.rememberAppTheme
-import com.jeudry.rosafiesta.windows.RosaFiestaWindow
+import com.adventistportal.deeplink.DesktopDeepLinkHandler
+import com.adventistportal.di.desktopModule
+import com.adventistportal.di.initKoin
+import com.adventistportal.navigation.ExternalUriHandler
+import com.adventistportal.theme.rememberAppTheme
+import com.adventistportal.windows.AdventistPortalWindow
 import org.koin.compose.koinInject
 
 fun main(args: Array<String>) {
@@ -55,7 +55,7 @@ fun main(args: Array<String>) {
 
         for(window in windows) {
             key(window.id) {
-                RosaFiestaWindow(
+                AdventistPortalWindow(
                     appTheme = appTheme,
                     onCloseRequest = {
                         applicationStateHolder.onWindowCloseRequest(window.id)
@@ -71,7 +71,7 @@ fun main(args: Array<String>) {
             }
         }
 
-        RosaFiestaTrayMenu(
+        AdventistPortalTrayMenu(
             state = applicationState.trayState,
             themePreferenceFromAppSettings = applicationState.themePreference,
             onThemePreferenceClick = applicationStateHolder::onThemePreferenceClick

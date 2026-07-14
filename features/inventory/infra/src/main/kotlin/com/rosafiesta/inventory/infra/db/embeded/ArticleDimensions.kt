@@ -1,4 +1,4 @@
-package com.rosafiesta.inventory.infra.db.embeded
+package com.adventistportal.inventory.infra.db.embeded
 
 import jakarta.persistence.Embeddable
 

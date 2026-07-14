@@ -1,6 +1,6 @@
-package com.jeudry.rosafiesta.di
+package com.adventistportal.di
 
-import com.jeudry.rosafiesta.MainViewModel
+import com.adventistportal.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

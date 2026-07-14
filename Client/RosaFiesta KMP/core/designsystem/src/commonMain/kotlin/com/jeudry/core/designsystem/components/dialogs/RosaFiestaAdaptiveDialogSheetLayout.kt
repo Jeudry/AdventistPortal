@@ -1,22 +1,22 @@
-package com.jeudry.core.designsystem.components.dialogs
+package com.adventistportal.core.designsystem.components.dialogs
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.jeudry.core.presentation.util.currentDeviceConfiguration
+import com.adventistportal.core.presentation.util.currentDeviceConfiguration
 
 @Composable
-fun RosaFiestaAdaptiveDialogSheetLayout(
+fun AdventistPortalAdaptiveDialogSheetLayout(
     onDismiss: () -> Unit,
     content: @Composable () -> Unit
 ) {
     val configuration = currentDeviceConfiguration()
     if(configuration.isMobile) {
-        RosaFiestaBottomSheet(
+        AdventistPortalBottomSheet(
             onDismiss = onDismiss,
             content = content
         )
     } else {
-        RosaFiestaDialogContent(
+        AdventistPortalDialogContent(
             onDismiss = onDismiss,
             content = content
         )

@@ -1,4 +1,4 @@
-package com.jeudry.auth.presentation.register_success
+package com.adventistportal.auth.presentation.register_success
 
 sealed interface RegisterSuccessAction {
     data object OnLoginClick: RegisterSuccessAction

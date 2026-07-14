@@ -1,7 +1,7 @@
-package com.jeudry.auth.presentation.login
+package com.adventistportal.auth.presentation.login
 
 import androidx.compose.foundation.text.input.TextFieldState
-import com.jeudry.core.presentation.util.UiText
+import com.adventistportal.core.presentation.util.UiText
 
 data class LoginState(
     val emailTextFieldState: TextFieldState = TextFieldState(),

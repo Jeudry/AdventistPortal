@@ -1,10 +1,10 @@
-package com.jeudry.core.data.auth
+package com.adventistportal.core.data.auth
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.jeudry.core.data.util.DesktopOs
-import com.jeudry.core.data.util.appDataDirectory
-import com.jeudry.core.data.util.currentOs
+import com.adventistportal.core.data.util.DesktopOs
+import com.adventistportal.core.data.util.appDataDirectory
+import com.adventistportal.core.data.util.currentOs
 import java.io.File
 
 fun createDataStore(): DataStore<Preferences> = createDataStore {

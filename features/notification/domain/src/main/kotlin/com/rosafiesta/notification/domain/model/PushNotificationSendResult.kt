@@ -1,4 +1,4 @@
-package com.rosafiesta.notification.domain.model
+package com.adventistportal.notification.domain.model
 
 data class PushNotificationSendResult(
   val succeded: List<DeviceToken>,

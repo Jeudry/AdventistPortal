@@ -2,7 +2,7 @@ plugins {
     id("java-library")
     kotlin("jvm")
 }
-group = "com.rosafiesta.core"
+group = "com.adventistportal.core"
 version = "0.0.1-SNAPSHOT"
 
 base {

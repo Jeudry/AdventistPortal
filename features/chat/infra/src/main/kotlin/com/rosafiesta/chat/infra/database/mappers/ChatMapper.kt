@@ -1,8 +1,8 @@
-package com.rosafiesta.chat.infra.database.mappers
+package com.adventistportal.chat.infra.database.mappers
 
-import com.rosafiesta.chat.domain.models.Chat
-import com.rosafiesta.chat.domain.models.ChatMessage
-import com.rosafiesta.chat.infra.database.entities.ChatEntity
+import com.adventistportal.chat.domain.models.Chat
+import com.adventistportal.chat.domain.models.ChatMessage
+import com.adventistportal.chat.infra.database.entities.ChatEntity
 
 fun ChatEntity.toModel(lastMessage: ChatMessage? = null): Chat {
     return Chat(

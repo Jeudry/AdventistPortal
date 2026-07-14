@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.components.manage_chat
+package com.adventistportal.chat.presentation.components.manage_chat
 
 sealed interface ManageChatAction {
     data object OnAddClick: ManageChatAction

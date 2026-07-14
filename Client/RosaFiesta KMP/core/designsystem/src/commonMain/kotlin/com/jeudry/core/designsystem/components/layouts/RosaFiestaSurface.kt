@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.layouts
+package com.adventistportal.core.designsystem.components.layouts
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxScope
@@ -19,14 +19,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import rosafiesta.core.designsystem.generated.resources.Res
-import rosafiesta.core.designsystem.generated.resources.logo_rosafiesta
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
+import adventistportal.core.designsystem.generated.resources.Res
+import adventistportal.core.designsystem.generated.resources.logo_adventistportal
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
 import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun RosaFiestaSurface(
+fun AdventistPortalSurface(
     modifier: Modifier = Modifier,
     header: @Composable ColumnScope.() -> Unit = {},
     content: @Composable ColumnScope.() -> Unit
@@ -66,14 +66,14 @@ fun RosaFiestaSurface(
 
 @Composable
 @Preview
-fun RosaFiestaSurfacePreview() {
-    RosaFiestaTheme {
-        RosaFiestaSurface(
+fun AdventistPortalSurfacePreview() {
+    AdventistPortalTheme {
+        AdventistPortalSurface(
             modifier = Modifier
                 .fillMaxSize(),
             header = {
                 Icon(
-                    imageVector = vectorResource(Res.drawable.logo_rosafiesta),
+                    imageVector = vectorResource(Res.drawable.logo_adventistportal),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier

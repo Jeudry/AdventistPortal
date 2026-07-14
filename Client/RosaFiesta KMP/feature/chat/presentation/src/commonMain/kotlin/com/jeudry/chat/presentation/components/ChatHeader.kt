@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.components
+package com.adventistportal.chat.presentation.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.components.brand.RosaFiestaHorizontalDivider
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalHorizontalDivider
 
 @Composable
 fun ChatHeader(
@@ -32,6 +32,6 @@ fun ChatHeader(
         ) {
             content()
         }
-        RosaFiestaHorizontalDivider()
+        AdventistPortalHorizontalDivider()
     }
 }

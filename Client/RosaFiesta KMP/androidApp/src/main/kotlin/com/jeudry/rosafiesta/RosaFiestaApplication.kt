@@ -1,16 +1,16 @@
-package com.jeudry.rosafiesta
+package com.adventistportal
 
 import android.app.Application
-import com.jeudry.rosafiesta.di.initKoin
+import com.adventistportal.di.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 
-class RosaFiestaApplication: Application() {
+class AdventistPortalApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
         initKoin {
-            androidContext(this@RosaFiestaApplication)
+            androidContext(this@AdventistPortalApplication)
             androidLogger()
         }
     }

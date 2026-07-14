@@ -1,4 +1,4 @@
-package com.jeudry.chat.data.network
+package com.adventistportal.chat.data.network
 
 import kotlinx.coroutines.delay
 import kotlin.math.pow

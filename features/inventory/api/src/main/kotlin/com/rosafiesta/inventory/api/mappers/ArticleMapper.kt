@@ -1,7 +1,7 @@
-package com.rosafiesta.inventory.api.mappers
+package com.adventistportal.inventory.api.mappers
 
-import com.rosafiesta.inventory.api.dtos.*
-import com.rosafiesta.inventory.domain.model.*
+import com.adventistportal.inventory.api.dtos.*
+import com.adventistportal.inventory.domain.model.*
 import org.springframework.stereotype.Component
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -110,7 +110,7 @@ class ArticleMapper {
         return ArticleParams(
             nameTemplate = input.nameTemplate ?: "",
             descriptionTemplate = input.descriptionTemplate,
-            type = com.rosafiesta.shared.domain.inventory.enums.ArticleType.Rental,
+            type = com.adventistportal.shared.domain.inventory.enums.ArticleType.Rental,
             categoryId = input.categoryId,
             variants = emptyList()
         )

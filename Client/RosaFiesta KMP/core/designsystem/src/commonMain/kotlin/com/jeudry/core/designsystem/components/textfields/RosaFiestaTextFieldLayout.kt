@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.textfields
+package com.adventistportal.core.designsystem.components.textfields
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -18,13 +18,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.theme.extended
+import com.adventistportal.core.designsystem.theme.extended
 
 /// <summary>
 /// Layout wrapper for text field components with title and supporting text
 /// </summary>
 @Composable
-fun RosaFiestaTextFieldLayout(
+fun AdventistPortalTextFieldLayout(
     title: String? = null,
     isError: Boolean = false,
     supportingText: String? = null,

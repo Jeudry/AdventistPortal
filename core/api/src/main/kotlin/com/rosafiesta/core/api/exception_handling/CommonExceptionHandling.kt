@@ -1,7 +1,7 @@
-package com.rosafiesta.core.api.exception_handling
+package com.adventistportal.core.api.exception_handling
 
-import com.rosafiesta.core.domain.exceptions.ForbiddenEx
-import com.rosafiesta.core.domain.exceptions.UnauthorizedEx
+import com.adventistportal.core.domain.exceptions.ForbiddenEx
+import com.adventistportal.core.domain.exceptions.UnauthorizedEx
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus

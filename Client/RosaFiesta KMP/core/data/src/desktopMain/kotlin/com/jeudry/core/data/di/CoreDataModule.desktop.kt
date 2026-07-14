@@ -1,8 +1,8 @@
-package com.jeudry.core.data.di
+package com.adventistportal.core.data.di
 
-import com.jeudry.core.data.auth.createDataStore
-import com.jeudry.core.data.preferences.DataStoreThemePreferences
-import com.jeudry.core.domain.preferences.ThemePreferences
+import com.adventistportal.core.data.auth.createDataStore
+import com.adventistportal.core.data.preferences.DataStoreThemePreferences
+import com.adventistportal.core.domain.preferences.ThemePreferences
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.okhttp.OkHttp
 import org.koin.core.module.dsl.singleOf

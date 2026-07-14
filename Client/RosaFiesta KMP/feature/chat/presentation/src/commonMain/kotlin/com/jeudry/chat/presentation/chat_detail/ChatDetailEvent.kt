@@ -1,6 +1,6 @@
-package com.jeudry.chat.presentation.chat_detail
+package com.adventistportal.chat.presentation.chat_detail
 
-import com.jeudry.core.presentation.util.UiText
+import com.adventistportal.core.presentation.util.UiText
 
 sealed interface ChatDetailEvent {
     data object OnChatLeft: ChatDetailEvent

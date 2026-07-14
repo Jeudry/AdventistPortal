@@ -1,4 +1,4 @@
-package com.rosafiesta.api.config
+package com.adventistportal.api.config
 
 import graphql.scalars.ExtendedScalars
 import org.springframework.context.annotation.Bean

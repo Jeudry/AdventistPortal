@@ -1,5 +1,5 @@
 plugins {
-    id("rosafiesta.kotlin-common")
+    id("adventistportal.kotlin-common")
     id("java-library")
 }
 
@@ -11,7 +11,6 @@ repositories {
 
 dependencies {
     implementation(project(":core:domain"))
-    implementation(project(":core:infra"))
     testImplementation(kotlin("test"))
 }
 

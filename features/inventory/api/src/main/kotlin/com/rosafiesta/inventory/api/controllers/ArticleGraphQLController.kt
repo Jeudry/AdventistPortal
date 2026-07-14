@@ -1,12 +1,12 @@
-package com.rosafiesta.inventory.api.controllers
+package com.adventistportal.inventory.api.controllers
 
-import com.rosafiesta.core.domain.types.ArticleId
-import com.rosafiesta.inventory.api.dtos.*
-import com.rosafiesta.inventory.api.mappers.ArticleMapper
-import com.rosafiesta.inventory.domain.model.ArticleFilterParams
-import com.rosafiesta.inventory.domain.repository.ArticleQueryRepository
-import com.rosafiesta.inventory.service.ArticleService
-import com.rosafiesta.inventory.service.DiscountService
+import com.adventistportal.core.domain.types.ArticleId
+import com.adventistportal.inventory.api.dtos.*
+import com.adventistportal.inventory.api.mappers.ArticleMapper
+import com.adventistportal.inventory.domain.model.ArticleFilterParams
+import com.adventistportal.inventory.domain.repository.ArticleQueryRepository
+import com.adventistportal.inventory.service.ArticleService
+import com.adventistportal.inventory.service.DiscountService
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping

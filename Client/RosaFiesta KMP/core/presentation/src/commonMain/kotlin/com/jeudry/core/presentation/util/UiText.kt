@@ -1,4 +1,4 @@
-package com.jeudry.core.presentation.util
+package com.adventistportal.core.presentation.util
 
 import androidx.compose.runtime.Composable
 import org.jetbrains.compose.resources.StringResource

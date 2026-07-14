@@ -8,7 +8,7 @@ pluginManagement {
 }
 
 
-rootProject.name = "rosafiesta-api"
+rootProject.name = "adventistportal-api"
 
 include("app")
 

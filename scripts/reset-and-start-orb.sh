@@ -4,7 +4,7 @@ set -e
 echo "🔥 REINICIO COMPLETO - Eliminando TODO y empezando desde cero"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-cd /Users/sargon/Documents/Coding/KMP/RosaFiesta
+cd /Users/sargon/Documents/Coding/KMP/AdventistPortal
 
 # 1. Detener TODO
 echo "🛑 Deteniendo contenedores..."
@@ -12,9 +12,9 @@ docker-compose -f docker-compose.orb.yml down -v 2>/dev/null || true
 
 # 2. Eliminar volúmenes específicos por nombre
 echo "🗑️  Eliminando volúmenes antiguos..."
-docker volume rm rosafiesta_postgres_data 2>/dev/null || true
-docker volume rm rosafiesta_redis_data 2>/dev/null || true
-docker volume rm rosafiesta_rabbitmq_data 2>/dev/null || true
+docker volume rm adventistportal_postgres_data 2>/dev/null || true
+docker volume rm adventistportal_redis_data 2>/dev/null || true
+docker volume rm adventistportal_rabbitmq_data 2>/dev/null || true
 
 # 3. Eliminar cualquier volumen huérfano
 docker volume prune -f 2>/dev/null || true
@@ -38,12 +38,12 @@ docker-compose -f docker-compose.orb.yml ps
 # 8. Ver logs de Postgres
 echo ""
 echo "📝 Últimas líneas de logs de Postgres:"
-docker logs rosafiesta-postgres 2>&1 | tail -15
+docker logs adventistportal-postgres 2>&1 | tail -15
 
 # 9. Probar conexión CON contraseña
 echo ""
 echo "🧪 Probando conexión con contraseña 'postgres'..."
-PGPASSWORD='postgres' psql -h postgres.rosafiesta.orb.local -p 5432 -U postgres -d rosafiesta -c "
+PGPASSWORD='postgres' psql -h postgres.adventistportal.orb.local -p 5432 -U postgres -d adventistportal -c "
 SELECT 
   '✅ Conexión exitosa!' as status, 
   current_database() as database, 
@@ -59,19 +59,19 @@ if [ $? -eq 0 ]; then
   echo ""
   echo "📋 Configuración:"
   echo "   PostgreSQL:"
-  echo "     - Host: postgres.rosafiesta.orb.local:5432"
+  echo "     - Host: postgres.adventistportal.orb.local:5432"
   echo "     - Usuario: postgres"
   echo "     - Contraseña: postgres"
-  echo "     - Base de datos: rosafiesta"
+  echo "     - Base de datos: adventistportal"
   echo ""
   echo "   Redis:"
-  echo "     - Host: redis.rosafiesta.orb.local:6379"
-  echo "     - Contraseña: rosafiesta_redis_password"
+  echo "     - Host: redis.adventistportal.orb.local:6379"
+  echo "     - Contraseña: adventistportal_redis_password"
   echo ""
   echo "   RabbitMQ:"
-  echo "     - Host: rabbitmq.rosafiesta.orb.local:5672"
-  echo "     - Usuario: rosafiesta_user"
-  echo "     - Contraseña: rosafiesta_password"
+  echo "     - Host: rabbitmq.adventistportal.orb.local:5672"
+  echo "     - Usuario: adventistportal_user"
+  echo "     - Contraseña: adventistportal_password"
   echo "     - Management UI: http://localhost:15672"
   echo ""
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -86,7 +86,7 @@ echo "   ./scripts/run-orb-app.sh"
   echo ""
   echo "   Opción 2 - Desde IntelliJ:"
   echo "   --------------------------"
-  echo "   Run Configuration: 'RosaFiestaApi [ORB]'"
+  echo "   Run Configuration: 'AdventistPortalApi [ORB]'"
   echo ""
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
   
@@ -96,7 +96,7 @@ else
   echo "❌ La conexión falló"
   echo ""
   echo "Revisa los logs completos:"
-  echo "  docker logs rosafiesta-postgres"
+  echo "  docker logs adventistportal-postgres"
   
   exit 1
 fi

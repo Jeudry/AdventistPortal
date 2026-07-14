@@ -1,4 +1,4 @@
-package com.jeudry.core.domain.validation
+package com.adventistportal.core.domain.validation
 
 object PasswordValidator {
 

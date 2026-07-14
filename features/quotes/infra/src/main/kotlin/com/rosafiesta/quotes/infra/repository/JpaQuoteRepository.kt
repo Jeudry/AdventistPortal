@@ -1,14 +1,14 @@
-package com.rosafiesta.quotes.infra.repository
+package com.adventistportal.quotes.infra.repository
 
-import com.rosafiesta.core.domain.types.QuoteId
-import com.rosafiesta.core.domain.types.UserId
-import com.rosafiesta.inventory.infra.db.entities.ArticleVariantEntity
-import com.rosafiesta.quotes.domain.model.Quote
-import com.rosafiesta.quotes.domain.repository.QuoteRepository
-import com.rosafiesta.quotes.infra.db.entities.QuoteEntity
-import com.rosafiesta.quotes.infra.db.mappers.toDomain
-import com.rosafiesta.quotes.infra.db.mappers.toEntity
-import com.rosafiesta.shared.domain.quotes.enums.QuoteStatus
+import com.adventistportal.core.domain.types.QuoteId
+import com.adventistportal.core.domain.types.UserId
+import com.adventistportal.inventory.infra.db.entities.ArticleVariantEntity
+import com.adventistportal.quotes.domain.model.Quote
+import com.adventistportal.quotes.domain.repository.QuoteRepository
+import com.adventistportal.quotes.infra.db.entities.QuoteEntity
+import com.adventistportal.quotes.infra.db.mappers.toDomain
+import com.adventistportal.quotes.infra.db.mappers.toEntity
+import com.adventistportal.shared.domain.quotes.enums.QuoteStatus
 import jakarta.persistence.EntityManager
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository

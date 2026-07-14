@@ -1,10 +1,10 @@
 #!/bin/bash
 
-echo "🚀 Iniciando RosaFiesta API con perfil ORB"
+echo "🚀 Iniciando AdventistPortal API con perfil ORB"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 echo "📋 Verificando servicios de Docker..."
-docker ps --format "{{.Names}}: {{.Status}}" | grep rosafiesta
+docker ps --format "{{.Names}}: {{.Status}}" | grep adventistportal
 
 if [ $? -ne 0 ]; then
   echo ""
@@ -18,7 +18,7 @@ echo "✅ Servicios de Docker están corriendo"
 echo ""
 echo "🔧 Configurando variables de entorno..."
 
-cd /Users/sargon/Documents/Coding/KMP/RosaFiesta
+cd /Users/sargon/Documents/Coding/KMP/AdventistPortal
 
 # Load environment variables from .env.local if it exists
 if [ -f "scripts/.env.local" ]; then

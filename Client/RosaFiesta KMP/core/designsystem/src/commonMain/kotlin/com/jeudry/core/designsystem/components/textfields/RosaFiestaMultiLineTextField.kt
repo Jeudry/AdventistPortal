@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.textfields
+package com.adventistportal.core.designsystem.components.textfields
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -28,16 +28,16 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButton
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButton
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /// <summary>
 /// Multi-line text field for longer text input
 /// </summary>
 @Composable
-fun RosaFiestaMultiLineTextField(
+fun AdventistPortalMultiLineTextField(
     state: TextFieldState,
     modifier: Modifier = Modifier,
     placeholder: String? = null,
@@ -118,9 +118,9 @@ fun RosaFiestaMultiLineTextField(
 
 @Composable
 @Preview
-fun RosaFiestaMultiLineTextFieldMultiLineTextFieldPreview() {
-    RosaFiestaTheme {
-        RosaFiestaMultiLineTextField(
+fun AdventistPortalMultiLineTextFieldMultiLineTextFieldPreview() {
+    AdventistPortalTheme {
+        AdventistPortalMultiLineTextField(
             state = rememberTextFieldState(
                 initialText = "This is some text field content that maybe spans multiple lines",
             ),
@@ -130,7 +130,7 @@ fun RosaFiestaMultiLineTextFieldMultiLineTextFieldPreview() {
             placeholder = null,
             bottomContent = {
                 Spacer(modifier = Modifier.weight(1f))
-                RosaFiestaButton(
+                AdventistPortalButton(
                     text = "Send",
                     onClick = {}
                 )

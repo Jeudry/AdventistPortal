@@ -1,11 +1,11 @@
-package com.jeudry.chat.database.dao
+package com.adventistportal.chat.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
-import com.jeudry.chat.database.entities.ChatParticipantCrossRef
-import com.jeudry.chat.database.entities.ChatParticipantEntity
+import com.adventistportal.chat.database.entities.ChatParticipantCrossRef
+import com.adventistportal.chat.database.entities.ChatParticipantEntity
 
 @Dao
 interface ChatParticipantsCrossRefDao {

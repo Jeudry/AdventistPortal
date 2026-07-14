@@ -1,9 +1,9 @@
-package com.jeudry.core.data.logging
+package com.adventistportal.core.data.logging
 
 import co.touchlab.kermit.Logger
-import com.jeudry.core.domain.logging.RosaFiestaLogger
+import com.adventistportal.core.domain.logging.AdventistPortalLogger
 
-object KermitLogger: RosaFiestaLogger {
+object KermitLogger: AdventistPortalLogger {
 
     override fun debug(message: String) {
         Logger.d(message)

@@ -1,4 +1,4 @@
-package com.rosafiesta.chat.api.dto.ws
+package com.adventistportal.chat.api.dto.ws
 
 enum class IncomingWebSocketMessageType {
     NEW_MESSAGE

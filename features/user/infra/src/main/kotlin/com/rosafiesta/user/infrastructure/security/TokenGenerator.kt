@@ -1,4 +1,4 @@
-package com.rosafiesta.user.infrastructure.security
+package com.adventistportal.user.infrastructure.security
 
 import java.security.SecureRandom
 import java.util.Base64

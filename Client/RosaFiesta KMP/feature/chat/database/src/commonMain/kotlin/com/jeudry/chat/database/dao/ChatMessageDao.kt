@@ -1,11 +1,11 @@
-package com.jeudry.chat.database.dao
+package com.adventistportal.chat.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
-import com.jeudry.chat.database.entities.ChatMessageEntity
-import com.jeudry.chat.database.entities.MessageWithSender
+import com.adventistportal.chat.database.entities.ChatMessageEntity
+import com.adventistportal.chat.database.entities.MessageWithSender
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 

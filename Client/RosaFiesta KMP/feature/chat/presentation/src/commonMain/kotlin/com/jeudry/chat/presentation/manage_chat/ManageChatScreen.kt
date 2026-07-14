@@ -1,18 +1,18 @@
-package com.jeudry.chat.presentation.manage_chat
+package com.adventistportal.chat.presentation.manage_chat
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.chat_members
-import rosafiesta.feature.chat.presentation.generated.resources.create_chat
-import rosafiesta.feature.chat.presentation.generated.resources.save
-import com.jeudry.chat.presentation.components.manage_chat.ManageChatAction
-import com.jeudry.chat.presentation.components.manage_chat.ManageChatScreen
-import com.jeudry.core.designsystem.components.dialogs.RosaFiestaAdaptiveDialogSheetLayout
-import com.jeudry.core.presentation.util.ObserveAsEvents
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.chat_members
+import adventistportal.feature.chat.presentation.generated.resources.create_chat
+import adventistportal.feature.chat.presentation.generated.resources.save
+import com.adventistportal.chat.presentation.components.manage_chat.ManageChatAction
+import com.adventistportal.chat.presentation.components.manage_chat.ManageChatScreen
+import com.adventistportal.core.designsystem.components.dialogs.AdventistPortalAdaptiveDialogSheetLayout
+import com.adventistportal.core.presentation.util.ObserveAsEvents
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -35,7 +35,7 @@ fun ManageChatRoot(
         }
     }
 
-    RosaFiestaAdaptiveDialogSheetLayout(
+    AdventistPortalAdaptiveDialogSheetLayout(
         onDismiss = onDismiss
     ) {
         ManageChatScreen(

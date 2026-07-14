@@ -1,4 +1,4 @@
-package com.jeudry.core.data.dto.requests
+package com.adventistportal.core.data.dto.requests
 
 import kotlinx.serialization.Serializable
 

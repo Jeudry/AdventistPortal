@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.components
+package com.adventistportal.chat.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,14 +12,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.group_chat
-import rosafiesta.feature.chat.presentation.generated.resources.only_you
-import rosafiesta.feature.chat.presentation.generated.resources.you
-import com.jeudry.chat.presentation.model.ChatUi
-import com.jeudry.core.designsystem.components.avatar.RosaFiestaStackedAvatars
-import com.jeudry.core.designsystem.theme.extended
-import com.jeudry.core.designsystem.theme.titleXSmall
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.group_chat
+import adventistportal.feature.chat.presentation.generated.resources.only_you
+import adventistportal.feature.chat.presentation.generated.resources.you
+import com.adventistportal.chat.presentation.model.ChatUi
+import com.adventistportal.core.designsystem.components.avatar.AdventistPortalStackedAvatars
+import com.adventistportal.core.designsystem.theme.extended
+import com.adventistportal.core.designsystem.theme.titleXSmall
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -34,7 +34,7 @@ fun ChatItemHeaderRow(
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         if(chat.otherParticipants.isNotEmpty()) {
-            RosaFiestaStackedAvatars(
+            AdventistPortalStackedAvatars(
                 avatars = chat.otherParticipants,
             )
         }

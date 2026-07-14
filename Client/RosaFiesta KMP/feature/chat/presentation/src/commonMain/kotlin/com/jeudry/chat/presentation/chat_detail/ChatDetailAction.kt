@@ -1,6 +1,6 @@
-package com.jeudry.chat.presentation.chat_detail
+package com.adventistportal.chat.presentation.chat_detail
 
-import com.jeudry.chat.presentation.model.MessageUi
+import com.adventistportal.chat.presentation.model.MessageUi
 
 sealed interface ChatDetailAction {
     data object OnSendMessageClick: ChatDetailAction

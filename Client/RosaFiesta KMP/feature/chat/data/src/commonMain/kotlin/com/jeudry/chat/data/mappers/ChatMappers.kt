@@ -1,19 +1,19 @@
-package com.jeudry.chat.data.mappers
+package com.adventistportal.chat.data.mappers
 
-import com.jeudry.chat.data.dto.ChatDto
-import com.jeudry.chat.database.entities.ChatEntity
-import com.jeudry.chat.database.entities.ChatInfoEntity
-import com.jeudry.chat.database.entities.ChatWithParticipants
-import com.jeudry.chat.database.entities.MessageWithSender
-import com.jeudry.chat.domain.models.Chat
-import com.jeudry.chat.domain.models.ChatInfo
-import com.jeudry.chat.domain.models.ChatMessage
-import com.jeudry.chat.domain.models.ChatMessageDeliveryStatus
-import com.jeudry.chat.domain.models.ChatParticipant
+import com.adventistportal.chat.data.dto.ChatDto
+import com.adventistportal.chat.database.entities.ChatEntity
+import com.adventistportal.chat.database.entities.ChatInfoEntity
+import com.adventistportal.chat.database.entities.ChatWithParticipants
+import com.adventistportal.chat.database.entities.MessageWithSender
+import com.adventistportal.chat.domain.models.Chat
+import com.adventistportal.chat.domain.models.ChatInfo
+import com.adventistportal.chat.domain.models.ChatMessage
+import com.adventistportal.chat.domain.models.ChatMessageDeliveryStatus
+import com.adventistportal.chat.domain.models.ChatParticipant
 import kotlin.time.Instant
 
 typealias DataMessageWithSender = MessageWithSender
-typealias DomainMessageWithSender = com.jeudry.chat.domain.models.MessageWithSender
+typealias DomainMessageWithSender = com.adventistportal.chat.domain.models.MessageWithSender
 
 fun ChatDto.toDomain(): Chat {
     val lastMessageSenderUsername = lastMessage?.let { message ->

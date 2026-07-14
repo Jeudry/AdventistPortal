@@ -1,4 +1,4 @@
-package com.rosafiesta.user.api.dtos
+package com.adventistportal.user.api.dtos
 
 data class LoginRequest(
     val email: String,

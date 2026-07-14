@@ -1,6 +1,6 @@
-package com.rosafiesta.inventory.domain.model
+package com.adventistportal.inventory.domain.model
 
-import com.rosafiesta.core.domain.types.ArticleId
+import com.adventistportal.core.domain.types.ArticleId
 import java.time.Instant
 
 /**

@@ -1,6 +1,6 @@
-package com.jeudry.rosafiesta
+package com.adventistportal
 
-import com.jeudry.chat.data.notification.IosDeviceTokenHolder
+import com.adventistportal.chat.data.notification.IosDeviceTokenHolder
 
 object IosDeviceTokenHolderBridge {
     fun updateToken(token: String) {

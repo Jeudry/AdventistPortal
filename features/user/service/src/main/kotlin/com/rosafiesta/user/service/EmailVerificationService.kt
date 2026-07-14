@@ -1,14 +1,14 @@
-package com.rosafiesta.user.service
+package com.adventistportal.user.service
 
-import com.rosafiesta.core.domain.exceptions.InvalidTokenEx
-import com.rosafiesta.core.domain.events.user.UserEvent
-import com.rosafiesta.user.domain.exception.UserNotFoundEx
-import com.rosafiesta.user.domain.model.EmailVerificationToken
-import com.rosafiesta.user.infrastructure.database.entities.EmailVerificationTokenEntity
-import com.rosafiesta.user.infrastructure.database.mappers.toModel
-import com.rosafiesta.user.infrastructure.database.repositories.EmailVerificationTokenRepository
-import com.rosafiesta.user.infrastructure.database.repositories.UserRepository
-import com.rosafiesta.core.infrastructure.message_queue.EventPublisher
+import com.adventistportal.core.domain.exceptions.InvalidTokenEx
+import com.adventistportal.core.domain.events.user.UserEvent
+import com.adventistportal.user.domain.exception.UserNotFoundEx
+import com.adventistportal.user.domain.model.EmailVerificationToken
+import com.adventistportal.user.infrastructure.database.entities.EmailVerificationTokenEntity
+import com.adventistportal.user.infrastructure.database.mappers.toModel
+import com.adventistportal.user.infrastructure.database.repositories.EmailVerificationTokenRepository
+import com.adventistportal.user.infrastructure.database.repositories.UserRepository
+import com.adventistportal.core.infrastructure.message_queue.EventPublisher
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
@@ -20,7 +20,7 @@ import java.time.temporal.ChronoUnit
 class EmailVerificationService (
     private val emailVerificationTokenRepository: EmailVerificationTokenRepository,
     private val userRepository: UserRepository,
-    @param:Value("\${rosafiesta.email.verification.expiry-hours}") private val expiryHours: Long,
+    @param:Value("\${adventistportal.email.verification.expiry-hours}") private val expiryHours: Long,
     private val eventPublisher: EventPublisher
 ){
 

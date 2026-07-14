@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.internal.builtins.StandardNames.FqNames.annot
 
 
 plugins {
-    id("rosafiesta.spring-boot-service")
+    id("adventistportal.spring-boot-service")
     id("org.springframework.boot")
     kotlin("plugin.spring")
 }

@@ -1,6 +1,6 @@
-package com.rosafiesta.notification.domain.model
+package com.adventistportal.notification.domain.model
 
-import com.rosafiesta.core.domain.types.ChatId
+import com.adventistportal.core.domain.types.ChatId
 import java.util.*
 
 data class PushNotification(

@@ -1,6 +1,6 @@
-package com.rosafiesta.inventory.api.dtos
+package com.adventistportal.inventory.api.dtos
 
-import com.rosafiesta.core.domain.types.CategoryId
+import com.adventistportal.core.domain.types.CategoryId
 
 data class CategoryDto(
     val id: CategoryId,

@@ -1,4 +1,4 @@
-package com.jeudry.chat.data.network
+package com.adventistportal.chat.data.network
 
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow

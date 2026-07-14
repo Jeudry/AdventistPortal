@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.dropdown
+package com.adventistportal.core.designsystem.components.dropdown
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector

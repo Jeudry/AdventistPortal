@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.components
+package com.adventistportal.chat.presentation.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement

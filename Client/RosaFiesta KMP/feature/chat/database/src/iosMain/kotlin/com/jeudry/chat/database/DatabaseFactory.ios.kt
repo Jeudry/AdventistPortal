@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalForeignApi::class)
 
-package com.jeudry.chat.database
+package com.adventistportal.chat.database
 
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -10,8 +10,8 @@ import platform.Foundation.NSFileManager
 import platform.Foundation.NSUserDomainMask
 
 actual class DatabaseFactory {
-    actual fun create(): RoomDatabase.Builder<RosaFiestaChatDatabase> {
-        val dbFile = documentDirectory() + "/${RosaFiestaChatDatabase.DB_NAME}"
+    actual fun create(): RoomDatabase.Builder<AdventistPortalChatDatabase> {
+        val dbFile = documentDirectory() + "/${AdventistPortalChatDatabase.DB_NAME}"
 
         return Room.databaseBuilder(dbFile)
     }

@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.layouts
+package com.adventistportal.core.designsystem.components.layouts
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -26,16 +26,16 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.components.brand.RosaFiestaBrandLogo
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
-import com.jeudry.core.presentation.util.DeviceConfiguration
-import com.jeudry.core.presentation.util.clearFocusOnTap
-import com.jeudry.core.presentation.util.currentDeviceConfiguration
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalBrandLogo
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
+import com.adventistportal.core.presentation.util.DeviceConfiguration
+import com.adventistportal.core.presentation.util.clearFocusOnTap
+import com.adventistportal.core.presentation.util.currentDeviceConfiguration
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun RosaFiestaAdaptiveFormLayout(
+fun AdventistPortalAdaptiveFormLayout(
     headerText: String,
     errorText: String? = null,
     logo: @Composable () -> Unit,
@@ -51,7 +51,7 @@ fun RosaFiestaAdaptiveFormLayout(
 
     when(configuration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
-            RosaFiestaSurface(
+            AdventistPortalSurface(
                 modifier = modifier
                     .clearFocusOnTap()
                     .consumeWindowInsets(WindowInsets.navigationBars)
@@ -94,7 +94,7 @@ fun RosaFiestaAdaptiveFormLayout(
                         headerTextAlignment = TextAlign.Start
                     )
                 }
-                RosaFiestaSurface(
+                AdventistPortalSurface(
                     modifier = Modifier
                         .weight(1f)
                 ) {
@@ -169,12 +169,12 @@ fun ColumnScope.AuthHeaderSection(
 
 @Composable
 @Preview
-fun RosaFiestaAdaptiveFormLayoutAdaptiveFormLayoutLightPreview() {
-    RosaFiestaTheme {
-        RosaFiestaAdaptiveFormLayout(
+fun AdventistPortalAdaptiveFormLayoutAdaptiveFormLayoutLightPreview() {
+    AdventistPortalTheme {
+        AdventistPortalAdaptiveFormLayout(
             headerText = "Welcome to Chirp!",
             errorText = "Login failed!",
-            logo = { RosaFiestaBrandLogo() },
+            logo = { AdventistPortalBrandLogo() },
             formContent = {
                 Text(
                     text = "Sample form title",
@@ -193,12 +193,12 @@ fun RosaFiestaAdaptiveFormLayoutAdaptiveFormLayoutLightPreview() {
 
 @Composable
 @Preview
-fun RosaFiestaAdaptiveFormLayoutAdaptiveFormLayoutDarkPreview() {
-    RosaFiestaTheme(darkTheme = true) {
-        RosaFiestaAdaptiveFormLayout(
+fun AdventistPortalAdaptiveFormLayoutAdaptiveFormLayoutDarkPreview() {
+    AdventistPortalTheme(darkTheme = true) {
+        AdventistPortalAdaptiveFormLayout(
             headerText = "Welcome to Chirp!",
             errorText = "Login failed!",
-            logo = { RosaFiestaBrandLogo() },
+            logo = { AdventistPortalBrandLogo() },
             formContent = {
                 Text(
                     text = "Sample form title",

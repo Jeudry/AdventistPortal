@@ -1,9 +1,9 @@
-package com.rosafiesta.quotes.infra.db.entities
+package com.adventistportal.quotes.infra.db.entities
 
-import com.rosafiesta.core.domain.types.QuoteId
-import com.rosafiesta.core.domain.types.UserId
-import com.rosafiesta.inventory.infra.db.entities.ArticleVariantEntity
-import com.rosafiesta.shared.domain.quotes.enums.QuoteStatus
+import com.adventistportal.core.domain.types.QuoteId
+import com.adventistportal.core.domain.types.UserId
+import com.adventistportal.inventory.infra.db.entities.ArticleVariantEntity
+import com.adventistportal.shared.domain.quotes.enums.QuoteStatus
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import java.math.BigDecimal

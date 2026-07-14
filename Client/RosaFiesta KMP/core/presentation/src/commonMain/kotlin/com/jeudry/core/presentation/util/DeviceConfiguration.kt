@@ -1,4 +1,4 @@
-package com.jeudry.core.presentation.util
+package com.adventistportal.core.presentation.util
 
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable

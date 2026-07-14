@@ -1,8 +1,8 @@
-package com.rosafiesta.inventory.api.dtos
+package com.adventistportal.inventory.api.dtos
 
-import com.rosafiesta.core.domain.types.ArticleId
-import com.rosafiesta.core.domain.types.CategoryId
-import com.rosafiesta.shared.domain.inventory.enums.ArticleType
+import com.adventistportal.core.domain.types.ArticleId
+import com.adventistportal.core.domain.types.CategoryId
+import com.adventistportal.shared.domain.inventory.enums.ArticleType
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.*

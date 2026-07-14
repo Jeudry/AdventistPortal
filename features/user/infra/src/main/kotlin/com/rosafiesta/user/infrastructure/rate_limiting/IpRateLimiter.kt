@@ -1,6 +1,6 @@
-package com.rosafiesta.user.infrastructure.rate_limiting
+package com.adventistportal.user.infrastructure.rate_limiting
 
-import com.rosafiesta.user.domain.exception.RateLimitEx
+import com.adventistportal.user.domain.exception.RateLimitEx
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.io.Resource
 import org.springframework.data.redis.core.StringRedisTemplate

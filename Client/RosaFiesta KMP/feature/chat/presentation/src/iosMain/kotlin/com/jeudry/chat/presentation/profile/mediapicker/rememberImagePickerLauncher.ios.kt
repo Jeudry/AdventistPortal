@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalForeignApi::class)
 
-package com.jeudry.chat.presentation.profile.mediapicker
+package com.adventistportal.chat.presentation.profile.mediapicker
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember

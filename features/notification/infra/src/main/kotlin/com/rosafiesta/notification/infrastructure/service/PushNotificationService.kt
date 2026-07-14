@@ -1,15 +1,15 @@
-package com.rosafiesta.notification.infrastructure.service
+package com.adventistportal.notification.infrastructure.service
 
-import com.rosafiesta.notification.domain.exceptions.InvalidDeviceTokenEx
-import com.rosafiesta.notification.domain.model.DeviceToken
-import com.rosafiesta.notification.domain.model.PushNotification
-import com.rosafiesta.core.domain.types.ChatId
-import com.rosafiesta.core.domain.types.UserId
-import com.rosafiesta.notification.infrastructure.database.DeviceTokenEntity
-import com.rosafiesta.notification.infrastructure.database.DeviceTokenRepository
-import com.rosafiesta.notification.infrastructure.mappers.toEntity
-import com.rosafiesta.notification.infrastructure.mappers.toModel
-import com.rosafiesta.notification.infrastructure.push_notification.FirebasePushNotificationService
+import com.adventistportal.notification.domain.exceptions.InvalidDeviceTokenEx
+import com.adventistportal.notification.domain.model.DeviceToken
+import com.adventistportal.notification.domain.model.PushNotification
+import com.adventistportal.core.domain.types.ChatId
+import com.adventistportal.core.domain.types.UserId
+import com.adventistportal.notification.infrastructure.database.DeviceTokenEntity
+import com.adventistportal.notification.infrastructure.database.DeviceTokenRepository
+import com.adventistportal.notification.infrastructure.mappers.toEntity
+import com.adventistportal.notification.infrastructure.mappers.toModel
+import com.adventistportal.notification.infrastructure.push_notification.FirebasePushNotificationService
 import jakarta.transaction.Transactional
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired

@@ -1,10 +1,10 @@
-package com.rosafiesta.inventory.infra.repository
+package com.adventistportal.inventory.infra.repository
 
-import com.rosafiesta.core.domain.types.DiscountId
-import com.rosafiesta.inventory.domain.model.Discount
-import com.rosafiesta.inventory.domain.model.DiscountType
-import com.rosafiesta.inventory.domain.repository.DiscountRepository
-import com.rosafiesta.inventory.infra.db.entities.DiscountEntity
+import com.adventistportal.core.domain.types.DiscountId
+import com.adventistportal.inventory.domain.model.Discount
+import com.adventistportal.inventory.domain.model.DiscountType
+import com.adventistportal.inventory.domain.repository.DiscountRepository
+import com.adventistportal.inventory.infra.db.entities.DiscountEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository

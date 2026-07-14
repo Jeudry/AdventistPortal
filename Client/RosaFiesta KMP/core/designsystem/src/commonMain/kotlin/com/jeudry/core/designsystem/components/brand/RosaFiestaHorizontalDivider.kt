@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.brand
+package com.adventistportal.core.designsystem.components.brand
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.HorizontalDivider
@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun RosaFiestaHorizontalDivider(
+fun AdventistPortalHorizontalDivider(
     modifier: Modifier = Modifier
 ) {
     HorizontalDivider(

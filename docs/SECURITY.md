@@ -28,11 +28,11 @@ nano scripts/.env.local
 For DEV/PROD profiles:
 
 1. **Local only files** (gitignored):
-   - `.run/RosaFiestaApi [DEV].run.xml` - Contains real DEV credentials
-   - `.run/RosaFiestaApi [PROD].run.xml` - Contains real PROD credentials
+   - `.run/AdventistPortalApi [DEV].run.xml` - Contains real DEV credentials
+   - `.run/AdventistPortalApi [PROD].run.xml` - Contains real PROD credentials
 
 2. **What you share** (in repo):
-   - `.run/RosaFiestaApi [ORB].run.xml` - Local development, no secrets
+   - `.run/AdventistPortalApi [ORB].run.xml` - Local development, no secrets
    - Templates or documentation for DEV/PROD setup
 
 ## What's Safe to Commit
@@ -40,7 +40,7 @@ For DEV/PROD profiles:
 ✅ **Safe (commit these):**
 - `scripts/.env.local.example` - Template without real values
 - `application-orb.yml` - Local Docker credentials (postgres/postgres, etc.)
-- `.run/RosaFiestaApi [ORB].run.xml` - Only local development config
+- `.run/AdventistPortalApi [ORB].run.xml` - Only local development config
 
 ❌ **Never commit:**
 - `scripts/.env.local` - Your personal credentials

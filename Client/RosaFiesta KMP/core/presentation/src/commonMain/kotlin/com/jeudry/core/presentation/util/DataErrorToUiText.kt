@@ -1,22 +1,22 @@
-package com.jeudry.core.presentation.util
+package com.adventistportal.core.presentation.util
 
-import rosafiesta.core.presentation.generated.resources.Res
-import rosafiesta.core.presentation.generated.resources.error_bad_request
-import rosafiesta.core.presentation.generated.resources.error_conflict
-import rosafiesta.core.presentation.generated.resources.error_disk_full
-import rosafiesta.core.presentation.generated.resources.error_forbidden
-import rosafiesta.core.presentation.generated.resources.error_no_internet
-import rosafiesta.core.presentation.generated.resources.error_not_found
-import rosafiesta.core.presentation.generated.resources.error_payload_too_large
-import rosafiesta.core.presentation.generated.resources.error_request_timeout
-import rosafiesta.core.presentation.generated.resources.error_serialization
-import rosafiesta.core.presentation.generated.resources.error_server
-import rosafiesta.core.presentation.generated.resources.error_service_unavailable
-import rosafiesta.core.presentation.generated.resources.error_too_many_requests
-import rosafiesta.core.presentation.generated.resources.error_unable_to_send_message
-import rosafiesta.core.presentation.generated.resources.error_unauthorized
-import rosafiesta.core.presentation.generated.resources.error_unknown
-import com.jeudry.core.domain.util.DataError
+import adventistportal.core.presentation.generated.resources.Res
+import adventistportal.core.presentation.generated.resources.error_bad_request
+import adventistportal.core.presentation.generated.resources.error_conflict
+import adventistportal.core.presentation.generated.resources.error_disk_full
+import adventistportal.core.presentation.generated.resources.error_forbidden
+import adventistportal.core.presentation.generated.resources.error_no_internet
+import adventistportal.core.presentation.generated.resources.error_not_found
+import adventistportal.core.presentation.generated.resources.error_payload_too_large
+import adventistportal.core.presentation.generated.resources.error_request_timeout
+import adventistportal.core.presentation.generated.resources.error_serialization
+import adventistportal.core.presentation.generated.resources.error_server
+import adventistportal.core.presentation.generated.resources.error_service_unavailable
+import adventistportal.core.presentation.generated.resources.error_too_many_requests
+import adventistportal.core.presentation.generated.resources.error_unable_to_send_message
+import adventistportal.core.presentation.generated.resources.error_unauthorized
+import adventistportal.core.presentation.generated.resources.error_unknown
+import com.adventistportal.core.domain.util.DataError
 
 fun DataError.toUiText(): UiText {
     val resource = when(this) {

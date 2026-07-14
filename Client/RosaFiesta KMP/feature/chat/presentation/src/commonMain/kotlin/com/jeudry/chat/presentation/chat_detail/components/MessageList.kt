@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.chat_detail.components
+package com.adventistportal.chat.presentation.chat_detail.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,14 +19,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.no_messages
-import rosafiesta.feature.chat.presentation.generated.resources.no_messages_subtitle
-import rosafiesta.feature.chat.presentation.generated.resources.retry
-import com.jeudry.chat.presentation.components.EmptySection
-import com.jeudry.chat.presentation.model.MessageUi
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButton
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButtonStyle
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.no_messages
+import adventistportal.feature.chat.presentation.generated.resources.no_messages_subtitle
+import adventistportal.feature.chat.presentation.generated.resources.retry
+import com.adventistportal.chat.presentation.components.EmptySection
+import com.adventistportal.chat.presentation.model.MessageUi
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButton
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButtonStyle
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -98,10 +98,10 @@ fun MessageList(
                                 .fillMaxWidth(),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            RosaFiestaButton(
+                            AdventistPortalButton(
                                 text = stringResource(Res.string.retry),
                                 onClick = onRetryPaginationClick,
-                                style = RosaFiestaButtonStyle.SECONDARY
+                                style = AdventistPortalButtonStyle.SECONDARY
                             )
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(

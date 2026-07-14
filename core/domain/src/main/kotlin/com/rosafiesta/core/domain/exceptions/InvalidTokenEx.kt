@@ -1,4 +1,4 @@
-package com.rosafiesta.core.domain.exceptions
+package com.adventistportal.core.domain.exceptions
 
 class InvalidTokenEx(
     override val message: String? = null,

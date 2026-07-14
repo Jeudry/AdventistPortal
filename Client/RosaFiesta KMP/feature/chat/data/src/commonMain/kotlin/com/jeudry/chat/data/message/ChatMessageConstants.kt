@@ -1,4 +1,4 @@
-package com.jeudry.chat.data.message
+package com.adventistportal.chat.data.message
 
 object ChatMessageConstants {
     const val PAGE_SIZE = 20

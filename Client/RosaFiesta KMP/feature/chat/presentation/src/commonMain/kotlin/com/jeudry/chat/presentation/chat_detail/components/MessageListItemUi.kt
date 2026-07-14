@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.chat_detail.components
+package com.adventistportal.chat.presentation.chat_detail.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -12,14 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.jeudry.chat.domain.models.ChatMessageDeliveryStatus
-import com.jeudry.chat.domain.models.ChatParticipant
-import com.jeudry.chat.presentation.model.MessageUi
-import com.jeudry.chat.presentation.util.getChatBubbleColorForUser
-import com.jeudry.core.designsystem.components.avatar.ChatParticipantUi
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
-import com.jeudry.core.presentation.util.UiText
+import com.adventistportal.chat.domain.models.ChatMessageDeliveryStatus
+import com.adventistportal.chat.domain.models.ChatParticipant
+import com.adventistportal.chat.presentation.model.MessageUi
+import com.adventistportal.chat.presentation.util.getChatBubbleColorForUser
+import com.adventistportal.core.designsystem.components.avatar.ChatParticipantUi
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
+import com.adventistportal.core.presentation.util.UiText
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -88,7 +88,7 @@ private fun DateSeparatorUi(
 @Composable
 @Preview
 fun MessageListItemLocalMessageUiPreview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         MessageListItemUi(
             messageUi = MessageUi.LocalUserMessage(
                 id = "1",
@@ -111,7 +111,7 @@ fun MessageListItemLocalMessageUiPreview() {
 @Composable
 @Preview
 fun MessageListItemLocalMessageRetryUiPreview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         MessageListItemUi(
             messageUi = MessageUi.LocalUserMessage(
                 id = "1",
@@ -133,7 +133,7 @@ fun MessageListItemLocalMessageRetryUiPreview() {
 @Composable
 @Preview
 fun MessageListItemOtherMessageUiPreview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         MessageListItemUi(
             messageUi = MessageUi.OtherUserMessage(
                 id = "1",

@@ -1,6 +1,6 @@
-package com.rosafiesta.inventory.infra.db.entities
+package com.adventistportal.inventory.infra.db.entities
 
-import com.rosafiesta.core.domain.types.CategoryId
+import com.adventistportal.core.domain.types.CategoryId
 import jakarta.persistence.*
 import java.util.*
 

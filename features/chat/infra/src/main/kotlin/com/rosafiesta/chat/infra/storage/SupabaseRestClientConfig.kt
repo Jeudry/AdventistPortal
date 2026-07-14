@@ -1,4 +1,4 @@
-package com.rosafiesta.chat.infra.storage
+package com.adventistportal.chat.infra.storage
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean

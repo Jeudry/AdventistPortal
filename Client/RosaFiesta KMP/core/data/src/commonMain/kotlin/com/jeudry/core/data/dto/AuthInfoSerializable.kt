@@ -1,6 +1,6 @@
-package com.jeudry.core.data.dto
+package com.adventistportal.core.data.dto
 
-import com.jeudry.core.domain.auth.User
+import com.adventistportal.core.domain.auth.User
 import kotlinx.serialization.Serializable
 
 @Serializable

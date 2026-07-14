@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.layouts
+package com.adventistportal.core.designsystem.components.layouts
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,17 +21,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.jeudry.core.designsystem.components.brand.RosaFiestaBrandLogo
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.presentation.util.DeviceConfiguration
-import com.jeudry.core.presentation.util.currentDeviceConfiguration
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalBrandLogo
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.presentation.util.DeviceConfiguration
+import com.adventistportal.core.presentation.util.currentDeviceConfiguration
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /// <summary>
 /// Adaptive layout for result screens that adjusts to different device configurations
 /// </summary>
 @Composable
-fun RosaFiestaAdaptiveResultLayout(
+fun AdventistPortalAdaptiveResultLayout(
     modifier: Modifier = Modifier,
     content: @Composable ColumnScope.() -> Unit
 ) {
@@ -41,12 +41,12 @@ fun RosaFiestaAdaptiveResultLayout(
         modifier = modifier
     ) { innerPadding ->
         if(configuration == DeviceConfiguration.MOBILE_PORTRAIT) {
-            RosaFiestaSurface(
+            AdventistPortalSurface(
                 modifier = Modifier
                     .padding(innerPadding),
                 header = {
                     Spacer(modifier = Modifier.height(32.dp))
-                    RosaFiestaBrandLogo()
+                    AdventistPortalBrandLogo()
                     Spacer(modifier = Modifier.height(32.dp))
                 },
                 content = content
@@ -62,7 +62,7 @@ fun RosaFiestaAdaptiveResultLayout(
                 verticalArrangement = Arrangement.spacedBy(32.dp)
             ) {
                 if(configuration != DeviceConfiguration.MOBILE_LANDSCAPE) {
-                    RosaFiestaBrandLogo()
+                    AdventistPortalBrandLogo()
                 }
                 Column(
                     modifier = Modifier
@@ -84,9 +84,9 @@ fun RosaFiestaAdaptiveResultLayout(
 
 @Composable
 @Preview
-fun RosaFiestaAdaptiveResultLayoutPreview() {
-    RosaFiestaTheme {
-        RosaFiestaAdaptiveResultLayout(
+fun AdventistPortalAdaptiveResultLayoutPreview() {
+    AdventistPortalTheme {
+        AdventistPortalAdaptiveResultLayout(
             modifier = Modifier
                 .fillMaxSize(),
             content = {

@@ -1,6 +1,6 @@
-package com.rosafiesta.user.infrastructure.database.entities
+package com.adventistportal.user.infrastructure.database.entities
 
-import com.rosafiesta.user.infrastructure.security.TokenGenerator
+import com.adventistportal.user.infrastructure.security.TokenGenerator
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType

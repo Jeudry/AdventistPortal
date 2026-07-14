@@ -1,6 +1,6 @@
-package com.rosafiesta.user.domain.model
+package com.adventistportal.user.domain.model
 
-import com.rosafiesta.core.domain.types.UserId
+import com.adventistportal.core.domain.types.UserId
 
 data class User(
     val id: UserId,

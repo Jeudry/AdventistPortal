@@ -1,4 +1,4 @@
-package com.jeudry.rosafiesta.windows
+package com.adventistportal.windows
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect

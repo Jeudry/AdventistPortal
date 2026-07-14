@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.navigation
+package com.adventistportal.chat.presentation.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -6,7 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navDeepLink
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
-import com.jeudry.chat.presentation.chat_list_detail.ChatListDetailAdaptiveLayout
+import com.adventistportal.chat.presentation.chat_list_detail.ChatListDetailAdaptiveLayout
 import kotlinx.serialization.Serializable
 
 sealed interface ChatGraphRoutes {
@@ -27,7 +27,7 @@ fun NavGraphBuilder.chatGraph(
         composable<ChatGraphRoutes.ChatListDetailRoute>(
             deepLinks = listOf(
                 navDeepLink {
-                    uriPattern = "rosafiesta://chat_detail/{chatId}"
+                    uriPattern = "adventistportal://chat_detail/{chatId}"
                 }
             )
         ) { backStackEntry ->

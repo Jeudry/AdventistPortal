@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.theme
+package com.adventistportal.core.designsystem.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
@@ -6,12 +6,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import rosafiesta.core.designsystem.generated.resources.Res
-import rosafiesta.core.designsystem.generated.resources.plusjakartasans_bold
-import rosafiesta.core.designsystem.generated.resources.plusjakartasans_light
-import rosafiesta.core.designsystem.generated.resources.plusjakartasans_medium
-import rosafiesta.core.designsystem.generated.resources.plusjakartasans_regular
-import rosafiesta.core.designsystem.generated.resources.plusjakartasans_semibold
+import adventistportal.core.designsystem.generated.resources.Res
+import adventistportal.core.designsystem.generated.resources.plusjakartasans_bold
+import adventistportal.core.designsystem.generated.resources.plusjakartasans_light
+import adventistportal.core.designsystem.generated.resources.plusjakartasans_medium
+import adventistportal.core.designsystem.generated.resources.plusjakartasans_regular
+import adventistportal.core.designsystem.generated.resources.plusjakartasans_semibold
 import org.jetbrains.compose.resources.Font
 
 val PlusJakartaSans @Composable get() = FontFamily(

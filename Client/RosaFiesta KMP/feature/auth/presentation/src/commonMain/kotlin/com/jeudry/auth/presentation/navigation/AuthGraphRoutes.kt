@@ -1,4 +1,4 @@
-package com.jeudry.auth.presentation.navigation
+package com.adventistportal.auth.presentation.navigation
 
 import kotlinx.serialization.Serializable
 

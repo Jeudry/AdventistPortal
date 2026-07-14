@@ -1,4 +1,4 @@
-package com.rosafiesta.user.api.config
+package com.adventistportal.user.api.config
 
 import org.springframework.stereotype.Component
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer

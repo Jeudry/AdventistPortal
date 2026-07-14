@@ -1,6 +1,6 @@
-package com.jeudry.chat.data.network
+package com.adventistportal.chat.data.network
 
-import com.jeudry.core.domain.logging.RosaFiestaLogger
+import com.adventistportal.core.domain.logging.AdventistPortalLogger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
@@ -14,12 +14,12 @@ import java.net.Socket
 import kotlin.coroutines.coroutineContext
 
 actual class ConnectivityObserver(
-    private val rosaFiestaLogger: RosaFiestaLogger
+    private val adventistPortalLogger: AdventistPortalLogger
 ) {
     actual val isConnected = flow {
         while(true) {
             val connected = isConnected()
-            rosaFiestaLogger.info("Connectivity state on Desktop: $connected")
+            adventistPortalLogger.info("Connectivity state on Desktop: $connected")
             emit(connected)
             delay(5000L)
         }

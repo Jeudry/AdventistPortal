@@ -1,4 +1,4 @@
-package com.jeudry.rosafiesta
+package com.adventistportal
 
 data class MainState(
     val isLoggedIn: Boolean = false,

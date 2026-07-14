@@ -1,16 +1,16 @@
-package com.jeudry.auth.presentation.navigation
+package com.adventistportal.auth.presentation.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navDeepLink
 import androidx.navigation.navigation
-import com.jeudry.auth.presentation.email_verification.EmailVerificationRoot
-import com.jeudry.auth.presentation.forgot_password.ForgotPasswordRoot
-import com.jeudry.auth.presentation.login.LoginRoot
-import com.jeudry.auth.presentation.register.RegisterRoot
-import com.jeudry.auth.presentation.register_success.RegisterSuccessRoot
-import com.jeudry.auth.presentation.reset_password.ResetPasswordRoot
+import com.adventistportal.auth.presentation.email_verification.EmailVerificationRoot
+import com.adventistportal.auth.presentation.forgot_password.ForgotPasswordRoot
+import com.adventistportal.auth.presentation.login.LoginRoot
+import com.adventistportal.auth.presentation.register.RegisterRoot
+import com.adventistportal.auth.presentation.register_success.RegisterSuccessRoot
+import com.adventistportal.auth.presentation.reset_password.ResetPasswordRoot
 
 fun NavGraphBuilder.authGraph(
     navController: NavController,
@@ -64,10 +64,10 @@ fun NavGraphBuilder.authGraph(
         composable<AuthGraphRoutes.EmailVerification>(
             deepLinks = listOf(
                 navDeepLink {
-                    this.uriPattern = "https://rosafiesta.pl-coding.com/api/auth/verify?token={token}"
+                    this.uriPattern = "https://adventistportal.pl-coding.com/api/auth/verify?token={token}"
                 },
                 navDeepLink {
-                    this.uriPattern = "rosafiesta://rosafiesta.pl-coding.com/api/auth/verify?token={token}"
+                    this.uriPattern = "adventistportal://adventistportal.pl-coding.com/api/auth/verify?token={token}"
                 },
             )
         ) {
@@ -94,10 +94,10 @@ fun NavGraphBuilder.authGraph(
         composable<AuthGraphRoutes.ResetPassword>(
             deepLinks = listOf(
                 navDeepLink {
-                    this.uriPattern = "https://rosafiesta.pl-coding.com/api/auth/reset-password?token={token}"
+                    this.uriPattern = "https://adventistportal.pl-coding.com/api/auth/reset-password?token={token}"
                 },
                 navDeepLink {
-                    this.uriPattern = "rosafiesta://rosafiesta.pl-coding.com/api/auth/reset-password?token={token}"
+                    this.uriPattern = "adventistportal://adventistportal.pl-coding.com/api/auth/reset-password?token={token}"
                 },
             )
         ) {

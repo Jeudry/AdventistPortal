@@ -1,4 +1,4 @@
-package com.jeudry.rosafiesta.convention
+package com.adventistportal.convention
 
 import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryExtension
 import org.gradle.api.Project

@@ -1,4 +1,4 @@
-package com.rosafiesta.api.config
+package com.adventistportal.api.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

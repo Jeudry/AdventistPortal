@@ -7,7 +7,7 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-echo -e "${YELLOW}🛑 Stopping RosaFiesta Local Development Environment${NC}"
+echo -e "${YELLOW}🛑 Stopping AdventistPortal Local Development Environment${NC}"
 echo ""
 
 # Check if Docker is running

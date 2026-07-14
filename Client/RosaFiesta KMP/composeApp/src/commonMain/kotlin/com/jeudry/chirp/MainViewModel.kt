@@ -1,13 +1,13 @@
-package com.jeudry.rosafiesta
+package com.adventistportal
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jeudry.chat.domain.notification.DeviceTokenService
-import com.jeudry.chat.domain.notification.PushNotificationService
-import com.jeudry.core.data.util.PlatformUtils
-import com.jeudry.core.domain.auth.SessionStorage
-import com.jeudry.core.domain.util.onFailure
-import com.jeudry.core.domain.util.onSuccess
+import com.adventistportal.chat.domain.notification.DeviceTokenService
+import com.adventistportal.chat.domain.notification.PushNotificationService
+import com.adventistportal.core.data.util.PlatformUtils
+import com.adventistportal.core.domain.auth.SessionStorage
+import com.adventistportal.core.domain.util.onFailure
+import com.adventistportal.core.domain.util.onSuccess
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.profile.mediapicker
+package com.adventistportal.chat.presentation.profile.mediapicker
 
 import android.content.Context
 import android.net.Uri

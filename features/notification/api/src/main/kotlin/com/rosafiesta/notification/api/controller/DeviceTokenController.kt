@@ -1,10 +1,10 @@
-package com.rosafiesta.notification.api.controller
+package com.adventistportal.notification.api.controller
 
-import com.rosafiesta.core.api.utils.requestUserId
-import com.rosafiesta.notification.api.dto.DeviceTokenDto
-import com.rosafiesta.notification.api.dto.RegisterDeviceRequest
-import com.rosafiesta.notification.api.mappers.toDto
-import com.rosafiesta.notification.infrastructure.service.PushNotificationService
+import com.adventistportal.core.api.utils.requestUserId
+import com.adventistportal.notification.api.dto.DeviceTokenDto
+import com.adventistportal.notification.api.dto.RegisterDeviceRequest
+import com.adventistportal.notification.api.mappers.toDto
+import com.adventistportal.notification.infrastructure.service.PushNotificationService
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 

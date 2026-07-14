@@ -1,6 +1,6 @@
-package com.jeudry.core.domain.logging
+package com.adventistportal.core.domain.logging
 
-interface RosaFiestaLogger {
+interface AdventistPortalLogger {
     fun debug(message: String)
     fun info(message: String)
     fun warn(message: String)

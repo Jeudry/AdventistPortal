@@ -1,12 +1,12 @@
-package com.jeudry.auth.presentation.register_success
+package com.adventistportal.auth.presentation.register_success
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jeudry.core.domain.auth.AuthService
-import com.jeudry.core.domain.util.onFailure
-import com.jeudry.core.domain.util.onSuccess
-import com.jeudry.core.presentation.util.toUiText
+import com.adventistportal.core.domain.auth.AuthService
+import com.adventistportal.core.domain.util.onFailure
+import com.adventistportal.core.domain.util.onSuccess
+import com.adventistportal.core.presentation.util.toUiText
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

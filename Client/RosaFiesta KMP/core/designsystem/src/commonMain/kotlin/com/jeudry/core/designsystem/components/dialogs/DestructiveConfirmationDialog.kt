@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.dialogs
+package com.adventistportal.core.designsystem.components.dialogs
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -23,12 +23,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import rosafiesta.core.designsystem.generated.resources.Res
-import rosafiesta.core.designsystem.generated.resources.dismiss_dialog
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButton
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButtonStyle
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import adventistportal.core.designsystem.generated.resources.Res
+import adventistportal.core.designsystem.generated.resources.dismiss_dialog
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButton
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButtonStyle
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -83,15 +83,15 @@ fun DestructiveConfirmationDialog(
                     horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.End),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    RosaFiestaButton(
+                    AdventistPortalButton(
                         text = cancelButtonText,
                         onClick = onCancelClick,
-                        style = RosaFiestaButtonStyle.SECONDARY
+                        style = AdventistPortalButtonStyle.SECONDARY
                     )
-                    RosaFiestaButton(
+                    AdventistPortalButton(
                         text = confirmButtonText,
                         onClick = onConfirmClick,
-                        style = RosaFiestaButtonStyle.DESTRUCTIVE_PRIMARY
+                        style = AdventistPortalButtonStyle.DESTRUCTIVE_PRIMARY
                     )
                 }
             }
@@ -113,7 +113,7 @@ fun DestructiveConfirmationDialog(
 @Composable
 @Preview
 fun DestructiveConfirmationDialogPreview() {
-    RosaFiestaTheme(darkTheme = true) {
+    AdventistPortalTheme(darkTheme = true) {
         DestructiveConfirmationDialog(
             title = "Delete profile picture?",
             description = "This will permanently delete your profile picture. This cannot be undone.",

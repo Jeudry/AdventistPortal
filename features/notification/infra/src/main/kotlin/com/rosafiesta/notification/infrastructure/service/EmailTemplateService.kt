@@ -1,4 +1,4 @@
-package com.rosafiesta.notification.infrastructure.service
+package com.adventistportal.notification.infrastructure.service
 
 import org.springframework.stereotype.Service
 import org.thymeleaf.TemplateEngine

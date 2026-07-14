@@ -1,12 +1,12 @@
-package com.jeudry.rosafiesta.navigation
+package com.adventistportal.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.jeudry.auth.presentation.navigation.AuthGraphRoutes
-import com.jeudry.auth.presentation.navigation.authGraph
-import com.jeudry.chat.presentation.navigation.ChatGraphRoutes
-import com.jeudry.chat.presentation.navigation.chatGraph
+import com.adventistportal.auth.presentation.navigation.AuthGraphRoutes
+import com.adventistportal.auth.presentation.navigation.authGraph
+import com.adventistportal.chat.presentation.navigation.ChatGraphRoutes
+import com.adventistportal.chat.presentation.navigation.chatGraph
 
 @Composable
 fun NavigationRoot(

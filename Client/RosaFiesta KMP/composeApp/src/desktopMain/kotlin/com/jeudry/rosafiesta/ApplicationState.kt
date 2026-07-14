@@ -1,8 +1,8 @@
-package com.jeudry.rosafiesta
+package com.adventistportal
 
 import androidx.compose.ui.window.TrayState
-import com.jeudry.rosafiesta.windows.WindowState
-import com.jeudry.core.domain.preferences.ThemePreference
+import com.adventistportal.windows.WindowState
+import com.adventistportal.core.domain.preferences.ThemePreference
 
 data class ApplicationState(
     val windows: List<WindowState> = listOf(WindowState()),

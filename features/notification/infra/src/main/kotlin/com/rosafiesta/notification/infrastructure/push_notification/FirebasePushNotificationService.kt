@@ -1,8 +1,8 @@
-package com.rosafiesta.notification.infrastructure.push_notification
+package com.adventistportal.notification.infrastructure.push_notification
 
-import com.rosafiesta.notification.domain.model.DeviceToken
-import com.rosafiesta.notification.domain.model.PushNotification
-import com.rosafiesta.notification.domain.model.PushNotificationSendResult
+import com.adventistportal.notification.domain.model.DeviceToken
+import com.adventistportal.notification.domain.model.PushNotification
+import com.adventistportal.notification.domain.model.PushNotificationSendResult
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
@@ -81,7 +81,7 @@ class FirebasePushNotificationService(
                 AndroidConfig.builder()
                   .setPriority(AndroidConfig.Priority.HIGH)
                   .setCollapseKey(notification.chatId.toString())
-                  .setRestrictedPackageName("com.rosafiesta.app")
+                  .setRestrictedPackageName("com.adventistportal.app")
                   .build()
               )
             }

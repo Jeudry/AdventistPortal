@@ -4,7 +4,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "com.jeudry.convention.buildlogic"
+group = "com.adventistportal.convention.buildlogic"
 
 dependencies {
     compileOnly(libs.android.gradlePlugin)
@@ -39,35 +39,35 @@ tasks {
 gradlePlugin {
     plugins {
         register("androidApplication") {
-            id = "com.jeudry.convention.android.application"
+            id = "com.adventistportal.convention.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
         register("androidComposeApplication") {
-            id = "com.jeudry.convention.android.application.compose"
+            id = "com.adventistportal.convention.android.application.compose"
             implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
         register("cmpApplication") {
-            id = "com.jeudry.convention.cmp.application"
+            id = "com.adventistportal.convention.cmp.application"
             implementationClass = "CmpApplicationConventionPlugin"
         }
         register("kmpLibrary") {
-            id = "com.jeudry.convention.kmp.library"
+            id = "com.adventistportal.convention.kmp.library"
             implementationClass = "KmpLibraryConventionPlugin"
         }
         register("cmpLibrary") {
-            id = "com.jeudry.convention.cmp.library"
+            id = "com.adventistportal.convention.cmp.library"
             implementationClass = "CmpLibraryConventionPlugin"
         }
         register("cmpFeature") {
-            id = "com.jeudry.convention.cmp.feature"
+            id = "com.adventistportal.convention.cmp.feature"
             implementationClass = "CmpFeatureConventionPlugin"
         }
         register("buildKonfig") {
-            id = "com.jeudry.convention.buildkonfig"
+            id = "com.adventistportal.convention.buildkonfig"
             implementationClass = "BuildKonfigConventionPlugin"
         }
         register("room") {
-            id = "com.jeudry.convention.room"
+            id = "com.adventistportal.convention.room"
             implementationClass = "RoomConventionPlugin"
         }
     }

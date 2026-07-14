@@ -1,6 +1,6 @@
-package com.jeudry.core.presentation.di
+package com.adventistportal.core.presentation.di
 
-import com.jeudry.core.presentation.util.ScopedStoreRegistryViewModel
+import com.adventistportal.core.presentation.util.ScopedStoreRegistryViewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 

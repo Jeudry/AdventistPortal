@@ -1,4 +1,4 @@
-package com.jeudry.rosafiesta.convention
+package com.adventistportal.convention
 
 import org.gradle.api.Project
 import java.util.Locale
@@ -8,7 +8,7 @@ fun Project.pathToPackageName(): String {
         .replace(':', '.')
         .lowercase()
 
-    return "com.jeudry$relativePackageName"
+    return "com.adventistportal$relativePackageName"
 }
 
 fun Project.pathToResourcePrefix(): String {

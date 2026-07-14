@@ -1,11 +1,11 @@
-package com.jeudry.chat.data.notification
+package com.adventistportal.chat.data.notification
 
-import com.jeudry.chat.data.dto.request.RegisterDeviceTokenRequest
-import com.jeudry.chat.domain.notification.DeviceTokenService
-import com.jeudry.core.data.networking.delete
-import com.jeudry.core.data.networking.post
-import com.jeudry.core.domain.util.DataError
-import com.jeudry.core.domain.util.EmptyResult
+import com.adventistportal.chat.data.dto.request.RegisterDeviceTokenRequest
+import com.adventistportal.chat.domain.notification.DeviceTokenService
+import com.adventistportal.core.data.networking.delete
+import com.adventistportal.core.data.networking.post
+import com.adventistportal.core.domain.util.DataError
+import com.adventistportal.core.domain.util.EmptyResult
 import io.ktor.client.HttpClient
 
 class KtorDeviceTokenService(

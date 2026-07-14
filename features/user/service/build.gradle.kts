@@ -1,11 +1,11 @@
 plugins {
-    id("rosafiesta.service")
-    id("rosafiesta.spring-boot-service")
+    id("adventistportal.service")
+    id("adventistportal.spring-boot-service")
     kotlin("plugin.spring")
     kotlin("plugin.jpa")
 }
 
-group = "com.rosafiesta.user"
+group = "com.adventistportal.user"
 version = "0.0.1-SNAPSHOT"
 
 base {

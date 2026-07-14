@@ -1,6 +1,6 @@
-package com.rosafiesta.chat.api.websocket
+package com.adventistportal.chat.api.websocket
 
-import com.rosafiesta.chat.infra.configs.WebSocketConfig
+import com.adventistportal.chat.infra.configs.WebSocketConfig
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.socket.config.annotation.EnableWebSocket
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer

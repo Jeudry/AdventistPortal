@@ -1,6 +1,6 @@
-package com.rosafiesta.inventory.domain.model
+package com.adventistportal.inventory.domain.model
 
-import com.rosafiesta.core.domain.types.CategoryId
+import com.adventistportal.core.domain.types.CategoryId
 
 data class CategoryParams(
     val name: String,

@@ -1,4 +1,4 @@
-package com.jeudry.chat.data.network
+package com.adventistportal.chat.data.network
 
 import android.content.Context
 import android.net.ConnectivityManager

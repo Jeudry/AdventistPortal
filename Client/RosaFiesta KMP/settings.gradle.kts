@@ -1,4 +1,4 @@
-rootProject.name = "RosaFiesta"
+rootProject.name = "AdventistPortal"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {

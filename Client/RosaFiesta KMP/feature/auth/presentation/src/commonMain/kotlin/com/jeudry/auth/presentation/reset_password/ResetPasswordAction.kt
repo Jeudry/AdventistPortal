@@ -1,4 +1,4 @@
-package com.jeudry.auth.presentation.reset_password
+package com.adventistportal.auth.presentation.reset_password
 
 sealed interface ResetPasswordAction {
     data object OnSubmitClick: ResetPasswordAction

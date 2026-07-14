@@ -1,6 +1,6 @@
-package com.rosafiesta.chat.infra.database.entities
+package com.adventistportal.chat.infra.database.entities
 
-import com.rosafiesta.core.domain.types.ChatId
+import com.adventistportal.core.domain.types.ChatId
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import java.time.Instant

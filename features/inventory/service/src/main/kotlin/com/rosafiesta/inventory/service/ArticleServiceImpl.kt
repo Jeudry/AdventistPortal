@@ -1,8 +1,8 @@
-package com.rosafiesta.inventory.service
+package com.adventistportal.inventory.service
 
-import com.rosafiesta.core.domain.types.ArticleId
-import com.rosafiesta.inventory.domain.model.*
-import com.rosafiesta.inventory.domain.repository.ArticleRepository
+import com.adventistportal.core.domain.types.ArticleId
+import com.adventistportal.inventory.domain.model.*
+import com.adventistportal.inventory.domain.repository.ArticleRepository
 import org.springframework.stereotype.Service
 
 @Service

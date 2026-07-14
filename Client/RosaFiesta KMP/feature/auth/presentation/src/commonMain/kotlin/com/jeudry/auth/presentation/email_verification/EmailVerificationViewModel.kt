@@ -1,11 +1,11 @@
-package com.jeudry.auth.presentation.email_verification
+package com.adventistportal.auth.presentation.email_verification
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jeudry.core.domain.auth.AuthService
-import com.jeudry.core.domain.util.onFailure
-import com.jeudry.core.domain.util.onSuccess
+import com.adventistportal.core.domain.auth.AuthService
+import com.adventistportal.core.domain.util.onFailure
+import com.adventistportal.core.domain.util.onSuccess
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart

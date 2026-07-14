@@ -1,5 +1,5 @@
 plugins {
-    id("rosafiesta.infra")
+    id("adventistportal.infra")
 }
 
 repositories {
@@ -8,7 +8,7 @@ repositories {
     maven { url = uri("https://repo.spring.io/snapshot") }
 }
 
-group = "com.rosafiesta.shared"
+group = "com.adventistportal.shared"
 version = "0.0.1-SNAPSHOT"
 
 base {

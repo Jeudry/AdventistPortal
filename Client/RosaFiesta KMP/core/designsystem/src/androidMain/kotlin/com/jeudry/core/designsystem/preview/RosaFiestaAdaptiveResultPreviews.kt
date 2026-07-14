@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.preview
+package com.adventistportal.core.designsystem.preview
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -7,15 +7,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
-import com.jeudry.core.designsystem.components.layouts.RosaFiestaAdaptiveResultLayout
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
+import com.adventistportal.core.designsystem.components.layouts.AdventistPortalAdaptiveResultLayout
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
 
 @Composable
 @PreviewLightDark
 @PreviewScreenSizes
-fun RosaFiestaAdaptiveResultLayoutPreview() {
-    RosaFiestaTheme {
-        RosaFiestaAdaptiveResultLayout(
+fun AdventistPortalAdaptiveResultLayoutPreview() {
+    AdventistPortalTheme {
+        AdventistPortalAdaptiveResultLayout(
             modifier = Modifier
                 .fillMaxSize(),
             content = {

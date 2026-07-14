@@ -1,4 +1,4 @@
-package com.jeudry.chat.data.dto.response
+package com.adventistportal.chat.data.dto.response
 
 import kotlinx.serialization.Serializable
 

@@ -5,7 +5,7 @@
 
 set -e
 
-echo "🔍 Verificando configuración de RosaFiesta..."
+echo "🔍 Verificando configuración de AdventistPortal..."
 echo ""
 
 # Colores
@@ -41,10 +41,10 @@ echo ""
 echo "🚀 Verificando Run Configurations de IntelliJ..."
 
 configs=(
-    ".idea/runConfigurations/RosaFiestaApi__LOCAL_.xml"
-    ".idea/runConfigurations/RosaFiestaApi__ORB_.xml"
-    ".idea/runConfigurations/RosaFiestaApi__DEV_.xml"
-    ".idea/runConfigurations/RosaFiestaApi__PROD_.xml"
+    ".idea/runConfigurations/AdventistPortalApi__LOCAL_.xml"
+    ".idea/runConfigurations/AdventistPortalApi__ORB_.xml"
+    ".idea/runConfigurations/AdventistPortalApi__DEV_.xml"
+    ".idea/runConfigurations/AdventistPortalApi__PROD_.xml"
 )
 
 for config in "${configs[@]}"; do
@@ -82,9 +82,9 @@ echo ""
 echo "📦 Verificando contenedores..."
 
 containers=(
-    "rosafiesta-postgres"
-    "rosafiesta-redis"
-    "rosafiesta-rabbitmq"
+    "adventistportal-postgres"
+    "adventistportal-redis"
+    "adventistportal-rabbitmq"
 )
 
 running_containers=0
@@ -137,8 +137,8 @@ echo "1. Inicia los servicios:"
 echo "   ${GREEN}docker-compose up -d${NC}  # o usa Orb Stack"
 echo ""
 echo "2. Abre IntelliJ IDEA y selecciona una Run Configuration:"
-echo "   - RosaFiestaApi [LOCAL] para Docker Compose"
-echo "   - RosaFiestaApi [ORB] para Orb Stack"
+echo "   - AdventistPortalApi [LOCAL] para Docker Compose"
+echo "   - AdventistPortalApi [ORB] para Orb Stack"
 echo ""
 echo "3. Presiona Shift+F9 para debuggear"
 echo ""

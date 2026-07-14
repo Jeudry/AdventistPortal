@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.chat_list_detail
+package com.adventistportal.chat.presentation.chat_list_detail
 
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.layout.PaneScaffoldDirective
@@ -7,8 +7,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
-import com.jeudry.core.presentation.util.DeviceConfiguration
-import com.jeudry.core.presentation.util.currentDeviceConfiguration
+import com.adventistportal.core.presentation.util.DeviceConfiguration
+import com.adventistportal.core.presentation.util.currentDeviceConfiguration
 
 @Composable
 fun createNoSpacingPaneScaffoldDirective(): PaneScaffoldDirective {

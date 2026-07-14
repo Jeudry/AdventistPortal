@@ -1,8 +1,8 @@
-package com.jeudry.chat.presentation.components.manage_chat
+package com.adventistportal.chat.presentation.components.manage_chat
 
 import androidx.compose.foundation.text.input.TextFieldState
-import com.jeudry.core.designsystem.components.avatar.ChatParticipantUi
-import com.jeudry.core.presentation.util.UiText
+import com.adventistportal.core.designsystem.components.avatar.ChatParticipantUi
+import com.adventistportal.core.presentation.util.UiText
 
 data class ManageChatState(
     val queryTextState: TextFieldState = TextFieldState(),

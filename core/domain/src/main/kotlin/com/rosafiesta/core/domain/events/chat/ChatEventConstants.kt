@@ -1,4 +1,4 @@
-package com.rosafiesta.core.domain.events.chat
+package com.adventistportal.core.domain.events.chat
 
 object ChatEventConstants {
     const val CHAT_EXCHANGE = "chat.events"

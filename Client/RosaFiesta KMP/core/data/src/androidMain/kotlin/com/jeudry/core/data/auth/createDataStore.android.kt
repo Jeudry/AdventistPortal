@@ -1,4 +1,4 @@
-package com.jeudry.core.data.auth
+package com.adventistportal.core.data.auth
 
 import android.content.Context
 import androidx.datastore.core.DataStore

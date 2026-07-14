@@ -1,9 +1,9 @@
-package com.rosafiesta.quotes.domain.repository
+package com.adventistportal.quotes.domain.repository
 
-import com.rosafiesta.core.domain.types.QuoteId
-import com.rosafiesta.core.domain.types.UserId
-import com.rosafiesta.quotes.domain.model.Quote
-import com.rosafiesta.shared.domain.quotes.enums.QuoteStatus
+import com.adventistportal.core.domain.types.QuoteId
+import com.adventistportal.core.domain.types.UserId
+import com.adventistportal.quotes.domain.model.Quote
+import com.adventistportal.shared.domain.quotes.enums.QuoteStatus
 
 interface QuoteRepository {
     fun findById(id: QuoteId): Quote?

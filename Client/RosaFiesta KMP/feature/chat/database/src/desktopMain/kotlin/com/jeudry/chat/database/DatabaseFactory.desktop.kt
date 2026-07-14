@@ -1,19 +1,19 @@
-package com.jeudry.chat.database
+package com.adventistportal.chat.database
 
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.jeudry.core.data.util.appDataDirectory
+import com.adventistportal.core.data.util.appDataDirectory
 import java.io.File
 
 actual class DatabaseFactory {
-    actual fun create(): RoomDatabase.Builder<RosaFiestaChatDatabase> {
+    actual fun create(): RoomDatabase.Builder<AdventistPortalChatDatabase> {
         val directory = appDataDirectory
 
         if(!directory.exists()) {
             directory.mkdirs()
         }
 
-        val dbFile = File(directory, RosaFiestaChatDatabase.DB_NAME)
+        val dbFile = File(directory, AdventistPortalChatDatabase.DB_NAME)
         return Room.databaseBuilder(dbFile.absolutePath)
     }
 }

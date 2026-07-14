@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3AdaptiveApi::class, ExperimentalComposeUiApi::class)
 
-package com.jeudry.chat.presentation.chat_list_detail
+package com.adventistportal.chat.presentation.chat_list_detail
 
 import androidx.compose.foundation.background
 import androidx.compose.material3.MaterialTheme
@@ -18,13 +18,13 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.backhandler.BackHandler
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.jeudry.chat.presentation.chat_detail.ChatDetailRoot
-import com.jeudry.chat.presentation.chat_list.ChatListRoot
-import com.jeudry.chat.presentation.create_chat.CreateChatRoot
-import com.jeudry.chat.presentation.manage_chat.ManageChatRoot
-import com.jeudry.chat.presentation.profile.ProfileRoot
-import com.jeudry.core.designsystem.theme.extended
-import com.jeudry.core.presentation.util.DialogSheetScopedViewModel
+import com.adventistportal.chat.presentation.chat_detail.ChatDetailRoot
+import com.adventistportal.chat.presentation.chat_list.ChatListRoot
+import com.adventistportal.chat.presentation.create_chat.CreateChatRoot
+import com.adventistportal.chat.presentation.manage_chat.ManageChatRoot
+import com.adventistportal.chat.presentation.profile.ProfileRoot
+import com.adventistportal.core.designsystem.theme.extended
+import com.adventistportal.core.presentation.util.DialogSheetScopedViewModel
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 

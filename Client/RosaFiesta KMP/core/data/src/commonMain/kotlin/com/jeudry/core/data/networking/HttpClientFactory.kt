@@ -1,13 +1,13 @@
-package com.jeudry.core.data.networking
+package com.adventistportal.core.data.networking
 
-import com.jeudry.core.data.BuildKonfig
-import com.jeudry.core.data.dto.AuthInfoSerializable
-import com.jeudry.core.data.dto.requests.RefreshRequest
-import com.jeudry.core.data.mappers.toDomain
-import com.jeudry.core.domain.auth.SessionStorage
-import com.jeudry.core.domain.logging.RosaFiestaLogger
-import com.jeudry.core.domain.util.onFailure
-import com.jeudry.core.domain.util.onSuccess
+import com.adventistportal.core.data.BuildKonfig
+import com.adventistportal.core.data.dto.AuthInfoSerializable
+import com.adventistportal.core.data.dto.requests.RefreshRequest
+import com.adventistportal.core.data.mappers.toDomain
+import com.adventistportal.core.domain.auth.SessionStorage
+import com.adventistportal.core.domain.logging.AdventistPortalLogger
+import com.adventistportal.core.domain.util.onFailure
+import com.adventistportal.core.domain.util.onSuccess
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.HttpTimeout
@@ -29,7 +29,7 @@ import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.serialization.json.Json
 
 class HttpClientFactory(
-    private val rosaFiestaLogger: RosaFiestaLogger,
+    private val adventistPortalLogger: AdventistPortalLogger,
     private val sessionStorage: SessionStorage,
 ) {
 
@@ -49,7 +49,7 @@ class HttpClientFactory(
             install(Logging) {
                 logger = object : Logger {
                     override fun log(message: String) {
-                        rosaFiestaLogger.debug(message)
+                        adventistPortalLogger.debug(message)
                     }
                 }
                 level = LogLevel.ALL

@@ -1,18 +1,18 @@
-package com.rosafiesta.user.service
+package com.adventistportal.user.service
 
-import com.rosafiesta.core.domain.exceptions.InvalidTokenEx
-import com.rosafiesta.core.domain.events.user.UserEvent
-import com.rosafiesta.user.domain.exception.InvalidCredentialsEx
-import com.rosafiesta.user.domain.exception.PasswordHashFailedEx
-import com.rosafiesta.user.domain.exception.SamePasswordEx
-import com.rosafiesta.user.domain.exception.UserNotFoundEx
-import com.rosafiesta.core.domain.types.UserId
-import com.rosafiesta.user.infrastructure.database.entities.PasswordResetTokenEntity
-import com.rosafiesta.user.infrastructure.database.repositories.PasswordResetTokenRepository
-import com.rosafiesta.user.infrastructure.database.repositories.RefreshTokenRepository
-import com.rosafiesta.user.infrastructure.database.repositories.UserRepository
-import com.rosafiesta.core.infrastructure.message_queue.EventPublisher
-import com.rosafiesta.user.infrastructure.security.PasswordEncoder
+import com.adventistportal.core.domain.exceptions.InvalidTokenEx
+import com.adventistportal.core.domain.events.user.UserEvent
+import com.adventistportal.user.domain.exception.InvalidCredentialsEx
+import com.adventistportal.user.domain.exception.PasswordHashFailedEx
+import com.adventistportal.user.domain.exception.SamePasswordEx
+import com.adventistportal.user.domain.exception.UserNotFoundEx
+import com.adventistportal.core.domain.types.UserId
+import com.adventistportal.user.infrastructure.database.entities.PasswordResetTokenEntity
+import com.adventistportal.user.infrastructure.database.repositories.PasswordResetTokenRepository
+import com.adventistportal.user.infrastructure.database.repositories.RefreshTokenRepository
+import com.adventistportal.user.infrastructure.database.repositories.UserRepository
+import com.adventistportal.core.infrastructure.message_queue.EventPublisher
+import com.adventistportal.user.infrastructure.security.PasswordEncoder
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
@@ -25,7 +25,7 @@ class PasswordResetService(
     private val userRepository: UserRepository,
     private val passwordResetTokenRepository: PasswordResetTokenRepository,
     private val passwordEncoder: PasswordEncoder,
-    @param:Value("\${rosafiesta.email.reset-password.expiry-minutes}") private val expiryMinutes: Long,
+    @param:Value("\${adventistportal.email.reset-password.expiry-minutes}") private val expiryMinutes: Long,
     private val refreshTokenRepository: RefreshTokenRepository,
     private val eventPublisher: EventPublisher
 ){

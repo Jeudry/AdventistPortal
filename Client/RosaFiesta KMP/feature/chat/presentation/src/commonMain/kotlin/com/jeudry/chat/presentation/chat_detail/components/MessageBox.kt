@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.chat_detail.components
+package com.adventistportal.chat.presentation.chat_detail.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -27,16 +27,16 @@ import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.input.key.type
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.cloud_off_icon
-import rosafiesta.feature.chat.presentation.generated.resources.send
-import rosafiesta.feature.chat.presentation.generated.resources.send_a_message
-import com.jeudry.chat.domain.models.ConnectionState
-import com.jeudry.chat.presentation.util.toUiText
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButton
-import com.jeudry.core.designsystem.components.textfields.RosaFiestaMultiLineTextField
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.cloud_off_icon
+import adventistportal.feature.chat.presentation.generated.resources.send
+import adventistportal.feature.chat.presentation.generated.resources.send_a_message
+import com.adventistportal.chat.domain.models.ConnectionState
+import com.adventistportal.chat.presentation.util.toUiText
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButton
+import com.adventistportal.core.designsystem.components.textfields.AdventistPortalMultiLineTextField
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -50,7 +50,7 @@ fun MessageBox(
     modifier: Modifier = Modifier
 ) {
     val isConnected = connectionState == ConnectionState.CONNECTED
-    RosaFiestaMultiLineTextField(
+    AdventistPortalMultiLineTextField(
         state = messageTextFieldState,
         modifier = modifier
             .onPreviewKeyEvent { keyEvent ->
@@ -89,7 +89,7 @@ fun MessageBox(
                     )
                 }
             }
-            RosaFiestaButton(
+            AdventistPortalButton(
                 text = stringResource(Res.string.send),
                 onClick = onSendClick,
                 enabled = isConnected && isSendButtonEnabled
@@ -101,7 +101,7 @@ fun MessageBox(
 @Composable
 @Preview
 fun MessageBoxPreview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         Box(
             modifier = Modifier
                 .fillMaxWidth()

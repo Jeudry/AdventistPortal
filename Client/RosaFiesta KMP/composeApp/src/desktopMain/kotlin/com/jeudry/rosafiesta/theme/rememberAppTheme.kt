@@ -1,4 +1,4 @@
-package com.jeudry.rosafiesta.theme
+package com.adventistportal.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -9,7 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.jthemedetecor.OsThemeDetector
-import com.jeudry.core.domain.preferences.ThemePreference
+import com.adventistportal.core.domain.preferences.ThemePreference
 import java.util.function.Consumer
 
 enum class AppTheme {

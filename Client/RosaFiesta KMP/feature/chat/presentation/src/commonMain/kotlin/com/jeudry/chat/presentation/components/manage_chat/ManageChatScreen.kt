@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.components.manage_chat
+package com.adventistportal.chat.presentation.components.manage_chat
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -17,19 +17,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.cancel
-import com.jeudry.chat.presentation.components.ChatParticipantSearchTextSection
-import com.jeudry.chat.presentation.components.ChatParticipantsSelectionSection
-import com.jeudry.chat.presentation.components.ManageChatButtonSection
-import com.jeudry.chat.presentation.components.ManageChatHeaderRow
-import com.jeudry.core.designsystem.components.brand.RosaFiestaHorizontalDivider
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButton
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButtonStyle
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.presentation.util.DeviceConfiguration
-import com.jeudry.core.presentation.util.clearFocusOnTap
-import com.jeudry.core.presentation.util.currentDeviceConfiguration
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.cancel
+import com.adventistportal.chat.presentation.components.ChatParticipantSearchTextSection
+import com.adventistportal.chat.presentation.components.ChatParticipantsSelectionSection
+import com.adventistportal.chat.presentation.components.ManageChatButtonSection
+import com.adventistportal.chat.presentation.components.ManageChatHeaderRow
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalHorizontalDivider
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButton
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButtonStyle
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.presentation.util.DeviceConfiguration
+import com.adventistportal.core.presentation.util.clearFocusOnTap
+import com.adventistportal.core.presentation.util.currentDeviceConfiguration
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -68,7 +68,7 @@ fun ManageChatScreen(
                     },
                     modifier = Modifier.fillMaxWidth()
                 )
-                RosaFiestaHorizontalDivider()
+                AdventistPortalHorizontalDivider()
             }
         }
         ChatParticipantSearchTextSection(
@@ -85,7 +85,7 @@ fun ManageChatScreen(
                 isTextFieldFocused = it
             }
         )
-        RosaFiestaHorizontalDivider()
+        AdventistPortalHorizontalDivider()
         ChatParticipantsSelectionSection(
             existingParticipants = state.existingChatParticipants,
             selectedParticipants = state.selectedChatParticipants,
@@ -93,10 +93,10 @@ fun ManageChatScreen(
                 .fillMaxWidth(),
             searchResult = state.currentSearchResult
         )
-        RosaFiestaHorizontalDivider()
+        AdventistPortalHorizontalDivider()
         ManageChatButtonSection(
             primaryButton = {
-                RosaFiestaButton(
+                AdventistPortalButton(
                     text = primaryButtonText,
                     onClick = {
                         onAction(ManageChatAction.OnPrimaryActionClick)
@@ -106,12 +106,12 @@ fun ManageChatScreen(
                 )
             },
             secondaryButton = {
-                RosaFiestaButton(
+                AdventistPortalButton(
                     text = stringResource(Res.string.cancel),
                     onClick = {
                         onAction(ManageChatAction.OnDismissDialog)
                     },
-                    style = RosaFiestaButtonStyle.SECONDARY
+                    style = AdventistPortalButtonStyle.SECONDARY
                 )
             },
             error = state.submitError?.asString(),
@@ -123,7 +123,7 @@ fun ManageChatScreen(
 @Preview
 @Composable
 private fun Preview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         ManageChatScreen(
             headerText = "Create chat",
             state = ManageChatState(),

@@ -1,6 +1,6 @@
-package com.rosafiesta.user.api.dtos
+package com.adventistportal.user.api.dtos
 
-import com.rosafiesta.user.domain.model.User
+import com.adventistportal.user.domain.model.User
 
 data class AuthenticatedUserDto(
     val user: UserDto,

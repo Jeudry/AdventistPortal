@@ -1,11 +1,11 @@
-package com.jeudry.chat.presentation.util
+package com.adventistportal.chat.presentation.util
 
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.today
-import rosafiesta.feature.chat.presentation.generated.resources.today_x
-import rosafiesta.feature.chat.presentation.generated.resources.yesterday
-import rosafiesta.feature.chat.presentation.generated.resources.yesterday_x
-import com.jeudry.core.presentation.util.UiText
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.today
+import adventistportal.feature.chat.presentation.generated.resources.today_x
+import adventistportal.feature.chat.presentation.generated.resources.yesterday
+import adventistportal.feature.chat.presentation.generated.resources.yesterday_x
+import com.adventistportal.core.presentation.util.UiText
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime

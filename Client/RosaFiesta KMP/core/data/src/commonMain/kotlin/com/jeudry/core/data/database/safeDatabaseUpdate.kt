@@ -1,8 +1,8 @@
-package com.jeudry.core.data.database
+package com.adventistportal.core.data.database
 
 import androidx.sqlite.SQLiteException
-import com.jeudry.core.domain.util.DataError
-import com.jeudry.core.domain.util.Result
+import com.adventistportal.core.domain.util.DataError
+import com.adventistportal.core.domain.util.Result
 
 suspend inline fun <T> safeDatabaseUpdate(update: suspend () -> T): Result<T, DataError.Local> {
     return try {

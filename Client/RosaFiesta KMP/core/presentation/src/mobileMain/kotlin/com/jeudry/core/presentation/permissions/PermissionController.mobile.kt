@@ -1,4 +1,4 @@
-package com.jeudry.core.presentation.permissions
+package com.adventistportal.core.presentation.permissions
 
 import dev.icerock.moko.permissions.DeniedAlwaysException
 import dev.icerock.moko.permissions.DeniedException

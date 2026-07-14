@@ -1,10 +1,10 @@
-package com.jeudry.chat.presentation.chat_detail
+package com.adventistportal.chat.presentation.chat_detail
 
 import androidx.compose.foundation.text.input.TextFieldState
-import com.jeudry.chat.domain.models.ConnectionState
-import com.jeudry.chat.presentation.model.ChatUi
-import com.jeudry.chat.presentation.model.MessageUi
-import com.jeudry.core.presentation.util.UiText
+import com.adventistportal.chat.domain.models.ConnectionState
+import com.adventistportal.chat.presentation.model.ChatUi
+import com.adventistportal.chat.presentation.model.MessageUi
+import com.adventistportal.core.presentation.util.UiText
 
 data class ChatDetailState(
     val chatUi: ChatUi? = null,

@@ -1,4 +1,4 @@
-package com.jeudry.chat.database.view
+package com.adventistportal.chat.database.view
 
 import androidx.room.DatabaseView
 

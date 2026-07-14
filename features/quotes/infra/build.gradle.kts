@@ -1,5 +1,5 @@
 plugins {
-    id("rosafiesta.infra")
+    id("adventistportal.infra")
 }
 
 dependencies {

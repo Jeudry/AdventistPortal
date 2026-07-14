@@ -1,17 +1,17 @@
 @file:OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 
-package com.jeudry.chat.data.network
+package com.adventistportal.chat.data.network
 
-import com.jeudry.chat.data.dto.websocket.WebSocketMessageDto
-import com.jeudry.chat.data.lifecycle.AppLifecycleObserver
-import com.jeudry.chat.domain.models.ConnectionState
-import com.jeudry.core.data.networking.UrlConstants
-import com.jeudry.core.domain.auth.SessionStorage
-import com.jeudry.core.domain.logging.RosaFiestaLogger
-import com.jeudry.core.domain.util.DataError
-import com.jeudry.core.domain.util.EmptyResult
-import com.jeudry.core.domain.util.Result
-import com.jeudry.feature.chat.data.BuildKonfig
+import com.adventistportal.chat.data.dto.websocket.WebSocketMessageDto
+import com.adventistportal.chat.data.lifecycle.AppLifecycleObserver
+import com.adventistportal.chat.domain.models.ConnectionState
+import com.adventistportal.core.data.networking.UrlConstants
+import com.adventistportal.core.domain.auth.SessionStorage
+import com.adventistportal.core.domain.logging.AdventistPortalLogger
+import com.adventistportal.core.domain.util.DataError
+import com.adventistportal.core.domain.util.EmptyResult
+import com.adventistportal.core.domain.util.Result
+import com.adventistportal.feature.chat.data.BuildKonfig
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.websocket.webSocketSession
 import io.ktor.client.request.header
@@ -57,7 +57,7 @@ class KtorWebSocketConnector(
     private val connectionRetryHandler: ConnectionRetryHandler,
     private val appLifecycleObserver: AppLifecycleObserver,
     private val connectivityObserver: ConnectivityObserver,
-    private val logger: RosaFiestaLogger
+    private val logger: AdventistPortalLogger
 ) {
     private val _connectionState = MutableStateFlow(ConnectionState.DISCONNECTED)
     val connectionState = _connectionState.asStateFlow()

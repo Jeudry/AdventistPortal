@@ -1,10 +1,10 @@
 @file:Suppress("DEPRECATION")
 
-package com.rosafiesta.core.infrastructure.message_queue
+package com.adventistportal.core.infrastructure.message_queue
 
-import com.rosafiesta.core.domain.events.RosaFiestaEvent
-import com.rosafiesta.core.domain.events.chat.ChatEventConstants
-import com.rosafiesta.core.domain.events.user.UserEventConstants
+import com.adventistportal.core.domain.events.AdventistPortalEvent
+import com.adventistportal.core.domain.events.chat.ChatEventConstants
+import com.adventistportal.core.domain.events.user.UserEventConstants
 import tools.jackson.databind.DefaultTyping
 import tools.jackson.databind.json.JsonMapper
 import tools.jackson.databind.jsontype.BasicPolymorphicTypeValidator
@@ -28,7 +28,7 @@ class RabbitMqConfig {
     @Bean
     fun messageConverter(): JacksonJsonMessageConverter {
         val polymorphicTypeValidator = BasicPolymorphicTypeValidator.builder()
-            .allowIfBaseType(RosaFiestaEvent::class.java)
+            .allowIfBaseType(AdventistPortalEvent::class.java)
             .allowIfSubType("java.util.")
             .allowIfSubType("kotlin.collections.")
             .build()

@@ -1,4 +1,4 @@
-package com.jeudry.core.presentation.permissions
+package com.adventistportal.core.presentation.permissions
 
 expect class PermissionController {
     suspend fun requestPermission(permission: Permission): PermissionState

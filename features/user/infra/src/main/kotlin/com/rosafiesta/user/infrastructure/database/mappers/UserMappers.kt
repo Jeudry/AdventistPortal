@@ -1,7 +1,7 @@
-package com.rosafiesta.user.infrastructure.database.mappers
+package com.adventistportal.user.infrastructure.database.mappers
 
-import com.rosafiesta.user.domain.model.User
-import com.rosafiesta.user.infrastructure.database.entities.UserEntity
+import com.adventistportal.user.domain.model.User
+import com.adventistportal.user.infrastructure.database.entities.UserEntity
 
 fun UserEntity.toModel(): User {
     return User(

@@ -1,4 +1,4 @@
-package com.rosafiesta.quotes.domain.service
+package com.adventistportal.quotes.domain.service
 
 import java.time.Instant
 import java.util.UUID

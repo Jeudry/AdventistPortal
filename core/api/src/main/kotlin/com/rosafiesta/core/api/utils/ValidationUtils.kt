@@ -1,6 +1,6 @@
-package com.rosafiesta.core.api.utils
+package com.adventistportal.core.api.utils
 
-import com.rosafiesta.shared.domain.validation.ValidatableDto
+import com.adventistportal.shared.domain.validation.ValidatableDto
 
 /** Utility functions for API responses and validations. */
 object ValidationUtils {

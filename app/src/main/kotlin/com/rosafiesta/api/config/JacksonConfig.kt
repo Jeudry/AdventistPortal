@@ -1,4 +1,4 @@
-package com.rosafiesta.api.config
+package com.adventistportal.api.config
 
 // Este archivo ha sido eliminado (vaciado) para permitir que Spring Boot 4
 // auto-configure Jackson 3 (jacksonJsonMapper) automáticamente.

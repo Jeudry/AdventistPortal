@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.chat_list
+package com.adventistportal.chat.presentation.chat_list
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -27,25 +27,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.cancel
-import rosafiesta.feature.chat.presentation.generated.resources.create_chat
-import rosafiesta.feature.chat.presentation.generated.resources.do_you_want_to_logout
-import rosafiesta.feature.chat.presentation.generated.resources.do_you_want_to_logout_desc
-import rosafiesta.feature.chat.presentation.generated.resources.logout
-import rosafiesta.feature.chat.presentation.generated.resources.no_chats
-import rosafiesta.feature.chat.presentation.generated.resources.no_chats_subtitle
-import com.jeudry.chat.presentation.chat_list.components.ChatListHeader
-import com.jeudry.chat.presentation.chat_list.components.ChatListItemUi
-import com.jeudry.chat.presentation.components.EmptySection
-import com.jeudry.core.designsystem.components.brand.RosaFiestaHorizontalDivider
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaFloatingActionButton
-import com.jeudry.core.designsystem.components.dialogs.DestructiveConfirmationDialog
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
-import com.jeudry.core.presentation.permissions.Permission
-import com.jeudry.core.presentation.permissions.rememberPermissionController
-import com.jeudry.core.presentation.util.ObserveAsEvents
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.cancel
+import adventistportal.feature.chat.presentation.generated.resources.create_chat
+import adventistportal.feature.chat.presentation.generated.resources.do_you_want_to_logout
+import adventistportal.feature.chat.presentation.generated.resources.do_you_want_to_logout_desc
+import adventistportal.feature.chat.presentation.generated.resources.logout
+import adventistportal.feature.chat.presentation.generated.resources.no_chats
+import adventistportal.feature.chat.presentation.generated.resources.no_chats_subtitle
+import com.adventistportal.chat.presentation.chat_list.components.ChatListHeader
+import com.adventistportal.chat.presentation.chat_list.components.ChatListItemUi
+import com.adventistportal.chat.presentation.components.EmptySection
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalHorizontalDivider
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalFloatingActionButton
+import com.adventistportal.core.designsystem.components.dialogs.DestructiveConfirmationDialog
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
+import com.adventistportal.core.presentation.permissions.Permission
+import com.adventistportal.core.presentation.permissions.rememberPermissionController
+import com.adventistportal.core.presentation.util.ObserveAsEvents
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -115,7 +115,7 @@ fun ChatListScreen(
         contentWindowInsets = WindowInsets.safeDrawing,
         snackbarHost = { SnackbarHost(snackbarHostState) },
         floatingActionButton = {
-            RosaFiestaFloatingActionButton(
+            AdventistPortalFloatingActionButton(
                 onClick = {
                     onAction(ChatListAction.OnCreateChatClick)
                 }
@@ -187,7 +187,7 @@ fun ChatListScreen(
                                         onAction(ChatListAction.OnSelectChat(chatUi.id))
                                     }
                             )
-                            RosaFiestaHorizontalDivider()
+                            AdventistPortalHorizontalDivider()
                         }
                     }
                 }
@@ -217,7 +217,7 @@ fun ChatListScreen(
 @Preview
 @Composable
 private fun Preview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         ChatListScreen(
             state = ChatListState(),
             onAction = {},

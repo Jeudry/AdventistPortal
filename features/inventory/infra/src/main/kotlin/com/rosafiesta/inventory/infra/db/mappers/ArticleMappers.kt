@@ -1,9 +1,9 @@
-package com.rosafiesta.inventory.infra.db.mappers
+package com.adventistportal.inventory.infra.db.mappers
 
-import com.rosafiesta.inventory.domain.model.*
-import com.rosafiesta.inventory.infra.db.embeded.ArticleDimensions
-import com.rosafiesta.inventory.infra.db.entities.ArticleEntity
-import com.rosafiesta.inventory.infra.db.entities.ArticleVariantEntity
+import com.adventistportal.inventory.domain.model.*
+import com.adventistportal.inventory.infra.db.embeded.ArticleDimensions
+import com.adventistportal.inventory.infra.db.entities.ArticleEntity
+import com.adventistportal.inventory.infra.db.entities.ArticleVariantEntity
 
 fun Article.fromDomain(): ArticleEntity {
     val articleEntity = ArticleEntity(

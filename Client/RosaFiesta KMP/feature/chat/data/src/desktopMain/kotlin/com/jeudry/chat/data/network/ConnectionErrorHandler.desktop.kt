@@ -1,6 +1,6 @@
-package com.jeudry.chat.data.network
+package com.adventistportal.chat.data.network
 
-import com.jeudry.chat.domain.models.ConnectionState
+import com.adventistportal.chat.domain.models.ConnectionState
 
 actual class ConnectionErrorHandler {
     actual fun getConnectionStateForError(cause: Throwable): ConnectionState {

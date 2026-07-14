@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.avatar
+package com.adventistportal.core.designsystem.components.avatar
 
 data class ChatParticipantUi(
     val id: String,

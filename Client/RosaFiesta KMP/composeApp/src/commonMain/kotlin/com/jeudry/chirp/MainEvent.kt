@@ -1,4 +1,4 @@
-package com.jeudry.rosafiesta
+package com.adventistportal
 
 sealed interface MainEvent {
     data object OnSessionExpired: MainEvent

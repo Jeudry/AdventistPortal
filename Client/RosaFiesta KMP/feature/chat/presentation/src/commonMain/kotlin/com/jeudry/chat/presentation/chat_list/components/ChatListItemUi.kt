@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.chat_list.components
+package com.adventistportal.chat.presentation.chat_list.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -24,18 +24,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.group_chat
-import rosafiesta.feature.chat.presentation.generated.resources.you
-import com.jeudry.chat.domain.models.ChatMessage
-import com.jeudry.chat.domain.models.ChatMessageDeliveryStatus
-import com.jeudry.chat.presentation.components.ChatItemHeaderRow
-import com.jeudry.chat.presentation.model.ChatUi
-import com.jeudry.core.designsystem.components.avatar.ChatParticipantUi
-import com.jeudry.core.designsystem.components.avatar.RosaFiestaStackedAvatars
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
-import com.jeudry.core.designsystem.theme.titleXSmall
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.group_chat
+import adventistportal.feature.chat.presentation.generated.resources.you
+import com.adventistportal.chat.domain.models.ChatMessage
+import com.adventistportal.chat.domain.models.ChatMessageDeliveryStatus
+import com.adventistportal.chat.presentation.components.ChatItemHeaderRow
+import com.adventistportal.chat.presentation.model.ChatUi
+import com.adventistportal.core.designsystem.components.avatar.ChatParticipantUi
+import com.adventistportal.core.designsystem.components.avatar.AdventistPortalStackedAvatars
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
+import com.adventistportal.core.designsystem.theme.titleXSmall
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.time.Clock
@@ -108,7 +108,7 @@ fun ChatListItemUi(
 @Composable
 @Preview
 fun ChatListItemUiPreview() {
-    RosaFiestaTheme(darkTheme = true) {
+    AdventistPortalTheme(darkTheme = true) {
         ChatListItemUi(
             isSelected = true,
             modifier = Modifier

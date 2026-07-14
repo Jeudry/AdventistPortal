@@ -1,14 +1,14 @@
-package com.jeudry.chat.data.notification
+package com.adventistportal.chat.data.notification
 
 import com.google.firebase.messaging.FirebaseMessagingService
-import com.jeudry.chat.domain.notification.DeviceTokenService
-import com.jeudry.core.domain.auth.SessionStorage
+import com.adventistportal.chat.domain.notification.DeviceTokenService
+import com.adventistportal.core.domain.auth.SessionStorage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
-class RosaFiestaFirebaseMessagingService: FirebaseMessagingService() {
+class AdventistPortalFirebaseMessagingService: FirebaseMessagingService() {
 
     private val deviceTokenService by inject<DeviceTokenService>()
     private val sessionStorage by inject<SessionStorage>()

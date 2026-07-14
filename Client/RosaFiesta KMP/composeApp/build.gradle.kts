@@ -65,10 +65,10 @@ kotlin {
 
 compose.desktop {
     application {
-        mainClass = "com.plcoding.rosafiesta.MainKt"
+        mainClass = "com.adventistportal.MainKt"
 
         nativeDistributions {
-            packageName = "com.plcoding.rosafiesta"
+            packageName = "com.adventistportal"
         }
     }
 }

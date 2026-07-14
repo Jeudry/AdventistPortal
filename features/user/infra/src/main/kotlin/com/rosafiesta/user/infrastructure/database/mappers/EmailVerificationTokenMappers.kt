@@ -1,7 +1,7 @@
-package com.rosafiesta.user.infrastructure.database.mappers
+package com.adventistportal.user.infrastructure.database.mappers
 
-import com.rosafiesta.user.domain.model.EmailVerificationToken
-import com.rosafiesta.user.infrastructure.database.entities.EmailVerificationTokenEntity
+import com.adventistportal.user.domain.model.EmailVerificationToken
+import com.adventistportal.user.infrastructure.database.entities.EmailVerificationTokenEntity
 
 fun EmailVerificationTokenEntity.toModel(): EmailVerificationToken {
     return EmailVerificationToken(

@@ -1,4 +1,4 @@
-package com.jeudry.core.domain.util
+package com.adventistportal.core.domain.util
 
 sealed interface DataError: Error {
     enum class Remote: DataError {

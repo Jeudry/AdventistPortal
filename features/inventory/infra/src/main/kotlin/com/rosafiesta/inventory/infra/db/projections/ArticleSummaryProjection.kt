@@ -1,6 +1,6 @@
-package com.rosafiesta.inventory.infra.db.projections
+package com.adventistportal.inventory.infra.db.projections
 
-import com.rosafiesta.core.domain.types.ArticleId
+import com.adventistportal.core.domain.types.ArticleId
 import java.time.Instant
 
 interface ArticleSummaryProjection {

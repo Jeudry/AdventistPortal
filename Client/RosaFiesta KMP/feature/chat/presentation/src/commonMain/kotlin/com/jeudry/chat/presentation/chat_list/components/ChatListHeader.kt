@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.chat_list.components
+package com.adventistportal.chat.presentation.chat_list.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,23 +13,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import rosafiesta.core.designsystem.generated.resources.log_out_icon
-import rosafiesta.core.designsystem.generated.resources.logo_rosafiesta
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.logout
-import rosafiesta.feature.chat.presentation.generated.resources.profile_settings
-import rosafiesta.feature.chat.presentation.generated.resources.users_icon
-import com.jeudry.chat.presentation.components.ChatHeader
-import com.jeudry.core.designsystem.components.avatar.ChatParticipantUi
-import com.jeudry.core.designsystem.components.avatar.RosaFiestaAvatarPhoto
-import com.jeudry.core.designsystem.components.dropdown.RosaFiestaDropDownMenu
-import com.jeudry.core.designsystem.components.dropdown.DropDownItem
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import adventistportal.core.designsystem.generated.resources.log_out_icon
+import adventistportal.core.designsystem.generated.resources.logo_adventistportal
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.logout
+import adventistportal.feature.chat.presentation.generated.resources.profile_settings
+import adventistportal.feature.chat.presentation.generated.resources.users_icon
+import com.adventistportal.chat.presentation.components.ChatHeader
+import com.adventistportal.core.designsystem.components.avatar.ChatParticipantUi
+import com.adventistportal.core.designsystem.components.avatar.AdventistPortalAvatarPhoto
+import com.adventistportal.core.designsystem.components.dropdown.AdventistPortalDropDownMenu
+import com.adventistportal.core.designsystem.components.dropdown.DropDownItem
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import rosafiesta.core.designsystem.generated.resources.Res as DesignSystemRes
+import adventistportal.core.designsystem.generated.resources.Res as DesignSystemRes
 
 @Composable
 fun ChatListHeader(
@@ -50,7 +50,7 @@ fun ChatListHeader(
             modifier = Modifier.fillMaxWidth()
         ) {
             Icon(
-                imageVector = vectorResource(DesignSystemRes.drawable.logo_rosafiesta),
+                imageVector = vectorResource(DesignSystemRes.drawable.logo_adventistportal),
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.tertiary
             )
@@ -86,14 +86,14 @@ fun ProfileAvatarSection(
         modifier = modifier
     ) {
         if(localParticipant != null) {
-            RosaFiestaAvatarPhoto(
+            AdventistPortalAvatarPhoto(
                 displayText = localParticipant.initials,
                 imageUrl = localParticipant.imageUrl,
                 onClick = onClick
             )
         }
 
-        RosaFiestaDropDownMenu(
+        AdventistPortalDropDownMenu(
             isOpen = isMenuOpen,
             onDismiss = onDismissMenu,
             items = listOf(
@@ -117,7 +117,7 @@ fun ProfileAvatarSection(
 @Composable
 @Preview(showBackground = true)
 fun ChatListHeaderPreview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         Box(
             modifier = Modifier
                 .fillMaxSize()

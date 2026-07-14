@@ -7,7 +7,7 @@ echo "===================================="
 echo "Sincronizando con GitHub..."
 echo "===================================="
 
-cd /Users/sargon/Documents/Coding/KMP/RosaFiesta
+cd /Users/sargon/Documents/Coding/KMP/AdventistPortal
 
 echo ""
 echo "1. Haciendo fetch del repositorio remoto..."
@@ -33,4 +33,4 @@ echo "===================================="
 echo "✅ ¡Repositorio sincronizado exitosamente!"
 echo "===================================="
 echo ""
-echo "Puedes ver tu repositorio en: https://github.com/jeudry/RosaFiesta"
+echo "Puedes ver tu repositorio en: https://github.com/jeudry/AdventistPortal"

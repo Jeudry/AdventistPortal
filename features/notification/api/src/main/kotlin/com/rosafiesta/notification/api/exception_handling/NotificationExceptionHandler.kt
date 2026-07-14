@@ -1,6 +1,6 @@
-package com.rosafiesta.notification.api.exception_handling
+package com.adventistportal.notification.api.exception_handling
 
-import com.rosafiesta.notification.domain.exceptions.InvalidDeviceTokenEx
+import com.adventistportal.notification.domain.exceptions.InvalidDeviceTokenEx
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus

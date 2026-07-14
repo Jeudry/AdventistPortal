@@ -1,4 +1,4 @@
-package com.jeudry.auth.presentation.reset_password
+package com.adventistportal.auth.presentation.reset_password
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,20 +11,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import rosafiesta.feature.auth.presentation.generated.resources.Res
-import rosafiesta.feature.auth.presentation.generated.resources.password
-import rosafiesta.feature.auth.presentation.generated.resources.password_hint
-import rosafiesta.feature.auth.presentation.generated.resources.reset_password_successfully
-import rosafiesta.feature.auth.presentation.generated.resources.set_new_password
-import rosafiesta.feature.auth.presentation.generated.resources.submit
-import com.jeudry.core.designsystem.components.brand.RosaFiestaBrandLogo
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButton
-import com.jeudry.core.designsystem.components.layouts.RosaFiestaAdaptiveFormLayout
-import com.jeudry.core.designsystem.components.layouts.RosaFiestaSnackbarScaffold
-import com.jeudry.core.designsystem.components.textfields.RosaFiestaPasswordTextField
-import com.jeudry.core.designsystem.components.textfields.RosaFiestaTextField
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import adventistportal.feature.auth.presentation.generated.resources.Res
+import adventistportal.feature.auth.presentation.generated.resources.password
+import adventistportal.feature.auth.presentation.generated.resources.password_hint
+import adventistportal.feature.auth.presentation.generated.resources.reset_password_successfully
+import adventistportal.feature.auth.presentation.generated.resources.set_new_password
+import adventistportal.feature.auth.presentation.generated.resources.submit
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalBrandLogo
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButton
+import com.adventistportal.core.designsystem.components.layouts.AdventistPortalAdaptiveFormLayout
+import com.adventistportal.core.designsystem.components.layouts.AdventistPortalSnackbarScaffold
+import com.adventistportal.core.designsystem.components.textfields.AdventistPortalPasswordTextField
+import com.adventistportal.core.designsystem.components.textfields.AdventistPortalTextField
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
@@ -46,15 +46,15 @@ fun ResetPasswordScreen(
     state: ResetPasswordState,
     onAction: (ResetPasswordAction) -> Unit,
 ) {
-    RosaFiestaSnackbarScaffold {
-        RosaFiestaAdaptiveFormLayout(
+    AdventistPortalSnackbarScaffold {
+        AdventistPortalAdaptiveFormLayout(
             headerText = stringResource(Res.string.set_new_password),
             errorText = state.errorText?.asString(),
             logo = {
-                RosaFiestaBrandLogo()
+                AdventistPortalBrandLogo()
             }
         ) {
-            RosaFiestaPasswordTextField(
+            AdventistPortalPasswordTextField(
                 state = state.passwordTextState,
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -67,7 +67,7 @@ fun ResetPasswordScreen(
                 }
             )
             Spacer(modifier = Modifier.height(16.dp))
-            RosaFiestaButton(
+            AdventistPortalButton(
                 text = stringResource(Res.string.submit),
                 onClick = {
                     onAction(ResetPasswordAction.OnSubmitClick)
@@ -94,7 +94,7 @@ fun ResetPasswordScreen(
 @Preview
 @Composable
 private fun Preview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         ResetPasswordScreen(
             state = ResetPasswordState(),
             onAction = {}

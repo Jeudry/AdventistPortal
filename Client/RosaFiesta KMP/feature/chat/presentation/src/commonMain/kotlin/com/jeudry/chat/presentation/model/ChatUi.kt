@@ -1,8 +1,8 @@
-package com.jeudry.chat.presentation.model
+package com.adventistportal.chat.presentation.model
 
-import com.jeudry.chat.domain.models.ChatMessage
-import com.jeudry.chat.domain.models.ChatParticipant
-import com.jeudry.core.designsystem.components.avatar.ChatParticipantUi
+import com.adventistportal.chat.domain.models.ChatMessage
+import com.adventistportal.chat.domain.models.ChatParticipant
+import com.adventistportal.core.designsystem.components.avatar.ChatParticipantUi
 import kotlin.time.Instant
 
 data class ChatUi(

@@ -1,4 +1,4 @@
-package com.jeudry.chat.data.network
+package com.adventistportal.chat.data.network
 
 class IOSNetworkCancellationException(
     message: String,

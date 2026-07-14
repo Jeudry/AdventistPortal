@@ -1,7 +1,7 @@
-package com.rosafiesta.chat.infra.database.mappers
+package com.adventistportal.chat.infra.database.mappers
 
-import com.rosafiesta.chat.domain.models.ChatParticipant
-import com.rosafiesta.chat.infra.database.entities.ChatParticipantEntity
+import com.adventistportal.chat.domain.models.ChatParticipant
+import com.adventistportal.chat.infra.database.entities.ChatParticipantEntity
 
 fun ChatParticipantEntity.toModel(): ChatParticipant {
     return ChatParticipant(

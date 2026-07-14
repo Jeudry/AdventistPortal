@@ -1,7 +1,7 @@
-package com.rosafiesta.inventory.domain.repository
+package com.adventistportal.inventory.domain.repository
 
-import com.rosafiesta.core.domain.types.CategoryId
-import com.rosafiesta.inventory.domain.model.Category
+import com.adventistportal.core.domain.types.CategoryId
+import com.adventistportal.inventory.domain.model.Category
 
 interface CategoryRepository {
     fun findById(id: CategoryId): Category?

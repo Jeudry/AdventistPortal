@@ -1,11 +1,11 @@
-package com.jeudry.chat.presentation.di
+package com.adventistportal.chat.presentation.di
 
-import com.jeudry.chat.presentation.chat_detail.ChatDetailViewModel
-import com.jeudry.chat.presentation.chat_list.ChatListViewModel
-import com.jeudry.chat.presentation.chat_list_detail.ChatListDetailViewModel
-import com.jeudry.chat.presentation.create_chat.CreateChatViewModel
-import com.jeudry.chat.presentation.manage_chat.ManageChatViewModel
-import com.jeudry.chat.presentation.profile.ProfileViewModel
+import com.adventistportal.chat.presentation.chat_detail.ChatDetailViewModel
+import com.adventistportal.chat.presentation.chat_list.ChatListViewModel
+import com.adventistportal.chat.presentation.chat_list_detail.ChatListDetailViewModel
+import com.adventistportal.chat.presentation.create_chat.CreateChatViewModel
+import com.adventistportal.chat.presentation.manage_chat.ManageChatViewModel
+import com.adventistportal.chat.presentation.profile.ProfileViewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 

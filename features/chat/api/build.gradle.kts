@@ -1,10 +1,10 @@
 plugins {
-    id("rosafiesta.api")
-    id("rosafiesta.spring-boot-service")
+    id("adventistportal.api")
+    id("adventistportal.spring-boot-service")
     kotlin("plugin.spring")
 }
 
-group = "com.rosafiesta.chat"
+group = "com.adventistportal.chat"
 version = "0.0.1-SNAPSHOT"
 
 base {

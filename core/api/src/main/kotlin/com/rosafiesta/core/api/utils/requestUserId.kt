@@ -1,7 +1,7 @@
-package com.rosafiesta.core.api.utils
+package com.adventistportal.core.api.utils
 
-import com.rosafiesta.core.domain.exceptions.UnauthorizedEx
-import com.rosafiesta.core.domain.types.UserId
+import com.adventistportal.core.domain.exceptions.UnauthorizedEx
+import com.adventistportal.core.domain.types.UserId
 import org.springframework.security.core.context.SecurityContextHolder
 
 val requestUserId: UserId

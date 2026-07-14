@@ -1,4 +1,4 @@
-package com.jeudry.domain
+package com.adventistportal.domain
 
 object EmailValidator {
 

@@ -1,8 +1,8 @@
-package com.rosafiesta.chat.infra.database.repositories
+package com.adventistportal.chat.infra.database.repositories
 
-import com.rosafiesta.core.domain.types.ChatId
-import com.rosafiesta.core.domain.types.ChatMessageId
-import com.rosafiesta.chat.infra.database.entities.ChatMessageEntity
+import com.adventistportal.core.domain.types.ChatId
+import com.adventistportal.core.domain.types.ChatMessageId
+import com.adventistportal.chat.infra.database.entities.ChatMessageEntity
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Slice

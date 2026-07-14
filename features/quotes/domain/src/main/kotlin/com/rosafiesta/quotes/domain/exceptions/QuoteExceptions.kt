@@ -1,6 +1,6 @@
-package com.rosafiesta.quotes.domain.exceptions
+package com.adventistportal.quotes.domain.exceptions
 
-import com.rosafiesta.core.domain.types.QuoteId
+import com.adventistportal.core.domain.types.QuoteId
 import java.util.*
 
 sealed class QuoteException(message: String) : RuntimeException(message)

@@ -1,8 +1,8 @@
-package com.jeudry.chat.domain.notification
+package com.adventistportal.chat.domain.notification
 
-import com.jeudry.core.domain.util.DataError
-import com.jeudry.core.domain.util.EmptyResult
-import com.jeudry.core.domain.util.Result
+import com.adventistportal.core.domain.util.DataError
+import com.adventistportal.core.domain.util.EmptyResult
+import com.adventistportal.core.domain.util.Result
 
 interface DeviceTokenService {
 

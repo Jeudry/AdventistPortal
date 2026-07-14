@@ -1,6 +1,6 @@
-package com.jeudry.chat.data.notification
+package com.adventistportal.chat.data.notification
 
-import com.jeudry.chat.domain.notification.PushNotificationService
+import com.adventistportal.chat.domain.notification.PushNotificationService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onStart
 import platform.Foundation.NSUserDefaults

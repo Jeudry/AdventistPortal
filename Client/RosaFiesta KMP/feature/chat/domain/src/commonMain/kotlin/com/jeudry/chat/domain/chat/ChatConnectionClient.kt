@@ -1,7 +1,7 @@
-package com.jeudry.chat.domain.chat
+package com.adventistportal.chat.domain.chat
 
-import com.jeudry.chat.domain.models.ChatMessage
-import com.jeudry.chat.domain.models.ConnectionState
+import com.adventistportal.chat.domain.models.ChatMessage
+import com.adventistportal.chat.domain.models.ConnectionState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 

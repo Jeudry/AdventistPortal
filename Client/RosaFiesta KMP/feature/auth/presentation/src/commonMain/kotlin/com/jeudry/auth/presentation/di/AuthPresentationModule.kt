@@ -1,11 +1,11 @@
-package com.jeudry.auth.presentation.di
+package com.adventistportal.auth.presentation.di
 
-import com.jeudry.auth.presentation.email_verification.EmailVerificationViewModel
-import com.jeudry.auth.presentation.forgot_password.ForgotPasswordViewModel
-import com.jeudry.auth.presentation.login.LoginViewModel
-import com.jeudry.auth.presentation.register.RegisterViewModel
-import com.jeudry.auth.presentation.register_success.RegisterSuccessViewModel
-import com.jeudry.auth.presentation.reset_password.ResetPasswordViewModel
+import com.adventistportal.auth.presentation.email_verification.EmailVerificationViewModel
+import com.adventistportal.auth.presentation.forgot_password.ForgotPasswordViewModel
+import com.adventistportal.auth.presentation.login.LoginViewModel
+import com.adventistportal.auth.presentation.register.RegisterViewModel
+import com.adventistportal.auth.presentation.register_success.RegisterSuccessViewModel
+import com.adventistportal.auth.presentation.reset_password.ResetPasswordViewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 

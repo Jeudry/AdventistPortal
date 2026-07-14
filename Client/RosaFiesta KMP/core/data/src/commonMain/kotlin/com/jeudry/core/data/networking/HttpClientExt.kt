@@ -1,7 +1,7 @@
-package com.jeudry.core.data.networking
+package com.adventistportal.core.data.networking
 
-import com.jeudry.core.domain.util.DataError
-import com.jeudry.core.domain.util.Result
+import com.adventistportal.core.domain.util.DataError
+import com.adventistportal.core.domain.util.Result
 import io.ktor.client.HttpClient
 import io.ktor.client.call.NoTransformationFoundException
 import io.ktor.client.call.body

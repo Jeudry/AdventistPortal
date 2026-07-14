@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.avatar
+package com.adventistportal.core.designsystem.components.avatar
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -6,14 +6,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /// <summary>
 /// Displays a row of overlapping avatar images
 /// </summary>
 @Composable
-fun RosaFiestaStackedAvatars(
+fun AdventistPortalStackedAvatars(
     avatars: List<ChatParticipantUi>,
     modifier: Modifier = Modifier,
     size: AvatarSize = AvatarSize.SMALL,
@@ -31,7 +31,7 @@ fun RosaFiestaStackedAvatars(
         verticalAlignment = Alignment.CenterVertically
     ) {
         visibleAvatars.forEach { avatarUi ->
-            RosaFiestaAvatarPhoto(
+            AdventistPortalAvatarPhoto(
                 displayText = avatarUi.initials,
                 size = size,
                 imageUrl = avatarUi.imageUrl
@@ -39,7 +39,7 @@ fun RosaFiestaStackedAvatars(
         }
 
         if(remainingCount > 0) {
-            RosaFiestaAvatarPhoto(
+            AdventistPortalAvatarPhoto(
                 displayText = "$remainingCount+",
                 size = size,
                 textColor = MaterialTheme.colorScheme.primary
@@ -50,9 +50,9 @@ fun RosaFiestaStackedAvatars(
 
 @Composable
 @Preview
-fun RosaFiestaStackedAvatarsPreview() {
-    RosaFiestaTheme {
-        RosaFiestaStackedAvatars(
+fun AdventistPortalStackedAvatarsPreview() {
+    AdventistPortalTheme {
+        AdventistPortalStackedAvatars(
             avatars = listOf(
                 ChatParticipantUi(
                     id = "1",

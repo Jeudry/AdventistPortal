@@ -1,4 +1,4 @@
-package com.rosafiesta.shared.domain.quotes.enums
+package com.adventistportal.shared.domain.quotes.enums
 
 enum class QuoteStatus {
     DRAFT,

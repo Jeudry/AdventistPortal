@@ -39,7 +39,7 @@ tasks.withType<Test> {
 }
 
 // Ensure generated jars have a unique name across the monorepo using the project path
-// Example: :user:api -> rosafiesta-user-api
+// Example: :user:api -> adventistportal-user-api
 // Apply only to projects that actually produce JARs or BootJars
 val baseFromPath: () -> String = {
     project.path.removePrefix(":").replace(":", "-").ifEmpty { project.name }

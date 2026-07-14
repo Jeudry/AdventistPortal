@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.preview
+package com.adventistportal.core.designsystem.preview
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -7,19 +7,19 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
-import com.jeudry.core.designsystem.components.brand.RosaFiestaBrandLogo
-import com.jeudry.core.designsystem.components.layouts.RosaFiestaAdaptiveFormLayout
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalBrandLogo
+import com.adventistportal.core.designsystem.components.layouts.AdventistPortalAdaptiveFormLayout
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
 
 @Composable
 @PreviewLightDark
 @PreviewScreenSizes
-fun RosaFiestaAdaptiveFormLayoutLightPreview() {
-    RosaFiestaTheme {
-        RosaFiestaAdaptiveFormLayout(
-            headerText = "Welcome to RosaFiesta!",
+fun AdventistPortalAdaptiveFormLayoutLightPreview() {
+    AdventistPortalTheme {
+        AdventistPortalAdaptiveFormLayout(
+            headerText = "Welcome to AdventistPortal!",
             errorText = "Login failed!",
-            logo = { RosaFiestaBrandLogo() },
+            logo = { AdventistPortalBrandLogo() },
             formContent = {
                 Text(
                     text = "Sample form title",

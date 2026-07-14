@@ -1,8 +1,8 @@
-package com.jeudry.chat.data.notification
+package com.adventistportal.chat.data.notification
 
-import com.jeudry.chat.domain.chat.ChatConnectionClient
-import com.jeudry.chat.domain.chat.ChatRepository
-import com.jeudry.core.domain.auth.SessionStorage
+import com.adventistportal.chat.domain.chat.ChatConnectionClient
+import com.adventistportal.chat.domain.chat.ChatRepository
+import com.adventistportal.core.domain.auth.SessionStorage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChangedBy

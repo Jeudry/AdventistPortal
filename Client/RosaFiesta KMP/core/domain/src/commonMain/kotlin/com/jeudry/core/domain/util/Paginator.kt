@@ -1,4 +1,4 @@
-package com.jeudry.core.domain.util
+package com.adventistportal.core.domain.util
 
 import kotlinx.coroutines.ensureActive
 import kotlin.coroutines.coroutineContext

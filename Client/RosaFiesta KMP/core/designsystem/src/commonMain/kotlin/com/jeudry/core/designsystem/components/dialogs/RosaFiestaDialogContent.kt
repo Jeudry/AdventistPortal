@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.dialogs
+package com.adventistportal.core.designsystem.components.dialogs
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 
 @Composable
-fun RosaFiestaDialogContent(
+fun AdventistPortalDialogContent(
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit

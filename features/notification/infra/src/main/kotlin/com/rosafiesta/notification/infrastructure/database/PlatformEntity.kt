@@ -1,4 +1,4 @@
-package com.rosafiesta.notification.infrastructure.database
+package com.adventistportal.notification.infrastructure.database
 
 enum class PlatformEntity {
   ANDROID,

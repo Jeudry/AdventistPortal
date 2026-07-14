@@ -1,9 +1,9 @@
-package com.rosafiesta.quotes.api.controllers
+package com.adventistportal.quotes.api.controllers
 
-import com.rosafiesta.core.domain.types.QuoteId
-import com.rosafiesta.core.domain.types.UserId
-import com.rosafiesta.quotes.domain.model.Quote
-import com.rosafiesta.quotes.service.QuoteService
+import com.adventistportal.core.domain.types.QuoteId
+import com.adventistportal.core.domain.types.UserId
+import com.adventistportal.quotes.domain.model.Quote
+import com.adventistportal.quotes.service.QuoteService
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping

@@ -1,4 +1,4 @@
-package com.jeudry.core.domain.auth
+package com.adventistportal.core.domain.auth
 
 data class User(
     val id: String,

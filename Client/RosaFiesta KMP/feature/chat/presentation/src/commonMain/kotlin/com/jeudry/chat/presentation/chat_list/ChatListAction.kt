@@ -1,6 +1,6 @@
-package com.jeudry.chat.presentation.chat_list
+package com.adventistportal.chat.presentation.chat_list
 
-import com.jeudry.chat.presentation.model.ChatUi
+import com.adventistportal.chat.presentation.model.ChatUi
 
 sealed interface ChatListAction {
     data object OnUserAvatarClick: ChatListAction

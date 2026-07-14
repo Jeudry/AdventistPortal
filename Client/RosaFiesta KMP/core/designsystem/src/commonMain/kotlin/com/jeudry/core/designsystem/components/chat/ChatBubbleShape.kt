@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.chat
+package com.adventistportal.core.designsystem.components.chat
 
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.RoundRect

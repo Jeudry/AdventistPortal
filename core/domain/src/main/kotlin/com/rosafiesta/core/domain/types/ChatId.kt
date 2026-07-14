@@ -1,4 +1,4 @@
-package com.rosafiesta.core.domain.types
+package com.adventistportal.core.domain.types
 
 import java.util.UUID
 

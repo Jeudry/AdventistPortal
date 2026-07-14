@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.profile.mediapicker
+package com.adventistportal.chat.presentation.profile.mediapicker
 
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest

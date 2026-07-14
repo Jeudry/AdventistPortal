@@ -1,4 +1,4 @@
-package com.jeudry.rosafiesta.navigation
+package com.adventistportal.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect

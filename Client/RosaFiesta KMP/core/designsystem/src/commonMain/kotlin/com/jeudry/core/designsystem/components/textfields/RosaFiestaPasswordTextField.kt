@@ -1,4 +1,4 @@
-package com.jeudry.core.designsystem.components.textfields
+package com.adventistportal.core.designsystem.components.textfields
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -23,19 +23,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import rosafiesta.core.designsystem.generated.resources.Res
-import rosafiesta.core.designsystem.generated.resources.eye_icon
-import rosafiesta.core.designsystem.generated.resources.eye_off_icon
-import rosafiesta.core.designsystem.generated.resources.hide_password
-import rosafiesta.core.designsystem.generated.resources.show_password
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import adventistportal.core.designsystem.generated.resources.Res
+import adventistportal.core.designsystem.generated.resources.eye_icon
+import adventistportal.core.designsystem.generated.resources.eye_off_icon
+import adventistportal.core.designsystem.generated.resources.hide_password
+import adventistportal.core.designsystem.generated.resources.show_password
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun RosaFiestaPasswordTextField(
+fun AdventistPortalPasswordTextField(
     state: TextFieldState,
     isPasswordVisible: Boolean,
     onToggleVisibilityClick: () -> Unit,
@@ -47,7 +47,7 @@ fun RosaFiestaPasswordTextField(
     enabled: Boolean = true,
     onFocusChanged: (Boolean) -> Unit = {},
 ) {
-    RosaFiestaTextFieldLayout(
+    AdventistPortalTextFieldLayout(
         title = title,
         isError = isError,
         supportingText = supportingText,
@@ -128,9 +128,9 @@ fun RosaFiestaPasswordTextField(
 @Preview(
     showBackground = true
 )
-fun RosaFiestaPasswordTextFieldPasswordTextFieldEmptyPreview() {
-    RosaFiestaTheme {
-        RosaFiestaPasswordTextField(
+fun AdventistPortalPasswordTextFieldPasswordTextFieldEmptyPreview() {
+    AdventistPortalTheme {
+        AdventistPortalPasswordTextField(
             state = rememberTextFieldState(),
             isPasswordVisible = true,
             onToggleVisibilityClick = {},
@@ -147,9 +147,9 @@ fun RosaFiestaPasswordTextFieldPasswordTextFieldEmptyPreview() {
 @Preview(
     showBackground = true
 )
-fun RosaFiestaPasswordTextFieldPasswordTextFieldFilledPreview() {
-    RosaFiestaTheme {
-        RosaFiestaPasswordTextField(
+fun AdventistPortalPasswordTextFieldPasswordTextFieldFilledPreview() {
+    AdventistPortalTheme {
+        AdventistPortalPasswordTextField(
             state = rememberTextFieldState("password123"),
             isPasswordVisible = false,
             onToggleVisibilityClick = {},
@@ -166,9 +166,9 @@ fun RosaFiestaPasswordTextFieldPasswordTextFieldFilledPreview() {
 @Preview(
     showBackground = true
 )
-fun RosaFiestaPasswordTextFieldPasswordTextFieldErrorPreview() {
-    RosaFiestaTheme {
-        RosaFiestaPasswordTextField(
+fun AdventistPortalPasswordTextFieldPasswordTextFieldErrorPreview() {
+    AdventistPortalTheme {
+        AdventistPortalPasswordTextField(
             state = rememberTextFieldState("password123"),
             isPasswordVisible = true,
             onToggleVisibilityClick = {},

@@ -1,4 +1,4 @@
-package com.jeudry.auth.presentation.forgot_password
+package com.adventistportal.auth.presentation.forgot_password
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,19 +13,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import rosafiesta.feature.auth.presentation.generated.resources.Res
-import rosafiesta.feature.auth.presentation.generated.resources.email
-import rosafiesta.feature.auth.presentation.generated.resources.email_placeholder
-import rosafiesta.feature.auth.presentation.generated.resources.forgot_password
-import rosafiesta.feature.auth.presentation.generated.resources.forgot_password_email_sent_successfully
-import rosafiesta.feature.auth.presentation.generated.resources.submit
-import com.jeudry.core.designsystem.components.brand.RosaFiestaBrandLogo
-import com.jeudry.core.designsystem.components.buttons.RosaFiestaButton
-import com.jeudry.core.designsystem.components.layouts.RosaFiestaAdaptiveFormLayout
-import com.jeudry.core.designsystem.components.layouts.RosaFiestaSnackbarScaffold
-import com.jeudry.core.designsystem.components.textfields.RosaFiestaTextField
-import com.jeudry.core.designsystem.theme.RosaFiestaTheme
-import com.jeudry.core.designsystem.theme.extended
+import adventistportal.feature.auth.presentation.generated.resources.Res
+import adventistportal.feature.auth.presentation.generated.resources.email
+import adventistportal.feature.auth.presentation.generated.resources.email_placeholder
+import adventistportal.feature.auth.presentation.generated.resources.forgot_password
+import adventistportal.feature.auth.presentation.generated.resources.forgot_password_email_sent_successfully
+import adventistportal.feature.auth.presentation.generated.resources.submit
+import com.adventistportal.core.designsystem.components.brand.AdventistPortalBrandLogo
+import com.adventistportal.core.designsystem.components.buttons.AdventistPortalButton
+import com.adventistportal.core.designsystem.components.layouts.AdventistPortalAdaptiveFormLayout
+import com.adventistportal.core.designsystem.components.layouts.AdventistPortalSnackbarScaffold
+import com.adventistportal.core.designsystem.components.textfields.AdventistPortalTextField
+import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
+import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
@@ -47,15 +47,15 @@ fun ForgotPasswordScreen(
     state: ForgotPasswordState,
     onAction: (ForgotPasswordAction) -> Unit,
 ) {
-    RosaFiestaSnackbarScaffold {
-        RosaFiestaAdaptiveFormLayout(
+    AdventistPortalSnackbarScaffold {
+        AdventistPortalAdaptiveFormLayout(
             headerText = stringResource(Res.string.forgot_password),
             errorText = state.errorText?.asString(),
             logo = {
-                RosaFiestaBrandLogo()
+                AdventistPortalBrandLogo()
             }
         ) {
-            RosaFiestaTextField(
+            AdventistPortalTextField(
                 state = state.emailTextFieldState,
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -67,7 +67,7 @@ fun ForgotPasswordScreen(
                 singleLine = true
             )
             Spacer(modifier = Modifier.height(16.dp))
-            RosaFiestaButton(
+            AdventistPortalButton(
                 text = stringResource(Res.string.submit),
                 onClick = {
                     onAction(ForgotPasswordAction.OnSubmitClick)
@@ -95,7 +95,7 @@ fun ForgotPasswordScreen(
 @Preview
 @Composable
 private fun Preview() {
-    RosaFiestaTheme {
+    AdventistPortalTheme {
         ForgotPasswordScreen(
             state = ForgotPasswordState(),
             onAction = {}

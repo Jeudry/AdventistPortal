@@ -1,10 +1,10 @@
-package com.rosafiesta.inventory.api.mappers
+package com.adventistportal.inventory.api.mappers
 
-import com.rosafiesta.inventory.api.dtos.CategoryDto
-import com.rosafiesta.inventory.api.dtos.CreateCategoryInput
-import com.rosafiesta.inventory.api.dtos.UpdateCategoryInput
-import com.rosafiesta.inventory.domain.model.Category
-import com.rosafiesta.inventory.domain.model.CategoryParams
+import com.adventistportal.inventory.api.dtos.CategoryDto
+import com.adventistportal.inventory.api.dtos.CreateCategoryInput
+import com.adventistportal.inventory.api.dtos.UpdateCategoryInput
+import com.adventistportal.inventory.domain.model.Category
+import com.adventistportal.inventory.domain.model.CategoryParams
 import org.springframework.stereotype.Component
 
 @Component

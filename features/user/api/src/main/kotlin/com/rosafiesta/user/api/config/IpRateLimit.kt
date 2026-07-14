@@ -1,4 +1,4 @@
-package com.rosafiesta.user.api.config
+package com.adventistportal.user.api.config
 
 import java.util.concurrent.TimeUnit
 

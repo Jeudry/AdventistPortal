@@ -1,9 +1,9 @@
-package com.jeudry.chat.data.mappers
+package com.adventistportal.chat.data.mappers
 
-import com.jeudry.chat.data.dto.ChatParticipantDto
-import com.jeudry.chat.database.entities.ChatParticipantEntity
-import com.jeudry.chat.domain.models.ChatParticipant
-import com.jeudry.core.domain.auth.User
+import com.adventistportal.chat.data.dto.ChatParticipantDto
+import com.adventistportal.chat.database.entities.ChatParticipantEntity
+import com.adventistportal.chat.domain.models.ChatParticipant
+import com.adventistportal.core.domain.auth.User
 
 fun ChatParticipantDto.toDomain(): ChatParticipant {
     return ChatParticipant(

@@ -1,7 +1,7 @@
-package com.rosafiesta.inventory.infra.db.mappers
+package com.adventistportal.inventory.infra.db.mappers
 
-import com.rosafiesta.inventory.domain.model.Category
-import com.rosafiesta.inventory.infra.db.entities.CategoryEntity
+import com.adventistportal.inventory.domain.model.Category
+import com.adventistportal.inventory.infra.db.entities.CategoryEntity
 
 fun CategoryEntity.toDomain(): Category = Category(
     id = this.id,

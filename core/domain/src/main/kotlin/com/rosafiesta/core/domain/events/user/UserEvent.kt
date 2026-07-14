@@ -1,7 +1,7 @@
-package com.rosafiesta.core.domain.events.user
+package com.adventistportal.core.domain.events.user
 
-import com.rosafiesta.core.domain.events.RosaFiestaEvent
-import com.rosafiesta.core.domain.types.UserId
+import com.adventistportal.core.domain.events.AdventistPortalEvent
+import com.adventistportal.core.domain.types.UserId
 import java.time.Instant
 import java.util.UUID
 
@@ -9,7 +9,7 @@ sealed class UserEvent(
     override val eventId: String = UUID.randomUUID().toString(),
     override val exchange: String = UserEventConstants.USER_EXCHANGE,
     override val occurredAt: Instant = Instant.now()
-): RosaFiestaEvent {
+): AdventistPortalEvent {
 
     data class Created (
         val userId: UserId,
@@ -17,14 +17,14 @@ sealed class UserEvent(
         val username: String,
         val verificationToken: String,
         override val eventKey: String = UserEventConstants.USER_CREATED_KEY
-    ): UserEvent(), RosaFiestaEvent
+    ): UserEvent(), AdventistPortalEvent
 
     data class Verified (
         val userId: UserId,
         val email: String,
         val username: String,
         override val eventKey: String = UserEventConstants.USER_VERIFIED
-    ): UserEvent(), RosaFiestaEvent
+    ): UserEvent(), AdventistPortalEvent
 
     data class RequestResendVerification (
         val userId: UserId,
@@ -32,7 +32,7 @@ sealed class UserEvent(
         val username: String,
         val verificationToken: String,
         override val eventKey: String = UserEventConstants.USER_REQUEST_RESEND_VERIFICATION
-    ): UserEvent(), RosaFiestaEvent
+    ): UserEvent(), AdventistPortalEvent
 
     data class RequestResetPassword (
         val userId: UserId,
@@ -41,5 +41,5 @@ sealed class UserEvent(
         val verificationToken: String,
         val expiresInMinutes: Long,
         override val eventKey: String = UserEventConstants.USER_REQUEST_RESET_PASSWORD
-    ): UserEvent(), RosaFiestaEvent
+    ): UserEvent(), AdventistPortalEvent
 }

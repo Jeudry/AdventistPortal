@@ -1,4 +1,4 @@
-package com.jeudry.rosafiesta.convention
+package com.adventistportal.convention
 
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project

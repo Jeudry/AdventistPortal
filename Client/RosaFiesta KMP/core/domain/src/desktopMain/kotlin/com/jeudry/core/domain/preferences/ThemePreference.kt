@@ -1,4 +1,4 @@
-package com.jeudry.core.domain.preferences
+package com.adventistportal.core.domain.preferences
 
 enum class ThemePreference {
     LIGHT,

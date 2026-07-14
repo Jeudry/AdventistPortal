@@ -1,12 +1,12 @@
-package com.jeudry.chat.data.di
+package com.adventistportal.chat.data.di
 
-import com.jeudry.chat.data.lifecycle.AppLifecycleObserver
-import com.jeudry.chat.data.network.ConnectionErrorHandler
-import com.jeudry.chat.data.network.ConnectivityObserver
-import com.jeudry.chat.data.notification.DesktopNotifier
-import com.jeudry.chat.data.notification.FirebasePushNotificationService
-import com.jeudry.chat.database.DatabaseFactory
-import com.jeudry.chat.domain.notification.PushNotificationService
+import com.adventistportal.chat.data.lifecycle.AppLifecycleObserver
+import com.adventistportal.chat.data.network.ConnectionErrorHandler
+import com.adventistportal.chat.data.network.ConnectivityObserver
+import com.adventistportal.chat.data.notification.DesktopNotifier
+import com.adventistportal.chat.data.notification.FirebasePushNotificationService
+import com.adventistportal.chat.database.DatabaseFactory
+import com.adventistportal.chat.domain.notification.PushNotificationService
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module

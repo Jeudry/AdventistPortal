@@ -1,7 +1,7 @@
-package com.rosafiesta.user.api.exception_handling
+package com.adventistportal.user.api.exception_handling
 
-import com.rosafiesta.user.domain.exception.*
-import com.rosafiesta.core.domain.exceptions.InvalidTokenEx
+import com.adventistportal.user.domain.exception.*
+import com.adventistportal.core.domain.exceptions.InvalidTokenEx
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException

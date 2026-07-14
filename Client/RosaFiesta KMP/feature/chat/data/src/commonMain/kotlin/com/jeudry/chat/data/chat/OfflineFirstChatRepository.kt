@@ -1,22 +1,22 @@
-package com.jeudry.chat.data.chat
+package com.adventistportal.chat.data.chat
 
-import com.jeudry.chat.data.mappers.toDomain
-import com.jeudry.chat.data.mappers.toEntity
-import com.jeudry.chat.data.mappers.toLastMessageView
-import com.jeudry.chat.database.RosaFiestaChatDatabase
-import com.jeudry.chat.database.entities.ChatInfoEntity
-import com.jeudry.chat.database.entities.ChatParticipantEntity
-import com.jeudry.chat.database.entities.ChatWithParticipants
-import com.jeudry.chat.domain.chat.ChatRepository
-import com.jeudry.chat.domain.chat.ChatService
-import com.jeudry.chat.domain.models.Chat
-import com.jeudry.chat.domain.models.ChatInfo
-import com.jeudry.chat.domain.models.ChatParticipant
-import com.jeudry.core.domain.util.DataError
-import com.jeudry.core.domain.util.EmptyResult
-import com.jeudry.core.domain.util.Result
-import com.jeudry.core.domain.util.asEmptyResult
-import com.jeudry.core.domain.util.onSuccess
+import com.adventistportal.chat.data.mappers.toDomain
+import com.adventistportal.chat.data.mappers.toEntity
+import com.adventistportal.chat.data.mappers.toLastMessageView
+import com.adventistportal.chat.database.AdventistPortalChatDatabase
+import com.adventistportal.chat.database.entities.ChatInfoEntity
+import com.adventistportal.chat.database.entities.ChatParticipantEntity
+import com.adventistportal.chat.database.entities.ChatWithParticipants
+import com.adventistportal.chat.domain.chat.ChatRepository
+import com.adventistportal.chat.domain.chat.ChatService
+import com.adventistportal.chat.domain.models.Chat
+import com.adventistportal.chat.domain.models.ChatInfo
+import com.adventistportal.chat.domain.models.ChatParticipant
+import com.adventistportal.core.domain.util.DataError
+import com.adventistportal.core.domain.util.EmptyResult
+import com.adventistportal.core.domain.util.Result
+import com.adventistportal.core.domain.util.asEmptyResult
+import com.adventistportal.core.domain.util.onSuccess
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.Flow
@@ -27,7 +27,7 @@ import kotlinx.coroutines.supervisorScope
 
 class OfflineFirstChatRepository(
     private val chatService: ChatService,
-    private val db: RosaFiestaChatDatabase,
+    private val db: AdventistPortalChatDatabase,
 ): ChatRepository {
 
     override fun getChats(): Flow<List<Chat>> {

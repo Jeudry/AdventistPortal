@@ -1,7 +1,7 @@
-package com.rosafiesta.core.services
+package com.adventistportal.core.services
 
-import com.rosafiesta.core.domain.exceptions.InvalidTokenEx
-import com.rosafiesta.core.domain.types.UserId
+import com.adventistportal.core.domain.exceptions.InvalidTokenEx
+import com.adventistportal.core.domain.types.UserId
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys

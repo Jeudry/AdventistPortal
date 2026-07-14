@@ -1,3 +1,3 @@
-package com.jeudry.core.domain.util
+package com.adventistportal.core.domain.util
 
 interface Error

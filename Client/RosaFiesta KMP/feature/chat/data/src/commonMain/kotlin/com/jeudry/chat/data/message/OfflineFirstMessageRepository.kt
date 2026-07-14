@@ -1,26 +1,26 @@
-package com.jeudry.chat.data.message
+package com.adventistportal.chat.data.message
 
-import com.jeudry.chat.data.dto.websocket.OutgoingWebSocketDto
-import com.jeudry.chat.data.dto.websocket.WebSocketMessageDto
-import com.jeudry.chat.data.mappers.toDomain
-import com.jeudry.chat.data.mappers.toEntity
-import com.jeudry.chat.data.mappers.toNewMessage
-import com.jeudry.chat.data.mappers.toWebSocketDto
-import com.jeudry.chat.data.network.KtorWebSocketConnector
-import com.jeudry.chat.database.RosaFiestaChatDatabase
-import com.jeudry.chat.domain.message.ChatMessageService
-import com.jeudry.chat.domain.message.MessageRepository
-import com.jeudry.chat.domain.models.ChatMessage
-import com.jeudry.chat.domain.models.ChatMessageDeliveryStatus
-import com.jeudry.chat.domain.models.MessageWithSender
-import com.jeudry.chat.domain.models.OutgoingNewMessage
-import com.jeudry.core.data.database.safeDatabaseUpdate
-import com.jeudry.core.domain.auth.SessionStorage
-import com.jeudry.core.domain.util.DataError
-import com.jeudry.core.domain.util.EmptyResult
-import com.jeudry.core.domain.util.Result
-import com.jeudry.core.domain.util.onFailure
-import com.jeudry.core.domain.util.onSuccess
+import com.adventistportal.chat.data.dto.websocket.OutgoingWebSocketDto
+import com.adventistportal.chat.data.dto.websocket.WebSocketMessageDto
+import com.adventistportal.chat.data.mappers.toDomain
+import com.adventistportal.chat.data.mappers.toEntity
+import com.adventistportal.chat.data.mappers.toNewMessage
+import com.adventistportal.chat.data.mappers.toWebSocketDto
+import com.adventistportal.chat.data.network.KtorWebSocketConnector
+import com.adventistportal.chat.database.AdventistPortalChatDatabase
+import com.adventistportal.chat.domain.message.ChatMessageService
+import com.adventistportal.chat.domain.message.MessageRepository
+import com.adventistportal.chat.domain.models.ChatMessage
+import com.adventistportal.chat.domain.models.ChatMessageDeliveryStatus
+import com.adventistportal.chat.domain.models.MessageWithSender
+import com.adventistportal.chat.domain.models.OutgoingNewMessage
+import com.adventistportal.core.data.database.safeDatabaseUpdate
+import com.adventistportal.core.domain.auth.SessionStorage
+import com.adventistportal.core.domain.util.DataError
+import com.adventistportal.core.domain.util.EmptyResult
+import com.adventistportal.core.domain.util.Result
+import com.adventistportal.core.domain.util.onFailure
+import com.adventistportal.core.domain.util.onSuccess
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -30,7 +30,7 @@ import kotlinx.serialization.json.Json
 import kotlin.time.Clock
 
 class OfflineFirstMessageRepository(
-    private val database: RosaFiestaChatDatabase,
+    private val database: AdventistPortalChatDatabase,
     private val chatMessageService: ChatMessageService,
     private val sessionStorage: SessionStorage,
     private val json: Json,

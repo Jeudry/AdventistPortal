@@ -1,15 +1,15 @@
-package com.jeudry.chat.database.dao
+package com.adventistportal.chat.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
-import com.jeudry.chat.database.entities.ChatEntity
-import com.jeudry.chat.database.entities.ChatInfoEntity
-import com.jeudry.chat.database.entities.ChatMessageEntity
-import com.jeudry.chat.database.entities.ChatParticipantCrossRef
-import com.jeudry.chat.database.entities.ChatParticipantEntity
-import com.jeudry.chat.database.entities.ChatWithParticipants
+import com.adventistportal.chat.database.entities.ChatEntity
+import com.adventistportal.chat.database.entities.ChatInfoEntity
+import com.adventistportal.chat.database.entities.ChatMessageEntity
+import com.adventistportal.chat.database.entities.ChatParticipantCrossRef
+import com.adventistportal.chat.database.entities.ChatParticipantEntity
+import com.adventistportal.chat.database.entities.ChatWithParticipants
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -1,4 +1,4 @@
-package com.jeudry.chat.domain.notification
+package com.adventistportal.chat.domain.notification
 
 import kotlinx.coroutines.flow.Flow
 

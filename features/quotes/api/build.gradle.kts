@@ -1,5 +1,5 @@
 plugins {
-    id("rosafiesta.api")
+    id("adventistportal.api")
 }
 
 dependencies {

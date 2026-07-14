@@ -1,7 +1,7 @@
-package com.rosafiesta.inventory.domain.repository
+package com.adventistportal.inventory.domain.repository
 
-import com.rosafiesta.core.domain.types.DiscountId
-import com.rosafiesta.inventory.domain.model.Discount
+import com.adventistportal.core.domain.types.DiscountId
+import com.adventistportal.inventory.domain.model.Discount
 import java.time.Instant
 
 interface DiscountRepository {

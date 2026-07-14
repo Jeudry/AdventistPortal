@@ -1,6 +1,6 @@
-package com.rosafiesta.chat.domain.models
+package com.adventistportal.chat.domain.models
 
-import com.rosafiesta.core.domain.types.UserId
+import com.adventistportal.core.domain.types.UserId
 
 data class ChatParticipant(
     val userId: UserId,

@@ -1,7 +1,7 @@
-package com.jeudry.chat.presentation.profile
+package com.adventistportal.chat.presentation.profile
 
 import androidx.compose.foundation.text.input.TextFieldState
-import com.jeudry.core.presentation.util.UiText
+import com.adventistportal.core.presentation.util.UiText
 
 data class ProfileState(
     val username: String = "",

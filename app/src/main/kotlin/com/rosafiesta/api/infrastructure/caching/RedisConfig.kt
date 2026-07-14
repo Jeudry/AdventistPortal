@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package com.rosafiesta.api.infrastructure.caching
+package com.adventistportal.api.infrastructure.caching
 
 import org.springframework.cache.annotation.EnableCaching
 import org.springframework.context.annotation.Bean
@@ -27,7 +27,7 @@ class RedisConfig(){
         val polymorphicTypeValidator = BasicPolymorphicTypeValidator.builder()
             .allowIfSubType("java.util.") // Allow java list
             .allowIfSubType("kotlin.collections.") // Allow kotlin list
-            .allowIfSubType("com.rosafiesta.api.")
+            .allowIfSubType("com.adventistportal.api.")
             .build()
 
         // Jackson 3: immutable JsonMapper built via the builder. Kotlin +

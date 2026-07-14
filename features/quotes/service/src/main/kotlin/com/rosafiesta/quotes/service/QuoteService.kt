@@ -1,14 +1,14 @@
-package com.rosafiesta.quotes.service
+package com.adventistportal.quotes.service
 
-import com.rosafiesta.core.domain.types.QuoteId
-import com.rosafiesta.core.domain.types.UserId
-import com.rosafiesta.inventory.domain.repository.ArticleRepository
-import com.rosafiesta.quotes.domain.exceptions.*
-import com.rosafiesta.quotes.domain.model.Quote
-import com.rosafiesta.quotes.domain.model.QuoteItem
-import com.rosafiesta.quotes.domain.repository.QuoteRepository
-import com.rosafiesta.quotes.domain.service.AvailabilityService
-import com.rosafiesta.shared.domain.quotes.enums.QuoteStatus
+import com.adventistportal.core.domain.types.QuoteId
+import com.adventistportal.core.domain.types.UserId
+import com.adventistportal.inventory.domain.repository.ArticleRepository
+import com.adventistportal.quotes.domain.exceptions.*
+import com.adventistportal.quotes.domain.model.Quote
+import com.adventistportal.quotes.domain.model.QuoteItem
+import com.adventistportal.quotes.domain.repository.QuoteRepository
+import com.adventistportal.quotes.domain.service.AvailabilityService
+import com.adventistportal.shared.domain.quotes.enums.QuoteStatus
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.Instant

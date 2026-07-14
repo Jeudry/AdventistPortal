@@ -1,4 +1,4 @@
-package com.jeudry.core.domain.validation
+package com.adventistportal.core.domain.validation
 
 data class PasswordValidationState(
     val hasMinLength: Boolean = false,

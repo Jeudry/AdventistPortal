@@ -1,4 +1,4 @@
-package com.jeudry.chat.presentation.chat_detail.components
+package com.adventistportal.chat.presentation.chat_detail.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,15 +13,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.check_icon
-import rosafiesta.feature.chat.presentation.generated.resources.failed
-import rosafiesta.feature.chat.presentation.generated.resources.loading_icon
-import rosafiesta.feature.chat.presentation.generated.resources.sending
-import rosafiesta.feature.chat.presentation.generated.resources.sent
-import com.jeudry.chat.domain.models.ChatMessageDeliveryStatus
-import com.jeudry.core.designsystem.theme.extended
-import com.jeudry.core.designsystem.theme.labelXSmall
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.check_icon
+import adventistportal.feature.chat.presentation.generated.resources.failed
+import adventistportal.feature.chat.presentation.generated.resources.loading_icon
+import adventistportal.feature.chat.presentation.generated.resources.sending
+import adventistportal.feature.chat.presentation.generated.resources.sent
+import com.adventistportal.chat.domain.models.ChatMessageDeliveryStatus
+import com.adventistportal.core.designsystem.theme.extended
+import com.adventistportal.core.designsystem.theme.labelXSmall
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 

@@ -1,13 +1,13 @@
-package com.jeudry.chat.presentation.util
+package com.adventistportal.chat.presentation.util
 
-import rosafiesta.feature.chat.presentation.generated.resources.Res
-import rosafiesta.feature.chat.presentation.generated.resources.network_error
-import rosafiesta.feature.chat.presentation.generated.resources.offline
-import rosafiesta.feature.chat.presentation.generated.resources.online
-import rosafiesta.feature.chat.presentation.generated.resources.reconnecting
-import rosafiesta.feature.chat.presentation.generated.resources.unknown_error
-import com.jeudry.chat.domain.models.ConnectionState
-import com.jeudry.core.presentation.util.UiText
+import adventistportal.feature.chat.presentation.generated.resources.Res
+import adventistportal.feature.chat.presentation.generated.resources.network_error
+import adventistportal.feature.chat.presentation.generated.resources.offline
+import adventistportal.feature.chat.presentation.generated.resources.online
+import adventistportal.feature.chat.presentation.generated.resources.reconnecting
+import adventistportal.feature.chat.presentation.generated.resources.unknown_error
+import com.adventistportal.chat.domain.models.ConnectionState
+import com.adventistportal.core.presentation.util.UiText
 
 fun ConnectionState.toUiText(): UiText {
     val resource = when(this) {

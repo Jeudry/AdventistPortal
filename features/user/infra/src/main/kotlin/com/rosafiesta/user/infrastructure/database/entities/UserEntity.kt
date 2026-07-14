@@ -1,6 +1,6 @@
-package com.rosafiesta.user.infrastructure.database.entities
+package com.adventistportal.user.infrastructure.database.entities
 
-import com.rosafiesta.core.domain.types.UserId
+import com.adventistportal.core.domain.types.UserId
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue

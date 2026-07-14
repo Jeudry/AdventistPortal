@@ -1,19 +1,19 @@
-package com.jeudry.rosafiesta
+package com.adventistportal
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.ApplicationScope
 import androidx.compose.ui.window.Tray
 import androidx.compose.ui.window.TrayState
-import com.jeudry.core.domain.preferences.ThemePreference
+import com.adventistportal.core.domain.preferences.ThemePreference
 import org.jetbrains.compose.resources.painterResource
-import rosafiesta.composeapp.generated.resources.Res
-import rosafiesta.composeapp.generated.resources.app_theme
-import rosafiesta.composeapp.generated.resources.logo
+import adventistportal.composeapp.generated.resources.Res
+import adventistportal.composeapp.generated.resources.app_theme
+import adventistportal.composeapp.generated.resources.logo
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun ApplicationScope.RosaFiestaTrayMenu(
+fun ApplicationScope.AdventistPortalTrayMenu(
     state: TrayState,
     themePreferenceFromAppSettings: ThemePreference,
     onThemePreferenceClick: (ThemePreference) -> Unit
