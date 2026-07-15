@@ -26,14 +26,14 @@ class ChatEntity(
         indexes = [
             // Answers efficiently the question: "What are the participants of this chat?"
             Index(
-                name = "idx_chat_participant_chat_id_user_id",
-                columnList = "chat_id, user_id",
+                name = "idx_chat_participant_chat_id_participant_id",
+                columnList = "chat_id, participant_id",
                 unique = true
             ),
             // Answers efficiently the question: "What chats does this participant belong to?""
             Index(
-                 name = "idx_chat_participant_user_id_chat_id",
-                columnList = "user_id, chat_id",
+                name = "idx_chat_participant_participant_id_chat_id",
+                columnList = "participant_id, chat_id",
                 unique = true
             )
         ]
