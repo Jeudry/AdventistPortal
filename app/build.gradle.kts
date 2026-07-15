@@ -73,3 +73,19 @@ dependencies {
   implementation(libs.springdoc.openapi.starter.webmvc.ui)
   runtimeOnly(libs.postgresql)
 }
+
+// Exports the current JPA model to a Postgres DDL script (offline, no DB) for the
+// EF-style migration diff flow. See ModelSchemaExportTest and docs/migrations.md.
+tasks.register<Test>("exportModelSchema") {
+  group = "migrations"
+  description = "Export the JPA model to build/model-schema.sql (offline, no database)."
+  testClassesDirs = sourceSets["test"].output.classesDirs
+  classpath = sourceSets["test"].runtimeClasspath
+  useJUnitPlatform()
+  filter { includeTestsMatching("com.adventistportal.tooling.ModelSchemaExportTest") }
+  systemProperty(
+    "modelSchemaOut",
+    layout.buildDirectory.file("model-schema.sql").get().asFile.absolutePath,
+  )
+  outputs.upToDateWhen { false }
+}
