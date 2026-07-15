@@ -41,7 +41,10 @@ class ArticleEntity(
     var createdAt: Instant? = null,
 
     @UpdateTimestamp
-    var updatedAt: Instant? = null
+    var updatedAt: Instant? = null,
+
+    // Soft-delete marker: set explicitly when the article is deleted, not on every update.
+    var deletedAt: Instant? = null
 )
 
 @Entity
