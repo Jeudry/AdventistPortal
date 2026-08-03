@@ -3,11 +3,11 @@
 --changeset sargon:00-init-schema splitStatements:true endDelimiter:;
 --comment: Complete initial schema, generated from the JPA model (see docs/migrations.md). Regenerate with scripts/gen-migration.sh after model changes.
 
-create schema chat_service;
-create schema inventory_service;
-create schema notification_service;
-create schema quote_service;
-create schema user_service;
+create schema if not exists chat_service;
+create schema if not exists inventory_service;
+create schema if not exists notification_service;
+create schema if not exists quote_service;
+create schema if not exists user_service;
 create table chat_service.chat_messages (id uuid not null, chat_id uuid not null, content TEXT not null, created_at timestamp(6) with time zone, sender_id uuid not null, primary key (id));
 create table chat_service.chat_participants (user_id uuid not null, created_at timestamp(6) with time zone, email varchar(255) not null unique, profile_picture_url TEXT, username varchar(255) not null unique, primary key (user_id));
 create table chat_service.chat_participants_cross_ref (chat_id uuid not null, participant_id uuid not null, constraint idx_chat_participant_chat_id_participant_id unique (chat_id, participant_id), constraint idx_chat_participant_participant_id_chat_id unique (participant_id, chat_id));

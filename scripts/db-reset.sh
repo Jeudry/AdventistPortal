@@ -8,9 +8,9 @@
 # statements needed, and no checksum conflict from editing a changeset you had
 # already applied.
 #
-# Note this does NOT use `liquibase drop-all`: that command empties the schemas
-# but leaves them standing, and the baseline issues a bare `create schema`, so
-# the next start would fail with "schema already exists".
+# `liquibase drop-all` also works (the baseline creates schemas idempotently), but
+# it leaves the empty schemas behind; plain SQL gets a truly blank database and
+# needs no JDBC driver or Liquibase image.
 #
 # This DESTROYS all local data. It refuses to run against a non-local host.
 #
