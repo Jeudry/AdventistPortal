@@ -5,12 +5,10 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-5.0.xsd">
 
-    <!-- Complete initial schema: the *_service schemas + all tables. -->
-    <include file="2026/02/10-00-init.sql" relativeToChangelogFile="true"/>
-
     <!--
-      New migrations generated from the JPA model (e.g. with JPA Buddy) are added
-      below as <include file="..."/> lines, in order.
+      Order comes from the path, so the yyyy/MM/dd-NN naming is what sequences the
+      migrations. endsWithFilter keeps this master (.xml) out of its own scan.
     -->
+    <includeAll path="." relativeToChangelogFile="true" endsWithFilter=".sql"/>
 
 </databaseChangeLog>
