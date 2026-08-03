@@ -46,9 +46,6 @@ spring:
         show_sql: true
         default_schema: user_service
 
-  flyway:
-    schemas: user_service,chat_service,notification_service
-
   mail:
     host: smtp.gmail.com
     port: 587

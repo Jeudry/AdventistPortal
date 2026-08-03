@@ -63,10 +63,7 @@ dependencies {
   implementation("tools.jackson.module:jackson-module-kotlin")
 
   implementation(libs.kotlin.reflect)
-  implementation(libs.flyway.postgresql)
-  implementation(libs.flyway.starter)
   implementation(libs.liquibase.starter)
-  implementation("org.springframework.boot:spring-boot-starter-flyway")
   implementation(libs.springdoc.openapi.starter.webmvc.ui)
   runtimeOnly(libs.postgresql)
 }

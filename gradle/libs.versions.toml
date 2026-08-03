@@ -53,8 +53,6 @@ kotlinx-coroutines-reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 postgresql = { module = "org.postgresql:postgresql" }
 
 # Flyaway
-flyway-postgresql = { module = "org.flywaydb:flyway-database-postgresql" }
-flyway-starter = { module = "org.springframework.boot:spring-boot-starter-flyway" }
 
 # Liquibase
 liquibase-starter = { module = "org.springframework.boot:spring-boot-starter-liquibase" }
