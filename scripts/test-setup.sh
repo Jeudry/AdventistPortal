@@ -6,7 +6,7 @@ RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
-echo "🧪 Testing RosaFiesta Local Setup"
+echo "🧪 Testing AdventistPortal Local Setup"
 echo "=================================="
 echo ""
 

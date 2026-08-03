@@ -1,6 +1,6 @@
 # Documentation
 
-Local development documentation for RosaFiesta API.
+Local development documentation for AdventistPortal API.
 
 ## Files
 

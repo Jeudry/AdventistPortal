@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🛑 Deteniendo servicios de Orb Stack para RosaFiesta..."
+echo "🛑 Deteniendo servicios de Orb Stack para AdventistPortal..."
 
 docker-compose -f docker-compose.orb.yml down
 

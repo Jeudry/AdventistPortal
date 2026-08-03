@@ -1,11 +1,11 @@
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-  id("rosafiesta.spring-boot-app")
+  id("adventistportal.spring-boot-app")
 }
-group = "com.rosafiesta"
+group = "com.adventistportal"
 version = "0.0.1-SNAPSHOT"
-description = "RosaFiesta API backend"
+description = "AdventistPortal API backend"
 
 repositories {
     mavenCentral()
@@ -14,7 +14,7 @@ repositories {
 }
 
 springBoot {
-  mainClass.set("com.rosafiesta.RosaFiestaApiApplicationKt")
+  mainClass.set("com.adventistportal.AdventistPortalApiApplicationKt")
 }
 tasks {
   named<BootJar>("bootJar") {
@@ -49,21 +49,43 @@ dependencies {
   implementation(projects.features.inventory.infra)
   implementation(projects.features.inventory.service)
   implementation(projects.features.inventory.api)
+  // Quotes
+  implementation(projects.features.quotes.domain)
+  implementation(projects.features.quotes.infra)
+  implementation(projects.features.quotes.service)
+  implementation(projects.features.quotes.api)
   
   implementation(libs.spring.boot.starter.data.redis)
   implementation(libs.spring.boot.starter.amqp)
   implementation(libs.spring.boot.starter.data.jpa)
   implementation(libs.spring.boot.starter.security)
+  implementation(libs.spring.boot.starter.graphql)
   
-  // Jackson 2 (Para RabbitMQ y compatibilidad)
-  implementation(libs.jackson.datatype.jsr310)
+  // GraphQL Extended Scalars
+  implementation("com.graphql-java:graphql-java-extended-scalars:22.0")
+  
+  // Jackson 3 (managed by the Spring Boot BOM); java.time is built into
+  // jackson-databind in Jackson 3, so no jsr310 module is needed.
   implementation(libs.jackson.module.kotlin)
-
-  // INTENTO DE RESCATE: Jackson 3 Module Kotlin (Sin versión, confiando en el BOM)
-  implementation("tools.jackson.module:jackson-module-kotlin")
 
   implementation(libs.kotlin.reflect)
   implementation(libs.liquibase.starter)
   implementation(libs.springdoc.openapi.starter.webmvc.ui)
   runtimeOnly(libs.postgresql)
+}
+
+// Exports the current JPA model to a Postgres DDL script (offline, no DB) for the
+// EF-style migration diff flow. See ModelSchemaExportTest and docs/migrations.md.
+tasks.register<Test>("exportModelSchema") {
+  group = "migrations"
+  description = "Export the JPA model to build/model-schema.sql (offline, no database)."
+  testClassesDirs = sourceSets["test"].output.classesDirs
+  classpath = sourceSets["test"].runtimeClasspath
+  useJUnitPlatform()
+  filter { includeTestsMatching("com.adventistportal.tooling.ModelSchemaExportTest") }
+  systemProperty(
+    "modelSchemaOut",
+    layout.buildDirectory.file("model-schema.sql").get().asFile.absolutePath,
+  )
+  outputs.upToDateWhen { false }
 }

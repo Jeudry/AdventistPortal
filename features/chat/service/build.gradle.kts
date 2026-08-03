@@ -1,10 +1,10 @@
 plugins {
-    id("rosafiesta.service")
-    id("rosafiesta.spring-boot-service")
+    id("adventistportal.service")
+    id("adventistportal.spring-boot-service")
     kotlin("plugin.spring")
 }
 
-group = "com.rosafiesta.chat"
+group = "com.adventistportal.chat"
 version = "0.0.1-SNAPSHOT"
 
 base {
@@ -17,5 +17,4 @@ dependencies {
     
     implementation(libs.spring.boot.starter.data.jpa)
     implementation(libs.spring.boot.starter.amqp)
-    implementation(libs.jackson.datatype.jsr310)
 }

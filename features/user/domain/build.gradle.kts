@@ -1,8 +1,8 @@
 plugins {
-    id("rosafiesta.domain")
+    id("adventistportal.domain")
 }
 
-group = "com.rosafiesta.user"
+group = "com.adventistportal.user"
 version = "0.0.1-SNAPSHOT"
 
 base {

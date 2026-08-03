@@ -1,7 +1,7 @@
-# 🌸 Proyecto: RosaFiesta App - Planificación Integral
+# 🌸 Proyecto: AdventistPortal App - Planificación Integral
 
 ## 1. Visión General
-**RosaFiesta** es una plataforma multiplataforma (Android, iOS, Desktop, Web) diseñada para la gestión integral de eventos, decoración y planificación. La app busca automatizar la logística interna y ofrecer una experiencia de consultoría creativa impulsada por IA.
+**AdventistPortal** es una plataforma multiplataforma (Android, iOS, Desktop, Web) diseñada para la gestión integral de eventos, decoración y planificación. La app busca automatizar la logística interna y ofrecer una experiencia de consultoría creativa impulsada por IA.
 
 ### Paleta de Colores (Armonía Visual)
 * **Primario:** Rosa (#FFC0CB) - Creatividad y Calidez.
@@ -29,7 +29,7 @@
 * **AI Integration Service:** Gateway para conectar con Gemini para sugerencias de diseño.
 
 ### B. Módulos del Frontend (Compose Multiplatform)
-* **Shared UI Core:** Componentes comunes (Botones RosaFiesta, inputs, tarjetas).
+* **Shared UI Core:** Componentes comunes (Botones AdventistPortal, inputs, tarjetas).
 * **Client Portal:** Visualización de moodboards y seguimiento del evento.
 * **Admin Dashboard:** Gestión de inventario con escaneo de QR y reportes financieros.
 
@@ -59,7 +59,7 @@
 
 ### Fase 2: Lógica Multiplataforma
 * Setup de proyecto Compose Multiplatform.
-* Implementación de Temas (Material 3) con la paleta de RosaFiesta.
+* Implementación de Temas (Material 3) con la paleta de AdventistPortal.
 
 ### Fase 3: Integración de IA
 * Conexión con el SDK de Google AI.

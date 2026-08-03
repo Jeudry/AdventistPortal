@@ -1,10 +1,10 @@
 plugins {
-    id("rosafiesta.infra")
-    id("rosafiesta.spring-boot-service")
+    id("adventistportal.infra")
+    id("adventistportal.spring-boot-service")
     kotlin("plugin.spring")
 }
 
-group = "com.rosafiesta.notification"
+group = "com.adventistportal.notification"
 version = "0.0.1-SNAPSHOT"
 
 base {

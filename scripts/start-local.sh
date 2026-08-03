@@ -6,7 +6,7 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-echo -e "${GREEN}🚀 Starting RosaFiesta Local Development Environment${NC}"
+echo -e "${GREEN}🚀 Starting AdventistPortal Local Development Environment${NC}"
 echo ""
 
 # Check if Docker is running
@@ -36,7 +36,7 @@ sleep 5
 
 # Check PostgreSQL
 echo -e "${YELLOW}🔍 Checking PostgreSQL...${NC}"
-until docker exec rosafiesta-postgres pg_isready -U postgres -d rosafiesta > /dev/null 2>&1; do
+until docker exec adventistportal-postgres pg_isready -U postgres -d adventistportal > /dev/null 2>&1; do
     echo -e "${YELLOW}   Waiting for PostgreSQL...${NC}"
     sleep 2
 done
@@ -44,7 +44,7 @@ echo -e "${GREEN}   ✓ PostgreSQL is ready${NC}"
 
 # Check Redis
 echo -e "${YELLOW}🔍 Checking Redis...${NC}"
-until docker exec rosafiesta-redis redis-cli -a rosafiesta_redis_password ping > /dev/null 2>&1; do
+until docker exec adventistportal-redis redis-cli -a adventistportal_redis_password ping > /dev/null 2>&1; do
     echo -e "${YELLOW}   Waiting for Redis...${NC}"
     sleep 2
 done
@@ -52,7 +52,7 @@ echo -e "${GREEN}   ✓ Redis is ready${NC}"
 
 # Check RabbitMQ
 echo -e "${YELLOW}🔍 Checking RabbitMQ...${NC}"
-until docker exec rosafiesta-rabbitmq rabbitmq-diagnostics -q ping > /dev/null 2>&1; do
+until docker exec adventistportal-rabbitmq rabbitmq-diagnostics -q ping > /dev/null 2>&1; do
     echo -e "${YELLOW}   Waiting for RabbitMQ...${NC}"
     sleep 2
 done
@@ -69,9 +69,9 @@ echo -e "   RabbitMQ UI: http://localhost:15672"
 echo ""
 if [ "$USE_ORB" = true ]; then
     echo -e "${BLUE}🔮 Orb Stack Domains (also accessible):${NC}"
-    echo -e "   postgres.rosafiesta.orb.local"
-    echo -e "   redis.rosafiesta.orb.local"
-    echo -e "   rabbitmq.rosafiesta.orb.local"
+    echo -e "   postgres.adventistportal.orb.local"
+    echo -e "   redis.adventistportal.orb.local"
+    echo -e "   rabbitmq.adventistportal.orb.local"
     echo ""
 fi
 echo -e "${YELLOW}🎯 To run the application:${NC}"
@@ -82,7 +82,7 @@ echo -e "   Option 2 - Using Gradle:"
 echo -e "      ./gradlew :app:bootRun --args='--spring.profiles.active=orb'"
 echo ""
 echo -e "   Option 3 - From IntelliJ:"
-echo -e "      Run Configuration: 'RosaFiestaApi [ORB]'"
+echo -e "      Run Configuration: 'AdventistPortalApi [ORB]'"
 echo ""
 echo -e "${YELLOW}📋 View logs:${NC}"
 echo -e "   docker-compose -f $COMPOSE_FILE logs -f"

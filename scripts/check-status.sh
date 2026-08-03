@@ -7,7 +7,7 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-echo -e "${BLUE}🔍 RosaFiesta Services Status Check${NC}"
+echo -e "${BLUE}🔍 AdventistPortal Services Status Check${NC}"
 echo ""
 
 # Check if Docker is running
@@ -24,8 +24,8 @@ echo -e "${YELLOW}📊 Docker Services Status:${NC}"
 echo ""
 
 # PostgreSQL
-if docker ps | grep -q "rosafiesta-postgres"; then
-    if docker exec rosafiesta-postgres pg_isready -U postgres -d rosafiesta > /dev/null 2>&1; then
+if docker ps | grep -q "adventistportal-postgres"; then
+    if docker exec adventistportal-postgres pg_isready -U postgres -d adventistportal > /dev/null 2>&1; then
         echo -e "${GREEN}  ✅ PostgreSQL: Running (192.168.97.2:5432)${NC}"
     else
         echo -e "${YELLOW}  ⚠️  PostgreSQL: Container running but not ready${NC}"
@@ -35,8 +35,8 @@ else
 fi
 
 # Redis
-if docker ps | grep -q "rosafiesta-redis"; then
-    if docker exec rosafiesta-redis redis-cli -a rosafiesta_redis_password ping 2>/dev/null | grep -q "PONG"; then
+if docker ps | grep -q "adventistportal-redis"; then
+    if docker exec adventistportal-redis redis-cli -a adventistportal_redis_password ping 2>/dev/null | grep -q "PONG"; then
         echo -e "${GREEN}  ✅ Redis: Running (localhost:6379)${NC}"
     else
         echo -e "${YELLOW}  ⚠️  Redis: Container running but not ready${NC}"
@@ -46,8 +46,8 @@ else
 fi
 
 # RabbitMQ
-if docker ps | grep -q "rosafiesta-rabbitmq"; then
-    if docker exec rosafiesta-rabbitmq rabbitmq-diagnostics -q ping > /dev/null 2>&1; then
+if docker ps | grep -q "adventistportal-rabbitmq"; then
+    if docker exec adventistportal-rabbitmq rabbitmq-diagnostics -q ping > /dev/null 2>&1; then
         echo -e "${GREEN}  ✅ RabbitMQ: Running (localhost:5672)${NC}"
         echo -e "${GREEN}     └─ Management UI: http://localhost:15672${NC}"
     else
@@ -70,7 +70,7 @@ echo ""
 
 # Show docker-compose status
 echo -e "${YELLOW}📋 Detailed Container Status:${NC}"
-docker-compose -f docker-compose.orb.yml ps 2>/dev/null || docker ps --format "table {{.Names}}\t{{.Status}}" | grep rosafiesta
+docker-compose -f docker-compose.orb.yml ps 2>/dev/null || docker ps --format "table {{.Names}}\t{{.Status}}" | grep adventistportal
 
 echo ""
 echo -e "${BLUE}💡 Quick Commands:${NC}"

@@ -74,5 +74,8 @@ bin/
 *.ipr
 
 # Excepciones para que gradle-wrapper.properties y gradle-wrapper.jar no sean ignorados
+# (en cualquier subproyecto, p.ej. el cliente KMP)
+!**/gradle/wrapper/gradle-wrapper.properties
+!**/gradle/wrapper/gradle-wrapper.jar
 !gradle/wrapper/gradle-wrapper.properties
 !gradle/wrapper/gradle-wrapper.jar

@@ -1,12 +1,12 @@
 plugins {
-    id("rosafiesta.domain")
+    id("adventistportal.domain")
 }
 
 repositories {
     mavenCentral()
 }
 
-group = "com.rosafiesta.shared"
+group = "com.adventistportal.shared"
 version = "0.0.1-SNAPSHOT"
 
 base {

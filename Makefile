@@ -54,10 +54,10 @@ docker-clean: ## Detiene servicios y elimina volúmenes (BORRA DATOS)
 	@docker-compose down -v
 
 db-shell: ## Abre shell de PostgreSQL
-	@docker exec -it rosafiesta-postgres psql -U rosafiesta_user -d rosafiesta
+	@docker exec -it adventistportal-postgres psql -U adventistportal_user -d adventistportal
 
 redis-shell: ## Abre shell de Redis
-	@docker exec -it rosafiesta-redis redis-cli -a rosafiesta_redis_password
+	@docker exec -it adventistportal-redis redis-cli -a adventistportal_redis_password
 
 docker-ps: ## Muestra el estado de los contenedores
 	@docker-compose ps

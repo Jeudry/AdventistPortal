@@ -3,29 +3,29 @@ version: '3.8'
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: rosafiesta-postgres
+    container_name: adventistportal-postgres
     hostname: postgres
     environment:
-      POSTGRES_DB: rosafiesta
-      POSTGRES_USER: rosafiesta_user
-      POSTGRES_PASSWORD: rosafiesta_password
+      POSTGRES_DB: adventistportal
+      POSTGRES_USER: adventistportal_user
+      POSTGRES_PASSWORD: adventistportal_password
     ports:
       - "127.0.0.1:5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U rosafiesta_user -d rosafiesta"]
+      test: ["CMD-SHELL", "pg_isready -U adventistportal_user -d adventistportal"]
       interval: 10s
       timeout: 5s
       retries: 5
     networks:
-      - rosafiesta-network
+      - adventistportal-network
 
   redis:
     image: redis:7-alpine
-    container_name: rosafiesta-redis
+    container_name: adventistportal-redis
     hostname: redis
-    command: redis-server --requirepass rosafiesta_redis_password
+    command: redis-server --requirepass adventistportal_redis_password
     ports:
       - "127.0.0.1:6379:6379"
     volumes:
@@ -36,16 +36,16 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - rosafiesta-network
+      - adventistportal-network
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
-    container_name: rosafiesta-rabbitmq
+    container_name: adventistportal-rabbitmq
     hostname: rabbitmq
     environment:
-      RABBITMQ_DEFAULT_USER: rosafiesta_user
-      RABBITMQ_DEFAULT_PASS: rosafiesta_password
-      RABBITMQ_DEFAULT_VHOST: rosafiesta
+      RABBITMQ_DEFAULT_USER: adventistportal_user
+      RABBITMQ_DEFAULT_PASS: adventistportal_password
+      RABBITMQ_DEFAULT_VHOST: adventistportal
     ports:
       - "127.0.0.1:5672:5672"   # AMQP protocol
       - "127.0.0.1:15672:15672" # Management UI
@@ -57,7 +57,7 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - rosafiesta-network
+      - adventistportal-network
 
 volumes:
   postgres_data:
@@ -68,5 +68,5 @@ volumes:
     driver: local
 
 networks:
-  rosafiesta-network:
+  adventistportal-network:
     driver: bridge

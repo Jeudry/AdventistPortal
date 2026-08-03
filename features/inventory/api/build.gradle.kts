@@ -1,7 +1,7 @@
 plugins {
-    id("rosafiesta.api")
+    id("adventistportal.api")
 }
-group = "com.rosafiesta.inventory"
+group = "com.adventistportal.inventory"
 version = "0.0.1-SNAPSHOT"
 
 base {

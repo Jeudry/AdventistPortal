@@ -1,5 +1,5 @@
 scalar BigDecimal
-scalar Instant
+scalar DateTime
 scalar UUID
 
 type Query {
@@ -72,7 +72,7 @@ type ArticleSummary {
     id: ID!
     nameTemplate: String!
     descriptionTemplate: String
-    createdAt: Instant
+    createdAt: DateTime
 }
 
 type Discount {
@@ -81,8 +81,8 @@ type Discount {
     description: String
     type: DiscountType!
     value: BigDecimal!
-    startDate: Instant
-    endDate: Instant
+    startDate: DateTime
+    endDate: DateTime
     isActive: Boolean!
     targetCategoryId: ID
     targetArticleId: ID
@@ -137,8 +137,8 @@ input CreateDiscountInput {
     description: String
     type: DiscountType!
     value: BigDecimal!
-    startDate: Instant
-    endDate: Instant
+    startDate: DateTime
+    endDate: DateTime
     targetCategoryId: ID
     targetArticleId: ID
     targetVariantId: UUID

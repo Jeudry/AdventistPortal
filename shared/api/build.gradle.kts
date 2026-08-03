@@ -1,12 +1,12 @@
 plugins {
-    id("rosafiesta.api")
+    id("adventistportal.api")
 }
 repositories {
     mavenCentral()
     maven { url = uri("https://repo.spring.io/milestone") }
     maven { url = uri("https://repo.spring.io/snapshot") }
 }
-group = "com.rosafiesta.shared"
+group = "com.adventistportal.shared"
 version = "0.0.1-SNAPSHOT"
 
 base {

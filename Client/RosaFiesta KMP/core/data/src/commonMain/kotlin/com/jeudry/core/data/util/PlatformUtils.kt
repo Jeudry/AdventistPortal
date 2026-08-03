@@ -1,5 +1,0 @@
-package com.jeudry.core.data.util
-
-expect object PlatformUtils {
-    fun getOSName(): String
-}

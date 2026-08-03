@@ -14,13 +14,13 @@ nginx:
     - "172.17.0.0/16"
     - "10.0.0.5/32"
 
-rosafiesta:
+adventistportal:
   web-socket:
     allowedOrigins:
       - "http://localhost:8080"
-      - "http://rosafiesta.strangled.net"
+      - "http://adventistportal.strangled.net"
   email:
-    url: "https://rosafiesta.com"
+    url: "https://adventistportal.com"
   ip:
     rate-limit:
       apply-limit: true

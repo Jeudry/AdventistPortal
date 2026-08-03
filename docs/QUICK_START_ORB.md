@@ -37,7 +37,7 @@ docker-compose -f docker-compose.orb.yml down
 │  │  ┌────────────────────────────┐     │   │
 │  │  │ PostgreSQL                 │     │   │
 │  │  │ 192.168.97.2:5432         │     │   │
-│  │  │ DB: rosafiesta            │     │   │
+│  │  │ DB: adventistportal            │     │   │
 │  │  └────────────────────────────┘     │   │
 │  │                                      │   │
 │  │  ┌────────────────────────────┐     │   │
@@ -59,7 +59,7 @@ docker-compose -f docker-compose.orb.yml down
 1. ✅ **Orb Stack installed and running**
 2. ✅ **Docker services started**
    ```bash
-   docker ps | grep rosafiesta
+   docker ps | grep adventistportal
    ```
 3. ✅ **Environment variables configured**
    ```bash
@@ -81,7 +81,7 @@ These services are not necessary for basic local development.
 ```
 Host: 192.168.97.2
 Port: 5432
-Database: rosafiesta
+Database: adventistportal
 User: postgres
 Password: postgres
 ```
@@ -90,16 +90,16 @@ Password: postgres
 ```
 Host: 192.168.97.3
 Port: 6379
-Password: rosafiesta_redis_password
+Password: adventistportal_redis_password
 ```
 
 ### RabbitMQ
 ```
 Host: 192.168.97.4
 Port: 5672
-User: rosafiesta_user
-Password: rosafiesta_password
-Virtual Host: rosafiesta
+User: adventistportal_user
+Password: adventistportal_password
+Virtual Host: adventistportal
 
 Management UI: http://localhost:15672
 ```
@@ -122,7 +122,7 @@ export MAIL_PASSWORD="your-app-password"
 ### Error: "schema does not exist"
 **Solution**: Create schemas manually
 ```bash
-docker exec rosafiesta-postgres psql -U postgres -d rosafiesta -c \
+docker exec adventistportal-postgres psql -U postgres -d adventistportal -c \
   "CREATE SCHEMA IF NOT EXISTS chat_service; \
    CREATE SCHEMA IF NOT EXISTS user_service; \
    CREATE SCHEMA IF NOT EXISTS notification_service;"
@@ -131,9 +131,9 @@ docker exec rosafiesta-postgres psql -U postgres -d rosafiesta -c \
 ### Container IPs changed
 **Solution**: Get new IPs and update `application-orb.yml`
 ```bash
-docker inspect rosafiesta-postgres -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
-docker inspect rosafiesta-redis -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
-docker inspect rosafiesta-rabbitmq -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
+docker inspect adventistportal-postgres -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
+docker inspect adventistportal-redis -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
+docker inspect adventistportal-rabbitmq -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
 ```
 
 ## 📊 Monitoring Commands
@@ -145,9 +145,9 @@ docker-compose -f docker-compose.orb.yml logs -f
 
 ### View specific service logs
 ```bash
-docker logs -f rosafiesta-postgres
-docker logs -f rosafiesta-redis
-docker logs -f rosafiesta-rabbitmq
+docker logs -f adventistportal-postgres
+docker logs -f adventistportal-redis
+docker logs -f adventistportal-rabbitmq
 ```
 
 ### Check health status
@@ -157,22 +157,22 @@ docker-compose -f docker-compose.orb.yml ps
 
 ### Connect to PostgreSQL
 ```bash
-docker exec -it rosafiesta-postgres psql -U postgres -d rosafiesta
+docker exec -it adventistportal-postgres psql -U postgres -d adventistportal
 ```
 
 ### Connect to Redis
 ```bash
-docker exec -it rosafiesta-redis redis-cli -a rosafiesta_redis_password
+docker exec -it adventistportal-redis redis-cli -a adventistportal_redis_password
 ```
 
 ## 🎯 IntelliJ IDEA
 
 ### Available Configurations
-- **RosaFiestaApi [ORB]**: Runs the application with ORB profile
+- **AdventistPortalApi [ORB]**: Runs the application with ORB profile
 - **Docker: Start Local Services (Orb Stack)**: Starts Docker services
 
 ### Run with Debug
-1. Select `RosaFiestaApi [ORB]`
+1. Select `AdventistPortalApi [ORB]`
 2. Click the debug icon (🐛)
 3. Place breakpoints where needed
 

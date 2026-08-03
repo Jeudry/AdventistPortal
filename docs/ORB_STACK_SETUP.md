@@ -1,8 +1,8 @@
-# RosaFiesta API - Orb Stack Setup (Local Development)
+# AdventistPortal API - Orb Stack Setup (Local Development)
 
 ## 🎯 Overview
 
-This setup allows you to run RosaFiesta API locally using **Orb Stack** with Docker services instead of cloud services (Supabase, Redis Cloud, CloudAMQP).
+This setup allows you to run AdventistPortal API locally using **Orb Stack** with Docker services instead of cloud services (Supabase, Redis Cloud, CloudAMQP).
 
 ## 📦 Local Services
 
@@ -11,7 +11,7 @@ The following services run in Docker containers:
 ### PostgreSQL
 - **Host**: `192.168.97.2`
 - **Puerto**: `5432`
-- **Base de datos**: `rosafiesta`
+- **Base de datos**: `adventistportal`
 - **Usuario**: `postgres`
 - **Contraseña**: `postgres`
 - **Schemas**: `public`, `chat_service`, `user_service`, `notification_service`
@@ -19,15 +19,15 @@ The following services run in Docker containers:
 ### Redis
 - **Host**: `192.168.97.3`
 - **Puerto**: `6379`
-- **Contraseña**: `rosafiesta_redis_password`
+- **Contraseña**: `adventistportal_redis_password`
 
 ### RabbitMQ
 - **Host**: `192.168.97.4`
 - **Puerto**: `5672`
 - **Management UI**: `http://localhost:15672`
-- **Usuario**: `rosafiesta_user`
-- **Contraseña**: `rosafiesta_password`
-- **Virtual Host**: `rosafiesta`
+- **Usuario**: `adventistportal_user`
+- **Contraseña**: `adventistportal_password`
+- **Virtual Host**: `adventistportal`
 
 ## 🚀 Quick Start
 
@@ -51,7 +51,7 @@ This script:
 ```
 
 **Option B - From IntelliJ:**
-1. Select configuration: `RosaFiestaApi [ORB]`
+1. Select configuration: `AdventistPortalApi [ORB]`
 2. Click `Run` or `Debug`
 
 ## 📝 Important Files
@@ -70,7 +70,7 @@ This script:
 - **`start-local.sh`**: Starts services (auto-detects Orb/Docker)
 
 ### Run Configurations (IntelliJ)
-- **`.run/RosaFiestaApi [ORB].run.xml`**: Run configuration for IntelliJ
+- **`.run/AdventistPortalApi [ORB].run.xml`**: Run configuration for IntelliJ
 - **`.run/Docker_ Start Local Services (Orb Stack).run.xml`**: Starts Docker services from IntelliJ
 
 ## 🔧 Orb Stack Special Configuration
@@ -82,9 +82,9 @@ Orb Stack has a special proxy for `localhost` that can cause authentication issu
 If containers are recreated and IPs change, use:
 
 ```bash
-docker inspect rosafiesta-postgres -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
-docker inspect rosafiesta-redis -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
-docker inspect rosafiesta-rabbitmq -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
+docker inspect adventistportal-postgres -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
+docker inspect adventistportal-redis -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
+docker inspect adventistportal-rabbitmq -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
 ```
 
 Then update the IPs in `application-orb.yml`.
@@ -97,9 +97,9 @@ Then update the IPs in `application-orb.yml`.
 docker-compose -f docker-compose.orb.yml logs
 
 # View logs for specific service
-docker logs rosafiesta-postgres
-docker logs rosafiesta-redis
-docker logs rosafiesta-rabbitmq
+docker logs adventistportal-postgres
+docker logs adventistportal-redis
+docker logs adventistportal-rabbitmq
 ```
 
 ### Postgres authentication error
@@ -110,7 +110,7 @@ docker logs rosafiesta-rabbitmq
 
 ### Missing schemas error
 ```bash
-docker exec rosafiesta-postgres psql -U postgres -d rosafiesta -c "CREATE SCHEMA IF NOT EXISTS chat_service; CREATE SCHEMA IF NOT EXISTS user_service; CREATE SCHEMA IF NOT EXISTS notification_service;"
+docker exec adventistportal-postgres psql -U postgres -d adventistportal -c "CREATE SCHEMA IF NOT EXISTS chat_service; CREATE SCHEMA IF NOT EXISTS user_service; CREATE SCHEMA IF NOT EXISTS notification_service;"
 ```
 
 ### Verify connectivity
@@ -143,8 +143,8 @@ docker-compose -f docker-compose.orb.yml ps
 ### Access RabbitMQ Management UI
 ```bash
 open http://localhost:15672
-# User: rosafiesta_user
-# Password: rosafiesta_password
+# User: adventistportal_user
+# Password: adventistportal_password
 ```
 
 ## ⚙️ Required Environment Variables
@@ -185,7 +185,7 @@ export MAIL_PASSWORD="tu-app-password"
 
 - [ ] Orb Stack installed and running
 - [ ] Docker compose executed: `./reset-and-start-orb.sh`
-- [ ] Services verified: `docker ps | grep rosafiesta`
+- [ ] Services verified: `docker ps | grep adventistportal`
 - [ ] Schemas created in PostgreSQL
 - [ ] Environment variables configured
 - [ ] Application running: `./run-orb-app.sh`

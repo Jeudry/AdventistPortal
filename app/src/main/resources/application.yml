@@ -37,6 +37,11 @@ spring:
       repositories:
         enabled: false
 
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    default-schema: public
+
   jpa:
     hibernate:
       ddl-auto: validate
@@ -88,7 +93,7 @@ jwt:
   secret: ${JWT_SECRET_BASE64}
   expiration-minutes: 60
 
-rosafiesta:
+adventistportal:
   email:
     from: ${MAIL_FROM_EMAIL}
     verification:
@@ -110,7 +115,7 @@ supabase:
   service-key: ${SUPABASE_SERVICE_KEY}
   
 firebase:
-  credentials-path: "classpath:firebase-credentials/rosafiesta-firebase-adminsdk.json"
+  credentials-path: "classpath:firebase-credentials/adventistportal-firebase-adminsdk.json"
   
 server:
   port: 8080

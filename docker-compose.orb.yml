@@ -8,10 +8,10 @@ version: '3.8'
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: rosafiesta-postgres
+    container_name: adventistportal-postgres
     hostname: postgres
     environment:
-      POSTGRES_DB: rosafiesta
+      POSTGRES_DB: adventistportal
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
@@ -24,20 +24,20 @@ services:
       -c max_connections=100
       -c shared_buffers=128MB
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d rosafiesta"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d adventistportal"]
       interval: 10s
       timeout: 5s
       retries: 5
     networks:
-      - rosafiesta-network
+      - adventistportal-network
     labels:
-      - "com.orbstack.domains=postgres.rosafiesta.local"
+      - "com.orbstack.domains=postgres.adventistportal.local"
 
   redis:
     image: redis:7-alpine
-    container_name: rosafiesta-redis
+    container_name: adventistportal-redis
     hostname: redis
-    command: redis-server --requirepass rosafiesta_redis_password
+    command: redis-server --requirepass adventistportal_redis_password
     ports:
       - "127.0.0.1:6379:6379"
     volumes:
@@ -48,18 +48,18 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - rosafiesta-network
+      - adventistportal-network
     labels:
-      - "com.orbstack.domains=redis.rosafiesta.local"
+      - "com.orbstack.domains=redis.adventistportal.local"
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
-    container_name: rosafiesta-rabbitmq
+    container_name: adventistportal-rabbitmq
     hostname: rabbitmq
     environment:
-      RABBITMQ_DEFAULT_USER: rosafiesta_user
-      RABBITMQ_DEFAULT_PASS: rosafiesta_password
-      RABBITMQ_DEFAULT_VHOST: rosafiesta
+      RABBITMQ_DEFAULT_USER: adventistportal_user
+      RABBITMQ_DEFAULT_PASS: adventistportal_password
+      RABBITMQ_DEFAULT_VHOST: adventistportal
     ports:
       - "127.0.0.1:5672:5672"   # AMQP protocol
       - "127.0.0.1:15672:15672" # Management UI
@@ -71,9 +71,9 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - rosafiesta-network
+      - adventistportal-network
     labels:
-      - "com.orbstack.domains=rabbitmq.rosafiesta.local"
+      - "com.orbstack.domains=rabbitmq.adventistportal.local"
 
 volumes:
   postgres_data:
@@ -84,5 +84,5 @@ volumes:
     driver: local
 
 networks:
-  rosafiesta-network:
+  adventistportal-network:
     driver: bridge
