@@ -96,7 +96,7 @@ fi
 # Test 10: Check if required ports are free (optional)
 echo -n "10. Checking ports... "
 PORTS_IN_USE=0
-for port in 5432 6379 5672 15672 8080; do
+for port in 5432 6379 5673 15673 8081; do
     if lsof -i :$port &> /dev/null; then
         PORTS_IN_USE=$((PORTS_IN_USE + 1))
     fi

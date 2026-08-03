@@ -90,11 +90,11 @@ jwt:
 adventistportal:
   web-socket:
     allowedOrigins:
-      - "http://localhost:8080"
-      - "ws://localhost:8080"
+      - "http://localhost:8081"
+      - "ws://localhost:8081"
   email:
     from: ${MAIL_FROM_EMAIL:noreply@adventistportal.local}
-    url: "http://localhost:8080"
+    url: "http://localhost:8081"
     verification:
       expiry-hours: 24
     reset-password:
@@ -121,7 +121,7 @@ firebase:
   credentials-path: "classpath:firebase-credentials/adventistportal-firebase-adminsdk.json"
 
 server:
-  port: 8080
+  port: 8081
 
 logging:
   level:

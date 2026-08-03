@@ -61,8 +61,8 @@ services:
       RABBITMQ_DEFAULT_PASS: adventistportal_password
       RABBITMQ_DEFAULT_VHOST: adventistportal
     ports:
-      - "127.0.0.1:5672:5672"   # AMQP protocol
-      - "127.0.0.1:15672:15672" # Management UI
+      - "127.0.0.1:5673:5672"   # AMQP: 5672 on the host belongs to polux
+      - "127.0.0.1:15673:15672" # Management UI
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     healthcheck:

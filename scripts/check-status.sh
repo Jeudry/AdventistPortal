@@ -60,10 +60,10 @@ fi
 echo ""
 
 # Check if application is running
-if lsof -i :8080 > /dev/null 2>&1; then
-    echo -e "${GREEN}✅ Application API: Running (http://localhost:8080)${NC}"
+if lsof -i :8081 > /dev/null 2>&1; then
+    echo -e "${GREEN}✅ Application API: Running (http://localhost:8081)${NC}"
 else
-    echo -e "${YELLOW}⚠️  Application API: Not running (port 8080 is free)${NC}"
+    echo -e "${YELLOW}⚠️  Application API: Not running (port 8081 is free)${NC}"
 fi
 
 echo ""
