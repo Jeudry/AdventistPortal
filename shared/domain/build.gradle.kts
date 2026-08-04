@@ -1,26 +1,16 @@
 plugins {
-    id("adventistportal.domain")
-}
-
-repositories {
-    mavenCentral()
-}
-
-group = "com.adventistportal.shared"
-version = "0.0.1-SNAPSHOT"
-
-base {
-    archivesName.set("shared-domain")
-}
-
-dependencies {
-    testImplementation(kotlin("test"))
-}
-
-tasks.test {
-    useJUnitPlatform()
+    kotlin("multiplatform")
 }
 
 kotlin {
+    jvm()
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+
     jvmToolchain(21)
+}
+
+base {
+    archivesName.set("shared-domain")
 }

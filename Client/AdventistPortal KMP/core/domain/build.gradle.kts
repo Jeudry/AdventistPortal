@@ -12,6 +12,9 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.kotlin.stdlib)
+                // Types the backend and the app both need. Resolved from ../../shared by the
+                // composite build; the version applies only if that include is ever removed.
+                api("com.adventistportal.shared:domain:1.0.0")
                 implementation(libs.kotlinx.coroutines.core)
                 // Add KMP dependencies here
             }

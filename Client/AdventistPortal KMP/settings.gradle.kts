@@ -16,6 +16,10 @@ pluginManagement {
     }
 }
 
+// The backend shares its multiplatform types from ../../shared. Composite build, so the
+// versioned declarations in the modules resolve from source rather than from a repository.
+includeBuild("../../shared")
+
 dependencyResolutionManagement {
     repositories {
         google {

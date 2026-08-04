@@ -11,7 +11,7 @@ dependencies {
     api(projects.features.inventory.domain)
     api(projects.features.inventory.service)
     implementation(projects.features.inventory.infra)
-    implementation(projects.shared.api)
+    implementation("com.adventistportal.shared:service:1.0.0")
     implementation(projects.core.service)
     implementation(projects.core.api)
     implementation(libs.spring.boot.starter.web)

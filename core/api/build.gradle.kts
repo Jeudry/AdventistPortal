@@ -18,7 +18,7 @@ repositories {
 
 dependencies {
     implementation(projects.core.domain)
-    implementation(projects.shared.api)
+    implementation("com.adventistportal.shared:domain:1.0.0")
     
     implementation(libs.spring.boot.starter.web)
     implementation(libs.spring.boot.starter.security)
