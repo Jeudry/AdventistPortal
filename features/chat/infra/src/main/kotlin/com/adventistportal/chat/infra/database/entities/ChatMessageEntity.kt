@@ -42,5 +42,6 @@ class ChatMessageEntity(
     )
     var sender: ChatParticipantEntity? = null,
     @CreationTimestamp
+    @Column(nullable = false)
     var createdAt: Instant = Instant.now(),
 )

@@ -40,6 +40,7 @@ class ChatEntity(
     )
     var participants: Set<ChatParticipantEntity> = emptySet(),
     @CreationTimestamp
+    @Column(nullable = false)
     var createdAt: Instant = Instant.now()
 ) {
 

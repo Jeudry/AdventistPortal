@@ -29,6 +29,7 @@ class EmailVerificationTokenEntity(
     @Column
     var usedAt: Instant? = null,
     @CreationTimestamp
+    @Column(nullable = false)
     var createdAt: Instant = Instant.now(),
 ){
     val isUsed: Boolean

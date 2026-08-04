@@ -24,5 +24,6 @@ class ChatParticipantEntity(
     @Column(nullable = true, columnDefinition = "TEXT")
     var profilePictureUrl: String? = null,
     @CreationTimestamp
+    @Column(nullable = false)
     var createdAt: Instant = Instant.now()
 )

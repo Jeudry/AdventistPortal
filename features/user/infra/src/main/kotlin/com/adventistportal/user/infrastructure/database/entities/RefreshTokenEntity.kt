@@ -29,7 +29,9 @@ class RefreshTokenEntity(
     @Column(nullable = false)
     val hashedToken: String,
     @CreationTimestamp
+    @Column(nullable = false)
     var createdAt: Instant = Instant.now(),
     @UpdateTimestamp
+    @Column(nullable = false)
     var updatedAt: Instant = Instant.now(),
 )

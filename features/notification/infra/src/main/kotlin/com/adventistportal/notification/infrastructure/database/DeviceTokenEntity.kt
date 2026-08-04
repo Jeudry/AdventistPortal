@@ -27,6 +27,7 @@ class DeviceTokenEntity (
   @Column(nullable = false)
   var platform: PlatformEntity,
   @CreationTimestamp
+  @Column(nullable = false)
   var createdAt: Instant = Instant.now(),
 ) {
     constructor() : this(0, UUID.randomUUID(), "", PlatformEntity.ANDROID, Instant.now())

@@ -38,8 +38,10 @@ class UserEntity(
     @Column(nullable = false)
     var lastName: String = "",
     @CreationTimestamp
+    @Column(nullable = false)
     var createdAt: Instant = Instant.now(),
     @UpdateTimestamp
+    @Column(nullable = false)
     var updatedAt: Instant = Instant.now(),
     @Column(nullable = true)
     var profilePictureUrl: String? = null,
