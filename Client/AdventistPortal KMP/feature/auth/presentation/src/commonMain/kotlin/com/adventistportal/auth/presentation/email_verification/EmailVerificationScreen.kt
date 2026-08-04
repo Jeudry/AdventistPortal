@@ -37,15 +37,23 @@ import com.adventistportal.core.designsystem.theme.AdventistPortalTheme
 import com.adventistportal.core.designsystem.theme.extended
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import com.adventistportal.core.presentation.util.ObserveAsEvents
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun EmailVerificationRoot(
     viewModel: EmailVerificationViewModel = koinViewModel(),
+    onVerified: (String) -> Unit,
     onLoginClick: () -> Unit,
     onCloseClick: () -> Unit,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+
+    ObserveAsEvents(viewModel.events) { event ->
+        when (event) {
+            is EmailVerificationEvent.Verified -> onVerified(event.token)
+        }
+    }
 
     EmailVerificationScreen(
         state = state,

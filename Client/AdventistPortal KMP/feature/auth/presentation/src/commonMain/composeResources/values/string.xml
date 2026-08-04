@@ -46,4 +46,10 @@
     <string name="reset_password_successfully">
         Your password has successfully been changed. You can now log in with your new password.
     </string>
+    <string name="complete_your_profile">Complete your profile</string>
+    <string name="first_name">First name</string>
+    <string name="first_name_placeholder">Jeudry</string>
+    <string name="last_name">Last name</string>
+    <string name="last_name_placeholder">Pena</string>
+    <string name="finish_registration">Finish registration</string>
 </resources>

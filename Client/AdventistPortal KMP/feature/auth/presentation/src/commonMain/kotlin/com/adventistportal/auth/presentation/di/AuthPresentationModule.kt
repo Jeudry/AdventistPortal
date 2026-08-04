@@ -1,5 +1,6 @@
 package com.adventistportal.auth.presentation.di
 
+import com.adventistportal.auth.presentation.complete_registration.CompleteRegistrationViewModel
 import com.adventistportal.auth.presentation.email_verification.EmailVerificationViewModel
 import com.adventistportal.auth.presentation.forgot_password.ForgotPasswordViewModel
 import com.adventistportal.auth.presentation.login.LoginViewModel
@@ -13,6 +14,7 @@ val authPresentationModule = module {
     viewModelOf(::RegisterViewModel)
     viewModelOf(::RegisterSuccessViewModel)
     viewModelOf(::EmailVerificationViewModel)
+    viewModelOf(::CompleteRegistrationViewModel)
     viewModelOf(::LoginViewModel)
     viewModelOf(::ForgotPasswordViewModel)
     viewModelOf(::ResetPasswordViewModel)

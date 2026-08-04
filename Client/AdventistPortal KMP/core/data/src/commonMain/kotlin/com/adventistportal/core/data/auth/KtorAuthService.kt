@@ -5,6 +5,7 @@ import com.adventistportal.core.data.dto.requests.ChangePasswordRequest
 import com.adventistportal.core.data.dto.requests.EmailRequest
 import com.adventistportal.core.data.dto.requests.LoginRequest
 import com.adventistportal.core.data.dto.requests.RefreshRequest
+import com.adventistportal.core.data.dto.requests.CompleteRegistrationRequest
 import com.adventistportal.core.data.dto.requests.RegisterRequest
 import com.adventistportal.core.data.dto.requests.ResetPasswordRequest
 import com.adventistportal.core.data.mappers.toDomain
@@ -67,6 +68,21 @@ class KtorAuthService(
         return httpClient.get(
             route = "/auth/verify",
             queryParams = mapOf("token" to token)
+        )
+    }
+
+    override suspend fun completeRegistration(
+        token: String,
+        firstName: String,
+        lastName: String
+    ): EmptyResult<DataError.Remote> {
+        return httpClient.post(
+            route = "/auth/complete-registration",
+            body = CompleteRegistrationRequest(
+                token = token,
+                firstName = firstName,
+                lastName = lastName
+            )
         )
     }
 

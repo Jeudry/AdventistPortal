@@ -6,7 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.adventistportal.core.domain.auth.AuthService
 import com.adventistportal.core.domain.util.onFailure
 import com.adventistportal.core.domain.util.onSuccess
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
@@ -17,6 +19,9 @@ class EmailVerificationViewModel(
     private val authService: AuthService,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
+    private val eventChannel = Channel<EmailVerificationEvent>()
+    val events = eventChannel.receiveAsFlow()
 
     private var hasLoadedInitialData = false
 
@@ -52,6 +57,7 @@ class EmailVerificationViewModel(
                         isVerifying = false,
                         isVerified = true
                     ) }
+                    token?.let { eventChannel.send(EmailVerificationEvent.Verified(it)) }
                 }
                 .onFailure { _ ->
                     _state.update { it.copy(

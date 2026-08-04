@@ -5,6 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navDeepLink
 import androidx.navigation.navigation
+import com.adventistportal.auth.presentation.complete_registration.CompleteRegistrationRoot
 import com.adventistportal.auth.presentation.email_verification.EmailVerificationRoot
 import com.adventistportal.auth.presentation.forgot_password.ForgotPasswordRoot
 import com.adventistportal.auth.presentation.login.LoginRoot
@@ -72,6 +73,13 @@ fun NavGraphBuilder.authGraph(
             )
         ) {
             EmailVerificationRoot(
+                onVerified = { token ->
+                    navController.navigate(AuthGraphRoutes.CompleteRegistration(token)) {
+                        popUpTo<AuthGraphRoutes.EmailVerification> {
+                            inclusive = true
+                        }
+                    }
+                },
                 onLoginClick = {
                     navController.navigate(AuthGraphRoutes.Login) {
                         popUpTo<AuthGraphRoutes.EmailVerification> {
@@ -102,6 +110,17 @@ fun NavGraphBuilder.authGraph(
             )
         ) {
             ResetPasswordRoot()
+        }
+        composable<AuthGraphRoutes.CompleteRegistration> {
+            CompleteRegistrationRoot(
+                onRegistrationComplete = {
+                    navController.navigate(AuthGraphRoutes.Login) {
+                        popUpTo<AuthGraphRoutes.CompleteRegistration> {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
         }
     }
 }
