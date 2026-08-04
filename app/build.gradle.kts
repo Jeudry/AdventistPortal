@@ -49,11 +49,6 @@ dependencies {
   implementation(projects.features.inventory.infra)
   implementation(projects.features.inventory.service)
   implementation(projects.features.inventory.api)
-  // Quotes
-  implementation(projects.features.quotes.domain)
-  implementation(projects.features.quotes.infra)
-  implementation(projects.features.quotes.service)
-  implementation(projects.features.quotes.api)
   
   implementation(libs.spring.boot.starter.data.redis)
   implementation(libs.spring.boot.starter.amqp)
