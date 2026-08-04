@@ -33,10 +33,9 @@ class UserEntity(
     var hashedPassword: String,
     @Column(nullable = false)
     var hasVerifiedEmail: Boolean = false,
-    @Column(nullable = false)
-    var firstName: String = "",
-    @Column(nullable = false)
-    var lastName: String = "",
+    /** Not collected at registration; filled in later from the profile. */
+    var firstName: String? = null,
+    var lastName: String? = null,
     @CreationTimestamp
     @Column(nullable = false)
     var createdAt: Instant = Instant.now(),

@@ -18,9 +18,9 @@ class ChatParticipantEntity(
     @Id
     var userId: UserId? = null,
     @Column(nullable = false, unique = true)
-    var username: String = "",
+    var username: String,
     @Column(nullable = false, unique = true)
-    var email: String = "",
+    var email: String,
     @Column(nullable = true, columnDefinition = "TEXT")
     var profilePictureUrl: String? = null,
     @CreationTimestamp

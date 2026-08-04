@@ -23,7 +23,7 @@ class ChatMessageEntity(
     @GeneratedValue(strategy = GenerationType.UUID)
     var id: ChatMessageId? = null,
     @Column(nullable = false, columnDefinition = "TEXT")
-    var content: String = "",
+    var content: String,
     @Column(name = "chat_id", nullable = false, updatable = false)
     var chatId: ChatId? = null,
     @ManyToOne(fetch = FetchType.LAZY)

@@ -4,7 +4,7 @@ import jakarta.persistence.Embeddable
 
 @Embeddable
 data class ArticleDimensions(
-    var label: String = "",
+    var label: String,
     var widthCm: Double? = null,
     var heightCm: Double? = null,
     var depthCm: Double? = null,
