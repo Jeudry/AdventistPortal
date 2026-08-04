@@ -18,13 +18,17 @@ master (an `.xml`) out of its own scan.
 
 ## The one rule
 
-> **After any migration JPA Buddy did not generate — written by hand, by an agent, or
-> by the script — regenerate JPA Buddy's snapshot.**
+> **Point JPA Buddy at the database, never at a snapshot file.**
 
-JPA Buddy diffs against `db/snapshot/data-model-snapshot.json`, a file only it updates.
-Everything else diffs against the changelogs. That is two sources of truth, and the
-snapshot is the one that goes stale silently: it once sat five months behind the
-baseline while still being trusted to generate migrations.
+JPA Buddy can diff the model against `db/snapshot/data-model-snapshot.json`, a file only
+it updates. Everything else diffs against the changelogs, so that file is a second
+source of truth — and it is the one that goes stale silently. It once sat five months
+behind the baseline while still being trusted to generate migrations. It is deleted;
+generate with **Source = Model, Target = DB** instead, against a database the changelogs
+built.
+
+That holds as long as nothing edits the database by hand. `gen-migration.sh` is what
+tells you if it did, because it compares against the changelogs rather than the DB.
 
 ## Day to day
 
@@ -104,9 +108,9 @@ The Liquibase image is pinned to the Spring-managed version.
 second throwaway database. It exists, works with Hibernate 7, and is **unusable here**:
 `TableSnapshotGenerator` walks every Hibernate namespace and then stamps each table
 with the container's schema, and `HibernateDatabase.getDefaultSchemaName()` is
-hardcoded to `"HIBERNATE"`. All 17 tables collapse into one synthetic schema, so a diff
-against the real five-schema database is not incomplete — it is wrong. Asking for a
-single schema returns all 17 tables labelled with it. Patchable through Liquibase's
+hardcoded to `"HIBERNATE"`. Every table collapses into one synthetic schema, so a diff
+against a multi-schema database is not incomplete — it is wrong. Asking for a single
+schema returns every table labelled with it. Patchable through Liquibase's
 `replaces()` extension point, but that is half a dozen classes tracking Liquibase
 internals to save one `docker run`.
 
