@@ -10,15 +10,13 @@ class ArticleServiceImpl(
     private val articleRepository: ArticleRepository
 ): ArticleService {
     
-    override fun addArticle(articleParams: ArticleParams): ArticleId {
-        val article = articleParams.toDomain()
+    override fun addArticle(article: Article): ArticleId {
         return articleRepository.save(article).id
     }
 
-    override fun updateArticle(id: ArticleId, articleParams: ArticleParams): ArticleId {
+    override fun updateArticle(id: ArticleId, article: Article): ArticleId {
         val existing = articleRepository.findById(id) ?: throw NoSuchElementException("Article not found")
-        val updated = articleParams.toDomain(id)
-        articleRepository.save(updated)
+        articleRepository.save(article.copy(id = id))
         return id
     }
 

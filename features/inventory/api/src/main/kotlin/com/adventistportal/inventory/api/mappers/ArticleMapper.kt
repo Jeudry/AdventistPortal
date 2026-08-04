@@ -3,6 +3,7 @@ package com.adventistportal.inventory.api.mappers
 import com.adventistportal.inventory.api.dtos.*
 import com.adventistportal.inventory.domain.model.*
 import org.springframework.stereotype.Component
+import java.util.UUID
 
 @Component
 class ArticleMapper {
@@ -43,26 +44,30 @@ class ArticleMapper {
         )
     }
 
-    fun toParams(input: CreateArticleInput): ArticleParams {
-        return ArticleParams(
+    fun toDomain(input: CreateArticleInput): Article {
+        return Article(
+            id = UUID.randomUUID(),
             nameTemplate = input.nameTemplate,
             descriptionTemplate = input.descriptionTemplate,
             categoryId = input.categoryId,
-            variants = input.variants.map { toVariantParams(it) }
+            variants = input.variants.map { toVariant(it) }
         )
     }
 
-    fun toParams(input: UpdateArticleInput): ArticleParams {
-        return ArticleParams(
+    fun toDomain(input: UpdateArticleInput): Article {
+        return Article(
+            id = input.id,
             nameTemplate = input.nameTemplate ?: "",
             descriptionTemplate = input.descriptionTemplate,
+            isActive = input.isActive ?: true,
             categoryId = input.categoryId,
             variants = emptyList()
         )
     }
 
-    private fun toVariantParams(input: CreateArticleVariantInput): ArticleVariantParams {
-        return ArticleVariantParams(
+    private fun toVariant(input: CreateArticleVariantInput): ArticleVariant {
+        return ArticleVariant(
+            id = UUID.randomUUID(),
             sku = input.sku,
             name = input.name,
             description = input.description,
@@ -70,12 +75,12 @@ class ArticleMapper {
             stock = input.stock,
             replacementCost = input.replacementCost,
             attributes = input.attributes,
-            dimensions = input.dimensions.map { toDimensionParams(it) }
+            dimensions = input.dimensions.map { toDimension(it) }
         )
     }
 
-    private fun toDimensionParams(input: ArticleDimensionInput): ArticleDimensionParams {
-        return ArticleDimensionParams(
+    private fun toDimension(input: ArticleDimensionInput): ArticleDimensionDomain {
+        return ArticleDimensionDomain(
             label = input.label,
             widthCm = input.widthCm,
             heightCm = input.heightCm,

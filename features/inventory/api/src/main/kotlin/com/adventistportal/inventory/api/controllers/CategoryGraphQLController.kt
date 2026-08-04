@@ -44,12 +44,12 @@ class CategoryGraphQLController(
 
     @MutationMapping
     fun createCategory(@Argument input: CreateCategoryInput): CategoryId {
-        return categoryService.createCategory(categoryMapper.toParams(input))
+        return categoryService.createCategory(categoryMapper.toDomain(input))
     }
 
     @MutationMapping
     fun updateCategory(@Argument input: UpdateCategoryInput): CategoryId {
-        return categoryService.updateCategory(input.id, categoryMapper.toParams(input))
+        return categoryService.updateCategory(input.id, categoryMapper.toDomain(input))
     }
 
     @MutationMapping

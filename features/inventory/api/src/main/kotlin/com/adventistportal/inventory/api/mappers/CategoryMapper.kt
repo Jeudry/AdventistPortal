@@ -4,7 +4,7 @@ import com.adventistportal.inventory.api.dtos.CategoryDto
 import com.adventistportal.inventory.api.dtos.CreateCategoryInput
 import com.adventistportal.inventory.api.dtos.UpdateCategoryInput
 import com.adventistportal.inventory.domain.model.Category
-import com.adventistportal.inventory.domain.model.CategoryParams
+import java.util.UUID
 import org.springframework.stereotype.Component
 
 @Component
@@ -21,8 +21,9 @@ class CategoryMapper {
         )
     }
 
-    fun toParams(input: CreateCategoryInput): CategoryParams {
-        return CategoryParams(
+    fun toDomain(input: CreateCategoryInput): Category {
+        return Category(
+            id = UUID.randomUUID(),
             name = input.name,
             description = input.description,
             iconName = input.iconName,
@@ -31,8 +32,9 @@ class CategoryMapper {
         )
     }
 
-    fun toParams(input: UpdateCategoryInput): CategoryParams {
-        return CategoryParams(
+    fun toDomain(input: UpdateCategoryInput): Category {
+        return Category(
+            id = input.id,
             name = input.name,
             description = input.description,
             iconName = input.iconName,

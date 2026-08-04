@@ -2,11 +2,10 @@ package com.adventistportal.inventory.service
 
 import com.adventistportal.core.domain.types.CategoryId
 import com.adventistportal.inventory.domain.model.Category
-import com.adventistportal.inventory.domain.model.CategoryParams
 
 interface CategoryService {
-    fun createCategory(params: CategoryParams): CategoryId
-    fun updateCategory(id: CategoryId, params: CategoryParams): CategoryId
+    fun createCategory(category: Category): CategoryId
+    fun updateCategory(id: CategoryId, category: Category): CategoryId
     fun deleteCategory(id: CategoryId)
     fun getCategory(id: CategoryId): Category?
     fun getAllCategories(): List<Category>

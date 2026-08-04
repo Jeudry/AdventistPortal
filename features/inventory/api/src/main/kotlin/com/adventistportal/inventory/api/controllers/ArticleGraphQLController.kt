@@ -42,12 +42,12 @@ class ArticleGraphQLController(
 
     @MutationMapping
     fun createArticle(@Argument input: CreateArticleInput): ArticleId {
-        return articleService.addArticle(articleMapper.toParams(input))
+        return articleService.addArticle(articleMapper.toDomain(input))
     }
 
     @MutationMapping
     fun updateArticle(@Argument input: UpdateArticleInput): ArticleId {
-        return articleService.updateArticle(input.id, articleMapper.toParams(input))
+        return articleService.updateArticle(input.id, articleMapper.toDomain(input))
     }
 
     @MutationMapping
