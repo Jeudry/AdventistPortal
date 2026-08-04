@@ -21,20 +21,20 @@
 #
 set -euo pipefail
 
-DB_HOST="${DB_HOST:-localhost}"
+DB_HOST="${DB_HOST:-postgres.adventistportal.orb.local}"
 DB_PORT="${DB_PORT:-5432}"
 DB_NAME="${DB_NAME:-adventistportal}"
-DB_USER="${DB_USER:-adventistportal_user}"
-DB_PASS="${DB_PASS:-adventistportal_password}"
+DB_USER="${DB_USER:-postgres}"
+DB_PASS="${DB_PASS:-postgres}"
 
 PG_IMAGE="postgres:16-alpine"
-SCHEMAS="user_service, inventory_service, chat_service, notification_service, quote_service"
+SCHEMAS="user_service, inventory_service, chat_service, notification_service"
 
 log() { printf '\033[1;36m[db-reset]\033[0m %s\n' "$*"; }
 die() { printf '\033[1;31m[db-reset]\033[0m %s\n' "$*" >&2; exit 1; }
 
 case "$DB_HOST" in
-  localhost|127.0.0.1) ;;
+  localhost|127.0.0.1|*.orb.local) ;;
   *) die "refusing to run against a non-local host: $DB_HOST" ;;
 esac
 
@@ -49,7 +49,7 @@ fi
 
 log "Dropping the *_service schemas and Liquibase's ledger in $DB_NAME"
 docker run --rm -e PGPASSWORD="$DB_PASS" "$PG_IMAGE" \
-  psql -h host.docker.internal -p "$DB_PORT" -U "$DB_USER" -d "$DB_NAME" -v ON_ERROR_STOP=1 -q \
+  psql -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_NAME" -v ON_ERROR_STOP=1 -q \
   -c "DROP SCHEMA IF EXISTS ${SCHEMAS} CASCADE;" \
   -c "DROP TABLE IF EXISTS public.databasechangelog, public.databasechangeloglock;"
 
