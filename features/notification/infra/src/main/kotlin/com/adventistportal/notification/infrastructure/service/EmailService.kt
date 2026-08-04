@@ -1,6 +1,7 @@
 package com.adventistportal.notification.infrastructure.service
 
 import com.adventistportal.core.domain.types.UserId
+import java.util.UUID
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.mail.javamail.JavaMailSender
@@ -24,10 +25,10 @@ class EmailService(
     fun sendVerificationEmail(
         email: String,
         username: String,
-        userId: UserId,
+        registrationId: UUID,
         token: String
     ){
-        logger.info("Sending verification email for user: $userId")
+        logger.info("Sending verification email for registration: $registrationId")
 
         val verificationUrl = UriComponentsBuilder
             .fromUriString("$baseUrl/api/auth/verify")
@@ -49,11 +50,11 @@ class EmailService(
     fun sendPasswordResetEmail(
         email: String,
         username: String,
-        userId: UserId,
+        registrationId: UUID,
         token: String,
         expiresInMinutes: Duration
     ){
-        logger.info("Sending password reset email for user: $userId")
+        logger.info("Sending password reset email for user: $registrationId")
 
         val resetPasswordUrl = UriComponentsBuilder
             .fromUriString("$baseUrl/api/auth/reset-password")

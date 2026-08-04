@@ -15,11 +15,11 @@ class NotificationUserEventListener(private val emailService: EmailService) {
     @Transactional
     fun handleUserEvent(event: UserEvent){
         when(event){
-            is UserEvent.Created -> {
+            is UserEvent.RegistrationStarted -> {
                 emailService.sendVerificationEmail(
                     event.email,
                     event.username,
-                    event.userId,
+                    event.registrationId,
                     event.verificationToken
                 )
             }
@@ -27,7 +27,7 @@ class NotificationUserEventListener(private val emailService: EmailService) {
                 emailService.sendVerificationEmail(
                     event.email,
                     event.username,
-                    event.userId,
+                    event.registrationId,
                     event.verificationToken
                 )
             }

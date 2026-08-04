@@ -4,6 +4,8 @@ import com.adventistportal.core.api.utils.requestUserId
 import com.adventistportal.user.api.config.IpRateLimit
 import com.adventistportal.user.api.dtos.AuthenticatedUserDto
 import com.adventistportal.user.api.dtos.ChangePasswordRequest
+import com.adventistportal.user.api.dtos.CompleteRegistrationRequest
+import com.adventistportal.user.api.dtos.PendingRegistrationDto
 import com.adventistportal.user.api.dtos.EmailRequest
 import com.adventistportal.user.api.dtos.LoginRequest
 import com.adventistportal.user.api.dtos.RefreshTokenRequest
@@ -40,11 +42,27 @@ class AuthController(
     )
     fun register(
       @RequestBody registerRequest: RegisterRequest
-    ): UserDto {
+    ): PendingRegistrationDto {
         return authService.register(
             username = registerRequest.username,
             email = registerRequest.email,
             password = registerRequest.password
+        ).toDto()
+    }
+
+    @PostMapping("/complete-registration")
+    @IpRateLimit(
+        requests = 10,
+        duration = 1L,
+        unit = TimeUnit.HOURS
+    )
+    fun completeRegistration(
+        @Valid @RequestBody request: CompleteRegistrationRequest
+    ): UserDto {
+        return authService.completeRegistration(
+            token = request.token,
+            firstName = request.firstName,
+            lastName = request.lastName
         ).toDto()
     }
 

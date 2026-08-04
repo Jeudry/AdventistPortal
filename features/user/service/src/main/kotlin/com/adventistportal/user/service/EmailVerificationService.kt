@@ -5,9 +5,10 @@ import com.adventistportal.core.domain.events.user.UserEvent
 import com.adventistportal.user.domain.exception.UserNotFoundEx
 import com.adventistportal.user.domain.model.EmailVerificationToken
 import com.adventistportal.user.infrastructure.database.entities.EmailVerificationTokenEntity
+import com.adventistportal.user.infrastructure.database.entities.PendingRegistrationEntity
 import com.adventistportal.user.infrastructure.database.mappers.toModel
 import com.adventistportal.user.infrastructure.database.repositories.EmailVerificationTokenRepository
-import com.adventistportal.user.infrastructure.database.repositories.UserRepository
+import com.adventistportal.user.infrastructure.database.repositories.PendingRegistrationRepository
 import com.adventistportal.core.infrastructure.message_queue.EventPublisher
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.scheduling.annotation.Scheduled
@@ -19,7 +20,7 @@ import java.time.temporal.ChronoUnit
 @Service
 class EmailVerificationService (
     private val emailVerificationTokenRepository: EmailVerificationTokenRepository,
-    private val userRepository: UserRepository,
+    private val pendingRegistrationRepository: PendingRegistrationRepository,
     @param:Value("\${adventistportal.email.verification.expiry-hours}") private val expiryHours: Long,
     private val eventPublisher: EventPublisher
 ){
@@ -27,15 +28,15 @@ class EmailVerificationService (
     @Transactional
     fun resendVerificationEmail(email: String) {
         val token = createVerificationToken(email)
-        if(token.user.hasEmailVerified){
+        if (token.isVerified) {
             return
         }
 
         eventPublisher.publish(
             event = UserEvent.RequestResendVerification(
-                userId = token.user.id,
-                email = token.user.email,
-                username = token.user.username,
+                registrationId = token.registrationId,
+                email = token.email,
+                username = token.username,
                 verificationToken = token.token
             )
         )
@@ -43,50 +44,61 @@ class EmailVerificationService (
 
     @Transactional
     fun createVerificationToken(email: String): EmailVerificationToken {
-        val userEntity = userRepository.findByEmail(email) ?: throw UserNotFoundEx()
+        val registration = pendingRegistrationRepository.findByEmail(email) ?: throw UserNotFoundEx()
 
-        emailVerificationTokenRepository.invalidateActiveTokensForUser(userEntity)
+        emailVerificationTokenRepository.invalidateActiveTokensFor(registration)
 
         val token = EmailVerificationTokenEntity(
             expiresAt = now().plus(expiryHours, ChronoUnit.HOURS),
-            user = userEntity,
+            pendingRegistration = registration,
         )
 
         return emailVerificationTokenRepository.save(token).toModel()
     }
 
-    fun verifyEmail(token: String){
-        val verificationToken = emailVerificationTokenRepository.findByToken(token) ?: throw UserNotFoundEx()
+    /**
+     * Confirms the e-mail only. The token stays valid so it can carry the second step —
+     * the account is not created until the remaining details arrive.
+     */
+    @Transactional
+    fun verifyEmail(token: String) {
+        val verificationToken = requireUsableToken(token)
 
-        if(verificationToken.isUsed){
-            throw InvalidTokenEx("The token has already been used.")
-        }
-
-        if(verificationToken.isExpired){
-            throw InvalidTokenEx("The token has expired.")
-        }
-
-        emailVerificationTokenRepository.save(verificationToken.apply {
-            this.usedAt = now()
-        })
-
-        val user = userRepository.save(
-            verificationToken.user.apply {
-                hasVerifiedEmail = true
-            }
-        ).toModel()
+        val registration = verificationToken.pendingRegistration
+        pendingRegistrationRepository.save(registration.apply { this.verifiedAt = now() })
 
         eventPublisher.publish(
             UserEvent.Verified(
-                userId = verificationToken.user.id!!,
-                email = verificationToken.user.email,
-                username = verificationToken.user.username
+                registrationId = registration.id!!,
+                email = registration.email,
+                username = registration.username
             )
         )
+    }
+
+    fun requireUsableToken(token: String): EmailVerificationTokenEntity {
+        val verificationToken = emailVerificationTokenRepository.findByToken(token)
+            ?: throw UserNotFoundEx()
+
+        if (verificationToken.isUsed) {
+            throw InvalidTokenEx("The token has already been used.")
+        }
+
+        if (verificationToken.isExpired) {
+            throw InvalidTokenEx("The token has expired.")
+        }
+
+        return verificationToken
+    }
+
+    /** The tokens go with the registration they belong to; the account now lives in `users`. */
+    fun discardTokensFor(registration: PendingRegistrationEntity) {
+        emailVerificationTokenRepository.deleteByPendingRegistration(registration)
     }
 
     @Scheduled(cron = "0 0 3 * * *")
     fun cleanupExpiredTokens(){
         emailVerificationTokenRepository.deleteByExpiresAtLessThan(now = now())
+        pendingRegistrationRepository.deleteByExpiresAtLessThan(now = now())
     }
 }

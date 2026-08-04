@@ -14,6 +14,9 @@ import com.adventistportal.user.infrastructure.database.entities.RefreshTokenEnt
 import com.adventistportal.user.infrastructure.database.entities.UserEntity
 import com.adventistportal.user.infrastructure.database.mappers.toModel
 import com.adventistportal.user.infrastructure.database.repositories.RefreshTokenRepository
+import com.adventistportal.user.infrastructure.database.entities.PendingRegistrationEntity
+import com.adventistportal.user.domain.model.PendingRegistration
+import com.adventistportal.user.infrastructure.database.repositories.PendingRegistrationRepository
 import com.adventistportal.user.infrastructure.database.repositories.UserRepository
 import com.adventistportal.core.infrastructure.message_queue.EventPublisher
 import com.adventistportal.user.infrastructure.security.PasswordEncoder
@@ -22,6 +25,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.security.MessageDigest
 import java.time.Instant
+import java.time.temporal.ChronoUnit
 import java.util.Base64
 
 @Service
@@ -31,44 +35,97 @@ class AuthService (
     private val jwtService: JwtService,
     private val refreshTokenRepository: RefreshTokenRepository,
     private val emailVerificationService: EmailVerificationService,
+    private val pendingRegistrationRepository: PendingRegistrationRepository,
     private val eventPublisher: EventPublisher
 ){
-    fun register(username: String, email: String, password: String): User {
+    private val registrationExpiryDays = 7L
+
+    /**
+     * Starts a registration. No user is created yet — the account only reaches `users`
+     * once the e-mail is confirmed and completeRegistration supplies the rest.
+     */
+    @Transactional
+    fun register(username: String, email: String, password: String): PendingRegistration {
         val trimmedEmail = email.trim()
+        val trimmedUsername = username.trim()
 
-        val user = userRepository.findByEmailOrUsername(
-            trimmedEmail,
-            username.trim()
-        )
-
-        if(user != null){
+        if (userRepository.findByEmailOrUsername(trimmedEmail, trimmedUsername) != null) {
             throw UserAlreadyExistsEx()
         }
+
+        pendingRegistrationRepository.findByEmailOrUsername(trimmedEmail, trimmedUsername)
+            ?.let { pendingRegistrationRepository.delete(it) }
 
         val passwordHashed = passwordEncoder.encode(password.trim())
             ?: throw PasswordHashFailedEx()
 
+        val registration = pendingRegistrationRepository.saveAndFlush(
+            PendingRegistrationEntity(
+                email = trimmedEmail,
+                username = trimmedUsername,
+                hashedPassword = passwordHashed,
+                expiresAt = Instant.now().plus(registrationExpiryDays, ChronoUnit.DAYS)
+            )
+        )
+
+        val emailToken = emailVerificationService.createVerificationToken(trimmedEmail)
+
+        eventPublisher.publish(
+            event = UserEvent.RegistrationStarted(
+                registrationId = registration.id!!,
+                email = registration.email,
+                username = registration.username,
+                verificationToken = emailToken.token
+            )
+        )
+
+        return registration.toPendingRegistration()
+    }
+
+    /**
+     * Second step: the e-mail is already confirmed and the remaining details arrive, so
+     * the user can be inserted with every column populated.
+     */
+    @Transactional
+    fun completeRegistration(token: String, firstName: String, lastName: String): User {
+        val verificationToken = emailVerificationService.requireUsableToken(token)
+        val registration = verificationToken.pendingRegistration
+
+        if (!registration.isVerified) {
+            throw EmailNotVerifiedEx()
+        }
+
         val savedUser = userRepository.saveAndFlush(
             UserEntity(
-                email = trimmedEmail,
-                username = username.trim(),
-                hashedPassword = passwordHashed
+                email = registration.email,
+                username = registration.username,
+                hashedPassword = registration.hashedPassword,
+                hasVerifiedEmail = true,
+                firstName = firstName.trim(),
+                lastName = lastName.trim()
             )
         ).toModel()
 
-        val emailToken = emailVerificationService.createVerificationToken(trimmedEmail)
+        emailVerificationService.discardTokensFor(registration)
+        pendingRegistrationRepository.delete(registration)
 
         eventPublisher.publish(
             event = UserEvent.Created(
                 userId = savedUser.id,
                 email = savedUser.email,
-                username = savedUser.username,
-                verificationToken = emailToken.token
+                username = savedUser.username
             )
         )
 
         return savedUser
     }
+
+    private fun PendingRegistrationEntity.toPendingRegistration() = PendingRegistration(
+        id = id!!,
+        email = email,
+        username = username,
+        isVerified = isVerified,
+    )
 
     fun login(email: String, password: String): AuthenticatedUser {
         val user = userRepository.findByEmail(email) ?: throw InvalidCredentialsEx()

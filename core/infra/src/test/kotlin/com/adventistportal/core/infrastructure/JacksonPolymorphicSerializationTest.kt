@@ -42,7 +42,6 @@ class JacksonPolymorphicSerializationTest {
             userId = UUID.randomUUID(),
             email = "test@adventistportal.com",
             username = "tester",
-            verificationToken = "tok-123",
         )
 
         // Serialize with the base type as the root (as the Redis serializer does)
@@ -66,7 +65,7 @@ class JacksonPolymorphicSerializationTest {
         val mapper = mapper()
         val events: List<AdventistPortalEvent> = listOf(
             UserEvent.Verified(
-                userId = UUID.randomUUID(),
+                registrationId = UUID.randomUUID(),
                 email = "a@adventistportal.com",
                 username = "a",
             ),
@@ -99,7 +98,6 @@ class JacksonPolymorphicSerializationTest {
             userId = UUID.randomUUID(),
             email = "e2e@adventistportal.com",
             username = "e2e",
-            verificationToken = "tok-xyz",
         )
 
         val message = converter.toMessage(event, MessageProperties())

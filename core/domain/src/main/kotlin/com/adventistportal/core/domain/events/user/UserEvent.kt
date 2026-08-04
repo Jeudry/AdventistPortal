@@ -11,23 +11,33 @@ sealed class UserEvent(
     override val occurredAt: Instant = Instant.now()
 ): AdventistPortalEvent {
 
+    /** A registration was started. No user exists yet — only a pending registration. */
+    data class RegistrationStarted (
+        val registrationId: UUID,
+        val email: String,
+        val username: String,
+        val verificationToken: String,
+        override val eventKey: String = UserEventConstants.USER_REGISTRATION_STARTED
+    ): UserEvent()
+
+    /** The registration completed and the user now exists. */
     data class Created (
         val userId: UserId,
         val email: String,
         val username: String,
-        val verificationToken: String,
         override val eventKey: String = UserEventConstants.USER_CREATED_KEY
     ): UserEvent(), AdventistPortalEvent
 
+    /** The e-mail was confirmed. The user still does not exist — details are pending. */
     data class Verified (
-        val userId: UserId,
+        val registrationId: UUID,
         val email: String,
         val username: String,
         override val eventKey: String = UserEventConstants.USER_VERIFIED
     ): UserEvent(), AdventistPortalEvent
 
     data class RequestResendVerification (
-        val userId: UserId,
+        val registrationId: UUID,
         val email: String,
         val username: String,
         val verificationToken: String,

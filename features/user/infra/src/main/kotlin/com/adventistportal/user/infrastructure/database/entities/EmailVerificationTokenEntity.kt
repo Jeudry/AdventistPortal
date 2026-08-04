@@ -24,8 +24,8 @@ class EmailVerificationTokenEntity(
     @Column(nullable = false)
     var expiresAt: Instant,
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    var user: UserEntity,
+    @JoinColumn(name = "pending_registration_id", nullable = false)
+    var pendingRegistration: PendingRegistrationEntity,
     @Column
     var usedAt: Instant? = null,
     @CreationTimestamp

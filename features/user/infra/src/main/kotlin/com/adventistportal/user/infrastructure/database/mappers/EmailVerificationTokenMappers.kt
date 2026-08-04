@@ -5,8 +5,11 @@ import com.adventistportal.user.infrastructure.database.entities.EmailVerificati
 
 fun EmailVerificationTokenEntity.toModel(): EmailVerificationToken {
     return EmailVerificationToken(
-        id = id!!,
+        id = id,
         token = token,
-        user = user.toModel()
+        registrationId = pendingRegistration.id!!,
+        email = pendingRegistration.email,
+        username = pendingRegistration.username,
+        isVerified = pendingRegistration.isVerified,
     )
 }
