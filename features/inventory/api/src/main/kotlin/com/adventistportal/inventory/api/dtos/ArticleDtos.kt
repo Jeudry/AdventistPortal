@@ -2,7 +2,6 @@ package com.adventistportal.inventory.api.dtos
 
 import com.adventistportal.core.domain.types.ArticleId
 import com.adventistportal.core.domain.types.CategoryId
-import com.adventistportal.shared.domain.inventory.enums.ArticleType
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.*
@@ -13,7 +12,6 @@ data class ArticleDto(
     val nameTemplate: String,
     val descriptionTemplate: String?,
     val isActive: Boolean,
-    val type: ArticleType,
     val categoryId: CategoryId?,
     val variants: List<ArticleVariantDto>
 )
@@ -33,11 +31,6 @@ data class ArticleVariantDto(
     val imageUrl: String?,
     val isActive: Boolean,
     val stock: Int,
-    val rentalPrice: BigDecimal,
-    val salePrice: BigDecimal,
-    val discountedRentalPrice: BigDecimal? = null,
-    val discountedSalePrice: BigDecimal? = null,
-    val appliedDiscount: DiscountDto? = null,
     val replacementCost: BigDecimal,
     val attributes: Map<String, String>,
     val dimensions: List<ArticleDimensionDto>
@@ -54,7 +47,6 @@ data class ArticleDimensionDto(
 data class CreateArticleInput(
     val nameTemplate: String,
     val descriptionTemplate: String?,
-    val type: ArticleType,
     val categoryId: CategoryId?,
     val variants: List<CreateArticleVariantInput>
 )
@@ -65,8 +57,6 @@ data class CreateArticleVariantInput(
     val description: String?,
     val imageUrl: String?,
     val stock: Int,
-    val rentalPrice: BigDecimal,
-    val salePrice: BigDecimal,
     val replacementCost: BigDecimal,
     val attributes: Map<String, String>,
     val dimensions: List<ArticleDimensionInput>

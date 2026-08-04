@@ -2,7 +2,6 @@ package com.adventistportal.inventory.infra.db.entities
 
 import com.adventistportal.core.domain.types.ArticleId
 import com.adventistportal.inventory.infra.db.embeded.ArticleDimensions
-import com.adventistportal.shared.domain.inventory.enums.ArticleType
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
@@ -25,10 +24,6 @@ class ArticleEntity(
 
     @Column(nullable = false)
     var isActive: Boolean = true,
-
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    var type: ArticleType = ArticleType.Rental,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
@@ -71,12 +66,7 @@ class ArticleVariantEntity(
     @Column(nullable = false)
     var stock: Int = 0,
 
-    @Column(precision = 19, scale = 4)
-    var rentalPrice: BigDecimal = BigDecimal.ZERO,
-
-    @Column(precision = 19, scale = 4)
-    var salePrice: BigDecimal = BigDecimal.ZERO,
-
+    /** Replacement value for insurance and asset records — not a sale price. */
     @Column(precision = 19, scale = 4)
     var replacementCost: BigDecimal = BigDecimal.ZERO,
 

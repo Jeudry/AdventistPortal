@@ -2,14 +2,12 @@ package com.adventistportal.inventory.domain.model
 
 import com.adventistportal.core.domain.types.ArticleId
 import com.adventistportal.core.domain.types.CategoryId
-import com.adventistportal.shared.domain.inventory.enums.ArticleType
 import java.math.BigDecimal
 import java.util.*
 
 data class ArticleParams(
     val nameTemplate: String,
     val descriptionTemplate: String? = null,
-    val type: ArticleType,
     val categoryId: CategoryId? = null,
     val variants: List<ArticleVariantParams>
 ) {
@@ -18,7 +16,6 @@ data class ArticleParams(
             id = id,
             nameTemplate = nameTemplate,
             descriptionTemplate = descriptionTemplate,
-            type = type,
             categoryId = categoryId,
             variants = variants.map { it.toDomain() }
         )
@@ -31,8 +28,6 @@ data class ArticleVariantParams(
     val description: String? = null,
     val imageUrl: String? = null,
     val stock: Int,
-    val rentalPrice: BigDecimal,
-    val salePrice: BigDecimal,
     val replacementCost: BigDecimal,
     val attributes: Map<String, String>,
     val dimensions: List<ArticleDimensionParams>
@@ -45,8 +40,6 @@ data class ArticleVariantParams(
             description = description,
             imageUrl = imageUrl,
             stock = stock,
-            rentalPrice = rentalPrice,
-            salePrice = salePrice,
             replacementCost = replacementCost,
             attributes = attributes,
             dimensions = dimensions.map { it.toDomain() }

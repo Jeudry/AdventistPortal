@@ -6,7 +6,6 @@ import com.adventistportal.inventory.api.mappers.ArticleMapper
 import com.adventistportal.inventory.domain.model.ArticleFilterParams
 import com.adventistportal.inventory.domain.repository.ArticleQueryRepository
 import com.adventistportal.inventory.service.ArticleService
-import com.adventistportal.inventory.service.DiscountService
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Controller
 @PreAuthorize("isAuthenticated()")
 class ArticleGraphQLController(
     private val articleService: ArticleService,
-    private val discountService: DiscountService,
     private val articleQueryRepository: ArticleQueryRepository,
     private val articleMapper: ArticleMapper
 ) {
@@ -39,8 +37,7 @@ class ArticleGraphQLController(
     @QueryMapping
     fun article(@Argument id: ArticleId): ArticleDto? {
         val article = articleService.getArticle(id) ?: return null
-        val activeDiscounts = discountService.getActiveDiscounts()
-        return articleMapper.toDto(article, activeDiscounts)
+        return articleMapper.toDto(article)
     }
 
     @MutationMapping

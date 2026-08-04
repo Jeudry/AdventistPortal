@@ -2,7 +2,6 @@ package com.adventistportal.inventory.domain.model
 
 import com.adventistportal.core.domain.types.ArticleId
 import com.adventistportal.core.domain.types.CategoryId
-import com.adventistportal.shared.domain.inventory.enums.ArticleType
 import java.math.BigDecimal
 import java.util.*
 
@@ -11,7 +10,6 @@ data class Article(
     val nameTemplate: String,
     val descriptionTemplate: String? = null,
     val isActive: Boolean = true,
-    val type: ArticleType = ArticleType.Rental,
     val categoryId: CategoryId? = null,
     val variants: List<ArticleVariant> = emptyList()
 )
@@ -24,8 +22,7 @@ data class ArticleVariant(
     val imageUrl: String? = null,
     val isActive: Boolean = true,
     val stock: Int = 0,
-    val rentalPrice: BigDecimal = BigDecimal.ZERO,
-    val salePrice: BigDecimal = BigDecimal.ZERO,
+    /** What it would cost to replace the item — for insurance and asset records, not a sale price. */
     val replacementCost: BigDecimal = BigDecimal.ZERO,
     val attributes: Map<String, String> = emptyMap(),
     val dimensions: List<ArticleDimensionDomain> = emptyList()

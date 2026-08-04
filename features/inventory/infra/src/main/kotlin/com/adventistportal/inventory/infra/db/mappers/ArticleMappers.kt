@@ -11,7 +11,6 @@ fun Article.fromDomain(): ArticleEntity {
         nameTemplate = this.nameTemplate,
         descriptionTemplate = this.descriptionTemplate,
         isActive = this.isActive,
-        type = this.type
     )
     articleEntity.variants = this.variants.map { it.fromDomain(articleEntity) }.toMutableList()
     return articleEntity
@@ -26,8 +25,6 @@ fun ArticleVariant.fromDomain(articleEntity: ArticleEntity): ArticleVariantEntit
         imageUrl = this.imageUrl,
         isActive = this.isActive,
         stock = this.stock,
-        rentalPrice = this.rentalPrice,
-        salePrice = this.salePrice,
         replacementCost = this.replacementCost,
         article = articleEntity,
         attributes = this.attributes.toMutableMap(),
@@ -51,7 +48,6 @@ fun ArticleEntity.toDomain(): Article {
         nameTemplate = this.nameTemplate,
         descriptionTemplate = this.descriptionTemplate,
         isActive = this.isActive,
-        type = this.type,
         categoryId = this.category?.id,
         variants = this.variants.map { it.toDomain() }
     )
@@ -66,8 +62,6 @@ fun ArticleVariantEntity.toDomain(): ArticleVariant {
         imageUrl = this.imageUrl,
         isActive = this.isActive,
         stock = this.stock,
-        rentalPrice = this.rentalPrice,
-        salePrice = this.salePrice,
         replacementCost = this.replacementCost,
         attributes = this.attributes.toMap(),
         dimensions = this.dimensions.map { it.toDomain() }

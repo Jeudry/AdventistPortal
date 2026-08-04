@@ -5,26 +5,12 @@ scalar UUID
 type Query {
     articles(id: ID, title: String, authorId: String): [ArticleSummary]
     article(id: ID!): Article
-    discounts: [Discount]
-    discount(id: ID!): Discount
 }
 
 type Mutation {
     createArticle(input: CreateArticleInput!): ID
     updateArticle(input: UpdateArticleInput!): ID
     deleteArticle(id: ID!): Boolean
-    createDiscount(input: CreateDiscountInput!): ID
-    deleteDiscount(id: ID!): Boolean
-}
-
-enum ArticleType {
-    Rental
-    Sale
-}
-
-enum DiscountType {
-    PERCENTAGE
-    FIXED_AMOUNT
 }
 
 type ArticleDimension {
@@ -43,11 +29,7 @@ type ArticleVariant {
     imageUrl: String
     isActive: Boolean!
     stock: Int!
-    rentalPrice: BigDecimal!
-    salePrice: BigDecimal!
-    discountedRentalPrice: BigDecimal
-    discountedSalePrice: BigDecimal
-    appliedDiscount: Discount
+    "What it would cost to replace the item, for insurance and asset records."
     replacementCost: BigDecimal!
     attributes: [Attribute]
     dimensions: [ArticleDimension]
@@ -63,7 +45,6 @@ type Article {
     nameTemplate: String!
     descriptionTemplate: String
     isActive: Boolean!
-    type: ArticleType!
     categoryId: ID
     variants: [ArticleVariant]
 }
@@ -75,25 +56,9 @@ type ArticleSummary {
     createdAt: DateTime
 }
 
-type Discount {
-    id: ID!
-    name: String!
-    description: String
-    type: DiscountType!
-    value: BigDecimal!
-    startDate: DateTime
-    endDate: DateTime
-    isActive: Boolean!
-    targetCategoryId: ID
-    targetArticleId: ID
-    targetVariantId: UUID
-    priority: Int!
-}
-
 input CreateArticleInput {
     nameTemplate: String!
     descriptionTemplate: String
-    type: ArticleType!
     categoryId: ID
     variants: [CreateArticleVariantInput!]!
 }
@@ -104,8 +69,6 @@ input CreateArticleVariantInput {
     description: String
     imageUrl: String
     stock: Int!
-    rentalPrice: BigDecimal!
-    salePrice: BigDecimal!
     replacementCost: BigDecimal!
     attributes: [AttributeInput!]
     dimensions: [ArticleDimensionInput!]
@@ -130,17 +93,4 @@ input UpdateArticleInput {
     descriptionTemplate: String
     isActive: Boolean
     categoryId: ID
-}
-
-input CreateDiscountInput {
-    name: String!
-    description: String
-    type: DiscountType!
-    value: BigDecimal!
-    startDate: DateTime
-    endDate: DateTime
-    targetCategoryId: ID
-    targetArticleId: ID
-    targetVariantId: UUID
-    priority: Int
 }
