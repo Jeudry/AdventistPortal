@@ -57,7 +57,7 @@ This script:
 ## 📝 Important Files
 
 ### Docker Compose
-- **`compose.infra.yaml`**: Docker services configuration optimized for Orb Stack
+- **`compose.yaml`**: Docker services configuration optimized for Orb Stack
 
 ### Spring Boot Configuration
 - **`app/src/main/resources/application-orb.yml`**: Spring Boot profile for local development
@@ -94,7 +94,7 @@ Then update the IPs in `application-orb.yml`.
 ### Services won't start
 ```bash
 # View logs
-docker-compose -f compose.infra.yaml logs
+docker compose logs
 
 # View logs for specific service
 docker logs adventistportal-postgres
@@ -122,22 +122,22 @@ docker exec adventistportal-postgres psql -U postgres -d adventistportal -c "CRE
 
 ### Start services
 ```bash
-docker-compose -f compose.infra.yaml up -d
+docker compose up -d postgres redis rabbitmq zipkin
 ```
 
 ### Stop services (keep data)
 ```bash
-docker-compose -f compose.infra.yaml down
+docker compose down
 ```
 
 ### Stop and remove data
 ```bash
-docker-compose -f compose.infra.yaml down -v
+docker compose down -v
 ```
 
 ### View status
 ```bash
-docker-compose -f compose.infra.yaml ps
+docker compose ps
 ```
 
 ### Access RabbitMQ Management UI

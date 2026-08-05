@@ -19,7 +19,7 @@ fi
 echo -e "${GREEN}✅ Docker is running${NC}"
 echo ""
 
-# Check if docker-compose services are running
+# Check if docker compose services are running
 echo -e "${YELLOW}📊 Docker Services Status:${NC}"
 echo ""
 
@@ -68,14 +68,14 @@ fi
 
 echo ""
 
-# Show docker-compose status
+# Show docker compose status
 echo -e "${YELLOW}📋 Detailed Container Status:${NC}"
-docker-compose -f compose.infra.yaml ps 2>/dev/null || docker ps --format "table {{.Names}}\t{{.Status}}" | grep adventistportal
+docker compose ps 2>/dev/null || docker ps --format "table {{.Names}}\t{{.Status}}" | grep adventistportal
 
 echo ""
 echo -e "${BLUE}💡 Quick Commands:${NC}"
 echo -e "   Start Orb services:   ${GREEN}./reset-and-start-orb.sh${NC}"
 echo -e "   Run application:      ${GREEN}./run-orb-app.sh${NC}"
 echo -e "   Stop services:        ${GREEN}./stop-orb.sh${NC}"
-echo -e "   View logs:            ${GREEN}docker-compose -f compose.infra.yaml logs -f${NC}"
+echo -e "   View logs:            ${GREEN}docker compose logs -f${NC}"
 echo ""

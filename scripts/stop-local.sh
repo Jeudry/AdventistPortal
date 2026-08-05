@@ -19,10 +19,10 @@ fi
 # Detect if using Orb Stack
 if docker info 2>/dev/null | grep -q "orbstack"; then
     echo -e "${BLUE}🔮 Detected Orb Stack${NC}"
-    COMPOSE_FILE="compose.infra.yaml"
+    COMPOSE_FILE="compose.yaml"
 else
     echo -e "${BLUE}🐳 Using Docker Desktop${NC}"
-    COMPOSE_FILE="compose.infra.yaml"
+    COMPOSE_FILE="compose.yaml"
 fi
 echo ""
 
@@ -32,11 +32,11 @@ read -r response
 
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo -e "${YELLOW}📦 Stopping services and removing volumes...${NC}"
-    docker-compose -f "$COMPOSE_FILE" down -v
+    docker compose -f "$COMPOSE_FILE" down -v
     echo -e "${GREEN}✅ Services stopped and volumes removed${NC}"
 else
     echo -e "${YELLOW}📦 Stopping services (keeping volumes)...${NC}"
-    docker-compose -f "$COMPOSE_FILE" down
+    docker compose -f "$COMPOSE_FILE" down
     echo -e "${GREEN}✅ Services stopped (data preserved)${NC}"
 fi
 

@@ -1,10 +1,10 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Docker: Start Local Services (Orb Stack)" type="docker-deploy" factoryName="compose.infra.yaml" server-name="Docker">
-    <deployment type="compose.infra.yaml">
+  <configuration default="false" name="Docker: Start Local Services (Orb Stack)" type="docker-deploy" factoryName="compose.yaml" server-name="Docker">
+    <deployment type="compose.yaml">
       <settings>
         <option name="envFilePath" value=".env.orb" />
         <option name="commandLineOptions" value="" />
-        <option name="sourceFilePath" value="compose.infra.yaml" />
+        <option name="sourceFilePath" value="compose.yaml" />
         <option name="upDetach" value="true" />
       </settings>
     </deployment>

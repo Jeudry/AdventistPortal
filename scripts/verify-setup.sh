@@ -18,8 +18,8 @@ NC='\033[0m' # No Color
 echo "📄 Verificando archivos de configuración..."
 
 files=(
-    "compose.infra.yaml"
-    "compose.infra.yaml"
+    "compose.yaml"
+    "compose.yaml"
     "app/src/main/resources/application.yml"
     "app/src/main/resources/application-local.yml"
     "app/src/main/resources/application-orb.yml"
@@ -101,8 +101,8 @@ done
 if [ $running_containers -eq 0 ]; then
     echo ""
     echo -e "${YELLOW}ℹ${NC}  Ningún contenedor está corriendo. Inicia los servicios con:"
-    echo "   docker-compose up -d             # Docker Compose tradicional"
-    echo "   docker-compose -f compose.infra.yaml up -d  # Orb Stack"
+    echo "   docker compose up -d             # Docker Compose tradicional"
+    echo "   docker compose up -d postgres redis rabbitmq zipkin  # Orb Stack"
 fi
 
 echo ""
@@ -134,7 +134,7 @@ echo -e "${GREEN}✅ Verificación completada${NC}"
 echo ""
 echo "Próximos pasos:"
 echo "1. Inicia los servicios:"
-echo "   ${GREEN}docker-compose up -d${NC}  # o usa Orb Stack"
+echo "   ${GREEN}docker compose up -d${NC}  # o usa Orb Stack"
 echo ""
 echo "2. Abre IntelliJ IDEA y selecciona una Run Configuration:"
 echo "   - AdventistPortalApi [LOCAL] para Docker Compose"

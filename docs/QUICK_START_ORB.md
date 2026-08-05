@@ -14,7 +14,7 @@
 
 ### Stop Services
 ```bash
-docker-compose -f compose.infra.yaml down
+docker compose down
 ```
 
 ## 🏗️ Local Architecture
@@ -140,7 +140,7 @@ docker inspect adventistportal-rabbitmq -f '{{range .NetworkSettings.Networks}}{
 
 ### View all services logs
 ```bash
-docker-compose -f compose.infra.yaml logs -f
+docker compose logs -f
 ```
 
 ### View specific service logs
@@ -152,7 +152,7 @@ docker logs -f adventistportal-rabbitmq
 
 ### Check health status
 ```bash
-docker-compose -f compose.infra.yaml ps
+docker compose ps
 ```
 
 ### Connect to PostgreSQL

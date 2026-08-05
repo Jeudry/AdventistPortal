@@ -18,8 +18,8 @@ The project is organized in a modular structure:
 
 1. **Start local services** (choose one):
    ```bash
-   docker-compose up -d                              # Docker Compose tradicional
-   docker-compose -f compose.infra.yaml up -d   # Orb Stack (mejor para macOS)
+   docker compose up -d                              # Docker Compose tradicional
+   docker compose up -d postgres redis rabbitmq zipkin   # Orb Stack (mejor para macOS)
    ```
 
 2. **Open project in IntelliJ IDEA**
@@ -87,7 +87,7 @@ Make sure you have the required environment variables set:
 
 ## 📦 Local Development Stack
 
-The `compose.infra.yaml` provides:
+The `compose.yaml` provides:
 - **PostgreSQL 16**: Local database
 - **Redis 7**: Local cache
 - **RabbitMQ 3**: Local message broker with management UI

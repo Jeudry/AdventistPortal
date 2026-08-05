@@ -30,27 +30,27 @@ else
     ERRORS=$((ERRORS + 1))
 fi
 
-# Test 3: Check if docker-compose is available
+# Test 3: Check if docker compose is available
 echo -n "3. Docker Compose available... "
-if docker-compose version &> /dev/null || docker compose version &> /dev/null; then
+if docker compose version &> /dev/null || docker compose version &> /dev/null; then
     echo -e "${GREEN}✓${NC}"
 else
     echo -e "${RED}✗${NC} - Docker Compose not found"
     ERRORS=$((ERRORS + 1))
 fi
 
-# Test 4: Check if compose.infra.yaml exists
-echo -n "4. compose.infra.yaml exists... "
-if [ -f "compose.infra.yaml" ]; then
+# Test 4: Check if compose.yaml exists
+echo -n "4. compose.yaml exists... "
+if [ -f "compose.yaml" ]; then
     echo -e "${GREEN}✓${NC}"
 else
     echo -e "${RED}✗${NC} - File not found"
     ERRORS=$((ERRORS + 1))
 fi
 
-# Test 5: Check if compose.infra.yaml is valid
-echo -n "5. compose.infra.yaml valid... "
-if docker-compose config &> /dev/null; then
+# Test 5: Check if compose.yaml is valid
+echo -n "5. compose.yaml valid... "
+if docker compose config &> /dev/null; then
     echo -e "${GREEN}✓${NC}"
 else
     echo -e "${RED}✗${NC} - Invalid syntax"

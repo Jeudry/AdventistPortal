@@ -14,7 +14,7 @@ RABBITMQ_STATUS=$(docker ps --filter "name=adventistportal-rabbitmq" --format "{
 
 if [ "$POSTGRES_STATUS" -eq 0 ] || [ "$REDIS_STATUS" -eq 0 ] || [ "$RABBITMQ_STATUS" -eq 0 ]; then
   echo "❌ Servicios Docker no están corriendo"
-  echo "   Ejecuta: docker-compose -f compose.infra.yaml up -d"
+  echo "   Ejecuta: docker compose up -d postgres redis rabbitmq zipkin"
   exit 1
 fi
 

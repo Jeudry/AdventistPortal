@@ -17,7 +17,7 @@ fi
 
 # One infrastructure file for both runtimes. There used to be two that differed in
 # credentials and ports, which is two files to keep in step and nobody does.
-COMPOSE_FILE="compose.infra.yaml"
+COMPOSE_FILE="compose.yaml"
 if docker info 2>/dev/null | grep -q "orbstack"; then
     echo -e "${BLUE}🔮 Detected Orb Stack${NC}"
     USE_ORB=true
@@ -28,7 +28,7 @@ fi
 
 # Start Docker Compose services
 echo -e "${YELLOW}📦 Starting Docker services...${NC}"
-docker-compose -f "$COMPOSE_FILE" up -d
+docker compose up -d postgres redis rabbitmq zipkin
 
 # Wait for services to be healthy
 echo -e "${YELLOW}⏳ Waiting for services to be ready...${NC}"
@@ -85,9 +85,9 @@ echo -e "   Option 3 - From IntelliJ:"
 echo -e "      Run Configuration: 'AdventistPortalApi [ORB]'"
 echo ""
 echo -e "${YELLOW}📋 View logs:${NC}"
-echo -e "   docker-compose -f $COMPOSE_FILE logs -f"
+echo -e "   docker compose -f $COMPOSE_FILE logs -f"
 echo ""
 echo -e "${YELLOW}🛑 To stop services:${NC}"
 echo -e "   ./stop-local.sh"
-echo -e "   or: docker-compose -f $COMPOSE_FILE down"
+echo -e "   or: docker compose -f $COMPOSE_FILE down"
 echo ""
