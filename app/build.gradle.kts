@@ -21,11 +21,6 @@ dependencies {
   implementation(projects.core.infra)
   implementation(projects.core.service)
   implementation(projects.core.api)
-  // User modules
-  implementation(projects.features.user.domain)
-  implementation(projects.features.user.infra)
-  implementation(projects.features.user.service)
-  implementation(projects.features.user.api)
   // Chat modules
   implementation(projects.features.chat.domain)
   implementation(projects.features.chat.infra)
@@ -55,7 +50,7 @@ dependencies {
   implementation(libs.springdoc.openapi.starter.webmvc.ui)
   runtimeOnly(libs.postgresql)
 
-  testImplementation(libs.spring.boot.testcontainers)
+    testImplementation(libs.spring.boot.testcontainers)
   testImplementation(libs.testcontainers.junit)
   testImplementation(libs.testcontainers.postgresql)
   testImplementation(libs.testcontainers.rabbitmq)

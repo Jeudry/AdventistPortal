@@ -46,3 +46,4 @@ include("core:api")
 
 include("services:notification")
 include("services:gateway")
+include("services:user")

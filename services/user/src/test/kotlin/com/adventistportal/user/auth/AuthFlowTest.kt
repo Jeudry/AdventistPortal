@@ -1,4 +1,4 @@
-package com.adventistportal.auth
+package com.adventistportal.user.auth
 
 import com.adventistportal.core.services.JwtService
 import org.junit.jupiter.api.Test
@@ -178,6 +178,7 @@ class AuthFlowTest {
         @ServiceConnection
         @JvmStatic
         val postgres = PostgreSQLContainer("postgres:16-alpine")
+            .withInitScript("provision-schema.sql")
 
         @Container
         @ServiceConnection
