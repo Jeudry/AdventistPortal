@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: notification
+              uri: ${SERVICE_NOTIFICATION_URI:http://localhost:8082}
+              predicates:
+                - Path=/api/notification/**
+
+            # Everything still inside the monolith. Each extraction takes a slice of this
+            # route and puts it above, until the catch-all has nothing left to match.
+            - id: monolith
+              uri: ${SERVICE_MONOLITH_URI:http://localhost:8081}
+              predicates:
+                - Path=/api/**,/graphql/**,/v3/api-docs/**,/swagger-ui/**
+
+gateway:
+  cors:
+    allowed-origins:
+      - http://localhost:8080
+
+jwt:
+  secret: ${JWT_SECRET_BASE64}
+  # Never used: the gateway only verifies. Signing lives in the user service.
+  expiration-minutes: 0
+
+server:
+  port: ${SERVER_PORT:8080}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO

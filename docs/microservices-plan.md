@@ -99,6 +99,18 @@ drop their own `JwtAuthFilter`. This removes a cross-service contract from `core
 otherwise the token's claims are a wire format shared by every service, versioned by
 nobody.
 
+The split that fell out of building it: the gateway answers *who is calling* and the
+service answers *may they call*. The gateway holds no list of public paths — that list
+belongs to whoever owns the endpoints, and a second copy at the edge is a copy that
+drifts. So a request with no token is forwarded as anonymous and refused by the service;
+a request with a *broken* token is refused at the edge, since that is an error under any
+policy.
+
+Two things this leaves open. The signing key is symmetric, so the gateway can mint tokens
+as well as read them; moving to RS256 would leave signing with the user service alone.
+And the trusted header is only trustworthy while the service ports are unreachable except
+through the gateway — that is a deployment guarantee, not a code one.
+
 ### Queue names move to configuration
 
 They are shared Kotlin constants today. Two services disagreeing on a queue name fails

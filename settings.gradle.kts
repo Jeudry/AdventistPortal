@@ -45,3 +45,4 @@ include("core:service")
 include("core:api")
 
 include("services:notification")
+include("services:gateway")
