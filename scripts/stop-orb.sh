@@ -2,9 +2,9 @@
 
 echo "🛑 Deteniendo servicios de Orb Stack para AdventistPortal..."
 
-docker-compose -f docker-compose.orb.yml down
+docker-compose -f compose.infra.yaml down
 
 echo "✅ Servicios detenidos"
 echo ""
 echo "💡 Para eliminar también los datos, usa:"
-echo "   docker-compose -f docker-compose.orb.yml down -v"
+echo "   docker-compose -f compose.infra.yaml down -v"

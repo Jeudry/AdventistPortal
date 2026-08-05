@@ -39,17 +39,17 @@ else
     ERRORS=$((ERRORS + 1))
 fi
 
-# Test 4: Check if docker-compose.yml exists
-echo -n "4. docker-compose.yml exists... "
-if [ -f "docker-compose.yml" ]; then
+# Test 4: Check if compose.infra.yaml exists
+echo -n "4. compose.infra.yaml exists... "
+if [ -f "compose.infra.yaml" ]; then
     echo -e "${GREEN}✓${NC}"
 else
     echo -e "${RED}✗${NC} - File not found"
     ERRORS=$((ERRORS + 1))
 fi
 
-# Test 5: Check if docker-compose.yml is valid
-echo -n "5. docker-compose.yml valid... "
+# Test 5: Check if compose.infra.yaml is valid
+echo -n "5. compose.infra.yaml valid... "
 if docker-compose config &> /dev/null; then
     echo -e "${GREEN}✓${NC}"
 else

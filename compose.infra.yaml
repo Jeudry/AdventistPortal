@@ -1,4 +1,17 @@
+# Infrastructure only: Postgres, Redis and RabbitMQ with their ports exposed, for running
+# one service from Gradle while you work on it.
+#
+# compose.yaml is the other half of the pair — the whole system in containers, with
+# nothing published but the gateway. This file used to have a Docker Desktop twin that
+# differed in credentials and ports; keeping both meant keeping them in step, which is
+# not a thing anyone does. The OrbStack labels are ignored elsewhere.
+
 version: '3.8'
+
+# Docker Compose configuration optimized for Orb Stack
+# Orb Stack specific features:
+# - Uses labels to define custom domains instead of .orb.local
+# - Allows localhost access through host.docker.internal
 
 services:
   postgres:
@@ -7,19 +20,26 @@ services:
     hostname: postgres
     environment:
       POSTGRES_DB: adventistportal
-      POSTGRES_USER: adventistportal_user
-      POSTGRES_PASSWORD: adventistportal_password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
       - "127.0.0.1:5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    command: >
+      postgres
+      -c listen_addresses='*'
+      -c max_connections=100
+      -c shared_buffers=128MB
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U adventistportal_user -d adventistportal"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d adventistportal"]
       interval: 10s
       timeout: 5s
       retries: 5
     networks:
       - adventistportal-network
+    labels:
+      - "com.orbstack.domains=postgres.adventistportal.local"
 
   redis:
     image: redis:7-alpine
@@ -37,6 +57,8 @@ services:
       retries: 5
     networks:
       - adventistportal-network
+    labels:
+      - "com.orbstack.domains=redis.adventistportal.local"
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -47,8 +69,8 @@ services:
       RABBITMQ_DEFAULT_PASS: adventistportal_password
       RABBITMQ_DEFAULT_VHOST: adventistportal
     ports:
-      - "127.0.0.1:5672:5672"   # AMQP protocol
-      - "127.0.0.1:15672:15672" # Management UI
+      - "127.0.0.1:5673:5672"   # AMQP: 5672 on the host belongs to polux
+      - "127.0.0.1:15673:15672" # Management UI
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     healthcheck:
@@ -58,6 +80,8 @@ services:
       retries: 5
     networks:
       - adventistportal-network
+    labels:
+      - "com.orbstack.domains=rabbitmq.adventistportal.local"
 
 volumes:
   postgres_data:

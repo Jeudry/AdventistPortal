@@ -15,14 +15,14 @@ if ! docker info > /dev/null 2>&1; then
     exit 1
 fi
 
-# Detect if using Orb Stack
+# One infrastructure file for both runtimes. There used to be two that differed in
+# credentials and ports, which is two files to keep in step and nobody does.
+COMPOSE_FILE="compose.infra.yaml"
 if docker info 2>/dev/null | grep -q "orbstack"; then
     echo -e "${BLUE}🔮 Detected Orb Stack${NC}"
-    COMPOSE_FILE="docker-compose.orb.yml"
     USE_ORB=true
 else
     echo -e "${BLUE}🐳 Using Docker Desktop${NC}"
-    COMPOSE_FILE="docker-compose.yml"
     USE_ORB=false
 fi
 

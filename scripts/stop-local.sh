@@ -19,10 +19,10 @@ fi
 # Detect if using Orb Stack
 if docker info 2>/dev/null | grep -q "orbstack"; then
     echo -e "${BLUE}🔮 Detected Orb Stack${NC}"
-    COMPOSE_FILE="docker-compose.orb.yml"
+    COMPOSE_FILE="compose.infra.yaml"
 else
     echo -e "${BLUE}🐳 Using Docker Desktop${NC}"
-    COMPOSE_FILE="docker-compose.yml"
+    COMPOSE_FILE="compose.infra.yaml"
 fi
 echo ""
 

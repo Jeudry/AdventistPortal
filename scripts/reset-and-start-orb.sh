@@ -8,7 +8,7 @@ cd /Users/sargon/Documents/Coding/KMP/AdventistPortal
 
 # 1. Detener TODO
 echo "🛑 Deteniendo contenedores..."
-docker-compose -f docker-compose.orb.yml down -v 2>/dev/null || true
+docker-compose -f compose.infra.yaml down -v 2>/dev/null || true
 
 # 2. Eliminar volúmenes específicos por nombre
 echo "🗑️  Eliminando volúmenes antiguos..."
@@ -24,7 +24,7 @@ sleep 2
 
 # 5. Iniciar servicios FRESCOS
 echo "🚀 Iniciando servicios desde cero..."
-docker-compose -f docker-compose.orb.yml up -d
+docker-compose -f compose.infra.yaml up -d
 
 # 6. Esperar a que Postgres se inicialice completamente
 echo "⏳ Esperando 15 segundos para inicialización completa..."
@@ -33,7 +33,7 @@ sleep 15
 # 7. Verificar estado
 echo ""
 echo "📊 Estado de los contenedores:"
-docker-compose -f docker-compose.orb.yml ps
+docker-compose -f compose.infra.yaml ps
 
 # 8. Ver logs de Postgres
 echo ""
