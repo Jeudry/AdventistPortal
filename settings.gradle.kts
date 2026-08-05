@@ -38,6 +38,7 @@ include("features:inventory:service")
 include("features:inventory:api")
 
 
+include("contracts")
 include("core:domain")
 include("core:infra")
 include("core:service")
