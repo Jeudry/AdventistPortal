@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package adventistportal.chat.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Everything the chat service publishes. See user/v1/events.proto for the rules on
+// evolving these safely.
+message ChatEvent {
+  string event_id = 1;
+  google.protobuf.Timestamp occurred_at = 2;
+
+  oneof payload {
+    NewMessage new_message = 10;
+  }
+}
+
+message NewMessage {
+  string sender_id = 1;
+  string sender_username = 2;
+  repeated string recipient_ids = 3;
+  string chat_id = 4;
+  string message = 5;
+}
