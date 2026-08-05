@@ -28,6 +28,8 @@ tasks {
 }
 
 dependencies {
+    // Tracing config, shared so five services cannot report themselves differently.
+    implementation(projects.core.observability)
     implementation(projects.core.domain)
     implementation(projects.core.infra)
     implementation(projects.core.api)

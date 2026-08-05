@@ -139,6 +139,8 @@ recompiling every consumer.
 6. **Outbox** in all of them.
 7. **Tracing** and a development compose file.
 
+All seven are done. What follows is what was learned doing them.
+
 ## Risks worth naming
 
 **Almost no tests.** Splitting a monolith with no coverage means failures surface at
@@ -148,9 +150,20 @@ Auth, chat and inventory now have end-to-end coverage against containers, writte
 each was moved. That order paid for itself: the chat and inventory tests found two bugs
 in the asset register that nothing had ever run into. `notification` still has none.
 
-**No transactional outbox.** `AuthService.completeRegistration` saves the user and then
-publishes an event; if the publish fails after the commit, a user exists with no chat
-participant. One database made that survivable. Separate ones make it corruption.
+**~~No transactional outbox.~~** Events are now written in the transaction that caused
+them and relayed afterwards. Delivery is at-least-once, so consumers must tolerate seeing
+an event twice.
+
+The trace has to be carried through it by hand. The relay runs long after the request, so
+the originating context is stored on the row and re-entered before sending — Spring AMQP
+injects whatever context is *current* as it sends, which means the current one has to be
+the right one, not a header written alongside it.
+
+**Observation is off by default in more places than you would guess.** Spring AMQP
+discards the trace context on both send and receive unless asked; Spring Boot 4 moved the
+Zipkin endpoint property and left the old key binding silently to nothing; and a
+hand-built RabbitTemplate ignores the properties that would have enabled it. Each of
+these fails by producing a plausible-looking trace that simply stops somewhere.
 
 **Operational load for one developer.** From one `bootRun` to five processes, a gateway,
 generated protobuf and a seven-container compose file. That cost is real, permanent, and

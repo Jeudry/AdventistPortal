@@ -23,8 +23,20 @@ class OutboxStore(
     private val table = "${properties.schema}.outbox"
 
     fun append(record: OutboxRecord) {
-        db.sql("insert into $table (id, exchange, routing_key, proto_type, payload) values (?, ?, ?, ?, ?)")
-            .params(record.id, record.exchange, record.routingKey, record.protoType, record.payload)
+        db.sql(
+            "insert into $table (id, exchange, routing_key, proto_type, payload, trace_parent) " +
+                "values (?, ?, ?, ?, ?, ?)",
+        )
+            .params(
+                listOf(
+                    record.id,
+                    record.exchange,
+                    record.routingKey,
+                    record.protoType,
+                    record.payload,
+                    record.traceParent,
+                ),
+            )
             .update()
     }
 
@@ -35,7 +47,7 @@ class OutboxStore(
     fun claimUnsent(batchSize: Int): List<OutboxRecord> = db
         .sql(
             """
-            select id, exchange, routing_key, proto_type, payload from $table
+            select id, exchange, routing_key, proto_type, payload, trace_parent from $table
             where sent_at is null
             order by created_at
             limit $batchSize
@@ -64,6 +76,7 @@ class OutboxStore(
         routingKey = rs.getString("routing_key"),
         protoType = rs.getString("proto_type"),
         payload = rs.getBytes("payload"),
+        traceParent = rs.getString("trace_parent"),
     )
 
     private companion object {

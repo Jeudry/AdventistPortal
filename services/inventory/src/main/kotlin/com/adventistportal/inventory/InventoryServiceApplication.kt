@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.persistence.autoconfigure.EntityScan
 import org.springframework.boot.runApplication
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
+import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
  */
 @SpringBootApplication(scanBasePackages = ["com.adventistportal.inventory", "com.adventistportal.core"])
 @EnableMethodSecurity
+@EnableScheduling
 @EnableJpaRepositories(basePackages = ["com.adventistportal.inventory"])
 @EntityScan(basePackages = ["com.adventistportal.inventory"])
 class InventoryServiceApplication

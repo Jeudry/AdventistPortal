@@ -1,0 +1,26 @@
+# How every service reports itself. Imported rather than repeated, so five services cannot
+# end up sampling at different rates or propagating in different formats — which would
+# break a trace exactly where it crosses a boundary, the one place it matters.
+management:
+  tracing:
+    sampling:
+      # Everything, in development. A production value belongs in the environment.
+      probability: ${TRACING_SAMPLE_RATE:1.0}
+    propagation:
+      # W3C, so the header is `traceparent` — the same name the outbox stores and replays.
+      type: w3c
+    export:
+      zipkin:
+        # Spring Boot 4 moved this from management.zipkin.tracing.endpoint. The old key
+        # still binds without complaint and is then ignored, so the sender keeps its
+        # localhost default, drops one span at startup, and says nothing after that.
+        endpoint: ${ZIPKIN_ENDPOINT:http://localhost:9411/api/v2/spans}
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+logging:
+  pattern:
+    # Which service, which trace, which span — on every line.
+    correlation: "[${spring.application.name:-},%X{traceId:-},%X{spanId:-}] "

@@ -1,10 +1,13 @@
 package com.adventistportal.core.infrastructure.message_queue.outbox
 
+import com.adventistportal.core.infrastructure.message_queue.proto.ProtoWire
+import io.micrometer.tracing.Tracer
+import io.micrometer.tracing.propagation.Propagator
 import org.slf4j.LoggerFactory
 import org.springframework.amqp.core.Message
 import org.springframework.amqp.core.MessageProperties
-import com.adventistportal.core.infrastructure.message_queue.proto.ProtoWire
 import org.springframework.amqp.rabbit.core.RabbitTemplate
+import org.springframework.beans.factory.ObjectProvider
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
@@ -24,6 +27,9 @@ class OutboxRelay(
     private val rabbitTemplate: RabbitTemplate,
     private val store: OutboxStore,
     private val properties: OutboxProperties,
+    /** Optional: a service with no tracing configured still has to deliver its events. */
+    private val tracer: ObjectProvider<Tracer>,
+    private val propagator: ObjectProvider<Propagator>,
 ) {
     private val logger = LoggerFactory.getLogger(javaClass)
 
@@ -41,12 +47,41 @@ class OutboxRelay(
         }
     }
 
-    private fun send(record: OutboxRecord): Boolean = runCatching {
-        rabbitTemplate.send(record.exchange, record.routingKey, record.asMessage())
-    }.onFailure { failure ->
-        logger.error("Could not send outbox record ${record.id} (${record.protoType})", failure)
-        store.recordFailure(record.id, failure.toString())
-    }.isSuccess
+    private fun send(record: OutboxRecord): Boolean = record.withOriginatingTrace {
+        runCatching {
+            rabbitTemplate.send(record.exchange, record.routingKey, record.asMessage())
+        }.onFailure { failure ->
+            logger.error("Could not send outbox record ${record.id} (${record.protoType})", failure)
+            store.recordFailure(record.id, failure.toString())
+        }.isSuccess
+    }
+
+    /**
+     * Sends inside the trace of the request that produced the event, rather than the
+     * relay's own scheduled run.
+     *
+     * The context cannot simply be written onto the message: Spring AMQP's observation
+     * injects the *current* one as the message is sent, overwriting anything already
+     * there. So the current one has to be the right one.
+     */
+    private fun <T> OutboxRecord.withOriginatingTrace(send: () -> T): T {
+        val activeTracer = tracer.ifAvailable
+        val activePropagator = propagator.ifAvailable
+        val parent = traceParent
+
+        if (activeTracer == null || activePropagator == null || parent == null) return send()
+
+        val span = activePropagator
+            .extract(mapOf(TRACE_PARENT_HEADER to parent)) { carrier, key -> carrier[key] }
+            .name("outbox send")
+            .start()
+
+        return try {
+            activeTracer.withSpan(span).use { send() }
+        } finally {
+            span.end()
+        }
+    }
 
     /**
      * Built by hand rather than through the converter: the payload was encoded when the
@@ -59,5 +94,9 @@ class OutboxRelay(
             setHeader(ProtoWire.TYPE_HEADER, protoType)
         }
         return Message(payload, messageProperties)
+    }
+
+    private companion object {
+        const val TRACE_PARENT_HEADER = "traceparent"
     }
 }

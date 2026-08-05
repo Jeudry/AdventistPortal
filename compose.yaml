@@ -27,11 +27,16 @@ x-service-defaults: &service-defaults
     RABBITMQ_VHOST: adventistportal
     REDIS_HOST: redis
     REDIS_PASSWORD: adventistportal_redis_password
+    ZIPKIN_ENDPOINT: http://zipkin:9411/api/v2/spans
     JWT_SECRET_BASE64: ${JWT_SECRET_BASE64:?set it in .env — the services will not start without one}
   depends_on:
     postgres:
       condition: service_healthy
     rabbitmq:
+      condition: service_healthy
+    # Not optional in practice: the span reporter drops what it cannot send and then
+    # logs nothing further, so a collector that is merely late looks like one that works.
+    zipkin:
       condition: service_healthy
 
 services:
@@ -132,6 +137,14 @@ services:
       interval: 10s
       timeout: 5s
       retries: 20
+
+  zipkin:
+    image: openzipkin/zipkin:latest
+    restart: unless-stopped
+    # The one exception to "only the gateway publishes": this is where you go to read a
+    # trace, and it holds nothing but timings.
+    ports:
+      - "${ZIPKIN_PORT:-9411}:9411"
 
   redis:
     image: redis:7-alpine

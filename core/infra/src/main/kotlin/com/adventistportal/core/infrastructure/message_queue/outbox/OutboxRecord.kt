@@ -15,6 +15,12 @@ data class OutboxRecord(
     val routingKey: String,
     val protoType: String,
     val payload: ByteArray,
+    /**
+     * The W3C trace context of the request that produced this event, replayed when the
+     * relay sends it. Without it the trace stops at the commit: the relay runs on its own
+     * schedule, so what reaches the consumer would look like work nobody asked for.
+     */
+    val traceParent: String? = null,
 ) {
     override fun equals(other: Any?) = this === other || (other is OutboxRecord && id == other.id)
     override fun hashCode() = id.hashCode()

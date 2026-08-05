@@ -4,6 +4,9 @@ import com.adventistportal.core.domain.events.AdventistPortalEvent
 import com.adventistportal.core.infrastructure.message_queue.outbox.OutboxRecord
 import com.adventistportal.core.infrastructure.message_queue.outbox.OutboxStore
 import com.adventistportal.core.infrastructure.message_queue.proto.EventProtoMapper
+import io.micrometer.tracing.Tracer
+import io.micrometer.tracing.propagation.Propagator
+import org.springframework.beans.factory.ObjectProvider
 import org.springframework.stereotype.Component
 import java.util.UUID
 
@@ -19,7 +22,12 @@ import java.util.UUID
  * produced it must not stand either.
  */
 @Component
-class EventPublisher(private val outbox: OutboxStore) {
+class EventPublisher(
+    private val outbox: OutboxStore,
+    /** Optional: a service with no tracing configured still has to publish its events. */
+    private val propagator: ObjectProvider<Propagator>,
+    private val tracer: ObjectProvider<Tracer>,
+) {
 
     fun <T : AdventistPortalEvent> publish(event: T) {
         outbox.append(
@@ -29,7 +37,25 @@ class EventPublisher(private val outbox: OutboxStore) {
                 routingKey = event.eventKey,
                 protoType = EventProtoMapper.protoTypeOf(event),
                 payload = EventProtoMapper.toBytes(event),
+                traceParent = currentTraceParent(),
             ),
         )
+    }
+
+    /**
+     * Captured here rather than in the relay: this is the request that caused the event,
+     * and by the time the relay runs it is long gone.
+     */
+    private fun currentTraceParent(): String? {
+        val context = tracer.ifAvailable?.currentSpan()?.context() ?: return null
+        val inject = propagator.ifAvailable ?: return null
+
+        val headers = mutableMapOf<String, String>()
+        inject.inject(context, headers) { carrier, key, value -> carrier?.put(key, value) }
+        return headers[TRACE_PARENT]
+    }
+
+    private companion object {
+        const val TRACE_PARENT = "traceparent"
     }
 }

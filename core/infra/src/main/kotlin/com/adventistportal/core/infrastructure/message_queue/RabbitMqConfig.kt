@@ -29,6 +29,9 @@ class RabbitMqConfig {
         messageConverter: MessageConverter,
     ): RabbitTemplate = RabbitTemplate(connectionFactory).apply {
         this.messageConverter = messageConverter
+        // Set here rather than through spring.rabbitmq.template.observation-enabled: that
+        // property configures the template Boot builds, and this one is ours.
+        setObservationEnabled(true)
     }
 
     @Bean
@@ -41,6 +44,9 @@ class RabbitMqConfig {
         setConnectionFactory(connectionFactory)
         setChannelTransacted(true)
         setMessageConverter(messageConverter)
+        // Without this the consumer discards the trace context on the message, and every
+        // event handled looks like work nobody asked for.
+        setObservationEnabled(true)
     }
 
     /**

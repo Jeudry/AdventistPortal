@@ -10,6 +10,8 @@ springBoot {
 }
 
 dependencies {
+    // Tracing config, shared so five services cannot report themselves differently.
+    implementation(projects.core.observability)
     implementation(platform(libs.spring.cloud.bom))
     implementation(libs.spring.cloud.starter.gateway)
 
