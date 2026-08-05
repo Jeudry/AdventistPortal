@@ -6,10 +6,6 @@ spring:
     # No Redis container here; caching is not what these tests assert.
     type: none
 
-jwt:
-  # Only the WebSocket handshake reads it; the REST surface trusts the gateway.
-  secret: dGVzdF9vbmx5X3NlY3JldF9uZXZlcl91c2VkX291dHNpZGVfdGhlX3Rlc3RfY29udGFpbmVycw==
-
 supabase:
   service-key: unused-in-tests
 

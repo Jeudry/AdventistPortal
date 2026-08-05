@@ -44,13 +44,6 @@ spring:
     password: ${RABBITMQ_PASSWORD:adventistportal_password}
     virtual-host: ${RABBITMQ_VHOST:adventistportal}
 
-jwt:
-  # The one place a token is still read behind the gateway. Spring Cloud Gateway Server
-  # WebMVC does not proxy WebSockets, so the handshake reaches this service directly and
-  # has to authenticate itself. Moving the gateway to the WebFlux variant would close it.
-  secret: ${JWT_SECRET_BASE64}
-  expiration-minutes: ${JWT_EXPIRATION_MINUTES:60}
-
 server:
   port: ${SERVER_PORT:8085}
 

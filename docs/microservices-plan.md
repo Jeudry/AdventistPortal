@@ -92,11 +92,15 @@ readable and versionable on its own terms (`/api/v1/...`).
 Note that every synchronous gRPC call couples two services at runtime. Today none
 exists: features talk only through events. Keep it that way unless a call earns itself.
 
-### WebSockets do not go through the gateway
+### The gateway runs on the reactive stack
 
-Spring Cloud Gateway Server WebMVC does not proxy them, so the chat handshake reaches
-that service directly and authenticates itself — the one place a token is still read
-behind the gateway. Moving the gateway to the WebFlux variant would close it.
+Only because of WebSockets. The servlet variant of Spring Cloud Gateway cannot proxy
+them, which left the chat handshake reaching that service directly and verifying its own
+token — a hole in the rule that a token is read in exactly one place, and the kind of
+exception that quietly becomes permanent.
+
+A browser cannot set headers on a handshake, so the token arrives there as a query
+parameter. It is still read in the same filter as every other request.
 
 ### JWT validated at the gateway only
 
@@ -112,10 +116,11 @@ drifts. So a request with no token is forwarded as anonymous and refused by the 
 a request with a *broken* token is refused at the edge, since that is an error under any
 policy.
 
-Two things this leaves open. The signing key is symmetric, so the gateway can mint tokens
-as well as read them; moving to RS256 would leave signing with the user service alone.
-And the trusted header is only trustworthy while the service ports are unreachable except
-through the gateway — that is a deployment guarantee, not a code one.
+One thing this leaves open: the signing key is symmetric, so the gateway can mint tokens
+as well as read them. Moving to RS256 would leave signing with the user service alone.
+
+The trusted header is only trustworthy while the service ports are unreachable except
+through the gateway. compose.yaml is what makes that true rather than hoped for.
 
 ### Queue names move to configuration
 

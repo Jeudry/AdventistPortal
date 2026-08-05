@@ -6,7 +6,7 @@ spring:
   cloud:
     gateway:
       server:
-        webmvc:
+        webflux:
           # One route per feature, never per deployable. Two features sharing a URI is a
           # deployment detail, and extracting one is then a change of address rather than
           # a change of routing.
@@ -25,6 +25,13 @@ spring:
               uri: ${SERVICE_CHAT_URI:http://localhost:8085}
               predicates:
                 - Path=/api/chat/**,/api/messages/**,/api/participants/**
+
+            # The reason the gateway runs on the reactive stack at all: the servlet
+            # variant cannot proxy this, so the handshake used to reach chat directly.
+            - id: chat-websocket
+              uri: ${SERVICE_CHAT_WS_URI:ws://localhost:8085}
+              predicates:
+                - Path=/ws/chat
 
             - id: inventory
               uri: ${SERVICE_INVENTORY_URI:http://localhost:8084}

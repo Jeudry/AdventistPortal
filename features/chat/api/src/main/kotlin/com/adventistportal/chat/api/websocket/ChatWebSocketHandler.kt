@@ -4,10 +4,10 @@ import com.adventistportal.chat.api.dto.ws.*
 import com.adventistportal.chat.api.mappers.toDto
 import com.adventistportal.core.domain.events.*
 import com.adventistportal.core.domain.types.ChatId
+import com.adventistportal.core.domain.security.TrustedIdentity.USER_ID_HEADER
 import com.adventistportal.core.domain.types.UserId
 import com.adventistportal.chat.service.ChatMessageService
 import com.adventistportal.chat.service.ChatService
-import com.adventistportal.core.services.JwtService
 import com.adventistportal.core.api.serialization.apiSerializersModule
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
@@ -17,7 +17,6 @@ import com.adventistportal.chat.domain.events.ChatParticipantsJoinedEvent
 import com.adventistportal.chat.domain.events.MessageDeletedEvent
 import com.adventistportal.chat.domain.events.ProfilePictureUpdatedEv
 import org.slf4j.LoggerFactory
-import org.springframework.http.HttpHeaders
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import org.springframework.transaction.event.TransactionPhase
@@ -33,7 +32,6 @@ import kotlin.concurrent.write
 class ChatWebSocketHandler(
   private val chatMessageService: ChatMessageService,
   private val chatService: ChatService,
-  private val jwtService: JwtService,
 ) : TextWebSocketHandler() {
   
   companion object {
@@ -77,16 +75,17 @@ class ChatWebSocketHandler(
   }
   
   override fun afterConnectionEstablished(session: WebSocketSession) {
-    val authHeader = session
+    // The gateway verified the token during the handshake and asserted who this is; a
+    // connection that arrives without it did not come through the gateway.
+    val userId = session
       .handshakeHeaders
-      .getFirst(HttpHeaders.AUTHORIZATION)
+      .getFirst(USER_ID_HEADER)
+      ?.let { runCatching { java.util.UUID.fromString(it) }.getOrNull() }
       ?: run {
-        logger.warn("Session ${session.id}  closed due to missing Authorization header")
+        logger.warn("Session ${session.id} closed: the handshake carried no asserted identity")
         session.close(CloseStatus.SERVER_ERROR.withReason("Authentication failed"))
         return
       }
-    
-    val userId = jwtService.getUserIdFromToken(authHeader)
     
     val userSession = UserSession(
       userId = userId,

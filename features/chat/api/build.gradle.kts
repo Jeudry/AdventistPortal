@@ -12,7 +12,6 @@ base {
 }
 
 dependencies {
-    implementation(projects.core.service)
     implementation(projects.core.api)
     
     implementation(projects.features.chat.domain)

@@ -55,6 +55,7 @@ services:
       SERVICE_USER_URI: http://user:8080
       SERVICE_NOTIFICATION_URI: http://notification:8080
       SERVICE_CHAT_URI: http://chat:8080
+      SERVICE_CHAT_WS_URI: ws://chat:8080
       SERVICE_INVENTORY_URI: http://inventory:8080
     depends_on:
       - user

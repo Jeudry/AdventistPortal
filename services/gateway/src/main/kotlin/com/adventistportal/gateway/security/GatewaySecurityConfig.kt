@@ -3,12 +3,12 @@ package com.adventistportal.gateway.security
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.http.SessionCreationPolicy
-import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity
+import org.springframework.security.config.web.server.ServerHttpSecurity
+import org.springframework.security.web.server.SecurityWebFilterChain
 import org.springframework.web.cors.CorsConfiguration
-import org.springframework.web.cors.CorsConfigurationSource
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+import org.springframework.web.cors.reactive.CorsConfigurationSource
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource
 
 @ConfigurationProperties(prefix = "gateway.cors")
 data class GatewayCorsProperties(
@@ -21,14 +21,16 @@ data class GatewayCorsProperties(
  * unauthenticated request never reaches routing.
  */
 @Configuration
+@EnableWebFluxSecurity
 class GatewaySecurityConfig {
 
     @Bean
-    fun filterChain(http: HttpSecurity): SecurityFilterChain = http
+    fun filterChain(http: ServerHttpSecurity): SecurityWebFilterChain = http
         .csrf { it.disable() }
-        .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
+        .httpBasic { it.disable() }
+        .formLogin { it.disable() }
         .cors { }
-        .authorizeHttpRequests { it.anyRequest().permitAll() }
+        .authorizeExchange { it.anyExchange().permitAll() }
         .build()
 
     @Bean
