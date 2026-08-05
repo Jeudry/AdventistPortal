@@ -1,0 +1,52 @@
+spring:
+  rabbitmq:
+    # The base profile points at CloudAMQP over TLS; the container speaks plain AMQP on
+    # the default vhost.
+    ssl:
+      enabled: false
+    virtual-host: /
+  liquibase:
+    default-schema: public
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  mail:
+    username: tests@adventistportal.local
+    password: unused-in-tests
+
+jwt:
+  secret: dGVzdF9vbmx5X3NlY3JldF9uZXZlcl91c2VkX291dHNpZGVfdGhlX3Rlc3RfY29udGFpbmVycw==
+  expiration-minutes: 60
+
+nginx:
+  require-proxy: false
+  trustedIps:
+    - "127.0.0.1"
+    - "::1"
+
+# Credentials the production profile demands. The tests never reach these services: the
+# container-backed ones are overridden by @ServiceConnection, and the rest are off the
+# path under test.
+supabase:
+  service-key: unused-in-tests
+
+firebase:
+  enabled: false
+
+adventistportal:
+  email:
+    from: tests@adventistportal.local
+    url: "http://localhost"
+    verification:
+      expiry-hours: 24
+    reset-password:
+      expiry-minutes: 30
+  ip:
+    rate-limit:
+      # Off, so that repeated logins in a test are not throttled into failing.
+      apply-limit: false
+
+logging:
+  level:
+    liquibase: WARN
+    org.testcontainers: WARN

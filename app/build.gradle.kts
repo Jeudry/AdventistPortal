@@ -54,6 +54,11 @@ dependencies {
   implementation(libs.liquibase.starter)
   implementation(libs.springdoc.openapi.starter.webmvc.ui)
   runtimeOnly(libs.postgresql)
+
+  testImplementation(libs.spring.boot.testcontainers)
+  testImplementation(libs.testcontainers.junit)
+  testImplementation(libs.testcontainers.postgresql)
+  testImplementation(libs.testcontainers.rabbitmq)
 }
 
 // Exports the current JPA model to a Postgres DDL script (offline, no DB) for the

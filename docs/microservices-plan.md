@@ -130,10 +130,12 @@ recompiling every consumer.
 
 ## Risks worth naming
 
-**There are four tests.** Splitting a monolith with no coverage of auth, chat or
-inventory means failures surface at runtime, in production, with four processes to
-search instead of one. Writing tests for the critical flows before step 2 is the single
-highest-value thing on this list.
+**Almost no tests.** Splitting a monolith with no coverage means failures surface at
+runtime, in production, with four processes to search instead of one.
+
+`AuthFlowTest` now covers registration and login end to end against containers, which is
+the flow step 4 moves. Chat and inventory still have none, and step 5 should not start
+before they do.
 
 **No transactional outbox.** `AuthService.completeRegistration` saves the user and then
 publishes an event; if the publish fails after the commit, a user exists with no chat
