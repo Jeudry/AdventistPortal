@@ -116,8 +116,10 @@ drifts. So a request with no token is forwarded as anonymous and refused by the 
 a request with a *broken* token is refused at the edge, since that is an error under any
 policy.
 
-One thing this leaves open: the signing key is symmetric, so the gateway can mint tokens
-as well as read them. Moving to RS256 would leave signing with the user service alone.
+The signature is RSA, not HMAC. With a shared secret, every process that could *check* a
+token could also *mint* one — including the gateway, which is the process facing the
+internet. Only the user service is given the private half; the rest get the public one and
+can do nothing with it but verify.
 
 The trusted header is only trustworthy while the service ports are unreachable except
 through the gateway. compose.yaml is what makes that true rather than hoped for.

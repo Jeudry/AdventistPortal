@@ -45,9 +45,9 @@ gateway:
       - http://localhost:8080
 
 jwt:
-  secret: ${JWT_SECRET_BASE64}
-  # Never used: the gateway only verifies. Signing lives in the user service.
-  expiration-minutes: 0
+  # The public half only. The gateway is the process exposed to the internet, and it
+  # should not be able to mint the tokens it checks.
+  public-key: ${JWT_PUBLIC_KEY}
 
 server:
   port: ${SERVER_PORT:8080}
