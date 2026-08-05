@@ -11,12 +11,12 @@ class CategoryServiceImpl(
 ) : CategoryService {
 
     override fun createCategory(category: Category): CategoryId {
-        return categoryRepository.save(category).id
+        return requireNotNull(categoryRepository.save(category).id) { "saving assigns the id" }
     }
 
     override fun updateCategory(id: CategoryId, category: Category): CategoryId {
         val existing = categoryRepository.findById(id) ?: throw NoSuchElementException("Category not found")
-        return categoryRepository.save(category.copy(id = id)).id
+        return requireNotNull(categoryRepository.save(category.copy(id = id)).id) { "saving keeps the id" }
     }
 
     override fun deleteCategory(id: CategoryId) {

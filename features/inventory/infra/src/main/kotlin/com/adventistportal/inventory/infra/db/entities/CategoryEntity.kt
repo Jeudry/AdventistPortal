@@ -9,7 +9,7 @@ import java.util.*
 class CategoryEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    val id: CategoryId = UUID.randomUUID(),
+    val id: CategoryId? = null,
 
     @Column(nullable = false)
     var name: String,

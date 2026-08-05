@@ -5,12 +5,45 @@ scalar UUID
 type Query {
     articles(id: ID, title: String, authorId: String): [ArticleSummary]
     article(id: ID!): Article
+    categories: [Category!]!
+    category(id: ID!): Category
 }
 
 type Mutation {
     createArticle(input: CreateArticleInput!): ID
     updateArticle(input: UpdateArticleInput!): ID
     deleteArticle(id: ID!): Boolean
+    createCategory(input: CreateCategoryInput!): ID
+    updateCategory(input: UpdateCategoryInput!): ID
+    deleteCategory(id: ID!): Boolean
+}
+
+"How the register is organised. A category may sit under another: furniture, then chairs."
+type Category {
+    id: ID!
+    name: String!
+    description: String
+    iconName: String
+    isActive: Boolean!
+    parent: Category
+    children: [Category!]!
+}
+
+input CreateCategoryInput {
+    name: String!
+    description: String
+    iconName: String
+    isActive: Boolean! = true
+    parentId: ID
+}
+
+input UpdateCategoryInput {
+    id: ID!
+    name: String!
+    description: String
+    iconName: String
+    isActive: Boolean!
+    parentId: ID
 }
 
 type ArticleDimension {

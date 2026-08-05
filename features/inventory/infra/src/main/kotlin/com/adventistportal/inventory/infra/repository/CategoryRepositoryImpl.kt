@@ -28,6 +28,9 @@ class CategoryRepositoryImpl(
 
     override fun save(category: Category): Category {
         val entity = category.toEntity()
+        // A reference, not a fetch: all that is needed is the foreign key, and asking for
+        // the whole parent row to write one column is a query nobody reads.
+        entity.parent = category.parentId?.let(jpaRepository::getReferenceById)
         return jpaRepository.save(entity).toDomain()
     }
 

@@ -57,6 +57,31 @@ class InventoryFlowTest {
     }
 
     @Test
+    fun `an article is renamed and retired`() {
+        val id = createArticle("Altavoz provisional", "SKU-${UUID.randomUUID()}")
+
+        graphql(
+            """mutation { updateArticle(input: {
+                id: "$id", nameTemplate: "Altavoz JBL", isActive: false
+            }) }""",
+        )
+
+        val updated = graphql("""query { article(id: "$id") { nameTemplate isActive } }""")
+        assertTrue(updated.contains("Altavoz JBL"), "the new name should stick: $updated")
+        assertTrue(updated.contains("\"isActive\":false"), "and so should being retired: $updated")
+    }
+
+    @Test
+    fun `a deleted article is gone`() {
+        val id = createArticle("Efimero", "SKU-${UUID.randomUUID()}")
+
+        graphql("""mutation { deleteArticle(id: "$id") }""")
+
+        val gone = graphql("""query { article(id: "$id") { nameTemplate } }""")
+        assertTrue(gone.contains("\"article\":null"), "reading it back should find nothing: $gone")
+    }
+
+    @Test
     fun `an anonymous caller gets nothing back`() {
         val response = RestClient.create("http://localhost:$port")
             .post().uri("/graphql")
@@ -66,6 +91,18 @@ class InventoryFlowTest {
             .toBodilessEntity()
 
         assertEquals(HttpStatus.UNAUTHORIZED, response.statusCode)
+    }
+
+    private fun createArticle(name: String, sku: String): String {
+        val created = graphql(
+            """
+            mutation { createArticle(input: {
+                nameTemplate: "$name",
+                variants: [{ sku: "$sku", name: "$name", stock: 1, replacementCostCents: 1000 }]
+            }) }
+            """,
+        )
+        return ID.find(created)?.groupValues?.get(1) ?: error("no id returned: $created")
     }
 
     private fun graphql(query: String): String = RestClient.builder()

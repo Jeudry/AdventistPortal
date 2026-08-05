@@ -1,10 +1,10 @@
 package com.adventistportal.inventory.domain.model
 
 import com.adventistportal.core.domain.types.CategoryId
-import java.util.UUID
 
 data class Category(
-    val id: CategoryId = UUID.randomUUID(),
+    /** Null until it is saved: the database assigns it, as it does for an article. */
+    val id: CategoryId? = null,
     val name: String,
     val description: String? = null,
     val iconName: String? = null,

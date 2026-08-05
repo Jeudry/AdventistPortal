@@ -4,7 +4,6 @@ import com.adventistportal.inventory.api.dtos.CategoryDto
 import com.adventistportal.inventory.api.dtos.CreateCategoryInput
 import com.adventistportal.inventory.api.dtos.UpdateCategoryInput
 import com.adventistportal.inventory.domain.model.Category
-import java.util.UUID
 import org.springframework.stereotype.Component
 
 @Component
@@ -12,7 +11,7 @@ class CategoryMapper {
 
     fun toDto(category: Category): CategoryDto {
         return CategoryDto(
-            id = category.id,
+            id = requireNotNull(category.id) { "a category read back from storage always has an id" },
             name = category.name,
             description = category.description,
             iconName = category.iconName,
@@ -23,7 +22,6 @@ class CategoryMapper {
 
     fun toDomain(input: CreateCategoryInput): Category {
         return Category(
-            id = UUID.randomUUID(),
             name = input.name,
             description = input.description,
             iconName = input.iconName,

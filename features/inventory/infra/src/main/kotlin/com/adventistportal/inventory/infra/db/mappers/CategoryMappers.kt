@@ -12,6 +12,13 @@ fun CategoryEntity.toDomain(): Category = Category(
     parentId = this.parent?.id
 )
 
+/**
+ * The parent is deliberately not set here, and setting it is the repository's job: it
+ * needs a reference to another row, which this function has no way to obtain.
+ *
+ * It used to be silently missing instead, so a category created under another was stored
+ * with no parent at all and the hierarchy simply never existed.
+ */
 fun Category.toEntity(): CategoryEntity = CategoryEntity(
     id = this.id,
     name = this.name,
