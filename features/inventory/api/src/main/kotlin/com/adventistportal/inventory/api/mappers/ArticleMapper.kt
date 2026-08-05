@@ -28,7 +28,7 @@ class ArticleMapper {
             imageUrl = variant.imageUrl,
             isActive = variant.isActive,
             stock = variant.stock,
-            replacementCost = variant.replacementCost,
+            replacementCostCents = variant.replacementCostCents,
             attributes = variant.attributes,
             dimensions = variant.dimensions.map { toDimensionDto(it) }
         )
@@ -73,7 +73,7 @@ class ArticleMapper {
             description = input.description,
             imageUrl = input.imageUrl,
             stock = input.stock,
-            replacementCost = input.replacementCost,
+            replacementCostCents = input.replacementCostCents,
             attributes = input.attributes,
             dimensions = input.dimensions.map { toDimension(it) }
         )

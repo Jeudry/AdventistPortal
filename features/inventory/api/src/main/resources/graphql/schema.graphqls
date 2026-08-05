@@ -1,4 +1,4 @@
-scalar BigDecimal
+scalar Long
 scalar DateTime
 scalar UUID
 
@@ -29,8 +29,8 @@ type ArticleVariant {
     imageUrl: String
     isActive: Boolean!
     stock: Int!
-    "What it would cost to replace the item, for insurance and asset records."
-    replacementCost: BigDecimal!
+    "Replacement value in cents, for insurance and asset records."
+    replacementCostCents: Long!
     attributes: [Attribute]
     dimensions: [ArticleDimension]
 }
@@ -69,7 +69,7 @@ input CreateArticleVariantInput {
     description: String
     imageUrl: String
     stock: Int!
-    replacementCost: BigDecimal!
+    replacementCostCents: Long!
     attributes: [AttributeInput!]
     dimensions: [ArticleDimensionInput!]
 }

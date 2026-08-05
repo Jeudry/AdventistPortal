@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 
 import com.adventistportal.core.domain.types.ArticleId
 import com.adventistportal.core.domain.types.CategoryId
-import java.math.BigDecimal
 import java.time.Instant
 import java.util.*
 
@@ -38,7 +37,7 @@ data class ArticleVariantDto(
     val imageUrl: String?,
     val isActive: Boolean,
     val stock: Int,
-    @Contextual val replacementCost: BigDecimal,
+    val replacementCostCents: Long,
     val attributes: Map<String, String>,
     val dimensions: List<ArticleDimensionDto>
 )
@@ -67,7 +66,7 @@ data class CreateArticleVariantInput(
     val description: String?,
     val imageUrl: String?,
     val stock: Int,
-    @Contextual val replacementCost: BigDecimal,
+    val replacementCostCents: Long,
     val attributes: Map<String, String>,
     val dimensions: List<ArticleDimensionInput>
 )

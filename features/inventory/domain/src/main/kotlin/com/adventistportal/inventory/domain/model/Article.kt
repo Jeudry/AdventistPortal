@@ -2,7 +2,6 @@ package com.adventistportal.inventory.domain.model
 
 import com.adventistportal.core.domain.types.ArticleId
 import com.adventistportal.core.domain.types.CategoryId
-import java.math.BigDecimal
 import java.util.*
 
 data class Article(
@@ -22,8 +21,9 @@ data class ArticleVariant(
     val imageUrl: String? = null,
     val isActive: Boolean = true,
     val stock: Int = 0,
-    /** What it would cost to replace the item — for insurance and asset records, not a sale price. */
-    val replacementCost: BigDecimal = BigDecimal.ZERO,
+    /** Replacement value in cents, for insurance and asset records. Cents, not a decimal:
+     *  integers cannot drift the way floating point does, and the unit is in the name. */
+    val replacementCostCents: Long = 0,
     val attributes: Map<String, String> = emptyMap(),
     val dimensions: List<ArticleDimensionDomain> = emptyList()
 )
