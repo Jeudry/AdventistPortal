@@ -32,10 +32,11 @@ x-service-defaults: &service-defaults
       condition: service_healthy
     rabbitmq:
       condition: service_healthy
-    # Not optional in practice: the span reporter drops what it cannot send and then
-    # logs nothing further, so a collector that is merely late looks like one that works.
+    # Started, not healthy. A late collector costs a few dropped spans at startup; a
+    # required one means a sick trace collector takes down everything it was meant to
+    # observe, which is a worse trade than the one it was fixing.
     zipkin:
-      condition: service_healthy
+      condition: service_started
 
 services:
   gateway:
@@ -122,6 +123,7 @@ services:
 
   zipkin:
     image: openzipkin/zipkin:latest
+    container_name: adventistportal-zipkin
     restart: unless-stopped
     hostname: zipkin
     # Published for the same reason as the databases: it is where you go to read a trace,
