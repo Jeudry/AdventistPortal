@@ -25,6 +25,7 @@ dependencies {
     implementation(libs.spring.boot.starter.data.jpa)
     implementation(libs.spring.boot.starter.data.redis)
     implementation(libs.spring.boot.starter.amqp)
+    implementation(libs.grpc.netty.shaded)
     implementation(libs.spring.boot.starter.security)
     implementation(libs.kotlin.reflect)
     implementation(libs.liquibase.starter)

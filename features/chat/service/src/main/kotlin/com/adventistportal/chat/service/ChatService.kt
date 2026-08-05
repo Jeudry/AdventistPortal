@@ -13,8 +13,10 @@ import com.adventistportal.chat.domain.models.ChatMessage
 import com.adventistportal.core.domain.types.ChatId
 import com.adventistportal.core.domain.types.UserId
 import com.adventistportal.chat.infra.database.entities.ChatEntity
+import com.adventistportal.chat.infra.database.entities.ChatParticipantEntity
 import com.adventistportal.chat.infra.database.mappers.toModel
 import com.adventistportal.chat.infra.database.repositories.ChatMessageRepository
+import com.adventistportal.chat.infra.users.MissingParticipantRepair
 import com.adventistportal.chat.infra.database.repositories.ChatParticipantRepository
 import com.adventistportal.chat.infra.database.repositories.ChatRepository
 import org.springframework.cache.annotation.Cacheable
@@ -31,6 +33,7 @@ class ChatService(
     private val chatParticipantRepository: ChatParticipantRepository,
     private val chatMessageRepository: ChatMessageRepository,
     private val applicationEventPublisher: ApplicationEventPublisher,
+    private val missingParticipantRepair: MissingParticipantRepair,
 ) {
     @Cacheable(
         value = ["messages"],
@@ -74,6 +77,24 @@ class ChatService(
     }
 
     @Transactional
+    /**
+     * A participant this service has never heard of is not necessarily a participant that
+     * does not exist: the event that would have created it may never have arrived. Ask
+     * before refusing — otherwise the hole in the projection is permanent.
+     */
+    private fun recoverParticipant(userId: UserId): ChatParticipantEntity {
+        val recovered = missingParticipantRepair.lookUp(userId) ?: throw ChatParticipantNotFoundEx(userId)
+
+        return chatParticipantRepository.saveAndFlush(
+            ChatParticipantEntity(
+                userId = recovered.userId,
+                username = recovered.username,
+                email = recovered.email,
+                profilePictureUrl = recovered.profilePictureUrl,
+            ),
+        )
+    }
+
     fun createChat(
         creatorId: UserId,
         otherUsersId: Set<UserId>
@@ -92,7 +113,7 @@ class ChatService(
         }
 
         val creator = chatParticipantRepository.findByIdOrNull(creatorId)
-            ?: throw ChatParticipantNotFoundEx(creatorId)
+            ?: recoverParticipant(creatorId)
 
         return chatRepository.saveAndFlush(
             ChatEntity(

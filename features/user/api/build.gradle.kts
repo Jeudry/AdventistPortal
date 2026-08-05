@@ -9,6 +9,8 @@ base {
 }
 
 dependencies {
+    // The generated gRPC service base class lives with the wire contract.
+    implementation(projects.contracts)
     api(projects.features.user.domain)
     api(projects.features.user.service)
     implementation(projects.core.service)

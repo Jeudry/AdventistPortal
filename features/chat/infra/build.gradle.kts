@@ -12,6 +12,9 @@ base {
 }
 
 dependencies {
+    // The generated client stub lives with the wire contract.
+    implementation(projects.contracts)
+    implementation(libs.grpc.netty.shaded)
     implementation(projects.core.api)
     implementation(libs.spring.boot.starter.data.redis)
     implementation(projects.features.chat.domain)

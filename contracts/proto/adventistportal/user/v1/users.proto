@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package adventistportal.user.v1;
+
+option java_package = "com.adventistportal.contracts.user.v1";
+option java_multiple_files = true;
+
+// Asking the user service about a user, synchronously.
+//
+// Everything else between services travels as an event, and it should stay that way: a
+// call couples the caller to the callee being up, which an event does not. This one earns
+// itself because it is a repair path, not a hot one.
+//
+// Chat keeps a projection of participants built from UserEvent.Created. If that event was
+// never delivered — chat rebuilt from empty, or the message dead-lettered after failing —
+// then creating a chat fails and there is nothing that will ever fix it. The projection
+// has no way back. This gives it one, and it is called only on a miss.
+//
+// Evolution rules are the same as for the events: fields are added with new numbers,
+// never renumbered or reused, and a removed field's number is reserved. `buf breaking`
+// enforces it.
+service Users {
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+}
+
+message GetUserRequest {
+  string user_id = 1;
+}
+
+message GetUserResponse {
+  // Absent when there is no such user, which is a different answer from a failed call:
+  // one means the projection was right to be empty, the other means try again.
+  optional User user = 1;
+}
+
+message User {
+  string user_id = 1;
+  string email = 2;
+  string username = 3;
+  optional string profile_picture_url = 4;
+}
