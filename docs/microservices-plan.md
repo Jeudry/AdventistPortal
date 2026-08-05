@@ -97,6 +97,17 @@ readable and versionable on its own terms (`/api/v1/...`).
 Note that every synchronous gRPC call couples two services at runtime. Today none
 exists: features talk only through events. Keep it that way unless a call earns itself.
 
+### The API key is a door, not a lock
+
+The client sent `X-API-Key` on every request and nothing checked it — security
+theatre, which is worse than none because it reads like a control. The gateway enforces
+it now, compared in constant time so a wrong key cannot be guessed a character at a time.
+
+What it buys is worth stating plainly: the key ships inside the app, so anyone willing to
+unpack it has it. It keeps scanners, scrapers and traffic aimed at somebody else off the
+surface. It says nothing about who is calling — that is the token's job — and nothing
+behind the gateway may treat it as if it did.
+
 ### The gateway runs on the reactive stack
 
 Only because of WebSockets. The servlet variant of Spring Cloud Gateway cannot proxy

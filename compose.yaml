@@ -57,6 +57,8 @@ services:
       SERVICE_CHAT_URI: http://chat:8080
       SERVICE_CHAT_WS_URI: ws://chat:8080
       SERVICE_INVENTORY_URI: http://inventory:8080
+      # Only the gateway checks it; nothing behind it should care.
+      API_KEY: ${API_KEY:?the client sends X-API-Key on every request; set the same value in .env}
     depends_on:
       - user
       - notification

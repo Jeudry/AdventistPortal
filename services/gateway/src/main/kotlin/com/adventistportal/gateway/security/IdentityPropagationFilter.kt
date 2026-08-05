@@ -28,7 +28,9 @@ import reactor.core.publisher.Mono
 @Component
 class IdentityPropagationFilter(private val jwtService: JwtService) : WebFilter, Ordered {
 
-    override fun getOrder() = Ordered.HIGHEST_PRECEDENCE
+    // After the API key: a request with no business being here should not have its
+    // token parsed.
+    override fun getOrder() = Ordered.HIGHEST_PRECEDENCE + 1
 
     override fun filter(exchange: ServerWebExchange, chain: WebFilterChain): Mono<Void> {
         val token = exchange.request.bearerToken()

@@ -40,6 +40,10 @@ spring:
 
 
 gateway:
+  api-key:
+    # Shared with the client at build time. It is not a secret in any strong sense — it
+    # ships inside the app — so it gates the door and decides nothing about who you are.
+    value: ${API_KEY:?the client sends X-API-Key on every request; set the same value here}
   cors:
     allowed-origins:
       - http://localhost:8080
