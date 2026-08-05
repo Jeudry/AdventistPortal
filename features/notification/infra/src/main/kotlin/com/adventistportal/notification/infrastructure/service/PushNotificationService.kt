@@ -72,8 +72,8 @@ class PushNotificationService(
   }
   
   @Transactional
-  fun unregisterDevice(token: String) {
-    deviceTokenRepository.deleteByToken(token.trim())
+  fun unregisterDevice(userId: UserId, token: String) {
+    deviceTokenRepository.deleteByTokenAndUserId(token.trim(), userId)
   }
   
   fun sendNewMessageNotification(

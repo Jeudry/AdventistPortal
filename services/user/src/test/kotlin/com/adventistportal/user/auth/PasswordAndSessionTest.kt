@@ -21,6 +21,8 @@ import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
 import java.util.UUID
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
@@ -105,6 +107,27 @@ class PasswordAndSessionTest {
 
         assertEquals(HttpStatus.UNAUTHORIZED, login(account.email, PASSWORD).statusCode)
         assertEquals(HttpStatus.OK, login(account.email, NEW_PASSWORD).statusCode)
+    }
+
+    @Test
+    fun `asking again for the verification e-mail issues a fresh token`() {
+        val email = "asks-again@adventistportal.local"
+        post("/api/v1/auth/register", """{"email":"$email","username":"asksagain","password":"$PASSWORD"}""")
+        val first = verificationTokenFor(email)
+
+        val resent = post("/api/v1/auth/resend-verification", """{"email":"$email"}""")
+
+        assertEquals(HttpStatus.OK, resent.statusCode, "resend failed: ${resent.body}")
+        assertNotEquals(first, verificationTokenFor(email), "the previous token is replaced, not repeated")
+    }
+
+    @Test
+    fun `asking for the verification e-mail of an address nobody registered says nothing`() {
+        val response = post("/api/v1/auth/resend-verification", """{"email":"nobody-here@adventistportal.local"}""")
+
+        // Same answer as for an address that exists, for the same reason as forgot-password:
+        // otherwise this is a way to ask which addresses have an account.
+        assertFalse(response.statusCode.is5xxServerError, "it should not fail loudly: ${response.statusCode}")
     }
 
     private data class Account(

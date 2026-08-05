@@ -28,6 +28,7 @@ class DeviceTokenController(private val pushNotificationService: PushNotificatio
     @PathVariable("token") token: String
   ) {
     pushNotificationService.unregisterDevice(
+      userId = requestUserId,
       token = token
     )
   }

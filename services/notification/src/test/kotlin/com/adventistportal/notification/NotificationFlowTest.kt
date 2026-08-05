@@ -114,6 +114,22 @@ class NotificationFlowTest {
     }
 
     @Test
+    fun `one caller cannot unregister another caller's device`() {
+        val owner = UUID.randomUUID()
+        val stranger = UUID.randomUUID()
+        val deviceToken = "fcm-${UUID.randomUUID()}"
+        registerDevice(owner, deviceToken)
+
+        unregisterDevice(stranger, deviceToken)
+
+        assertEquals(
+            1,
+            devicesFor(owner),
+            "a token is not a permission: knowing one must not let somebody else silence your device",
+        )
+    }
+
+    @Test
     fun `registering a device without an asserted identity is refused`() {
         val response = RestClient.create("http://localhost:$port")
             .post().uri("/api/v1/notification/register")
