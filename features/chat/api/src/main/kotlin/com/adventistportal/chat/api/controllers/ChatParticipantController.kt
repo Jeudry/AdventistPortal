@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.server.ResponseStatusException
 
 @RestController
-@RequestMapping("/api/participants")
+@RequestMapping("/api/v1/participants")
 class ChatParticipantController (
   private val chatParticipantService: ChatParticipantService,
   private val profilePictureService: ProfilePictureService

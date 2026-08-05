@@ -116,7 +116,7 @@ class NotificationFlowTest {
     @Test
     fun `registering a device without an asserted identity is refused`() {
         val response = RestClient.create("http://localhost:$port")
-            .post().uri("/api/notification/register")
+            .post().uri("/api/v1/notification/register")
             .contentType(MediaType.APPLICATION_JSON)
             .body("""{"token":"fcm-anonymous","platform":"ANDROID"}""")
             .retrieve().onStatus({ true }, { _, _ -> })
@@ -144,14 +144,14 @@ class NotificationFlowTest {
     }
 
     private fun registerDevice(userId: UUID, deviceToken: String) = callAs(userId)
-        .post().uri("/api/notification/register")
+        .post().uri("/api/v1/notification/register")
         .contentType(MediaType.APPLICATION_JSON)
         .body("""{"token":"$deviceToken","platform":"ANDROID"}""")
         .retrieve().onStatus({ true }, { _, _ -> })
         .toBodilessEntity()
 
     private fun unregisterDevice(userId: UUID, deviceToken: String) = callAs(userId)
-        .delete().uri("/api/notification/$deviceToken")
+        .delete().uri("/api/v1/notification/$deviceToken")
         .retrieve().onStatus({ true }, { _, _ -> })
         .toBodilessEntity()
 

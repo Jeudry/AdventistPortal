@@ -14,24 +14,24 @@ spring:
             - id: user
               uri: ${SERVICE_USER_URI:http://localhost:8083}
               predicates:
-                - Path=/api/auth/**
+                - Path=/api/v1/auth/**
 
             - id: notification
               uri: ${SERVICE_NOTIFICATION_URI:http://localhost:8082}
               predicates:
-                - Path=/api/notification/**
+                - Path=/api/v1/notification/**
 
             - id: chat
               uri: ${SERVICE_CHAT_URI:http://localhost:8085}
               predicates:
-                - Path=/api/chat/**,/api/messages/**,/api/participants/**
+                - Path=/api/v1/chat/**,/api/v1/messages/**,/api/v1/participants/**
 
             # The reason the gateway runs on the reactive stack at all: the servlet
             # variant cannot proxy this, so the handshake used to reach chat directly.
             - id: chat-websocket
               uri: ${SERVICE_CHAT_WS_URI:ws://localhost:8085}
               predicates:
-                - Path=/ws/chat
+                - Path=/ws/v1/chat
 
             - id: inventory
               uri: ${SERVICE_INVENTORY_URI:http://localhost:8084}

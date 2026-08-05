@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*
 import java.time.Instant
 
 @RestController
-@RequestMapping("/api/chat")
+@RequestMapping("/api/v1/chat")
 class ChatController(
     private val chatService: ChatService,
     private val chatMessageService: ChatMessageService

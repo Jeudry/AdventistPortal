@@ -49,7 +49,7 @@ class OutboxTest {
 
     private fun register(email: String) = RestClient.create("http://localhost:$port")
         .post()
-        .uri("/api/auth/register")
+        .uri("/api/v1/auth/register")
         .contentType(MediaType.APPLICATION_JSON)
         .body("""{"email":"$email","username":"${email.substringBefore('@')}","password":"Secreto123!"}""")
         .retrieve()
@@ -97,7 +97,7 @@ class OutboxSurvivesABrokerOutageTest {
 
         val response = RestClient.create("http://localhost:$port")
             .post()
-            .uri("/api/auth/register")
+            .uri("/api/v1/auth/register")
             .contentType(MediaType.APPLICATION_JSON)
             .body("""{"email":"$email","username":"outboxoutage","password":"Secreto123!"}""")
             .retrieve()

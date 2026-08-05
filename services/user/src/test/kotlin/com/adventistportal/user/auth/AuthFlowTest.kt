@@ -89,7 +89,7 @@ class AuthFlowTest {
     @Test
     fun `change-password is not public even though it sits under the auth prefix`() {
         val response = client.post()
-            .uri("/api/auth/change-password")
+            .uri("/api/v1/auth/change-password")
             .contentType(MediaType.APPLICATION_JSON)
             .body("""{"oldPassword":"Secreto123!","newPassword":"Secreto456!"}""")
             .retrieve()
@@ -137,21 +137,21 @@ class AuthFlowTest {
 
     private fun register(email: String) = send(
         HttpMethod.POST,
-        "/api/auth/register",
+        "/api/v1/auth/register",
         """{"email":"$email","username":"${email.substringBefore('@')}","password":"$PASSWORD"}""",
     )
 
-    private fun verify(token: String) = send(HttpMethod.GET, "/api/auth/verify?token=$token")
+    private fun verify(token: String) = send(HttpMethod.GET, "/api/v1/auth/verify?token=$token")
 
     private fun completeRegistration(token: String) = send(
         HttpMethod.POST,
-        "/api/auth/complete-registration",
+        "/api/v1/auth/complete-registration",
         """{"token":"$token","firstName":"Jeudry","lastName":"Perez"}""",
     )
 
     private fun login(email: String, password: String = PASSWORD) = send(
         HttpMethod.POST,
-        "/api/auth/login",
+        "/api/v1/auth/login",
         """{"email":"$email","password":"$password"}""",
     )
 

@@ -65,7 +65,7 @@ class ChatFlowTest {
         val invited = announceUser("leaver")
 
         val chatId = createChat(by = creator, with = listOf(invited))
-        assertEquals(HttpStatus.OK, call(invited).delete().uri("/api/chat/$chatId/leave").exchangeStatus())
+        assertEquals(HttpStatus.OK, call(invited).delete().uri("/api/v1/chat/$chatId/leave").exchangeStatus())
 
         assertTrue(!chatsOf(invited).contains(chatId.toString()), "the chat is gone for whoever left")
         assertTrue(chatsOf(creator).contains(chatId.toString()), "and still there for whoever stayed")
@@ -74,7 +74,7 @@ class ChatFlowTest {
     @Test
     fun `a request with no asserted identity is refused`() {
         val anonymous = RestClient.create("http://localhost:$port")
-            .get().uri("/api/chat")
+            .get().uri("/api/v1/chat")
             .retrieve().onStatus({ true }, { _, _ -> })
             .toBodilessEntity()
 
@@ -95,7 +95,7 @@ class ChatFlowTest {
 
     private fun createChat(by: UUID, with: List<UUID>): UUID {
         val body = call(by).post()
-            .uri("/api/chat")
+            .uri("/api/v1/chat")
             .contentType(MediaType.APPLICATION_JSON)
             .body("""{"otherUsersId":[${with.joinToString(",") { "\"$it\"" }}]}""")
             .retrieve().onStatus({ true }, { _, _ -> })
@@ -108,7 +108,7 @@ class ChatFlowTest {
     }
 
     private fun chatsOf(userId: UUID): String = call(userId)
-        .get().uri("/api/chat")
+        .get().uri("/api/v1/chat")
         .retrieve().onStatus({ true }, { _, _ -> })
         .body(String::class.java)
         .orEmpty()

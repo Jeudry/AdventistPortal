@@ -13,7 +13,7 @@ class WebSocketSettings(
   private val webSocketConfig: WebSocketConfig
 ): WebSocketConfigurer {
   override fun registerWebSocketHandlers(registry: WebSocketHandlerRegistry) {
-     registry.addHandler(handler, "/ws/chat")
+     registry.addHandler(handler, "/ws/v1/chat")
        .setAllowedOrigins(
           *webSocketConfig.allowedOrigins.toTypedArray()
        )

@@ -90,9 +90,13 @@ an unversioned contract defined by Kotlin sealed classes in `core`. It moves to
 `contracts/`, generated per service, with `buf` failing the build on an incompatible
 change.
 
-The external API stays REST and GraphQL: the KMP client is the harshest deployment skew
-of all — a phone can hold a three-month-old build — and that surface needs to stay
-readable and versionable on its own terms (`/api/v1/...`).
+The external API stays REST and GraphQL, under `/api/v1` and `/ws/v1`: the KMP client is
+the harshest deployment skew of all — a phone can hold a three-month-old build — and
+without a version in the path there is no way to serve the old shape and the new one at
+once, so the first incompatible change breaks every installation simultaneously.
+
+GraphQL keeps no version in its URL. A schema evolves by adding fields and deprecating
+old ones, which is the same guarantee arrived at differently.
 
 Note that every synchronous gRPC call couples two services at runtime. Today none
 exists: features talk only through events. Keep it that way unless a call earns itself.

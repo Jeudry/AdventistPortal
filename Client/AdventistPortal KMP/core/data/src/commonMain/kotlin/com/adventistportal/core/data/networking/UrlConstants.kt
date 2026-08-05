@@ -18,10 +18,15 @@ object UrlConstants {
 
     private val baseUrl = BuildKonfig.BASE_URL.trimEnd('/')
 
-    val BASE_URL_HTTP = "$baseUrl/api"
+    /**
+     * Versioned, because a phone can be holding a build from three months ago. Without a
+     * version in the path there is no way to serve the old shape and the new one at the
+     * same time, so the first incompatible change breaks every installation at once.
+     */
+    val BASE_URL_HTTP = "$baseUrl/api/v1"
 
     val BASE_URL_WS = baseUrl
         .replace(HTTPS, WSS)
         .replace(HTTP, WS)
-        .plus("/ws")
+        .plus("/ws/v1")
 }
