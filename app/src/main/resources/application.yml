@@ -1,6 +1,6 @@
 spring:
   application:
-    name: chirp
+    name: adventistportal
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:prod}
 

@@ -5,6 +5,9 @@ spring:
     gateway:
       server:
         webmvc:
+          # One route per feature, never per deployable. Two features sharing a URI is a
+          # deployment detail, and extracting one is then a change of address rather than
+          # a change of routing.
           routes:
             - id: user
               uri: ${SERVICE_USER_URI:http://localhost:8083}
@@ -16,12 +19,20 @@ spring:
               predicates:
                 - Path=/api/notification/**
 
-            # Everything still inside the monolith. Each extraction takes a slice of this
-            # route and puts it above, until the catch-all has nothing left to match.
-            - id: monolith
-              uri: ${SERVICE_MONOLITH_URI:http://localhost:8081}
+            - id: chat
+              uri: ${SERVICE_CHAT_URI:http://localhost:8081}
               predicates:
-                - Path=/api/**,/graphql/**,/v3/api-docs/**,/swagger-ui/**
+                - Path=/api/chat/**,/api/messages/**,/api/participants/**
+
+            - id: inventory
+              uri: ${SERVICE_INVENTORY_URI:http://localhost:8081}
+              predicates:
+                - Path=/graphql/**
+
+            - id: docs
+              uri: ${SERVICE_DOCS_URI:http://localhost:8081}
+              predicates:
+                - Path=/v3/api-docs/**,/swagger-ui/**
 
 gateway:
   cors:

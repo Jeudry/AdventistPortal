@@ -1,6 +1,6 @@
 spring:
   application:
-    name: chirp
+    name: adventistportal
 
   datasource:
     url: jdbc:postgresql://localhost:5432/adventistportal?sslmode=disable

@@ -123,6 +123,10 @@ recompiling every consumer.
 2. **`notification`** — one table, no public API, only consumes events. The cheapest
    place to discover a design mistake.
 3. **Gateway**, with `notification` behind it. Auth and routing get settled here.
+   Routes are named per feature, never per deployable: two features sharing a URI is a
+   deployment detail, and extracting one is then a change of address rather than a change
+   of routing. A catch-all named after whatever is left over describes the past, and gets
+   less true with every step.
 4. **`user`** — the delicate one: authentication, and everyone depends on its events.
 5. **`inventory`** and **`chat`**.
 6. **Outbox** in all of them.
