@@ -61,6 +61,21 @@ class ChatService(
             ?.toModel(lastMessageForChat(chatId))
     }
 
+    /**
+     * Who should be told about something happening in this chat.
+     *
+     * A fact about the chat, not about who is connected: with more than one instance the
+     * sockets are spread across processes, so asking the local ones would name whoever
+     * happens to share a process with the sender.
+     */
+    @Transactional(readOnly = true)
+    fun participantsOf(chatId: ChatId): Set<UserId> =
+        chatRepository.findByIdOrNull(chatId)
+            ?.participants
+            ?.mapNotNull { it.userId }
+            ?.toSet()
+            .orEmpty()
+
     fun findChatsByUser(userId: UserId): List<Chat> {
         val chatEntities = chatRepository.findAllByUserId(userId)
         val chatIds = chatEntities.mapNotNull { it.id }

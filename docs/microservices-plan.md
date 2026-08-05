@@ -144,6 +144,22 @@ can do nothing with it but verify.
 The trusted header is only trustworthy while the service ports are unreachable except
 through the gateway. compose.yaml is what makes that true rather than hoped for.
 
+### Chat can run more than once
+
+A socket is a file descriptor: it lives in the process holding it and can live nowhere
+else. So the connection maps stay local — that part is not a design choice.
+
+What could not stay local was *delivery*. Pushing from the local map reached whoever
+happened to share a process with the sender and silently missed everyone else: half a
+chat sees the message, and nothing reports a problem. Every push now goes to a fanout and
+every instance delivers to the sockets it holds.
+
+Recipients are resolved from the chat's participants rather than from connected sockets,
+for the same reason. And the fanout gets its own listener factory: the shared one converts
+through the protobuf converter, and a socket push is not a domain event. No retries and no
+dead-letter queue on that path either — a push is only worth delivering to a socket that
+is open now.
+
 ### The rate limit is two limits
 
 The gateway applies a blunt ceiling per address to every route, including chat, inventory

@@ -6,6 +6,9 @@ import com.adventistportal.core.domain.events.*
 import com.adventistportal.core.domain.types.ChatId
 import com.adventistportal.core.domain.security.TrustedIdentity.USER_ID_HEADER
 import com.adventistportal.core.domain.types.UserId
+import org.springframework.amqp.core.Message
+import org.springframework.amqp.rabbit.annotation.RabbitListener
+import org.springframework.amqp.rabbit.core.RabbitTemplate
 import com.adventistportal.chat.service.ChatMessageService
 import com.adventistportal.chat.service.ChatService
 import com.adventistportal.core.api.serialization.apiSerializersModule
@@ -32,6 +35,7 @@ import kotlin.concurrent.write
 class ChatWebSocketHandler(
   private val chatMessageService: ChatMessageService,
   private val chatService: ChatService,
+  private val rabbitTemplate: RabbitTemplate,
 ) : TextWebSocketHandler() {
   
   companion object {
@@ -54,25 +58,20 @@ class ChatWebSocketHandler(
     serializersModule = apiSerializersModule
   }
   
+  /**
+   * Addressed to the chat's participants, not to the sockets this process happens to
+   * hold. Reading the local map named whoever shared a process with the sender, so with
+   * two instances half the chat was skipped and nothing said so.
+   */
   private fun broadcastToChat(
     chatId: ChatId,
     message: OutgoingWebsocketMessage
   ) {
-    val chatSessions = connectionLock.read {
-      chatToSessions[chatId]?.toSet() ?: return
-    }
-    
-    chatSessions.forEach { session ->
-      val userSession = connectionLock.read {
-        sessions[session]
-      } ?: return@forEach
-      
-      sendToUser(
-        userId = userSession.userId,
-        message = message
-      )
+    chatService.participantsOf(chatId).forEach { userId ->
+      sendToUser(userId = userId, message = message)
     }
   }
+
   
   override fun afterConnectionEstablished(session: WebSocketSession) {
     // The gateway verified the token during the handshake and asserted who this is; a
@@ -418,11 +417,28 @@ class ChatWebSocketHandler(
     }
   }
   
+  /**
+   * Announces the push to every instance instead of delivering it here.
+   *
+   * The socket may be held by another process — it is a file descriptor and cannot be
+   * anywhere else. Whichever instance has it delivers; the rest look, find nothing, stop.
+   */
   private fun sendToUser(userId: UserId, message: OutgoingWebsocketMessage) {
+    rabbitTemplate.send(
+      SocketFanoutConfig.SOCKET_FANOUT,
+      "",
+      Message(json.encodeToString(SocketPush(userId, message)).toByteArray()),
+    )
+  }
+
+  /** Delivers to the sockets this instance holds, if any of them belong to that user. */
+  @RabbitListener(queues = ["#{socketFanoutQueue.name}"], containerFactory = "socketListenerFactory")
+  fun deliverLocally(push: Message) {
+    val (userId, message) = json.decodeFromString<SocketPush>(push.body.decodeToString())
     val userSessions = connectionLock.read {
       userToSessions[userId] ?: emptySet()
     }
-    
+
     userSessions.forEach { sessionId ->
       val userSession = connectionLock.read {
         sessions[sessionId] ?: return@forEach

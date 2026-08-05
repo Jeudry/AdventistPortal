@@ -12,6 +12,8 @@ base {
 }
 
 dependencies {
+    // Pushes fan out to every instance, so the one holding the socket delivers.
+    implementation(libs.spring.boot.starter.amqp)
     implementation(projects.core.api)
     
     implementation(projects.features.chat.domain)
