@@ -42,6 +42,8 @@ x-service-defaults: &service-defaults
 services:
   gateway:
     <<: *service-defaults
+    # Named so `docker compose pull` can fetch what CI published instead of building.
+    image: ghcr.io/jeudry/adventistportal/gateway:${IMAGE_TAG:-edge}
     build:
       context: .
       args:
@@ -65,6 +67,8 @@ services:
 
   user:
     <<: *service-defaults
+    # Named so `docker compose pull` can fetch what CI published instead of building.
+    image: ghcr.io/jeudry/adventistportal/user:${IMAGE_TAG:-edge}
     build:
       context: .
       args:
@@ -78,6 +82,8 @@ services:
 
   notification:
     <<: *service-defaults
+    # Named so `docker compose pull` can fetch what CI published instead of building.
+    image: ghcr.io/jeudry/adventistportal/notification:${IMAGE_TAG:-edge}
     build:
       context: .
       args:
@@ -90,6 +96,8 @@ services:
 
   chat:
     <<: *service-defaults
+    # Named so `docker compose pull` can fetch what CI published instead of building.
+    image: ghcr.io/jeudry/adventistportal/chat:${IMAGE_TAG:-edge}
     build:
       context: .
       args:
@@ -101,6 +109,8 @@ services:
 
   inventory:
     <<: *service-defaults
+    # Named so `docker compose pull` can fetch what CI published instead of building.
+    image: ghcr.io/jeudry/adventistportal/inventory:${IMAGE_TAG:-edge}
     build:
       context: .
       args:

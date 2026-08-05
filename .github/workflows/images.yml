@@ -1,0 +1,67 @@
+name: images
+
+# The image is the deployable. A jar is not: it needs the same JRE, the same base layer
+# and the same entrypoint to mean anything, and "the same" is what an image is for.
+#
+# Only on main and on tags. A branch build proves the code compiles; publishing from one
+# would put an image in the registry that nothing agreed to.
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+
+concurrency:
+  group: images-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    permissions:
+      contents: read
+      packages: write
+
+    strategy:
+      # One image per service, built in parallel. A failure in one should not hide
+      # whether the others are publishable.
+      fail-fast: false
+      matrix:
+        service: [gateway, user, notification, chat, inventory]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}/${{ matrix.service }}
+          # A tag becomes a version you can roll back to; main becomes a moving `edge`.
+          # Every image also carries its commit, so a running container can always be
+          # traced to the source it was built from.
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=edge,enable={{is_default_branch}}
+            type=sha,format=long
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          build-args: SERVICE=${{ matrix.service }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          # The Gradle dependency graph is the slow part and it is the same for every
+          # service; cached in the registry, the second build onwards only compiles.
+          cache-from: type=gha,scope=${{ matrix.service }}
+          cache-to: type=gha,scope=${{ matrix.service }},mode=max

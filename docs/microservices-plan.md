@@ -68,6 +68,11 @@ contracts  VERSIONED    protobuf, compatibility enforced in CI
 images     VERSIONED    user-service:1.4.0 — what you deploy and roll back
 ```
 
+A `v1.4.0` tag publishes `1.4.0` and `1.4` for every service; main publishes `edge`.
+Every image also carries its commit, so a running container can be traced back to the
+source it came from. Only main and tags publish — a branch build proves the code
+compiles, and an image nobody agreed to should not be in the registry.
+
 A package version buys exactly one thing: consumers migrating at different times. In
 one repository with four consumers built from the same commit, nothing consumes `core`
 asynchronously, so the number would describe nothing. The twenty modules in this repo
