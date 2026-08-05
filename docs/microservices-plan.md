@@ -92,6 +92,12 @@ readable and versionable on its own terms (`/api/v1/...`).
 Note that every synchronous gRPC call couples two services at runtime. Today none
 exists: features talk only through events. Keep it that way unless a call earns itself.
 
+### WebSockets do not go through the gateway
+
+Spring Cloud Gateway Server WebMVC does not proxy them, so the chat handshake reaches
+that service directly and authenticates itself — the one place a token is still read
+behind the gateway. Moving the gateway to the WebFlux variant would close it.
+
 ### JWT validated at the gateway only
 
 The gateway validates once and propagates identity inward as trusted headers. Services
@@ -128,18 +134,19 @@ recompiling every consumer.
    of routing. A catch-all named after whatever is left over describes the past, and gets
    less true with every step.
 4. **`user`** — the delicate one: authentication, and everyone depends on its events.
-5. **`inventory`** and **`chat`**.
+5. **`inventory`** and **`chat`**. With these out, `app` has nothing left to assemble
+   and is deleted.
 6. **Outbox** in all of them.
 7. **Tracing** and a development compose file.
 
 ## Risks worth naming
 
 **Almost no tests.** Splitting a monolith with no coverage means failures surface at
-runtime, in production, with four processes to search instead of one.
+runtime, in production, with five processes to search instead of one.
 
-`AuthFlowTest` now covers registration and login end to end against containers, which is
-the flow step 4 moves. Chat and inventory still have none, and step 5 should not start
-before they do.
+Auth, chat and inventory now have end-to-end coverage against containers, written before
+each was moved. That order paid for itself: the chat and inventory tests found two bugs
+in the asset register that nothing had ever run into. `notification` still has none.
 
 **No transactional outbox.** `AuthService.completeRegistration` saves the user and then
 publishes an event; if the publish fails after the commit, a user exists with no chat

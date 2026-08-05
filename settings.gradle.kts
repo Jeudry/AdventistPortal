@@ -14,7 +14,6 @@ includeBuild("shared")
 
 rootProject.name = "adventistportal-api"
 
-include("app")
 
 
 include("features:chat:domain")
@@ -47,3 +46,5 @@ include("core:api")
 include("services:notification")
 include("services:gateway")
 include("services:user")
+include("services:inventory")
+include("services:chat")

@@ -2,23 +2,22 @@ plugins {
     id("adventistportal.spring-boot-app")
     id("adventistportal.schema-export")
 }
-group = "com.adventistportal.user"
+group = "com.adventistportal.chat"
 version = "0.0.1-SNAPSHOT"
-description = "AdventistPortal user service"
+description = "AdventistPortal chat service"
 
 springBoot {
-    mainClass.set("com.adventistportal.user.UserServiceApplicationKt")
+    mainClass.set("com.adventistportal.chat.ChatServiceApplicationKt")
 }
 
 dependencies {
     implementation(projects.core.domain)
     implementation(projects.core.infra)
-    implementation(projects.core.service)
     implementation(projects.core.api)
-    implementation(projects.features.user.domain)
-    implementation(projects.features.user.infra)
-    implementation(projects.features.user.service)
-    implementation(projects.features.user.api)
+    implementation(projects.features.chat.domain)
+    implementation(projects.features.chat.infra)
+    implementation(projects.features.chat.service)
+    implementation(projects.features.chat.api)
 
     implementation(libs.spring.boot.starter.data.jpa)
     implementation(libs.spring.boot.starter.data.redis)

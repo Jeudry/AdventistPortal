@@ -12,6 +12,8 @@ base {
 }
 
 dependencies {
+    implementation(projects.core.api)
+    implementation(libs.spring.boot.starter.data.redis)
     implementation(projects.features.chat.domain)
     
     implementation(libs.spring.boot.starter.data.jpa)

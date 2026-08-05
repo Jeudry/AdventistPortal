@@ -2,6 +2,7 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     id("adventistportal.spring-boot-app")
+    id("adventistportal.schema-export")
 }
 group = "com.adventistportal.notification"
 version = "0.0.1-SNAPSHOT"

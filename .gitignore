@@ -24,13 +24,14 @@ hs_err_pid*
 replay_pid*
 
 # Kotlin Gradle plugin data, see https://kotlinlang.org/docs/whatsnew20.html#new-directory-for-kotlin-data-in-gradle-projects
-.kotlin/app/src/main/resources/firebase-credentials/adventist-firebase-adminsdk.json
+.kotlin/
+app/src/main/resources/firebase-credentials/adventist-firebase-adminsdk.json
 app/src/main/resources/firebase-credentials/adventist-firebase-adminsdk.json
 
-.kotlin/app/src/main/resources/firebase-credentials/google-services.json
+app/src/main/resources/firebase-credentials/google-services.json
 
 # Ignorar credenciales de Firebase
-.kotlin/app/src/main/resources/firebase-credentials/
+app/src/main/resources/firebase-credentials/
 
 # Ignorar google-services.json en cualquier ubicación
 **/google-services.json

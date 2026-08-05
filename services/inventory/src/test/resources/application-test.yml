@@ -1,0 +1,4 @@
+logging:
+  level:
+    liquibase: WARN
+    org.testcontainers: WARN

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-5.0.xsd">
+
+    <!--
+      This service owns chat_service and nothing else. Order comes from the
+      path, so the yyyy/MM/dd-NN naming is what sequences the migrations.
+      endsWithFilter keeps this master (.xml) out of its own scan.
+    -->
+    <includeAll path="." relativeToChangelogFile="true" endsWithFilter=".sql"/>
+
+</databaseChangeLog>

@@ -20,19 +20,15 @@ spring:
                 - Path=/api/notification/**
 
             - id: chat
-              uri: ${SERVICE_CHAT_URI:http://localhost:8081}
+              uri: ${SERVICE_CHAT_URI:http://localhost:8085}
               predicates:
                 - Path=/api/chat/**,/api/messages/**,/api/participants/**
 
             - id: inventory
-              uri: ${SERVICE_INVENTORY_URI:http://localhost:8081}
+              uri: ${SERVICE_INVENTORY_URI:http://localhost:8084}
               predicates:
                 - Path=/graphql/**
 
-            - id: docs
-              uri: ${SERVICE_DOCS_URI:http://localhost:8081}
-              predicates:
-                - Path=/v3/api-docs/**,/swagger-ui/**
 
 gateway:
   cors:
