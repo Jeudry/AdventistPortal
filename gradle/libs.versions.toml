@@ -89,6 +89,8 @@ spring-restdocs-mockmvc = { module = "org.springframework.restdocs:spring-restdo
 spring-security-test = { module = "org.springframework.security:spring-security-test" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 awaitility = { module = "org.awaitility:awaitility" }
+# An in-process SMTP server, so a test can assert that mail was actually sent.
+greenmail-junit5 = { module = "com.icegreen:greenmail-junit5", version = "2.1.11" }
 spring-boot-testcontainers = { module = "org.springframework.boot:spring-boot-testcontainers" }
 testcontainers-junit = { module = "org.testcontainers:testcontainers-junit-jupiter" }
 testcontainers-postgresql = { module = "org.testcontainers:testcontainers-postgresql" }

@@ -153,9 +153,13 @@ All seven are done. What follows is what was learned doing them.
 **Almost no tests.** Splitting a monolith with no coverage means failures surface at
 runtime, in production, with five processes to search instead of one.
 
-Auth, chat and inventory now have end-to-end coverage against containers, written before
-each was moved. That order paid for itself: the chat and inventory tests found two bugs
-in the asset register that nothing had ever run into. `notification` still has none.
+Every service now has end-to-end coverage against containers, written before each was
+moved. That order paid for itself: the chat and inventory tests found two bugs in the
+asset register that nothing had ever run into.
+
+Notification's mail is asserted against a real SMTP server in the test process rather
+than a mock. Its send path catches its own exceptions, so a mock would agree with
+anything — including with a failure.
 
 **~~No transactional outbox.~~** Events are now written in the transaction that caused
 them and relayed afterwards. Delivery is at-least-once, so consumers must tolerate seeing

@@ -44,4 +44,11 @@ dependencies {
     implementation(libs.kotlin.reflect)
     implementation(libs.liquibase.starter)
     runtimeOnly(libs.postgresql)
+
+    testImplementation(libs.awaitility)
+    testImplementation(libs.greenmail.junit5)
+    testImplementation(libs.spring.boot.testcontainers)
+    testImplementation(libs.testcontainers.junit)
+    testImplementation(libs.testcontainers.postgresql)
+    testImplementation(libs.testcontainers.rabbitmq)
 }
