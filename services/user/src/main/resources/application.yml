@@ -1,0 +1,99 @@
+spring:
+  config:
+    import: classpath:config/tracing.yml
+  application:
+    name: user-service
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://postgres.adventistportal.orb.local:5432/adventistportal?sslmode=disable}
+    # Its own role, granted on user_service only. A shared Postgres keeps the boundary
+    # only if the database enforces it; otherwise it is a naming convention.
+    username: ${DB_USER:user_service}
+    password: ${DB_PASSWORD:user_service}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    default-schema: ${adventistportal.outbox.schema}
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST:rabbitmq.adventistportal.orb.local}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:adventistportal_user}
+    password: ${RABBITMQ_PASSWORD:adventistportal_password}
+    virtual-host: ${RABBITMQ_VHOST:adventistportal}
+
+  data:
+    redis:
+      # Loopback, not the .orb.local name: Lettuce resolves through Netty, which does not
+      # consult the OrbStack resolver, and the container publishes 6379 on 127.0.0.1.
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      username: ${REDIS_USER:default}
+      password: ${REDIS_PASSWORD:adventistportal_redis_password}
+
+jwt:
+  # The only service with the private half. Everything else can check a token and not
+  # one of them can make one.
+  private-key: ${JWT_PRIVATE_KEY}
+  public-key: ${JWT_PUBLIC_KEY}
+  expiration-minutes: ${JWT_EXPIRATION_MINUTES:60}
+
+server:
+  port: ${SERVER_PORT:8083}
+
+adventistportal:
+  messaging:
+    # This service only publishes. The exchange is declared anyway: publishing to one
+    # that does not exist is a channel error, and the relay would retry forever.
+    publishes-to:
+      - user.events
+  outbox:
+    # Declared once: Liquibase and the outbox both read it, so they cannot disagree
+    # about which schema this service owns.
+    schema: user_service
+  # This service mints tokens; the gateway only verifies them. Every endpoint here is
+  # reached without a caller, which is why the list is the whole public surface minus
+  # change-password.
+  security:
+    public-paths:
+      - /api/auth/register
+      - /api/auth/complete-registration
+      - /api/auth/login
+      - /api/auth/refresh
+      - /api/auth/resend-verification
+      - /api/auth/verify
+      - /api/auth/forgot-password
+      - /api/auth/reset-password
+  email:
+    url: ${PUBLIC_URL:http://localhost:8080}
+    from: ${MAIL_FROM_EMAIL:no-reply@adventistportal.local}
+    verification:
+      expiry-hours: ${VERIFICATION_EXPIRY_HOURS:24}
+    reset-password:
+      expiry-minutes: ${RESET_PASSWORD_EXPIRY_MINUTES:30}
+  ip:
+    rate-limit:
+      apply-limit: ${IP_RATE_LIMIT:true}
+
+nginx:
+  require-proxy: false
+  trustedIps:
+    - "127.0.0.1"
+    - "::1"
+
+logging:
+  level:
+    com.adventistportal: INFO

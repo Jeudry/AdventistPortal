@@ -1,0 +1,30 @@
+name: contracts
+
+# The wire contracts are the one thing a service deployed on Tuesday and a service
+# deployed on Thursday have to agree on. Nothing else catches an incompatible change:
+# each service carries its own compiled copy of everything else.
+on:
+  pull_request:
+    paths:
+      - 'contracts/**'
+      - '.github/workflows/contracts.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'contracts/**'
+
+jobs:
+  buf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # `buf breaking` compares against the base commit, so it needs the history.
+          fetch-depth: 0
+
+      - uses: bufbuild/buf-action@v1
+        with:
+          input: contracts
+          # Against the base branch on a pull request, against the previous commit on
+          # a push. Either way: what is already deployed must keep being readable.
+          breaking_against: '.git#branch=main,subdir=contracts'

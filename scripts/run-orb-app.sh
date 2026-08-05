@@ -9,7 +9,7 @@ docker ps --format "{{.Names}}: {{.Status}}" | grep adventistportal
 if [ $? -ne 0 ]; then
   echo ""
   echo "⚠️  Los servicios de Docker no están corriendo"
-  echo "   Ejecuta: docker-compose -f docker-compose.orb.yml up -d"
+  echo "   Ejecuta: docker-compose -f compose.infra.yaml up -d"
   exit 1
 fi
 

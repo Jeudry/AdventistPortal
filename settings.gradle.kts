@@ -8,14 +8,13 @@ pluginManagement {
 }
 
 
+// shared is its own multiplatform build, shared with the KMP client.
+// Composite build: the declarations below resolve from source, not from a repository.
+includeBuild("shared")
+
 rootProject.name = "adventistportal-api"
 
-include("app")
 
-include("shared:domain")
-include("shared:infra")
-include("shared:service")
-include("shared:api")
 
 include("features:chat:domain")
 include("features:chat:infra")
@@ -38,7 +37,15 @@ include("features:inventory:service")
 include("features:inventory:api")
 
 
+include("contracts")
 include("core:domain")
 include("core:infra")
 include("core:service")
 include("core:api")
+include("core:observability")
+
+include("services:notification")
+include("services:gateway")
+include("services:user")
+include("services:inventory")
+include("services:chat")

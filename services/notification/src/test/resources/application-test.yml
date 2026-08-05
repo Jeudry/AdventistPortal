@@ -1,0 +1,25 @@
+spring:
+  rabbitmq:
+    # The container speaks plain AMQP on the default vhost.
+    virtual-host: /
+  mail:
+    # GreenMail, started by the test on this port. Nothing leaves the machine.
+    host: 127.0.0.1
+    port: 3025
+    username: tests@adventistportal.local
+    password: unused-in-tests
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
+
+adventistportal:
+  email:
+    from: tests@adventistportal.local
+
+logging:
+  level:
+    liquibase: WARN
+    org.testcontainers: WARN

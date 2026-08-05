@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="todo el stack" type="CompoundRunConfigurationType">
+    <toRun name="gateway" type="SpringBootApplicationConfigurationType" />
+    <toRun name="user" type="SpringBootApplicationConfigurationType" />
+    <toRun name="notification" type="SpringBootApplicationConfigurationType" />
+    <toRun name="chat" type="SpringBootApplicationConfigurationType" />
+    <toRun name="inventory" type="SpringBootApplicationConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>

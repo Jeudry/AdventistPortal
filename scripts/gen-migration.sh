@@ -7,8 +7,11 @@
 # diffing the model against the ModelSnapshot. Nothing here touches your Supabase,
 # local or orb databases: it spins a throwaway Postgres, uses it, and tears it down.
 #
-# Usage:   scripts/gen-migration.sh <MigrationName>
-# Example: scripts/gen-migration.sh AddArticleDeletedAt
+# Usage:   scripts/gen-migration.sh <MigrationName> <service>
+# Example: scripts/gen-migration.sh AddArticleDeletedAt inventory
+#
+# One service at a time: each owns its own schema and its own changelog, so a model
+# and the migrations it is diffed against always belong to the same service.
 #
 # Requires: Docker, the Gradle wrapper, and a resolved Postgres JDBC driver in the
 # Gradle cache (any prior build pulls it).
@@ -17,10 +20,11 @@ set -euo pipefail
 
 NAME="${1:-migration}"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-RESOURCES="$ROOT/app/src/main/resources"
+SERVICE="${2:?usage: gen-migration.sh <MigrationName> <service>}"
+RESOURCES="$ROOT/services/$SERVICE/src/main/resources"
 CHANGELOG_DIR="$RESOURCES/db/changelog"
 MASTER_REL="db/changelog/db.changelog-master.xml"
-MODEL_SQL="$ROOT/app/build/model-schema.sql"
+MODEL_SQL="$ROOT/services/$SERVICE/build/model-schema.sql"
 
 CONTAINER="ap-shadow-migrate"          # our own throwaway; never a user container
 PORT="5433"                            # avoid the dev stack on 5432
@@ -34,8 +38,8 @@ cleanup() { docker stop "$CONTAINER" >/dev/null 2>&1 || true; }
 trap cleanup EXIT
 
 # --- 1. export the JPA model to DDL (offline, no DB) -------------------------
-log "Exporting JPA model -> app/build/model-schema.sql"
-"$ROOT/gradlew" -p "$ROOT" :app:exportModelSchema -q --console=plain
+log "Exporting the JPA model of $SERVICE -> services/$SERVICE/build/model-schema.sql"
+"$ROOT/gradlew" -p "$ROOT" ":services:$SERVICE:exportModelSchema" -q --console=plain
 [ -s "$MODEL_SQL" ] || { echo "model schema not generated"; exit 1; }
 
 # --- 2. locate the Postgres JDBC driver in the Gradle cache -----------------
@@ -82,7 +86,7 @@ docker run --rm -v "$PG_DRIVER":/liquibase/lib/postgresql.jar \
 
 echo
 if [ -s "$CHANGELOG_DIR/$OUT_REL" ] && grep -q '^-- changeset' "$CHANGELOG_DIR/$OUT_REL"; then
-  log "Delta written: app/src/main/resources/db/changelog/${OUT_REL}"
+  log "Delta written: services/$SERVICE/src/main/resources/db/changelog/${OUT_REL}"
   cat <<EOF
 
   NEXT STEPS (like reviewing an EF migration before committing):

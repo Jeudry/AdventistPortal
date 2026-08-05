@@ -10,7 +10,7 @@ class ArticleMapper {
 
     fun toDto(article: Article): ArticleDto {
         return ArticleDto(
-            id = article.id,
+            id = requireNotNull(article.id) { "an article read back from storage always has an id" },
             nameTemplate = article.nameTemplate,
             descriptionTemplate = article.descriptionTemplate,
             isActive = article.isActive,
@@ -21,15 +21,15 @@ class ArticleMapper {
 
     private fun toVariantDto(variant: ArticleVariant): ArticleVariantDto {
         return ArticleVariantDto(
-            id = variant.id,
+            id = requireNotNull(variant.id) { "a variant read back from storage always has an id" },
             sku = variant.sku,
             name = variant.name,
             description = variant.description,
             imageUrl = variant.imageUrl,
             isActive = variant.isActive,
             stock = variant.stock,
-            replacementCost = variant.replacementCost,
-            attributes = variant.attributes,
+            replacementCostCents = variant.replacementCostCents,
+            attributes = variant.attributes.map { (key, value) -> AttributeDto(key, value) },
             dimensions = variant.dimensions.map { toDimensionDto(it) }
         )
     }
@@ -46,7 +46,6 @@ class ArticleMapper {
 
     fun toDomain(input: CreateArticleInput): Article {
         return Article(
-            id = UUID.randomUUID(),
             nameTemplate = input.nameTemplate,
             descriptionTemplate = input.descriptionTemplate,
             categoryId = input.categoryId,
@@ -67,15 +66,14 @@ class ArticleMapper {
 
     private fun toVariant(input: CreateArticleVariantInput): ArticleVariant {
         return ArticleVariant(
-            id = UUID.randomUUID(),
             sku = input.sku,
             name = input.name,
             description = input.description,
             imageUrl = input.imageUrl,
             stock = input.stock,
-            replacementCost = input.replacementCost,
-            attributes = input.attributes,
-            dimensions = input.dimensions.map { toDimension(it) }
+            replacementCostCents = input.replacementCostCents,
+            attributes = input.attributes.orEmpty().associate { it.key to it.value },
+            dimensions = input.dimensions.orEmpty().map { toDimension(it) }
         )
     }
 

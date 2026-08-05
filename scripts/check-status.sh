@@ -70,12 +70,12 @@ echo ""
 
 # Show docker-compose status
 echo -e "${YELLOW}📋 Detailed Container Status:${NC}"
-docker-compose -f docker-compose.orb.yml ps 2>/dev/null || docker ps --format "table {{.Names}}\t{{.Status}}" | grep adventistportal
+docker-compose -f compose.infra.yaml ps 2>/dev/null || docker ps --format "table {{.Names}}\t{{.Status}}" | grep adventistportal
 
 echo ""
 echo -e "${BLUE}💡 Quick Commands:${NC}"
 echo -e "   Start Orb services:   ${GREEN}./reset-and-start-orb.sh${NC}"
 echo -e "   Run application:      ${GREEN}./run-orb-app.sh${NC}"
 echo -e "   Stop services:        ${GREEN}./stop-orb.sh${NC}"
-echo -e "   View logs:            ${GREEN}docker-compose -f docker-compose.orb.yml logs -f${NC}"
+echo -e "   View logs:            ${GREEN}docker-compose -f compose.infra.yaml logs -f${NC}"
 echo ""

@@ -1,0 +1,15 @@
+spring:
+  rabbitmq:
+    # The container speaks plain AMQP on the default vhost.
+    virtual-host: /
+  cache:
+    # No Redis container here; caching is not what these tests assert.
+    type: none
+
+supabase:
+  service-key: unused-in-tests
+
+logging:
+  level:
+    liquibase: WARN
+    org.testcontainers: WARN

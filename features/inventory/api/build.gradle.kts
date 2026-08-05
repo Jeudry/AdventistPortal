@@ -8,11 +8,12 @@ base {
     archivesName.set("inventory-api")
 }
 dependencies {
+    // The scalars the schema names: Long, DateTime, UUID.
+    implementation("com.graphql-java:graphql-java-extended-scalars:22.0")
     api(projects.features.inventory.domain)
     api(projects.features.inventory.service)
     implementation(projects.features.inventory.infra)
-    implementation(projects.shared.api)
-    implementation(projects.core.service)
+    implementation("com.adventistportal.shared:service:1.0.0")
     implementation(projects.core.api)
     implementation(libs.spring.boot.starter.web)
     implementation(libs.spring.boot.starter.security)

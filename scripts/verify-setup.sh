@@ -18,8 +18,8 @@ NC='\033[0m' # No Color
 echo "📄 Verificando archivos de configuración..."
 
 files=(
-    "docker-compose.yml"
-    "docker-compose.orb.yml"
+    "compose.infra.yaml"
+    "compose.infra.yaml"
     "app/src/main/resources/application.yml"
     "app/src/main/resources/application-local.yml"
     "app/src/main/resources/application-orb.yml"
@@ -102,7 +102,7 @@ if [ $running_containers -eq 0 ]; then
     echo ""
     echo -e "${YELLOW}ℹ${NC}  Ningún contenedor está corriendo. Inicia los servicios con:"
     echo "   docker-compose up -d             # Docker Compose tradicional"
-    echo "   docker-compose -f docker-compose.orb.yml up -d  # Orb Stack"
+    echo "   docker-compose -f compose.infra.yaml up -d  # Orb Stack"
 fi
 
 echo ""

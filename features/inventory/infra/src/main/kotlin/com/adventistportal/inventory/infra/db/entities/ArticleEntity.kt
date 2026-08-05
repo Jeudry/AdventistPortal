@@ -5,7 +5,6 @@ import com.adventistportal.inventory.infra.db.embeded.ArticleDimensions
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
-import java.math.BigDecimal
 import java.time.Instant
 import java.util.*
 
@@ -66,9 +65,9 @@ class ArticleVariantEntity(
     @Column(nullable = false)
     var stock: Int = 0,
 
-    /** Replacement value for insurance and asset records — not a sale price. */
-    @Column(precision = 19, scale = 4)
-    var replacementCost: BigDecimal = BigDecimal.ZERO,
+    /** Replacement value in cents, for insurance and asset records. */
+    @Column(nullable = false)
+    var replacementCostCents: Long = 0,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id")

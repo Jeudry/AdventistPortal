@@ -15,8 +15,7 @@ base {
 dependencies {
     api(projects.features.inventory.domain)
     api(projects.features.inventory.infra)
-    implementation(projects.core.service)
-    implementation(projects.shared.service)
+    implementation("com.adventistportal.shared:service:1.0.0")
 
     implementation(libs.spring.boot.starter.security)
     implementation(libs.jwt.api)

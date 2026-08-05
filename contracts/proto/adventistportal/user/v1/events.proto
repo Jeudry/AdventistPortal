@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package adventistportal.user.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Everything the user service publishes. One envelope with a oneof rather than a
+// message per event: consumers receive whatever arrives on the queue and switch on
+// it, the same shape the Kotlin sealed class had.
+//
+// Evolving this safely:
+//   - adding a field is fine; older consumers ignore what they do not know
+//   - never reuse a field number, and mark removed ones `reserved`
+//   - anything else is breaking and needs package v2, with both served while
+//     producers and consumers migrate
+// `buf breaking` enforces all of that in CI, so none of it depends on remembering.
+message UserEvent {
+  string event_id = 1;
+  google.protobuf.Timestamp occurred_at = 2;
+
+  oneof payload {
+    RegistrationStarted registration_started = 10;
+    Created created = 11;
+    Verified verified = 12;
+    RequestResendVerification request_resend_verification = 13;
+    RequestResetPassword request_reset_password = 14;
+  }
+}
+
+// A registration was started. No user exists yet — only a pending registration, so
+// this carries a registration_id and not a user_id.
+message RegistrationStarted {
+  string registration_id = 1;
+  string email = 2;
+  string username = 3;
+  string verification_token = 4;
+}
+
+// The registration completed and the user now exists.
+message Created {
+  string user_id = 1;
+  string email = 2;
+  string username = 3;
+}
+
+// The e-mail was confirmed. The user still does not exist — details are pending.
+message Verified {
+  string registration_id = 1;
+  string email = 2;
+  string username = 3;
+}
+
+message RequestResendVerification {
+  string registration_id = 1;
+  string email = 2;
+  string username = 3;
+  string verification_token = 4;
+}
+
+message RequestResetPassword {
+  string user_id = 1;
+  string email = 2;
+  string username = 3;
+  string verification_token = 4;
+  int64 expires_in_minutes = 5;
+}

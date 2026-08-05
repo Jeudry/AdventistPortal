@@ -9,5 +9,5 @@ base {
     archivesName.set("inventory-domain")
 }
 dependencies {
-    implementation(projects.shared.domain)
+    implementation("com.adventistportal.shared:domain:1.0.0")
 }

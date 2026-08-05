@@ -4,20 +4,19 @@ import com.adventistportal.chat.api.dto.ws.*
 import com.adventistportal.chat.api.mappers.toDto
 import com.adventistportal.core.domain.events.*
 import com.adventistportal.core.domain.types.ChatId
+import com.adventistportal.core.domain.security.TrustedIdentity.USER_ID_HEADER
 import com.adventistportal.core.domain.types.UserId
 import com.adventistportal.chat.service.ChatMessageService
 import com.adventistportal.chat.service.ChatService
-import com.adventistportal.core.services.JwtService
-import tools.jackson.databind.DatabindException
-import tools.jackson.databind.ObjectMapper
+import com.adventistportal.core.api.serialization.apiSerializersModule
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.Json
 import com.adventistportal.chat.domain.events.ChatCreatedEvent
 import com.adventistportal.chat.domain.events.ChatParticipantLeftEvent
 import com.adventistportal.chat.domain.events.ChatParticipantsJoinedEvent
 import com.adventistportal.chat.domain.events.MessageDeletedEvent
 import com.adventistportal.chat.domain.events.ProfilePictureUpdatedEv
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Qualifier
-import org.springframework.http.HttpHeaders
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import org.springframework.transaction.event.TransactionPhase
@@ -32,9 +31,7 @@ import kotlin.concurrent.write
 @Component
 class ChatWebSocketHandler(
   private val chatMessageService: ChatMessageService,
-  @Qualifier("jackson2ObjectMapper") private val objectMapper: ObjectMapper,
   private val chatService: ChatService,
-  private val jwtService: JwtService,
 ) : TextWebSocketHandler() {
   
   companion object {
@@ -49,9 +46,13 @@ class ChatWebSocketHandler(
   private val userToSessions = ConcurrentHashMap<UserId, MutableSet<String>>()
   private val userChatIds = ConcurrentHashMap<UserId, MutableSet<ChatId>>()
   private val chatToSessions = ConcurrentHashMap<ChatId, MutableSet<String>>()
-  // Jackson 3 mappers are immutable; java.time is already registered on the
-  // injected mapper via findAndAddModules().
-  private val mapper = objectMapper
+  /** The same shape the REST surface uses, so a client parses both the same way. */
+  private val json = Json {
+    ignoreUnknownKeys = true
+    encodeDefaults = true
+    explicitNulls = false
+    serializersModule = apiSerializersModule
+  }
   
   private fun broadcastToChat(
     chatId: ChatId,
@@ -74,16 +75,17 @@ class ChatWebSocketHandler(
   }
   
   override fun afterConnectionEstablished(session: WebSocketSession) {
-    val authHeader = session
+    // The gateway verified the token during the handshake and asserted who this is; a
+    // connection that arrives without it did not come through the gateway.
+    val userId = session
       .handshakeHeaders
-      .getFirst(HttpHeaders.AUTHORIZATION)
+      .getFirst(USER_ID_HEADER)
+      ?.let { runCatching { java.util.UUID.fromString(it) }.getOrNull() }
       ?: run {
-        logger.warn("Session ${session.id}  closed due to missing Authorization header")
+        logger.warn("Session ${session.id} closed: the handshake carried no asserted identity")
         session.close(CloseStatus.SERVER_ERROR.withReason("Authentication failed"))
         return
       }
-    
-    val userId = jwtService.getUserIdFromToken(authHeader)
     
     val userSession = UserSession(
       userId = userId,
@@ -145,7 +147,7 @@ class ChatWebSocketHandler(
       chatId = dto.chatId,
       message = OutgoingWebsocketMessage(
         type = OutgoingWebSocketMessageType.NEW_MESSAGE,
-        payload = objectMapper.writeValueAsString(savedMessage.toDto()),
+        payload = json.encodeToString(savedMessage.toDto()),
       )
     )
   }
@@ -158,20 +160,14 @@ class ChatWebSocketHandler(
     }
     
     try {
-      val webSocketMessage = objectMapper.readValue(
-        message.payload,
-        IncomingWebsocketMessage::class.java
-      )
+      val webSocketMessage = json.decodeFromString<IncomingWebsocketMessage>(message.payload)
       when (webSocketMessage.type) {
         IncomingWebSocketMessageType.NEW_MESSAGE -> {
-          val dto = objectMapper.readValue(
-            webSocketMessage.payload,
-            SendMessageDto::class.java
-          )
+          val dto = json.decodeFromString<SendMessageDto>(webSocketMessage.payload)
           handleSendMessage(dto, userSession.userId)
         }
       }
-    } catch (ex: DatabindException) {
+    } catch (ex: SerializationException) {
       logger.warn("Could not parse message ${message.payload}", ex)
       sendError(
         session,
@@ -191,7 +187,7 @@ class ChatWebSocketHandler(
       chatId = event.chatId,
       message = OutgoingWebsocketMessage(
         type = OutgoingWebSocketMessageType.MESSAGE_DELETED,
-        payload = objectMapper.writeValueAsString(
+        payload = json.encodeToString(
           DeleteMessageDto(
             chatId = event.chatId,
             messageId = event.messageId,
@@ -242,7 +238,7 @@ class ChatWebSocketHandler(
       chatId = event.chatId,
       message = OutgoingWebsocketMessage(
         type = OutgoingWebSocketMessageType.CHAT_PARTICIPANTS_CHANGED,
-        payload = objectMapper.writeValueAsString(
+        payload = json.encodeToString(
           ChatParticipantsChangedDto(
             chatId = event.chatId,
           )
@@ -359,7 +355,7 @@ class ChatWebSocketHandler(
       chatId = event.chatId,
       message = OutgoingWebsocketMessage(
         type = OutgoingWebSocketMessageType.CHAT_PARTICIPANTS_CHANGED,
-        payload = objectMapper.writeValueAsString(
+        payload = json.encodeToString(
           ChatParticipantsChangedDto(
             chatId = event.chatId,
           )
@@ -387,9 +383,9 @@ class ChatWebSocketHandler(
     }
     val webSocketMessage = OutgoingWebsocketMessage(
       type = OutgoingWebSocketMessageType.PROFILE_PICTURE_UPDATED,
-      payload = mapper.writeValueAsString(dto)
+      payload = json.encodeToString(dto)
     )
-    val messageJson = mapper.writeValueAsString(webSocketMessage)
+    val messageJson = json.encodeToString(webSocketMessage)
     sessionIds.forEach { sessionId ->
       val userSession = connectionLock.read {
         sessions[sessionId] ?: return@forEach
@@ -408,10 +404,10 @@ class ChatWebSocketHandler(
     session: WebSocketSession,
     error: WsErrorDto
   ){
-    val webSocketMessage = objectMapper.writeValueAsString(
+    val webSocketMessage = json.encodeToString(
       OutgoingWebsocketMessage(
         type = OutgoingWebSocketMessageType.ERROR,
-        payload = objectMapper.writeValueAsString(error)
+        payload = json.encodeToString(error)
       )
     )
     
@@ -433,7 +429,7 @@ class ChatWebSocketHandler(
       }
       if (userSession.session.isOpen) {
         try {
-          val messageJson = objectMapper.writeValueAsString(message)
+          val messageJson = json.encodeToString(message)
           userSession.session.sendMessage(TextMessage(messageJson))
           logger.debug("Message sent to user $userId: $messageJson")
         } catch (ex: Exception) {

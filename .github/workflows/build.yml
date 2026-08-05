@@ -1,0 +1,44 @@
+name: build
+
+# Every test here needs Postgres, RabbitMQ or an SMTP server, and gets them from
+# Testcontainers rather than from services declared in this file: the same run then
+# happens on a laptop and here, and there is one place where the versions are written.
+on:
+  pull_request:
+  push:
+    branches: [main, 'feat/**']
+
+concurrency:
+  # A newer push to the same branch makes this run pointless.
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Build and test
+        env:
+          # Signing is exercised by the user service's tests, which read a pair from their
+          # own test configuration; nothing here needs a real key.
+          TESTCONTAINERS_RYUK_DISABLED: 'false'
+        run: ./gradlew build --no-daemon --stacktrace
+
+      - name: Publish the report when something fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: '**/build/reports/tests/test'
+          retention-days: 7

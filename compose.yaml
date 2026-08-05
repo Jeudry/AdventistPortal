@@ -1,0 +1,172 @@
+# The whole system, for development.
+#
+# The gateway is the only thing that publishes a port. That is not tidiness: the services
+# trust the X-AP-User-Id header the gateway asserts, and that trust is only sound while
+# nothing else can reach them to assert it themselves. Here the boundary is a network
+# rather than a promise.
+#
+# Nothing but the gateway is published, infrastructure included: this file runs the whole
+# system, and you talk to it through the front door. docker-compose.yml and
+# docker-compose.orb.yml are the other half of the pair — infrastructure only, with ports
+# exposed, for running a service from Gradle while you work on it.
+
+# Deliberately not "adventistportal": that is the project the hand-made OrbStack
+# containers belong to, and sharing the name would make compose adopt and recreate them.
+name: adventistportal-stack
+
+x-service-defaults: &service-defaults
+  build:
+    context: .
+    dockerfile: Dockerfile
+  restart: unless-stopped
+  environment: &service-environment
+    DB_URL: jdbc:postgresql://postgres:5432/adventistportal
+    RABBITMQ_HOST: rabbitmq
+    RABBITMQ_USER: adventistportal_user
+    RABBITMQ_PASSWORD: adventistportal_password
+    RABBITMQ_VHOST: adventistportal
+    REDIS_HOST: redis
+    REDIS_PASSWORD: adventistportal_redis_password
+    ZIPKIN_ENDPOINT: http://zipkin:9411/api/v2/spans
+    JWT_PUBLIC_KEY: ${JWT_PUBLIC_KEY:?run scripts/gen-jwt-keys.sh and put both keys in .env}
+  depends_on:
+    postgres:
+      condition: service_healthy
+    rabbitmq:
+      condition: service_healthy
+    # Not optional in practice: the span reporter drops what it cannot send and then
+    # logs nothing further, so a collector that is merely late looks like one that works.
+    zipkin:
+      condition: service_healthy
+
+services:
+  gateway:
+    <<: *service-defaults
+    # Named so `docker compose pull` can fetch what CI published instead of building.
+    image: ghcr.io/jeudry/adventistportal/gateway:${IMAGE_TAG:-edge}
+    build:
+      context: .
+      args:
+        SERVICE: gateway
+    # The only published port in the file.
+    ports:
+      - "${GATEWAY_PORT:-8080}:8080"
+    environment:
+      <<: *service-environment
+      SERVER_PORT: 8080
+      SERVICE_USER_URI: http://user:8080
+      SERVICE_NOTIFICATION_URI: http://notification:8080
+      SERVICE_CHAT_URI: http://chat:8080
+      SERVICE_CHAT_WS_URI: ws://chat:8080
+      SERVICE_INVENTORY_URI: http://inventory:8080
+    depends_on:
+      - user
+      - notification
+      - chat
+      - inventory
+
+  user:
+    <<: *service-defaults
+    # Named so `docker compose pull` can fetch what CI published instead of building.
+    image: ghcr.io/jeudry/adventistportal/user:${IMAGE_TAG:-edge}
+    build:
+      context: .
+      args:
+        SERVICE: user
+    environment:
+      <<: *service-environment
+      SERVER_PORT: 8080
+      MAIL_FROM_EMAIL: ${MAIL_FROM_EMAIL:-no-reply@adventistportal.local}
+      # Only here. Nothing else in the file gets the private half.
+      JWT_PRIVATE_KEY: ${JWT_PRIVATE_KEY:?run scripts/gen-jwt-keys.sh and put both keys in .env}
+
+  notification:
+    <<: *service-defaults
+    # Named so `docker compose pull` can fetch what CI published instead of building.
+    image: ghcr.io/jeudry/adventistportal/notification:${IMAGE_TAG:-edge}
+    build:
+      context: .
+      args:
+        SERVICE: notification
+    environment:
+      <<: *service-environment
+      SERVER_PORT: 8080
+      MAIL_FROM_EMAIL: ${MAIL_FROM_EMAIL:-no-reply@adventistportal.local}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+
+  chat:
+    <<: *service-defaults
+    # Named so `docker compose pull` can fetch what CI published instead of building.
+    image: ghcr.io/jeudry/adventistportal/chat:${IMAGE_TAG:-edge}
+    build:
+      context: .
+      args:
+        SERVICE: chat
+    environment:
+      <<: *service-environment
+      SERVER_PORT: 8080
+      SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY:-}
+
+  inventory:
+    <<: *service-defaults
+    # Named so `docker compose pull` can fetch what CI published instead of building.
+    image: ghcr.io/jeudry/adventistportal/inventory:${IMAGE_TAG:-edge}
+    build:
+      context: .
+      args:
+        SERVICE: inventory
+    environment:
+      <<: *service-environment
+      SERVER_PORT: 8080
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: adventistportal
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      # The same file scripts/db-provision-roles.sh applies by hand.
+      - ./scripts/sql/provision-roles.sql:/docker-entrypoint-initdb.d/10-provision-roles.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d adventistportal"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  rabbitmq:
+    image: rabbitmq:4-alpine
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: adventistportal_user
+      RABBITMQ_DEFAULT_PASS: adventistportal_password
+      RABBITMQ_DEFAULT_VHOST: adventistportal
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "check_running"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  zipkin:
+    image: openzipkin/zipkin:latest
+    restart: unless-stopped
+    # The one exception to "only the gateway publishes": this is where you go to read a
+    # trace, and it holds nothing but timings.
+    ports:
+      - "${ZIPKIN_PORT:-9411}:9411"
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--requirepass", "adventistportal_redis_password"]
+    volumes:
+      - redis-data:/data
+
+volumes:
+  postgres-data:
+  rabbitmq-data:
+  redis-data:

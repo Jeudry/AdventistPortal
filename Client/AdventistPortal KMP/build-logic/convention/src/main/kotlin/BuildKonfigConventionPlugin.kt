@@ -17,12 +17,21 @@ class BuildKonfigConventionPlugin: Plugin<Project> {
             extensions.configure<BuildKonfigExtension> {
                 packageName = target.pathToPackageName()
                 defaultConfigs {
-                    val apiKey = gradleLocalProperties(rootDir, rootProject.providers)
-                        .getProperty("API_KEY")
+                    val localProperties = gradleLocalProperties(rootDir, rootProject.providers)
+
+                    val apiKey = localProperties.getProperty("API_KEY")
                         ?: throw IllegalStateException(
                             "Missing API_KEY property in local.properties"
                         )
                     buildConfigField(FieldSpec.Type.STRING, "API_KEY", apiKey)
+
+                    // Where the gateway is. Production by default, so an existing checkout
+                    // keeps working; point BASE_URL at a local one to run against the
+                    // services on your machine. Everything the client reaches goes through
+                    // it — there is no second address to keep in step.
+                    val baseUrl = localProperties.getProperty("BASE_URL")
+                        ?: "https://adventistportal.com"
+                    buildConfigField(FieldSpec.Type.STRING, "BASE_URL", baseUrl)
                 }
             }
         }

@@ -1,7 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="🚀 Full Local Stack (Docker + App)" type="CompoundRunConfigurationType">
-    <toRun name="Docker: Start Local Services" type="docker-deploy" />
-    <toRun name="AdventistPortalApi [LOCAL]" type="SpringBootApplicationConfigurationType" />
-    <method v="2" />
-  </configuration>
-</component>

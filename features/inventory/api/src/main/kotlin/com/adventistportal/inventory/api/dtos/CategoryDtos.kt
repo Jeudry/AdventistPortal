@@ -1,29 +1,36 @@
 package com.adventistportal.inventory.api.dtos
 
+import kotlinx.serialization.Contextual
+
+import kotlinx.serialization.Serializable
+
 import com.adventistportal.core.domain.types.CategoryId
 
+@Serializable
 data class CategoryDto(
-    val id: CategoryId,
+    @Contextual val id: CategoryId,
     val name: String,
     val description: String?,
     val iconName: String?,
     val isActive: Boolean,
-    val parentId: CategoryId?
+    @Contextual val parentId: CategoryId?
 )
 
+@Serializable
 data class CreateCategoryInput(
     val name: String,
     val description: String?,
     val iconName: String?,
     val isActive: Boolean = true,
-    val parentId: CategoryId?
+    @Contextual val parentId: CategoryId?
 )
 
+@Serializable
 data class UpdateCategoryInput(
-    val id: CategoryId,
+    @Contextual val id: CategoryId,
     val name: String,
     val description: String?,
     val iconName: String?,
     val isActive: Boolean,
-    val parentId: CategoryId?
+    @Contextual val parentId: CategoryId?
 )
