@@ -1,0 +1,27 @@
+# Everything the services need that is not a secret.
+#
+# The same values compose.yaml sets, said once. What is *not* here is as deliberate: the
+# private key, the API key and the mail password come from a Secret that no file in this
+# repository contains — see k8s/README.md.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: platform
+  namespace: adventistportal
+data:
+  DB_URL: jdbc:postgresql://postgres:5432/adventistportal
+  RABBITMQ_HOST: rabbitmq
+  RABBITMQ_USER: adventistportal_user
+  RABBITMQ_VHOST: adventistportal
+  REDIS_HOST: redis
+  ZIPKIN_ENDPOINT: http://zipkin:9411/api/v2/spans
+  SERVER_PORT: "8080"
+
+  # Where each service finds the others. Names, not addresses: a pod that is replaced
+  # comes back on a different IP and the same name.
+  SERVICE_USER_URI: http://user:8080
+  SERVICE_NOTIFICATION_URI: http://notification:8080
+  SERVICE_CHAT_URI: http://chat:8080
+  SERVICE_CHAT_WS_URI: ws://chat:8080
+  SERVICE_INVENTORY_URI: http://inventory:8080
+  USER_GRPC_TARGET: user:9090

@@ -1,0 +1,260 @@
+# Postgres, Redis, RabbitMQ and Zipkin, in the cluster.
+#
+# In the cluster because there is no managed database to point at yet. When there is, the
+# first three go and only the connection strings change — which is the reason the services
+# read them from configuration rather than knowing them.
+#
+# StatefulSets, not Deployments, for the two that keep data: a StatefulSet gives a stable
+# name and keeps its volume across a restart, which is the difference between a database
+# and a cache that happens to persist.
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: adventistportal
+spec:
+  clusterIP: None
+  selector:
+    app: postgres
+  ports:
+    - port: 5432
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init
+  namespace: adventistportal
+data:
+  # Byte for byte the file scripts/db-provision-roles.sh applies by hand. Postgres runs
+  # everything in this directory the first time it starts on an empty volume, which is the
+  # right moment: creating a schema is provisioning, and no service's changelog does it.
+  10-provision-roles.sql: |
+    DO $$
+    DECLARE
+        service text;
+    BEGIN
+        FOREACH service IN ARRAY ARRAY['notification_service', 'user_service', 'chat_service', 'inventory_service']
+        LOOP
+            IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = service) THEN
+                EXECUTE format('CREATE ROLE %I LOGIN PASSWORD %L', service, service);
+            END IF;
+
+            EXECUTE format('CREATE SCHEMA IF NOT EXISTS %I', service);
+            EXECUTE format('GRANT USAGE, CREATE ON SCHEMA %I TO %I', service, service);
+            EXECUTE format('GRANT ALL ON ALL TABLES IN SCHEMA %I TO %I', service, service);
+            EXECUTE format('GRANT ALL ON ALL SEQUENCES IN SCHEMA %I TO %I', service, service);
+            EXECUTE format(
+                'ALTER DEFAULT PRIVILEGES IN SCHEMA %I GRANT ALL ON TABLES TO %I', service, service);
+            EXECUTE format(
+                'ALTER DEFAULT PRIVILEGES IN SCHEMA %I GRANT ALL ON SEQUENCES TO %I', service, service);
+        END LOOP;
+    END $$;
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: adventistportal
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          env:
+            - name: POSTGRES_DB
+              value: adventistportal
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: platform-secrets
+                  key: POSTGRES_PASSWORD
+            # The data lives in a subdirectory: Postgres refuses to initialise a volume
+            # whose root it does not own, and a mounted volume has a lost+found in it.
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+            - name: init
+              mountPath: /docker-entrypoint-initdb.d
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "postgres", "-d", "adventistportal"]
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            requests: { cpu: 100m, memory: 256Mi }
+            limits: { memory: 512Mi }
+      volumes:
+        - name: init
+          configMap:
+            name: postgres-init
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ReadWriteOnce]
+        resources:
+          requests:
+            storage: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  namespace: adventistportal
+spec:
+  selector:
+    app: redis
+  ports:
+    - port: 6379
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: adventistportal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:7-alpine
+          # Rate-limit buckets and a message cache. Losing them costs a moment of extra
+          # allowance and a few slow reads, so there is no volume here on purpose.
+          args:
+            - redis-server
+            - --requirepass
+            - $(REDIS_PASSWORD)
+          env:
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: platform-secrets
+                  key: REDIS_PASSWORD
+          ports:
+            - containerPort: 6379
+          resources:
+            requests: { cpu: 50m, memory: 64Mi }
+            limits: { memory: 256Mi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq
+  namespace: adventistportal
+spec:
+  clusterIP: None
+  selector:
+    app: rabbitmq
+  ports:
+    - port: 5672
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rabbitmq
+  namespace: adventistportal
+spec:
+  serviceName: rabbitmq
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+        - name: rabbitmq
+          image: rabbitmq:4-alpine
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              value: adventistportal_user
+            - name: RABBITMQ_DEFAULT_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: platform-secrets
+                  key: RABBITMQ_PASSWORD
+            - name: RABBITMQ_DEFAULT_VHOST
+              value: adventistportal
+          ports:
+            - containerPort: 5672
+          readinessProbe:
+            exec:
+              command: ["rabbitmq-diagnostics", "-q", "check_running"]
+            initialDelaySeconds: 20
+            periodSeconds: 15
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/rabbitmq
+          resources:
+            requests: { cpu: 100m, memory: 256Mi }
+            limits: { memory: 512Mi }
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ReadWriteOnce]
+        resources:
+          requests:
+            storage: 2Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zipkin
+  namespace: adventistportal
+spec:
+  selector:
+    app: zipkin
+  ports:
+    - port: 9411
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipkin
+  namespace: adventistportal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zipkin
+  template:
+    metadata:
+      labels:
+        app: zipkin
+    spec:
+      containers:
+        - name: zipkin
+          image: openzipkin/zipkin:latest
+          # In memory. Traces are for looking at something that just happened; keeping
+          # them across a restart is not worth a volume on a small machine.
+          ports:
+            - containerPort: 9411
+          resources:
+            requests: { cpu: 50m, memory: 256Mi }
+            limits: { memory: 512Mi }

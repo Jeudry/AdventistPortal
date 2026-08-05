@@ -41,10 +41,18 @@ class BehindGatewaySecurityConfig {
         .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
         .authorizeHttpRequests { auth ->
             auth.dispatcherTypeMatchers(DispatcherType.ERROR, DispatcherType.FORWARD).permitAll()
+            // Always open, in every service. Whatever is asking whether this process is
+            // alive — a container runtime, an orchestrator, a load balancer — has no token
+            // and never will, and a health check that answers 401 reads as a dead process.
+            auth.requestMatchers(HEALTH).permitAll()
             properties.publicPaths.forEach { auth.requestMatchers(it).permitAll() }
             auth.anyRequest().authenticated()
         }
         .addFilterBefore(identityFilter, UsernamePasswordAuthenticationFilter::class.java)
         .exceptionHandling { it.authenticationEntryPoint(HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)) }
         .build()
+
+    private companion object {
+        const val HEALTH = "/actuator/health/**"
+    }
 }

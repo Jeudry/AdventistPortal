@@ -1,0 +1,377 @@
+# The five services.
+#
+# Only the gateway has an Ingress; the other four are ClusterIP, reachable from inside the
+# cluster and nowhere else. That is the same guarantee compose.yaml makes by publishing
+# one port, and it is what makes the identity header the gateway asserts worth trusting.
+#
+# Read the `env` blocks for who gets which secret. The private signing key appears once,
+# in the user service. The API key appears once, in the gateway. Neither is in the shared
+# ConfigMap, because "everything gets everything" is how a compromise of the smallest
+# service becomes a compromise of the system.
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+  namespace: adventistportal
+spec:
+  selector:
+    app: gateway
+  ports:
+    - port: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+  namespace: adventistportal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      imagePullSecrets:
+        - name: ghcr
+      containers:
+        - name: gateway
+          image: ghcr.io/jeudry/adventistportal/gateway:edge
+          envFrom:
+            - configMapRef:
+                name: platform
+          env:
+            - name: JWT_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: JWT_PUBLIC_KEY }
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: API_KEY }
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: REDIS_PASSWORD }
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: RABBITMQ_PASSWORD }
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 90
+            periodSeconds: 10
+            failureThreshold: 6
+          resources:
+            requests: { cpu: 100m, memory: 384Mi }
+            limits: { memory: 768Mi }
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gateway
+  namespace: adventistportal
+  annotations:
+    # k3s ships Traefik. cert-manager issues the certificate; see k8s/README.md.
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts: [adventistportal.com]
+      secretName: gateway-tls
+  rules:
+    - host: adventistportal.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway
+                port:
+                  number: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user
+  namespace: adventistportal
+spec:
+  selector:
+    app: user
+  ports:
+    - name: http
+      port: 8080
+    - name: grpc
+      port: 9090
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user
+  namespace: adventistportal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user
+  template:
+    metadata:
+      labels:
+        app: user
+    spec:
+      imagePullSecrets:
+        - name: ghcr
+      containers:
+        - name: user
+          image: ghcr.io/jeudry/adventistportal/user:edge
+          envFrom:
+            - configMapRef:
+                name: platform
+          env:
+            # The only pod in the cluster that gets the private half. Everything else can
+            # check a token and none of them can make one.
+            - name: JWT_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: JWT_PRIVATE_KEY }
+            - name: JWT_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: JWT_PUBLIC_KEY }
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: USER_DB_PASSWORD }
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: REDIS_PASSWORD }
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: RABBITMQ_PASSWORD }
+            - name: MAIL_FROM_EMAIL
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: MAIL_FROM_EMAIL }
+          ports:
+            - containerPort: 8080
+            - containerPort: 9090
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 40
+            periodSeconds: 10
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            failureThreshold: 6
+          resources:
+            requests: { cpu: 100m, memory: 512Mi }
+            limits: { memory: 1Gi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat
+  namespace: adventistportal
+spec:
+  selector:
+    app: chat
+  ports:
+    - port: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat
+  namespace: adventistportal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat
+  template:
+    metadata:
+      labels:
+        app: chat
+    spec:
+      imagePullSecrets:
+        - name: ghcr
+      containers:
+        - name: chat
+          image: ghcr.io/jeudry/adventistportal/chat:edge
+          envFrom:
+            - configMapRef:
+                name: platform
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: CHAT_DB_PASSWORD }
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: REDIS_PASSWORD }
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: RABBITMQ_PASSWORD }
+            - name: SUPABASE_SERVICE_KEY
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: SUPABASE_SERVICE_KEY }
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 40
+            periodSeconds: 10
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            failureThreshold: 6
+          resources:
+            requests: { cpu: 100m, memory: 512Mi }
+            limits: { memory: 1Gi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory
+  namespace: adventistportal
+spec:
+  selector:
+    app: inventory
+  ports:
+    - port: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory
+  namespace: adventistportal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory
+  template:
+    metadata:
+      labels:
+        app: inventory
+    spec:
+      imagePullSecrets:
+        - name: ghcr
+      containers:
+        - name: inventory
+          image: ghcr.io/jeudry/adventistportal/inventory:edge
+          envFrom:
+            - configMapRef:
+                name: platform
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: INVENTORY_DB_PASSWORD }
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: RABBITMQ_PASSWORD }
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 40
+            periodSeconds: 10
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            failureThreshold: 6
+          resources:
+            requests: { cpu: 100m, memory: 512Mi }
+            limits: { memory: 1Gi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification
+  namespace: adventistportal
+spec:
+  selector:
+    app: notification
+  ports:
+    - port: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification
+  namespace: adventistportal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification
+  template:
+    metadata:
+      labels:
+        app: notification
+    spec:
+      imagePullSecrets:
+        - name: ghcr
+      containers:
+        - name: notification
+          image: ghcr.io/jeudry/adventistportal/notification:edge
+          envFrom:
+            - configMapRef:
+                name: platform
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: NOTIFICATION_DB_PASSWORD }
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: RABBITMQ_PASSWORD }
+            - name: MAIL_FROM_EMAIL
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: MAIL_FROM_EMAIL }
+            # The only pod that can send mail as you.
+            - name: MAIL_PASSWORD
+              valueFrom:
+                secretKeyRef: { name: platform-secrets, key: MAIL_PASSWORD }
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 40
+            periodSeconds: 10
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            failureThreshold: 6
+          resources:
+            requests: { cpu: 100m, memory: 512Mi }
+            limits: { memory: 1Gi }

@@ -35,6 +35,14 @@ jobs:
           TESTCONTAINERS_RYUK_DISABLED: 'false'
         run: ./gradlew build --no-daemon --stacktrace
 
+      # The manifests are applied by hand today, so nothing else would notice them
+      # rotting. Schema validation is cheap and catches the whole class of mistake that
+      # only shows up as a pod that will not start.
+      - name: Validate the Kubernetes manifests
+        run: |
+          docker run --rm -v "$PWD":/work -w /work \
+            ghcr.io/yannh/kubeconform:latest -summary -strict k8s/
+
       - name: Publish the report when something fails
         if: failure()
         uses: actions/upload-artifact@v4
