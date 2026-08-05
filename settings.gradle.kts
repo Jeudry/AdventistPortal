@@ -43,3 +43,5 @@ include("core:domain")
 include("core:infra")
 include("core:service")
 include("core:api")
+
+include("services:notification")

@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: notification-service
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://postgres.adventistportal.orb.local:5432/adventistportal?sslmode=disable}
+    # Its own role, granted on notification_service only. A shared Postgres keeps the
+    # boundary only if the database enforces it; otherwise it is a naming convention.
+    username: ${DB_USER:notification_service}
+    password: ${DB_PASSWORD:notification_service}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    default-schema: notification_service
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST:rabbitmq.adventistportal.orb.local}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:adventistportal_user}
+    password: ${RABBITMQ_PASSWORD:adventistportal_password}
+    virtual-host: ${RABBITMQ_VHOST:adventistportal}
+
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_FROM_EMAIL}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: ${SERVER_PORT:8082}
+
+adventistportal:
+  email:
+    url: ${PUBLIC_URL:http://localhost:8081}
+    from: ${MAIL_FROM_EMAIL:no-reply@adventistportal.local}
+
+logging:
+  level:
+    com.adventistportal: INFO

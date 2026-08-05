@@ -1,4 +1,3 @@
-import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
   id("adventistportal.spring-boot-app")
@@ -16,13 +15,6 @@ repositories {
 springBoot {
   mainClass.set("com.adventistportal.AdventistPortalApiApplicationKt")
 }
-tasks {
-  named<BootJar>("bootJar") {
-    from(project(":features:notification:infra").projectDir.resolve("src/main/resources")) {
-      into("")
-    }
-  }
-}
 dependencies {
   // Core modules
   implementation(projects.core.domain)
@@ -39,11 +31,6 @@ dependencies {
   implementation(projects.features.chat.infra)
   implementation(projects.features.chat.service)
   implementation(projects.features.chat.api)
-  // Notification modules
-  implementation(projects.features.notification.domain)
-  implementation(projects.features.notification.infra)
-  implementation(projects.features.notification.service)
-  implementation(projects.features.notification.api)
   // Article
   implementation(projects.features.inventory.domain)
   implementation(projects.features.inventory.infra)
