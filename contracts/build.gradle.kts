@@ -15,13 +15,21 @@ repositories { mavenCentral() }
 dependencies {
     api(libs.protobuf.java)
     api(libs.protobuf.kotlin)
+    // The generated service stubs live here with the messages: one module owns the wire.
+    api(libs.grpc.protobuf)
+    api(libs.grpc.stub)
+    api(libs.annotation.api)
 }
 
 protobuf {
     protoc { artifact = libs.protobuf.protoc.get().toString() }
+    plugins {
+        id("grpc") { artifact = libs.grpc.codegen.get().toString() }
+    }
     generateProtoTasks {
         all().forEach { task ->
             task.builtins { id("kotlin") }
+            task.plugins { id("grpc") }
         }
     }
 }

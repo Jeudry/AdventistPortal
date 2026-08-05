@@ -6,6 +6,10 @@ spring:
     # No Redis container here; caching is not what these tests assert.
     type: none
 
+adventistportal:
+  users:
+    grpc-target: localhost:19090
+
 supabase:
   service-key: unused-in-tests
 

@@ -61,6 +61,10 @@ adventistportal:
         routing-key: "user.*"
   security:
     public-paths: []
+  users:
+    # The only synchronous dependency in the system, and only on a miss.
+    grpc-target: ${USER_GRPC_TARGET:localhost:9090}
+    timeout-seconds: ${USER_GRPC_TIMEOUT:3}
   web-socket:
     allowed-origins:
       - ${PUBLIC_ORIGIN:http://localhost:8080}

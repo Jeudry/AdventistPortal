@@ -106,6 +106,7 @@ services:
       <<: *service-environment
       SERVER_PORT: 8080
       SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY:-}
+      USER_GRPC_TARGET: user:9090
 
   inventory:
     <<: *service-defaults

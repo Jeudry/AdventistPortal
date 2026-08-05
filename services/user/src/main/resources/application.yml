@@ -54,6 +54,12 @@ jwt:
 server:
   port: ${SERVER_PORT:8083}
 
+grpc:
+  server:
+    # Its own port, reachable only from inside the network. The only caller is another
+    # service, so there is no token on these calls and nothing outside may make one.
+    port: ${GRPC_PORT:9090}
+
 adventistportal:
   messaging:
     # This service only publishes. The exchange is declared anyway: publishing to one

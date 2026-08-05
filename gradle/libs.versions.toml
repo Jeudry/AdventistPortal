@@ -11,6 +11,10 @@ kotlinx-coroutines = "1.10.2"
 kotlinx-serialization = "1.11.0"
 protobuf = "4.34.2"
 protobuf-plugin = "0.10.0"
+# Pinned to what the Spring Boot BOM manages. It leaves grpc-netty-shaded alone, so a
+# newer number here mixes two gRPC versions in one classpath and the failure is a missing
+# field on an internal class, several layers from anything that looks related.
+grpc = "1.80.0"
 springdoc = "3.0.3"
 
 [libraries]
@@ -81,6 +85,12 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 protobuf-java = { module = "com.google.protobuf:protobuf-java", version.ref = "protobuf" }
 protobuf-kotlin = { module = "com.google.protobuf:protobuf-kotlin", version.ref = "protobuf" }
 protobuf-protoc = { module = "com.google.protobuf:protoc", version.ref = "protobuf" }
+grpc-protobuf = { module = "io.grpc:grpc-protobuf", version.ref = "grpc" }
+grpc-stub = { module = "io.grpc:grpc-stub", version.ref = "grpc" }
+grpc-netty-shaded = { module = "io.grpc:grpc-netty-shaded", version.ref = "grpc" }
+grpc-codegen = { module = "io.grpc:protoc-gen-grpc-java", version.ref = "grpc" }
+# grpc-java's generated stubs reference javax.annotation.Generated, which is not in the JDK.
+annotation-api = { module = "javax.annotation:javax.annotation-api", version = "1.3.2" }
 
 # Test
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
