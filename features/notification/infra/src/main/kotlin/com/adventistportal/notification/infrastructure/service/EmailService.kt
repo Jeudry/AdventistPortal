@@ -88,10 +88,9 @@ class EmailService(
             setFrom(emailFrom)
         }
 
-         try {
-             javaMailSender.send(message)
-         } catch (e: Exception) {
-             logger.error("Failed to send email to $to", e)
-         }
+        // Deliberately not caught. Catching it acknowledged the message, so a failed send
+        // meant an e-mail nobody ever received and nothing anywhere saying so. Letting it
+        // out gives the listener its retries, and then the dead-letter queue.
+        javaMailSender.send(message)
     }
 }

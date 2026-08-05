@@ -4,10 +4,13 @@ import com.adventistportal.core.infrastructure.message_queue.proto.ProtoMessageC
 import org.springframework.amqp.core.BindingBuilder
 import org.springframework.amqp.core.Declarables
 import org.springframework.amqp.core.Queue
+import org.springframework.amqp.core.QueueBuilder
 import org.springframework.amqp.core.TopicExchange
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory
 import org.springframework.amqp.rabbit.connection.ConnectionFactory
+import org.springframework.amqp.rabbit.config.RetryInterceptorBuilder
 import org.springframework.amqp.rabbit.core.RabbitTemplate
+import org.springframework.amqp.rabbit.retry.RejectAndDontRequeueRecoverer
 import org.springframework.amqp.support.converter.MessageConverter
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
@@ -47,6 +50,18 @@ class RabbitMqConfig {
         // Without this the consumer discards the trace context on the message, and every
         // event handled looks like work nobody asked for.
         setObservationEnabled(true)
+
+        // A handler that throws must not get the message back forever. It is retried a few
+        // times for the sake of a broker or an SMTP server having a bad second, and then
+        // rejected — which, with requeue off, means the queue's dead-letter address.
+        setDefaultRequeueRejected(false)
+        setAdviceChain(
+            RetryInterceptorBuilder.stateless()
+                .maxRetries(RETRIES_BEFORE_DEAD_LETTERING)
+                .backOffOptions(INITIAL_BACKOFF_MS, BACKOFF_MULTIPLIER, MAX_BACKOFF_MS)
+                .recoverer(RejectAndDontRequeueRecoverer())
+                .build(),
+        )
     }
 
     /**
@@ -63,7 +78,17 @@ class RabbitMqConfig {
             .distinct()
             .associateWith { TopicExchange(it, true, false) }
 
-        val queues = properties.subscriptions.associate { it.queue to Queue(it.queue, true) }
+        // Each queue dead-letters through the default exchange, which routes by queue
+        // name — so the pair needs no exchange of its own. Both arguments are required:
+        // RabbitMQ rejects a routing key with no exchange to send it through.
+        val queues = properties.subscriptions.associate {
+            it.queue to QueueBuilder.durable(it.queue)
+                .deadLetterExchange(DEFAULT_EXCHANGE)
+                .deadLetterRoutingKey(it.queue.deadLetterName())
+                .build()
+        }
+
+        val deadLetterQueues = properties.subscriptions.map { Queue(it.queue.deadLetterName(), true) }
 
         val bindings = properties.subscriptions.map { subscription ->
             BindingBuilder
@@ -72,6 +97,23 @@ class RabbitMqConfig {
                 .with(subscription.routingKey)
         }
 
-        return Declarables(exchanges.values + queues.values + bindings)
+        return Declarables(exchanges.values + queues.values + deadLetterQueues + bindings)
+    }
+
+    /**
+     * Where a message goes once it has failed every attempt. It is kept, not dropped: an
+     * event that cannot be handled is something to go and look at, and a queue that is
+     * empty for the wrong reason looks exactly like one that is empty for the right one.
+     */
+    private fun String.deadLetterName() = "$this$DEAD_LETTER_SUFFIX"
+
+    private companion object {
+        const val DEFAULT_EXCHANGE = ""
+        const val DEAD_LETTER_SUFFIX = ".dlq"
+        /** Retries, not attempts: the first delivery is not one of these. */
+        const val RETRIES_BEFORE_DEAD_LETTERING = 2
+        const val INITIAL_BACKOFF_MS = 1_000L
+        const val MAX_BACKOFF_MS = 10_000L
+        const val BACKOFF_MULTIPLIER = 2.0
     }
 }
