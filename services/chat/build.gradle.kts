@@ -29,6 +29,9 @@ dependencies {
     implementation(libs.liquibase.starter)
     runtimeOnly(libs.postgresql)
 
+    // The test drives a real WebSocket client, so the client half has to be on its
+    // classpath: the feature declares it as implementation, which does not reach here.
+    testImplementation(libs.spring.boot.starter.websocket)
     testImplementation(libs.awaitility)
     testImplementation(libs.spring.boot.testcontainers)
     testImplementation(libs.testcontainers.junit)

@@ -199,6 +199,11 @@ Notification's mail is asserted against a real SMTP server in the test process r
 than a mock. Its send path catches its own exceptions, so a mock would agree with
 anything — including with a failure.
 
+Chat is tested over a real WebSocket for the same reason: the handshake is where identity
+arrives, the connection is what remembers which chats you are in, and a message reaches
+anyone by being pushed to their socket. None of that exists in a mock, and none of it was
+covered — which is how sending a message turned out never to have worked at all.
+
 **~~No transactional outbox.~~** Events are now written in the transaction that caused
 them and relayed afterwards. Delivery is at-least-once, so consumers must tolerate seeing
 an event twice.
