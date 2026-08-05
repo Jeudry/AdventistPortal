@@ -1,5 +1,6 @@
 package com.adventistportal.gateway.security
 
+import com.adventistportal.core.domain.security.TrustedIdentity.CLIENT_ADDRESS_HEADER
 import com.adventistportal.core.domain.security.TrustedIdentity.USER_ID_HEADER
 import com.adventistportal.core.services.JwtService
 import org.springframework.core.Ordered
@@ -26,7 +27,10 @@ import reactor.core.publisher.Mono
  * running on the reactive stack: chat used to have to verify that one itself.
  */
 @Component
-class IdentityPropagationFilter(private val jwtService: JwtService) : WebFilter, Ordered {
+class IdentityPropagationFilter(
+    private val jwtService: JwtService,
+    private val properties: ForwardingProperties,
+) : WebFilter, Ordered {
 
     // After the API key: a request with no business being here should not have its
     // token parsed.
@@ -41,7 +45,7 @@ class IdentityPropagationFilter(private val jwtService: JwtService) : WebFilter,
         }
 
         val userId = token?.let(jwtService::getUserIdFromToken)?.toString()
-        return chain.filter(exchange.withAssertedIdentity(userId))
+        return chain.filter(exchange.withAssertedIdentity(userId, exchange.clientAddress()))
     }
 
     /**
@@ -49,13 +53,38 @@ class IdentityPropagationFilter(private val jwtService: JwtService) : WebFilter,
      * has it dropped here, which is the only thing making the header trustworthy
      * downstream.
      */
-    private fun ServerWebExchange.withAssertedIdentity(userId: String?): ServerWebExchange {
+    private fun ServerWebExchange.withAssertedIdentity(userId: String?, clientAddress: String?): ServerWebExchange {
         val request = request.mutate()
-            .headers { it.remove(USER_ID_HEADER) }
-            .apply { userId?.let { header(USER_ID_HEADER, it) } }
+            .headers {
+                it.remove(USER_ID_HEADER)
+                it.remove(CLIENT_ADDRESS_HEADER)
+            }
+            .apply {
+                userId?.let { header(USER_ID_HEADER, it) }
+                clientAddress?.let { header(CLIENT_ADDRESS_HEADER, it) }
+            }
             .build()
 
         return mutate().request(request).build()
+    }
+
+    /**
+     * The address the connection came from.
+     *
+     * An inbound `X-Forwarded-For` is only believed when something trusted is in front of
+     * the gateway. Otherwise a client sets its own: it would get a fresh rate-limit bucket
+     * on every request just by changing the header, which is the limiter switched off with
+     * extra steps.
+     */
+    private fun ServerWebExchange.clientAddress(): String? {
+        val connection = request.remoteAddress?.address?.hostAddress
+        if (!properties.trustForwardedFor) return connection
+
+        return request.headers.getFirst(FORWARDED_FOR)
+            ?.substringBefore(',')
+            ?.trim()
+            ?.takeIf(String::isNotBlank)
+            ?: connection
     }
 
     private fun ServerHttpRequest.bearerToken(): String? = headers
@@ -69,5 +98,6 @@ class IdentityPropagationFilter(private val jwtService: JwtService) : WebFilter,
     private companion object {
         const val BEARER_PREFIX = "Bearer "
         const val TOKEN_PARAMETER = "access_token"
+        const val FORWARDED_FOR = "X-Forwarded-For"
     }
 }

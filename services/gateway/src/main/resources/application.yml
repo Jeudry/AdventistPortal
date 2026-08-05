@@ -48,6 +48,12 @@ gateway:
     allowed-origins:
       - http://localhost:8080
 
+spring.data.redis:
+  host: ${REDIS_HOST:127.0.0.1}
+  port: ${REDIS_PORT:6379}
+  username: ${REDIS_USER:default}
+  password: ${REDIS_PASSWORD:adventistportal_redis_password}
+
 jwt:
   # The public half only. The gateway is the process exposed to the internet, and it
   # should not be able to mint the tokens it checks.

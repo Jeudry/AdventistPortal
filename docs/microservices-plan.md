@@ -140,6 +140,24 @@ can do nothing with it but verify.
 The trusted header is only trustworthy while the service ports are unreachable except
 through the gateway. compose.yaml is what makes that true rather than hoped for.
 
+### The rate limit is two limits
+
+The gateway applies a blunt ceiling per address to every route, including chat, inventory
+and notification, which had none at all. The user service keeps its per-endpoint rules,
+because only it knows that logging in deserves a stricter allowance than confirming an
+e-mail address.
+
+Both need to know who is calling, and putting a gateway in front broke that: `remoteAddr`
+became the gateway, so every user in the world shared one bucket and one of them hitting
+the limit locked out all of them. The gateway asserts the address the same way it asserts
+identity — one mechanism with one guarantee behind it, rather than a second convention to
+keep in step.
+
+An inbound `X-Forwarded-For` is *not* believed by default. The gateway is the edge, so
+that header is whatever the caller felt like sending: honouring it hands out a fresh
+bucket per request to anyone who varies it, which is the limiter switched off with extra
+steps. It is a setting, for when something trusted is genuinely in front.
+
 ### Queue names move to configuration
 
 They are shared Kotlin constants today. Two services disagreeing on a queue name fails

@@ -32,6 +32,8 @@ dependencies {
     implementation(projects.core.domain)
     implementation(projects.core.service)
 
+    // The rate limiter keeps its buckets in Redis, so a second gateway shares them.
+    implementation(libs.spring.boot.starter.data.redis.reactive)
     implementation(libs.spring.boot.starter.security)
     implementation(libs.kotlin.reflect)
 }

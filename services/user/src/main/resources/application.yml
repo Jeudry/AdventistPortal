@@ -88,12 +88,6 @@ adventistportal:
     rate-limit:
       apply-limit: ${IP_RATE_LIMIT:true}
 
-nginx:
-  require-proxy: false
-  trustedIps:
-    - "127.0.0.1"
-    - "::1"
-
 logging:
   level:
     com.adventistportal: INFO

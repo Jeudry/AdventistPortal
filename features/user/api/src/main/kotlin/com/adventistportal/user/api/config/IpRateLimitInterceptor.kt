@@ -1,8 +1,8 @@
 package com.adventistportal.user.api.config
 
 import com.adventistportal.user.domain.exception.RateLimitEx
+import com.adventistportal.core.api.security.ClientAddress
 import com.adventistportal.user.infrastructure.rate_limiting.IpRateLimiter
-import com.adventistportal.user.infrastructure.rate_limiting.IpResolver
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.beans.factory.annotation.Value
@@ -14,7 +14,6 @@ import java.time.Duration
 @Component
 class IpRateLimitInterceptor(
     private val ipRateLimiter: IpRateLimiter,
-    private val ipResolver: IpResolver,
     @param:Value("\${adventistportal.ip.rate-limit.apply-limit}")
     private val applyLimit: Boolean,
 ): HandlerInterceptor {
@@ -23,7 +22,7 @@ class IpRateLimitInterceptor(
         if(handler is HandlerMethod && applyLimit){
             val annotation = handler.getMethodAnnotation(IpRateLimit::class.java)
             if(annotation != null){
-                val clientIp = ipResolver.getClientIp(request)
+                val clientIp = ClientAddress.of(request)
                 return try {
                     ipRateLimiter.withRateLimit(
                         ipAddress = clientIp,
