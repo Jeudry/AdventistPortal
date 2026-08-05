@@ -17,6 +17,7 @@ repositories {
 }
 
 dependencies {
+    api(projects.contracts)
     implementation(projects.core.domain)
     
     implementation(libs.spring.boot.starter.amqp)

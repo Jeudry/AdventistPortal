@@ -2,12 +2,8 @@
 
 package com.adventistportal.core.infrastructure.message_queue
 
-import com.adventistportal.core.domain.events.AdventistPortalEvent
 import com.adventistportal.core.domain.events.chat.ChatEventConstants
 import com.adventistportal.core.domain.events.user.UserEventConstants
-import tools.jackson.databind.DefaultTyping
-import tools.jackson.databind.json.JsonMapper
-import tools.jackson.databind.jsontype.BasicPolymorphicTypeValidator
 import org.springframework.amqp.core.Binding
 import org.springframework.amqp.core.BindingBuilder
 import org.springframework.amqp.core.Queue
@@ -15,8 +11,8 @@ import org.springframework.amqp.core.TopicExchange
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory
 import org.springframework.amqp.rabbit.connection.ConnectionFactory
 import org.springframework.amqp.rabbit.core.RabbitTemplate
-import org.springframework.amqp.support.converter.JacksonJavaTypeMapper
-import org.springframework.amqp.support.converter.JacksonJsonMessageConverter
+import com.adventistportal.core.infrastructure.message_queue.proto.ProtoMessageConverter
+import org.springframework.amqp.support.converter.MessageConverter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.transaction.PlatformTransactionManager
@@ -26,32 +22,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 @EnableTransactionManagement
 class RabbitMqConfig {
     @Bean
-    fun messageConverter(): JacksonJsonMessageConverter {
-        val polymorphicTypeValidator = BasicPolymorphicTypeValidator.builder()
-            .allowIfBaseType(AdventistPortalEvent::class.java)
-            .allowIfSubType("java.util.")
-            .allowIfSubType("kotlin.collections.")
-            .build()
-
-        // Jackson 3: immutable JsonMapper; Kotlin + java.time auto-registered.
-        val objectMapper = JsonMapper.builder()
-            .findAndAddModules()
-            .activateDefaultTyping(polymorphicTypeValidator, DefaultTyping.NON_FINAL)
-            .build()
-
-        // Spring AMQP's type mapper has its own trusted-packages check (separate
-        // from Jackson's PolymorphicTypeValidator) for the __TypeId__ header used
-        // by TYPE_ID precedence. Trust all packages for this internal event bus;
-        // the Jackson validator above still bounds body (@class) deserialization.
-        return JacksonJsonMessageConverter(objectMapper, "*").apply {
-            typePrecedence = JacksonJavaTypeMapper.TypePrecedence.TYPE_ID
-        }
-    }
+    fun messageConverter(): MessageConverter = ProtoMessageConverter()
 
     @Bean
     fun rabbitTemplate(
         connectionFactory: ConnectionFactory,
-        messageConverter: JacksonJsonMessageConverter,
+        messageConverter: MessageConverter,
     ): RabbitTemplate {
         return RabbitTemplate(connectionFactory).apply {
             this.messageConverter = messageConverter
@@ -62,7 +38,7 @@ class RabbitMqConfig {
     fun rabbitListenerContainerFactory(
         connectionFactory: ConnectionFactory,
         transactionManager: PlatformTransactionManager,
-        messageConverter: JacksonJsonMessageConverter
+        messageConverter: MessageConverter
     ): SimpleRabbitListenerContainerFactory {
         return SimpleRabbitListenerContainerFactory().apply {
             this.setTransactionManager(transactionManager)
