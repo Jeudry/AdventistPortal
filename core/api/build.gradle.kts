@@ -21,6 +21,7 @@ dependencies {
     implementation("com.adventistportal.shared:domain:1.0.0")
     
     implementation(libs.spring.boot.starter.web)
+    api(libs.kotlinx.serialization.json)
     implementation(libs.spring.boot.starter.security)
     
     testImplementation(kotlin("test"))

@@ -1,7 +1,12 @@
 package com.adventistportal.chat.api.dto.ws
 
+import kotlinx.serialization.Contextual
+
+import kotlinx.serialization.Serializable
+
 import com.adventistportal.core.domain.types.ChatId
 
+@Serializable
 data class ChatParticipantsChangedDto(
-  val chatId: ChatId
+  @Contextual val chatId: ChatId
 )

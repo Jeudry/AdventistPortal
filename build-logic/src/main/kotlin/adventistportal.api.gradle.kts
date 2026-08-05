@@ -1,6 +1,10 @@
 plugins {
     id("adventistportal.kotlin-common")
     id("java-library")
+    // The DTOs are @Serializable so they can move to `shared` and be used by the KMP
+    // client. Without this plugin the annotation generates nothing, no serialiser is
+    // found, and Spring quietly falls back to Jackson.
+    kotlin("plugin.serialization")
 }
 
 repositories {
