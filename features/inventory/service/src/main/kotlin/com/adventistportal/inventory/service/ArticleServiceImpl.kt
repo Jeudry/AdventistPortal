@@ -11,7 +11,7 @@ class ArticleServiceImpl(
 ): ArticleService {
     
     override fun addArticle(article: Article): ArticleId {
-        return articleRepository.save(article).id
+        return requireNotNull(articleRepository.save(article).id) { "saving assigns the id" }
     }
 
     override fun updateArticle(id: ArticleId, article: Article): ArticleId {

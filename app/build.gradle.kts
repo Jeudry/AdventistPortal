@@ -50,7 +50,8 @@ dependencies {
   implementation(libs.springdoc.openapi.starter.webmvc.ui)
   runtimeOnly(libs.postgresql)
 
-    testImplementation(libs.spring.boot.testcontainers)
+  testImplementation(libs.awaitility)
+  testImplementation(libs.spring.boot.testcontainers)
   testImplementation(libs.testcontainers.junit)
   testImplementation(libs.testcontainers.postgresql)
   testImplementation(libs.testcontainers.rabbitmq)

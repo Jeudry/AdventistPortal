@@ -44,7 +44,7 @@ fun ArticleDimensionDomain.fromDomain(): ArticleDimensions {
 
 fun ArticleEntity.toDomain(): Article {
     return Article(
-        id = this.id ?: throw IllegalStateException("Article ID cannot be null"),
+        id = this.id,
         nameTemplate = this.nameTemplate,
         descriptionTemplate = this.descriptionTemplate,
         isActive = this.isActive,
@@ -55,7 +55,7 @@ fun ArticleEntity.toDomain(): Article {
 
 fun ArticleVariantEntity.toDomain(): ArticleVariant {
     return ArticleVariant(
-        id = this.id ?: java.util.UUID.randomUUID(),
+        id = this.id,
         sku = this.sku,
         name = this.name,
         description = this.description,

@@ -38,8 +38,15 @@ data class ArticleVariantDto(
     val isActive: Boolean,
     val stock: Int,
     val replacementCostCents: Long,
-    val attributes: Map<String, String>,
+    /** A list, matching the schema. The domain keeps a map, where a key cannot repeat. */
+    val attributes: List<AttributeDto>,
     val dimensions: List<ArticleDimensionDto>
+)
+
+@Serializable
+data class AttributeDto(
+    val key: String,
+    val value: String
 )
 
 @Serializable
@@ -63,12 +70,19 @@ data class CreateArticleInput(
 data class CreateArticleVariantInput(
     val sku: String,
     val name: String,
-    val description: String?,
-    val imageUrl: String?,
+    val description: String? = null,
+    val imageUrl: String? = null,
     val stock: Int,
     val replacementCostCents: Long,
-    val attributes: Map<String, String>,
-    val dimensions: List<ArticleDimensionInput>
+    /** Optional in the schema, so optional here: omitting it used to be a 500. */
+    val attributes: List<AttributeInput>? = null,
+    val dimensions: List<ArticleDimensionInput>? = null
+)
+
+@Serializable
+data class AttributeInput(
+    val key: String,
+    val value: String
 )
 
 @Serializable

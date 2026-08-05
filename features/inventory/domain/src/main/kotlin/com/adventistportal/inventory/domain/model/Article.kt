@@ -5,7 +5,8 @@ import com.adventistportal.core.domain.types.CategoryId
 import java.util.*
 
 data class Article(
-    val id: ArticleId,
+    /** Null until it is saved: the database assigns it. */
+    val id: ArticleId? = null,
     val nameTemplate: String,
     val descriptionTemplate: String? = null,
     val isActive: Boolean = true,
@@ -14,7 +15,8 @@ data class Article(
 )
 
 data class ArticleVariant(
-    val id: UUID,
+    /** Null until it is saved, like its article. */
+    val id: UUID? = null,
     val sku: String,
     val name: String,
     val description: String? = null,
