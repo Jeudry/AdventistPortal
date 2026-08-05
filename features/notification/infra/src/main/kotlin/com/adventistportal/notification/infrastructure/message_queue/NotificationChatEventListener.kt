@@ -1,7 +1,6 @@
 package com.adventistportal.notification.infrastructure.message_queue
 
 import com.adventistportal.core.domain.events.chat.ChatEvent
-import com.adventistportal.core.infrastructure.message_queue.MessageQueues
 import com.adventistportal.notification.infrastructure.service.PushNotificationService
 import org.springframework.amqp.rabbit.annotation.RabbitListener
 import org.springframework.stereotype.Component
@@ -12,7 +11,7 @@ class NotificationChatEventListener(
   private val pushNotificationService: PushNotificationService
 ) {
 
-    @RabbitListener(queues = [MessageQueues.NOTIFICATION_CHAT_EVENTS])
+    @RabbitListener(queues = ["\${adventistportal.messaging.queues.chat-events}"])
     @Transactional
     fun handleUserEvent(event: ChatEvent){
         when(event){

@@ -1,7 +1,6 @@
 package com.adventistportal.notification.infrastructure.message_queue
 
 import com.adventistportal.core.domain.events.user.UserEvent
-import com.adventistportal.core.infrastructure.message_queue.MessageQueues
 import com.adventistportal.notification.infrastructure.service.EmailService
 import org.springframework.amqp.rabbit.annotation.RabbitListener
 import org.springframework.stereotype.Component
@@ -11,7 +10,7 @@ import java.time.Duration
 @Component
 class NotificationUserEventListener(private val emailService: EmailService) {
 
-    @RabbitListener(queues = [MessageQueues.NOTIFICATION_USER_EVENTS])
+    @RabbitListener(queues = ["\${adventistportal.messaging.queues.user-events}"])
     @Transactional
     fun handleUserEvent(event: UserEvent){
         when(event){

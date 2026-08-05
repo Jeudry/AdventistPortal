@@ -50,6 +50,11 @@ server:
   port: ${SERVER_PORT:8083}
 
 adventistportal:
+  messaging:
+    # This service only publishes. The exchange is declared anyway: publishing to one
+    # that does not exist is a channel error, and the relay would retry forever.
+    publishes-to:
+      - user.events
   outbox:
     # Declared once: Liquibase and the outbox both read it, so they cannot disagree
     # about which schema this service owns.

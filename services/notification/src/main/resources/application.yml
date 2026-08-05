@@ -49,6 +49,17 @@ server:
   port: ${SERVER_PORT:8082}
 
 adventistportal:
+  messaging:
+    queues:
+      user-events: notification.user.events
+      chat-events: notification.chat.events
+    subscriptions:
+      - queue: ${adventistportal.messaging.queues.user-events}
+        exchange: user.events
+        routing-key: "user.*"
+      - queue: ${adventistportal.messaging.queues.chat-events}
+        exchange: chat.events
+        routing-key: chat.new_message
   outbox:
     # Declared once: Liquibase and the outbox both read it, so they cannot disagree
     # about which schema this service owns.

@@ -94,6 +94,15 @@ jwt:
   expiration-minutes: 60
 
 adventistportal:
+  messaging:
+    publishes-to:
+      - chat.events
+    queues:
+      user-events: chat.user.events
+    subscriptions:
+      - queue: ${adventistportal.messaging.queues.user-events}
+        exchange: user.events
+        routing-key: "user.*"
   outbox:
     # chat is the only publisher left in this assembly; the table moves with it when
     # chat becomes its own service.
