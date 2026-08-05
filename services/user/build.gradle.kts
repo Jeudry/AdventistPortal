@@ -27,6 +27,7 @@ dependencies {
     implementation(libs.liquibase.starter)
     runtimeOnly(libs.postgresql)
 
+    testImplementation(libs.awaitility)
     testImplementation(libs.spring.boot.testcontainers)
     testImplementation(libs.testcontainers.junit)
     testImplementation(libs.testcontainers.postgresql)

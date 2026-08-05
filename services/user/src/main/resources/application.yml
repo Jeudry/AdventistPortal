@@ -24,7 +24,7 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.xml
-    default-schema: user_service
+    default-schema: ${adventistportal.outbox.schema}
 
   rabbitmq:
     host: ${RABBITMQ_HOST:rabbitmq.adventistportal.orb.local}
@@ -50,6 +50,10 @@ server:
   port: ${SERVER_PORT:8083}
 
 adventistportal:
+  outbox:
+    # Declared once: Liquibase and the outbox both read it, so they cannot disagree
+    # about which schema this service owns.
+    schema: user_service
   # This service mints tokens; the gateway only verifies them. Every endpoint here is
   # reached without a caller, which is why the list is the whole public surface minus
   # change-password.

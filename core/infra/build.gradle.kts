@@ -21,6 +21,9 @@ dependencies {
     implementation(projects.core.domain)
     
     implementation(libs.spring.boot.starter.amqp)
+    // The outbox writes through JDBC so it can share the caller's transaction without
+    // pinning core to one schema through an entity.
+    implementation(libs.spring.boot.starter.jdbc)
     
     api(libs.jackson.module.kotlin)
     api(libs.kotlin.reflect)

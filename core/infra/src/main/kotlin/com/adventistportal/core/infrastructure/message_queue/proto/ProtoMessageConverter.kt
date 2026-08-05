@@ -20,21 +20,16 @@ class ProtoMessageConverter : MessageConverter {
         if (objectToConvert !is AdventistPortalEvent) {
             throw MessageConversionException("Only domain events go on this bus, got ${objectToConvert::class.qualifiedName}")
         }
-        messageProperties.contentType = CONTENT_TYPE
-        messageProperties.setHeader(PROTO_TYPE_HEADER, EventProtoMapper.protoTypeOf(objectToConvert))
+        messageProperties.contentType = ProtoWire.CONTENT_TYPE
+        messageProperties.setHeader(ProtoWire.TYPE_HEADER, EventProtoMapper.protoTypeOf(objectToConvert))
         return Message(EventProtoMapper.toBytes(objectToConvert), messageProperties)
     }
 
     override fun fromMessage(message: Message): Any {
-        val protoType = message.messageProperties.getHeader<String>(PROTO_TYPE_HEADER)
-            ?: throw MessageConversionException("Message carries no $PROTO_TYPE_HEADER header")
+        val protoType = message.messageProperties.getHeader<String>(ProtoWire.TYPE_HEADER)
+            ?: throw MessageConversionException("Message carries no ${ProtoWire.TYPE_HEADER} header")
 
         return runCatching { EventProtoMapper.fromBytes(protoType, message.body) }
             .getOrElse { throw MessageConversionException("Could not read $protoType off the wire", it) }
-    }
-
-    private companion object {
-        const val CONTENT_TYPE = "application/x-protobuf"
-        const val PROTO_TYPE_HEADER = "proto-type"
     }
 }

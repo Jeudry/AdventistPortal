@@ -94,6 +94,10 @@ jwt:
   expiration-minutes: 60
 
 adventistportal:
+  outbox:
+    # chat is the only publisher left in this assembly; the table moves with it when
+    # chat becomes its own service.
+    schema: chat_service
   security:
     # Enumerated, not /api/auth/**: change-password sits under the same prefix and is the
     # one endpoint there that needs a caller. A wildcard would silently open it.
