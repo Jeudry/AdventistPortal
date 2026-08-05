@@ -3,6 +3,12 @@ spring:
     # The container speaks plain AMQP on the default vhost.
     virtual-host: /
 
+grpc:
+  server:
+    # Chosen by the OS. Several test contexts share one JVM, and a fixed port means the
+    # second one to start finds the first still holding it.
+    port: 0
+
 jwt:
   # A pair generated for the tests and nothing else. Signing is exercised here, so both
   # halves are present; every other service gets only the public one.
